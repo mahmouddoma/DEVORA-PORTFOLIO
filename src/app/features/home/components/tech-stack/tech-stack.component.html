@@ -1,0 +1,28 @@
+<section id="stack" class="tech-section section-padding">
+  <div class="container tech-header">
+    <div>
+      <span class="section-kicker motion-item">{{ i18n.t('tech.kicker') }}</span>
+      <h2 class="section-title motion-item">{{ i18n.t('tech.title') }}</h2>
+    </div>
+    <p class="section-copy motion-item">{{ i18n.t('tech.caption') }}</p>
+  </div>
+
+  <div class="stack-board glass motion-item">
+    <div class="board-scan"></div>
+    <div class="board-cell" *ngFor="let cell of boardCells">{{ cell }}</div>
+  </div>
+
+  <div class="tech-marquee">
+    <div class="marquee-track primary">
+      <span class="tech-chip glass" *ngFor="let tech of technologies">{{ tech }}</span>
+      <span class="tech-chip glass" *ngFor="let tech of technologies">{{ tech }}</span>
+    </div>
+  </div>
+
+  <div class="tech-marquee">
+    <div class="marquee-track secondary">
+      <span class="tech-chip glass" *ngFor="let tech of technologiesReverse">{{ tech }}</span>
+      <span class="tech-chip glass" *ngFor="let tech of technologiesReverse">{{ tech }}</span>
+    </div>
+  </div>
+</section>

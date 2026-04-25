@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { PLATFORM_ID } from '@angular/core';
 import { App } from './app';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [{ provide: PLATFORM_ID, useValue: 'server' }],
     }).compileComponents();
   });
 
@@ -14,10 +16,12 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the landing sections', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, DEVORA');
+    expect(compiled.querySelector('app-navbar')).toBeTruthy();
+    expect(compiled.querySelector('app-hero')).toBeTruthy();
+    expect(compiled.querySelector('app-contact')).toBeTruthy();
   });
 });

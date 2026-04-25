@@ -1,0 +1,167 @@
+.services-section {
+  background: var(--bg-section-alt);
+}
+
+.section-heading {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 54px;
+  perspective: 1200px;
+}
+
+.service-card {
+  position: relative;
+  min-height: 318px;
+  overflow: hidden;
+  padding: 24px;
+  transform-style: preserve-3d;
+}
+
+.service-card::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.12), transparent 38%),
+    linear-gradient(315deg, rgba(255, 95, 143, 0.1), transparent 42%);
+  content: '';
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 34px;
+}
+
+.service-index {
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.service-icon {
+  position: relative;
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.service-icon::before,
+.service-icon::after {
+  position: absolute;
+  content: '';
+}
+
+.service-icon::before {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--accent-cyan);
+}
+
+.service-icon.web::before {
+  border-radius: 6px;
+  box-shadow: inset 0 8px 0 rgba(0, 229, 255, 0.18);
+}
+
+.service-icon.saas::before {
+  border-radius: 4px;
+  transform: rotate(45deg);
+}
+
+.service-icon.ai::before {
+  border-radius: 50%;
+}
+
+.service-icon.ai::after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-rose);
+}
+
+.service-icon.ux::before {
+  width: 30px;
+  height: 18px;
+  border-radius: 14px;
+}
+
+.service-icon.perf::before {
+  border-radius: 50%;
+  border-top-color: var(--accent-rose);
+  transform: rotate(35deg);
+}
+
+.service-icon.security::before {
+  width: 24px;
+  height: 30px;
+  border-radius: 12px 12px 6px 6px;
+}
+
+.service-card h3 {
+  position: relative;
+  z-index: 1;
+  min-height: 64px;
+  margin: 0 0 16px;
+  font-size: 1.34rem;
+  line-height: 1.25;
+}
+
+.service-card p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.service-rail {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  height: 2px;
+  overflow: hidden;
+  background: var(--surface-strong);
+}
+
+.service-rail span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-rose));
+  transform: translateX(-110%);
+}
+
+@media (max-width: 991.98px) {
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    margin-top: 34px;
+  }
+
+  .service-card {
+    min-height: 282px;
+  }
+}

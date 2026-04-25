@@ -1,0 +1,63 @@
+<section id="top" class="hero-section">
+  <app-three-scene></app-three-scene>
+  <div class="hero-scrim"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <span class="hero-kicker section-kicker">{{ i18n.t('hero.kicker') }}</span>
+
+      <h1 class="hero-title">
+        <span>{{ i18n.t('hero.title.line1') }}</span>
+        <span class="gradient-text">{{ i18n.t('hero.title.line2') }}</span>
+        <span>{{ i18n.t('hero.title.line3') }}</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        {{ i18n.t('hero.subtitle') }}
+      </p>
+
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary-neon">{{ i18n.t('hero.primaryCta') }}</a>
+        <a href="#contact" class="btn-outline-panel">{{ i18n.t('hero.secondaryCta') }}</a>
+      </div>
+
+      <div class="hero-metrics">
+        <div class="hero-metric" *ngFor="let metric of metrics">
+          <strong>{{ i18n.t(metric.valueKey) }}</strong>
+          <span>{{ i18n.t(metric.labelKey) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="hero-console glass" [attr.aria-label]="i18n.t('hero.console.title')">
+      <div class="console-topbar">
+        <span>{{ i18n.t('hero.console.title') }}</span>
+        <div class="signal">
+          <i class="signal-bar"></i>
+          <i class="signal-bar"></i>
+          <i class="signal-bar"></i>
+          <i class="signal-bar"></i>
+        </div>
+      </div>
+
+      <div class="console-body">
+        <div class="console-row" *ngFor="let line of consoleLines; let index = index">
+          <span>0{{ index + 1 }}</span>
+          <code>{{ i18n.t(line) }}</code>
+        </div>
+      </div>
+
+      <div class="pipeline">
+        <span></span>
+        <span class="pipeline-fill"></span>
+      </div>
+
+      <div class="scan-line"></div>
+    </aside>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="mouse"></div>
+    <span>{{ i18n.t('hero.scroll') }}</span>
+  </div>
+</section>

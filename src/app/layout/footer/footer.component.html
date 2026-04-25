@@ -1,0 +1,14 @@
+<footer class="footer-section">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand motion-item">
+        <app-brand-logo></app-brand-logo>
+        <p>© 2026 {{ i18n.t('footer.rights') }}</p>
+      </div>
+
+      <div class="footer-social motion-item">
+        <a class="social-link" href="#" *ngFor="let link of socialLinks">{{ link }}</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,179 @@
+.about-section {
+  position: relative;
+  background: var(--bg-section);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.blueprint-card {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  padding: 22px;
+}
+
+.blueprint-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.8;
+}
+
+.blueprint-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.blueprint-header strong {
+  color: var(--accent-cyan);
+}
+
+.blueprint-path {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 424px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-content: center;
+}
+
+.path-line {
+  position: absolute;
+  top: 50%;
+  right: 12%;
+  left: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-rose));
+}
+
+.path-line::after {
+  position: absolute;
+  top: -108px;
+  left: 50%;
+  width: 2px;
+  height: 216px;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-rose));
+  content: '';
+}
+
+.blueprint-node {
+  position: relative;
+  display: grid;
+  min-height: 136px;
+  align-content: center;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg-section) 78%, transparent);
+}
+
+.blueprint-node span {
+  color: var(--accent-cyan);
+  font-weight: 800;
+}
+
+.blueprint-node strong {
+  color: var(--text-primary);
+  font-size: 1.08rem;
+}
+
+.about-content {
+  display: grid;
+  gap: 22px;
+}
+
+.values-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.value-item {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.value-index {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  color: var(--accent-cyan);
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+.value-item h3 {
+  margin: 0 0 8px;
+  font-size: 1.12rem;
+}
+
+.value-item p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 991.98px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .blueprint-card {
+    min-height: 460px;
+  }
+
+  .blueprint-path {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .path-line {
+    top: 10%;
+    right: auto;
+    bottom: 10%;
+    left: 24px;
+    width: 2px;
+    height: auto;
+  }
+
+  .path-line::after {
+    display: none;
+  }
+
+  .blueprint-node {
+    min-height: 74px;
+  }
+
+  .value-item {
+    grid-template-columns: 1fr;
+  }
+}

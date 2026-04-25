@@ -1,0 +1,237 @@
+.hero-section {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(0, 229, 255, 0.08), transparent 32%),
+    linear-gradient(300deg, rgba(255, 95, 143, 0.1), transparent 36%),
+    var(--bg-page);
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--hero-scrim), transparent 58%),
+    linear-gradient(180deg, transparent 68%, var(--bg-page));
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  min-height: 100svh;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+  gap: 56px;
+  align-items: center;
+  padding-top: 96px;
+  padding-bottom: 74px;
+}
+
+.hero-content {
+  max-width: 780px;
+}
+
+.hero-title {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-size: 5rem;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.hero-title span {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-subtitle {
+  max-width: 680px;
+  margin: 28px 0 0;
+  color: var(--text-secondary);
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.hero-metrics {
+  display: grid;
+  max-width: 680px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.hero-metric {
+  min-height: 92px;
+  padding: 16px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hero-metric strong {
+  display: block;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.hero-metric span {
+  display: block;
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.hero-console {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.console-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.signal {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 22px;
+}
+
+.signal-bar {
+  display: block;
+  width: 5px;
+  height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-rose));
+}
+
+.signal-bar:nth-child(2) {
+  height: 16px;
+}
+
+.signal-bar:nth-child(3) {
+  height: 12px;
+}
+
+.signal-bar:nth-child(4) {
+  height: 19px;
+}
+
+.console-body {
+  display: grid;
+  gap: 14px;
+  padding: 28px 18px 96px;
+}
+
+.console-row {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(0, 229, 255, 0.11), transparent),
+    var(--surface);
+}
+
+.console-row span {
+  color: var(--accent-cyan);
+  font-weight: 800;
+}
+
+.console-row code {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.pipeline {
+  position: absolute;
+  right: 18px;
+  bottom: 34px;
+  left: 18px;
+  height: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+}
+
+.pipeline span:first-child {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-strong);
+}
+
+.pipeline-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-rose));
+  transform: scaleX(0.18);
+}
+
+@media (max-width: 1199.98px) {
+  .hero-title {
+    font-size: 4.15rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .hero-grid {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding-top: 132px;
+    padding-bottom: 112px;
+  }
+
+  .hero-title {
+    font-size: 3.45rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-title {
+    font-size: 2.55rem;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-console {
+    min-height: 360px;
+  }
+
+  .console-row {
+    grid-template-columns: 30px 1fr;
+  }
+
+  .console-row code {
+    font-size: 0.82rem;
+  }
+}

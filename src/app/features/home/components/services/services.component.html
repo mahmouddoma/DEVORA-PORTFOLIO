@@ -1,0 +1,25 @@
+<section id="services" class="services-section section-padding">
+  <div class="container">
+    <div class="section-heading text-center">
+      <span class="section-kicker motion-item">{{ i18n.t('services.kicker') }}</span>
+      <h2 class="section-title motion-item">{{ i18n.t('services.title') }}</h2>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card glass" *ngFor="let service of services" #serviceCard>
+        <div class="service-top">
+          <span class="service-index">{{ service.index }}</span>
+          <span class="service-icon" [class]="'service-icon ' + service.icon"></span>
+        </div>
+
+        <h3>{{ i18n.t(service.titleKey) }}</h3>
+        <p>{{ i18n.t(service.bodyKey) }}</p>
+
+        <div class="service-rail" aria-hidden="true">
+          <span></span>
+        </div>
+        <div class="scan-line"></div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+<section id="contact" class="contact-section section-padding">
+  <div class="container">
+    <div class="contact-card glass">
+      <div class="contact-info">
+        <span class="section-kicker motion-item">{{ i18n.t('contact.kicker') }}</span>
+        <h2 class="section-title motion-item">{{ i18n.t('contact.title') }}</h2>
+        <p class="section-copy motion-item">{{ i18n.t('contact.body') }}</p>
+
+        <div class="contact-details motion-item">
+          <a href="mailto:hello@devora.studio">hello&#64;devora.studio</a>
+          <span>{{ i18n.t('contact.location') }}</span>
+        </div>
+
+        <div class="contact-track" aria-hidden="true">
+          <span></span>
+        </div>
+      </div>
+
+      <form class="contact-form" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+          <label class="form-field">
+            <span>{{ i18n.t('contact.name') }}</span>
+            <input type="text" [placeholder]="i18n.t('contact.namePlaceholder')" />
+          </label>
+
+          <label class="form-field">
+            <span>{{ i18n.t('contact.email') }}</span>
+            <input type="email" [placeholder]="i18n.t('contact.emailPlaceholder')" />
+          </label>
+
+          <label class="form-field full">
+            <span>{{ i18n.t('contact.service') }}</span>
+            <select>
+              <option selected disabled>{{ i18n.t('contact.chooseService') }}</option>
+              <option *ngFor="let service of serviceKeys">{{ i18n.t(service) }}</option>
+            </select>
+          </label>
+
+          <label class="form-field full">
+            <span>{{ i18n.t('contact.details') }}</span>
+            <textarea rows="5" [placeholder]="i18n.t('contact.detailsPlaceholder')"></textarea>
+          </label>
+        </div>
+
+        <button type="submit" class="submit-button">
+          {{ i18n.t('contact.submit') }}
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="m22 2-7 20-4-9-9-4 20-7Z"></path>
+            <path d="M22 2 11 13"></path>
+          </svg>
+        </button>
+
+        <p class="success-message" *ngIf="submitted">{{ i18n.t('contact.success') }}</p>
+      </form>
+    </div>
+  </div>
+</section>

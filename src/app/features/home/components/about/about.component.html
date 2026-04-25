@@ -1,0 +1,37 @@
+<section id="about" class="about-section section-padding">
+  <div class="container">
+    <div class="about-grid">
+      <div class="blueprint-card glass">
+        <div class="blueprint-grid"></div>
+        <div class="blueprint-header">
+          <span>{{ i18n.t('about.blueprint.title') }}</span>
+          <strong>DEVORA</strong>
+        </div>
+
+        <div class="blueprint-path">
+          <div class="path-line"></div>
+          <div class="blueprint-node" *ngFor="let step of steps; let i = index">
+            <span>0{{ i + 1 }}</span>
+            <strong>{{ i18n.t(step) }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <span class="section-kicker motion-item">{{ i18n.t('about.kicker') }}</span>
+        <h2 class="section-title motion-item">{{ i18n.t('about.title') }}</h2>
+        <p class="section-copy motion-item">{{ i18n.t('about.body') }}</p>
+
+        <div class="values-list">
+          <article class="value-item motion-item" *ngFor="let value of values">
+            <span class="value-index">{{ value.index }}</span>
+            <div>
+              <h3>{{ i18n.t(value.titleKey) }}</h3>
+              <p>{{ i18n.t(value.bodyKey) }}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

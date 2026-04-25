@@ -1,0 +1,68 @@
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+}
+
+.brand-logo.compact {
+  gap: 0;
+}
+
+.logo-mark {
+  width: 44px;
+  height: 44px;
+  overflow: visible;
+}
+
+.logo-frame,
+.logo-core,
+.logo-circuit {
+  fill: none;
+  stroke: url(#devoraLogoGradient);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.logo-frame {
+  stroke-width: 5;
+  filter: drop-shadow(0 8px 18px rgba(0, 229, 255, 0.22));
+}
+
+.logo-core {
+  stroke-width: 4;
+  stroke-dasharray: 108;
+  animation: logo-draw 4.8s ease-in-out infinite;
+}
+
+.logo-circuit {
+  stroke-width: 3;
+  opacity: 0.78;
+}
+
+.logo-node {
+  fill: var(--surface-solid);
+  stroke: url(#devoraLogoGradient);
+  stroke-width: 3;
+}
+
+.logo-word {
+  font-family: var(--font-heading);
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.lang-ar .logo-word {
+  font-family: var(--font-heading);
+}
+
+@keyframes logo-draw {
+  0%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 54;
+  }
+}

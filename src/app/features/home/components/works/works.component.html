@@ -1,0 +1,84 @@
+<section id="work" class="works-section section-padding">
+  <div class="container">
+    <div class="works-heading">
+      <div>
+        <span class="section-kicker motion-item">{{ i18n.t('work.kicker') }}</span>
+        <h2 class="section-title motion-item">{{ i18n.t('work.title') }}</h2>
+      </div>
+
+      <div class="filter-controls motion-item" role="group" [attr.aria-label]="i18n.t('work.filters')">
+        <button
+          class="filter-btn"
+          type="button"
+          *ngFor="let filter of filters"
+          [class.active]="activeFilter === filter.id"
+          (click)="setFilter(filter.id)"
+        >
+          {{ i18n.t(filter.labelKey) }}
+        </button>
+      </div>
+    </div>
+
+    <div class="project-grid">
+      <article
+        class="project-card"
+        *ngFor="let project of filteredProjects; let i = index; trackBy: trackProject"
+        [style.--project-accent]="project.accent"
+      >
+        <a class="project-link" [href]="project.link" target="_blank" rel="noopener noreferrer">
+          <div class="project-browser">
+            <div class="project-visual" [class.image-missing]="isImageMissing(project.image)">
+              <img
+                *ngIf="!isImageMissing(project.image)"
+                [src]="project.image"
+                [alt]="i18n.t(project.titleKey)"
+                (error)="markImageMissing(project.image)"
+              />
+
+              <div class="visual-fallback" aria-hidden="true">
+                <span class="fallback-icon">{{ project.icon === 'angular' ? 'A' : 'D' }}</span>
+                <strong>{{ i18n.t(project.titleKey) }}</strong>
+                <small>{{ i18n.t('work.projectBuild') }}</small>
+              </div>
+
+              <div class="project-grid-overlay"></div>
+            </div>
+          </div>
+
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-category">
+                <span class="angular-mark">A</span>
+                {{ i18n.t(project.categoryKey) }}
+              </span>
+            </div>
+
+            <div class="project-copy">
+              <h3>{{ i18n.t(project.titleKey) }}</h3>
+              <p>{{ i18n.t(project.descriptionKey) }}</p>
+            </div>
+
+            <div class="project-footer">
+              <span class="live-pill">{{ i18n.t('work.live') }}</span>
+              <span class="view-project" aria-hidden="true">
+                {{ i18n.t('work.visit') }}
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M7 17 17 7"></path>
+                  <path d="M7 7h10v10"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
