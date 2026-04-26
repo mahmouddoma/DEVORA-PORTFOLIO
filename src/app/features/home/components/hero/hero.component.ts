@@ -31,7 +31,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     this.animationContext = this.gsapService.context(this.elementRef.nativeElement, () => {
       const gsap = this.gsapService.gsap;
       const q = gsap.utils.selector(this.elementRef.nativeElement);
-      // Logo Animation Timeline
+      /* 
+      // Logo Animation Timeline - Disabled to use new CSS animation
       const logoTl = gsap.timeline({ delay: 0.4 });
 
       // 1. Arrow enters from left with a "light trail" feel
@@ -105,6 +106,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
         },
         '-=1.2',
       );
+      */
 
       // Existing content entrance
       const timeline = gsap.timeline({ delay: 0.25 });

@@ -3,12 +3,11 @@ import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 
 import { GsapService } from '../../core/services/gsap.service';
 import { I18nService } from '../../core/services/i18n.service';
-import { BrandLogoComponent } from '../../shared/components/brand-logo/brand-logo.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, BrandLogoComponent],
+  imports: [CommonModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })

@@ -105,6 +105,44 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     });
 
     this.basePositions = positions.slice();
+
+    const logoGeometry = new THREE.BufferGeometry();
+    logoGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    logoGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    this.logoParticles = new THREE.Points(
+      logoGeometry,
+      new THREE.PointsMaterial({
+        size: 0.042,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      }),
+    );
+
+    const auraCount = 1800;
+    const auraPositions = new Float32Array(auraCount * 3);
+    const auraColors = new Float32Array(auraCount * 3);
+
+    for (let i = 0; i < auraCount; i++) {
+      const offset = i * 3;
+      const radius = 1.2 + Math.random() * 2.5;
+      const angle = Math.random() * Math.PI * 2;
+      auraPositions[offset] = Math.cos(angle) * radius + (Math.random() - 0.5) * 0.5;
+      auraPositions[offset + 1] = Math.sin(angle) * radius * 0.6 + (Math.random() - 0.5) * 0.5;
+      auraPositions[offset + 2] = (Math.random() - 0.5) * 2.0;
+
+      const color = cyan.clone().lerp(Math.random() > 0.6 ? rose : blue, Math.random());
+      auraColors[offset] = color.r;
+      auraColors[offset + 1] = color.g;
+      auraColors[offset + 2] = color.b;
+    }
+
+    this.basePositions = positions.slice();
+    this.auraBasePositions = auraPositions.slice();
+
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
@@ -112,7 +150,7 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     this.logoParticles = new THREE.Points(
       geometry,
       new THREE.PointsMaterial({
-        size: 0.032,
+        size: 0.042,
         vertexColors: true,
         transparent: true,
         opacity: 0,
@@ -122,33 +160,15 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     );
 
     const auraGeometry = new THREE.BufferGeometry();
-    const auraCount = 460;
-    const auraPositions = new Float32Array(auraCount * 3);
-    const auraColors = new Float32Array(auraCount * 3);
-
-    for (let i = 0; i < auraCount; i++) {
-      const offset = i * 3;
-      const radius = 1.5 + Math.random() * 1.65;
-      const angle = Math.random() * Math.PI * 2;
-      auraPositions[offset] = Math.cos(angle) * radius + (Math.random() - 0.5) * 0.35;
-      auraPositions[offset + 1] = Math.sin(angle) * radius * 0.72 + (Math.random() - 0.5) * 0.35;
-      auraPositions[offset + 2] = (Math.random() - 0.5) * 1.6;
-
-      const color = cyan.clone().lerp(Math.random() > 0.72 ? rose : blue, Math.random());
-      auraColors[offset] = color.r;
-      auraColors[offset + 1] = color.g;
-      auraColors[offset + 2] = color.b;
-    }
-
     auraGeometry.setAttribute('position', new THREE.BufferAttribute(auraPositions, 3));
     auraGeometry.setAttribute('color', new THREE.BufferAttribute(auraColors, 3));
     this.auraParticles = new THREE.Points(
       auraGeometry,
       new THREE.PointsMaterial({
-        size: 0.014,
+        size: 0.022,
         vertexColors: true,
         transparent: true,
-        opacity: 0.34,
+        opacity: 0.45,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       }),
@@ -156,6 +176,8 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
 
     this.logoGroup.add(this.auraParticles, this.logoParticles);
   }
+
+  private auraBasePositions!: Float32Array;
 
   private createCursorOrb() {
     const orbMaterial = new THREE.MeshBasicMaterial({
@@ -195,15 +217,19 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     };
 
     const addSvgPoint = (x: number, y: number, hot = false) => {
-      const scale = 68;
+      const scale = 72;
       addPoint((x - 145) / scale, (50 - y) / scale, hot);
     };
 
-    // Disabled to use the new exact SVG instead
-    // this.sampleSvgLine(15, 35, 30, 50, 52, addSvgPoint, true);
-    // this.sampleSvgLine(30, 50, 15, 65, 52, addSvgPoint, true);
-    // this.sampleSvgLine(40, 65, 55, 65, 42, addSvgPoint);
-    // this.addDotMatrixText('DEVORA', 75, 31, addSvgPoint);
+    // Prompt arrow (>)
+    this.sampleSvgLine(15, 35, 30, 50, 60, addSvgPoint, true);
+    this.sampleSvgLine(30, 50, 15, 65, 60, addSvgPoint, true);
+
+    // Underscore (_)
+    this.sampleSvgLine(40, 75, 60, 75, 45, addSvgPoint);
+
+    // DEVORA letters using dot matrix for better density
+    this.addDotMatrixText('DEVORA', 75, 31, addSvgPoint);
 
     return points;
   }
@@ -340,8 +366,10 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
         this.pointer.lerp(this.targetPointer, 0.075);
         this.logoGroup.rotation.y = this.pointer.x * 0.18 + Math.sin(elapsed * 0.42) * 0.04;
         this.logoGroup.rotation.x = -this.pointer.y * 0.12 + Math.cos(elapsed * 0.35) * 0.025;
-        this.logoGroup.position.x += (this.getLogoX() + this.pointer.x * 0.16 - this.logoGroup.position.x) * 0.05;
-        this.logoGroup.position.y += (this.getLogoY() + this.pointer.y * 0.1 - this.logoGroup.position.y) * 0.05;
+        this.logoGroup.position.x +=
+          (this.getLogoX() + this.pointer.x * 0.16 - this.logoGroup.position.x) * 0.05;
+        this.logoGroup.position.y +=
+          (this.getLogoY() + this.pointer.y * 0.1 - this.logoGroup.position.y) * 0.05;
 
         this.cursorOrb.position.copy(this.cursorTarget);
         this.cursorGlow.position.copy(this.cursorOrb.position);
@@ -362,19 +390,22 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
   }
 
   private animateLogoParticles(elapsed: number) {
-    const positionAttribute = this.logoParticles.geometry.getAttribute('position') as THREE.BufferAttribute;
-    const positions = positionAttribute.array as Float32Array;
     const hasCursor = this.hasPointer;
-    const cursorRadius = window.innerWidth < 992 ? 0.78 : 0.62;
+    const cursorRadius = window.innerWidth < 992 ? 1.2 : 0.85;
 
-    for (let i = 0; i < positions.length; i += 3) {
+    // Animate Logo Particles
+    const logoPosAttr = this.logoParticles.geometry.getAttribute(
+      'position',
+    ) as THREE.BufferAttribute;
+    const logoPositions = logoPosAttr.array as Float32Array;
+    for (let i = 0; i < logoPositions.length; i += 3) {
       const seed = i * 0.013;
       const baseX = this.basePositions[i];
       const baseY = this.basePositions[i + 1];
       const baseZ = this.basePositions[i + 2];
-      let pushX = 0;
-      let pushY = 0;
-      let pushZ = 0;
+      let pushX = 0,
+        pushY = 0,
+        pushZ = 0;
 
       if (hasCursor) {
         const dx = baseX - this.cursorLocal.x;
@@ -382,24 +413,53 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
         const distance = Math.hypot(dx, dy);
 
         if (distance < cursorRadius) {
-          const safeDistance = Math.max(distance, 0.0001);
-          const force = (1 - distance / cursorRadius) ** 2;
-          const fallbackAngle = seed + elapsed * 0.18;
-          const normalX = distance > 0.0001 ? dx / safeDistance : Math.cos(fallbackAngle);
-          const normalY = distance > 0.0001 ? dy / safeDistance : Math.sin(fallbackAngle);
-
-          pushX = normalX * force * 0.42;
-          pushY = normalY * force * 0.42;
-          pushZ = force * 0.2;
+          const force = (1 - distance / cursorRadius) ** 1.5;
+          const angle = Math.atan2(dy, dx);
+          pushX = Math.cos(angle) * force * 0.65;
+          pushY = Math.sin(angle) * force * 0.65;
+          pushZ = force * 0.35;
         }
       }
 
-      positions[i] = baseX + pushX + Math.sin(elapsed * 1.6 + seed) * 0.012;
-      positions[i + 1] = baseY + pushY + Math.cos(elapsed * 1.35 + seed) * 0.012;
-      positions[i + 2] = baseZ + pushZ + Math.sin(elapsed * 1.1 + seed) * 0.035;
+      logoPositions[i] = baseX + pushX + Math.sin(elapsed * 1.6 + seed) * 0.015;
+      logoPositions[i + 1] = baseY + pushY + Math.cos(elapsed * 1.35 + seed) * 0.015;
+      logoPositions[i + 2] = baseZ + pushZ + Math.sin(elapsed * 1.1 + seed) * 0.045;
     }
+    logoPosAttr.needsUpdate = true;
 
-    positionAttribute.needsUpdate = true;
+    // Animate Aura Particles (Background Dots)
+    const auraPosAttr = this.auraParticles.geometry.getAttribute(
+      'position',
+    ) as THREE.BufferAttribute;
+    const auraPositions = auraPosAttr.array as Float32Array;
+    for (let i = 0; i < auraPositions.length; i += 3) {
+      const seed = i * 0.007;
+      const baseX = this.auraBasePositions[i];
+      const baseY = this.auraBasePositions[i + 1];
+      const baseZ = this.auraBasePositions[i + 2];
+      let pushX = 0,
+        pushY = 0,
+        pushZ = 0;
+
+      if (hasCursor) {
+        const dx = baseX + this.logoGroup.position.x - this.cursorTarget.x;
+        const dy = baseY + this.logoGroup.position.y - this.cursorTarget.y;
+        const distance = Math.hypot(dx, dy);
+
+        if (distance < cursorRadius * 1.2) {
+          const force = (1 - distance / (cursorRadius * 1.2)) ** 2;
+          const angle = Math.atan2(dy, dx);
+          pushX = Math.cos(angle) * force * 0.8;
+          pushY = Math.sin(angle) * force * 0.8;
+          pushZ = force * 0.4;
+        }
+      }
+
+      auraPositions[i] = baseX + pushX + Math.sin(elapsed * 0.8 + seed) * 0.02;
+      auraPositions[i + 1] = baseY + pushY + Math.cos(elapsed * 0.6 + seed) * 0.02;
+      auraPositions[i + 2] = baseZ + pushZ;
+    }
+    auraPosAttr.needsUpdate = true;
   }
 
   private onPointerMove(event: PointerEvent) {

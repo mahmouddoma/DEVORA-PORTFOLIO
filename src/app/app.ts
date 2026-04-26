@@ -25,10 +25,10 @@ import { GsapService } from './core/services/gsap.service';
     WorksComponent,
     TechStackComponent,
     TestimonialsComponent,
-    ContactComponent
+    ContactComponent,
   ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App implements AfterViewInit, OnDestroy {
   title = 'DEVORA';
