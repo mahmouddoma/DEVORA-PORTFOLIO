@@ -1,24 +1,78 @@
 <section id="services" class="services-section section-padding">
   <div class="container">
-    <div class="section-heading text-center">
+    <div class="section-heading">
       <span class="section-kicker motion-item">{{ i18n.t('services.kicker') }}</span>
       <h2 class="section-title motion-item">{{ i18n.t('services.title') }}</h2>
+      <p class="section-copy motion-item">
+        Strategy, interface craft, and production engineering arranged around what each product
+        actually needs next.
+      </p>
     </div>
 
-    <div class="services-grid">
-      <article class="service-card glass" *ngFor="let service of services" #serviceCard>
-        <div class="service-top">
-          <span class="service-index">{{ service.index }}</span>
-          <span class="service-icon" [class]="'service-icon ' + service.icon"></span>
+    <div class="services-bento">
+      <article class="service-card" *ngFor="let service of services"
+        [ngClass]="['service-card--' + service.layout, 'service-card--' + service.visual]" #serviceCard>
+        <div class="service-glow" aria-hidden="true"></div>
+
+        <div class="service-copy">
+          <div class="service-meta">
+            <span class="service-index">{{ service.index }}</span>
+            <span class="service-icon" [class]="'service-icon service-icon--' + service.icon"></span>
+          </div>
+
+          <h3>{{ i18n.t(service.titleKey) }}</h3>
+          <p>{{ i18n.t(service.bodyKey) }}</p>
+          <a class="service-link" href="#work">
+            View proof
+            <span aria-hidden="true">+</span>
+          </a>
         </div>
 
-        <h3>{{ i18n.t(service.titleKey) }}</h3>
-        <p>{{ i18n.t(service.bodyKey) }}</p>
+        <div class="service-visual" aria-hidden="true" [ngSwitch]="service.visual">
+          <div class="browser-visual" *ngSwitchCase="'browser'">
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="browser-hero"></div>
+            <div class="browser-row"></div>
+            <div class="browser-row short"></div>
+          </div>
 
-        <div class="service-rail" aria-hidden="true">
-          <span></span>
+          <div class="system-visual" *ngSwitchCase="'system'">
+            <span class="system-node node-a"></span>
+            <span class="system-node node-b"></span>
+            <span class="system-node node-c"></span>
+            <span class="system-line line-a"></span>
+            <span class="system-line line-b"></span>
+            <span class="system-core"></span>
+          </div>
+
+          <div class="code-visual" *ngSwitchCase="'code'">
+            <span>const signal = await strategy.scan();</span>
+            <span>render(product.flow);</span>
+            <span>deploy(scale.ready);</span>
+          </div>
+
+          <div class="interface-visual" *ngSwitchCase="'interface'">
+            <span class="panel panel-a"></span>
+            <span class="panel panel-b"></span>
+            <span class="panel panel-c"></span>
+            <strong>Everything<br />connected</strong>
+          </div>
+
+          <div class="mobile-visual" *ngSwitchCase="'mobile'">
+            <span class="phone-shell"></span>
+            <span class="message message-a">Realtime sync</span>
+            <span class="message message-b">Release ready</span>
+            <span class="message message-c">99.9% target</span>
+          </div>
+
+          <div class="shield-visual" *ngSwitchDefault>
+            <span class="shield-ring"></span>
+            <span class="shield-core"></span>
+            <span class="shield-check"></span>
+          </div>
         </div>
-        <div class="scan-line"></div>
       </article>
     </div>
   </div>

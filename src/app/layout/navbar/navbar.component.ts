@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private animationContext?: { revert: () => void };
   private readonly sectionIds = ['top', 'about', 'services', 'work', 'stack', 'contact'];
-  private readonly compactOffsetRatio = 0.7;
+
   private readonly scrollHandler = () => {
     this.updateHeaderState();
     this.updateActiveSection();
@@ -54,11 +54,19 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     if (!this.gsapService.isBrowser) return;
 
-    this.scrollHandler();
-    window.setTimeout(() => this.scrollHandler(), 0);
+    // Initial check
+    this.updateHeaderState();
+    this.updateActiveSection();
+
     window.addEventListener('scroll', this.scrollHandler, { passive: true });
     window.addEventListener('resize', this.scrollHandler, { passive: true });
     window.addEventListener('hashchange', this.delayedScrollHandler);
+
+    // Re-check after a short delay to handle browser scroll restoration
+    window.setTimeout(() => {
+      this.updateHeaderState();
+      this.updateActiveSection();
+    }, 150);
   }
 
   ngAfterViewInit() {
@@ -81,6 +89,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         ease: 'power3.out',
         delay: 0.35,
       });
+
+      this.updateHeaderState();
+      this.updateActiveSection();
     });
   }
 
@@ -136,8 +147,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  updateHeaderState(scrollY = window.scrollY, viewportHeight = window.innerHeight) {
-    this.isHeaderCompact = scrollY >= viewportHeight * this.compactOffsetRatio;
+  updateHeaderState(scrollY = window.scrollY) {
+    this.isHeaderCompact = scrollY >= 80;
   }
 
   updateActiveSection(scrollY = window.scrollY, viewportHeight = window.innerHeight) {

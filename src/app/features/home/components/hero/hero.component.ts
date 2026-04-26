@@ -19,7 +19,6 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     { valueKey: 'hero.metric3.value', labelKey: 'hero.metric3.label' },
   ];
 
-  readonly consoleLines = ['hero.console.line1', 'hero.console.line2', 'hero.console.line3'];
   private animationContext?: { revert: () => void };
 
   constructor(
@@ -32,8 +31,83 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     this.animationContext = this.gsapService.context(this.elementRef.nativeElement, () => {
       const gsap = this.gsapService.gsap;
       const q = gsap.utils.selector(this.elementRef.nativeElement);
-      const timeline = gsap.timeline({ delay: 0.25 });
+      // Logo Animation Timeline
+      const logoTl = gsap.timeline({ delay: 0.4 });
 
+      // 1. Arrow enters from left with a "light trail" feel
+      logoTl.fromTo(
+        q('.logo-arrow'),
+        { x: -180, opacity: 0, strokeDashoffset: 600 },
+        { x: 0, opacity: 1, strokeDashoffset: 0, duration: 0.9, ease: 'power3.out' },
+      );
+
+      // 2. Underscore appears like a typing cursor
+      logoTl.to(
+        q('.logo-underscore'),
+        {
+          opacity: 1,
+          strokeDashoffset: 0,
+          duration: 0.2,
+        },
+        '+=0.2',
+      );
+
+      // Cursor blink effect
+      logoTl.to(q('.logo-underscore'), {
+        opacity: 0,
+        duration: 0.15,
+        repeat: 3,
+        yoyo: true,
+        ease: 'none',
+      });
+      logoTl.set(q('.logo-underscore'), { opacity: 1 });
+
+      // 3. Letters reveal one-by-one (D-E-V-O-R-A)
+      const letters = q('.letter');
+      letters.forEach((letter, i) => {
+        logoTl.to(
+          letter,
+          {
+            opacity: 1,
+            strokeDashoffset: 0,
+            duration: 0.6,
+            ease: 'power2.inOut',
+            onStart: () => {
+              gsap.to(letter, { filter: 'blur(0px)', duration: 0.4 });
+            },
+          },
+          i === 0 ? '+=0.1' : '-=0.4',
+        );
+      });
+
+      // 4. Final Horizontal Light Sweep
+      logoTl.set(q('.light-sweep'), { opacity: 0.8, x: -200 });
+      logoTl.to(
+        q('.light-sweep'),
+        {
+          x: 900,
+          opacity: 0,
+          duration: 1.4,
+          ease: 'power2.inOut',
+        },
+        '+=0.4',
+      );
+
+      // 5. Global Glow Pulse
+      logoTl.to(
+        q('.reveal-svg'),
+        {
+          filter: 'drop-shadow(0 0 25px rgba(0, 240, 255, 0.7))',
+          duration: 0.8,
+          yoyo: true,
+          repeat: 1,
+          ease: 'sine.inOut',
+        },
+        '-=1.2',
+      );
+
+      // Existing content entrance
+      const timeline = gsap.timeline({ delay: 0.25 });
       timeline
         .from(q('.hero-kicker'), {
           opacity: 0,
@@ -53,7 +127,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
           '-=0.15',
         )
         .from(
-          q('.hero-subtitle, .hero-actions, .hero-metric'),
+          q('.hero-subtitle, .hero-actions, .hero-metric, .hero-proof'),
           {
             opacity: 0,
             y: 24,
@@ -62,44 +136,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
             ease: 'power3.out',
           },
           '-=0.35',
-        )
-        .from(
-          q('.hero-console'),
-          {
-            opacity: 0,
-            x: 54,
-            rotateY: -14,
-            duration: 1,
-            ease: 'power4.out',
-          },
-          '-=0.65',
         );
-
-      gsap.to(q('.scan-line'), {
-        yPercent: 220,
-        repeat: -1,
-        duration: 3.2,
-        ease: 'none',
-      });
-
-      gsap.to(q('.pipeline-fill'), {
-        scaleX: 1,
-        repeat: -1,
-        yoyo: true,
-        duration: 2.4,
-        ease: 'power2.inOut',
-        transformOrigin: 'left center',
-      });
-
-      gsap.to(q('.signal-bar'), {
-        scaleY: 0.35,
-        repeat: -1,
-        yoyo: true,
-        stagger: 0.12,
-        duration: 0.75,
-        ease: 'sine.inOut',
-        transformOrigin: 'bottom center',
-      });
     });
   }
 

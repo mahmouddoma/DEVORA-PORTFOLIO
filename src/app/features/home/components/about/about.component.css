@@ -10,90 +10,20 @@
   align-items: center;
 }
 
-.blueprint-card {
+.logo-reveal-container {
   position: relative;
   min-height: 520px;
-  overflow: hidden;
-  padding: 22px;
-}
-
-.blueprint-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.8;
-}
-
-.blueprint-header {
-  position: relative;
-  z-index: 1;
+  border-radius: 16px;
+  background: radial-gradient(circle at center, #0a1128 0%, #02040a 100%);
+  border: 1px solid rgba(0, 240, 255, 0.15);
   display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--border-soft);
-  color: var(--text-secondary);
-  font-size: 0.86rem;
-  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.05);
 }
 
-.blueprint-header strong {
-  color: var(--accent-cyan);
-}
 
-.blueprint-path {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  min-height: 424px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-  align-content: center;
-}
-
-.path-line {
-  position: absolute;
-  top: 50%;
-  right: 12%;
-  left: 12%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-rose));
-}
-
-.path-line::after {
-  position: absolute;
-  top: -108px;
-  left: 50%;
-  width: 2px;
-  height: 216px;
-  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-rose));
-  content: '';
-}
-
-.blueprint-node {
-  position: relative;
-  display: grid;
-  min-height: 136px;
-  align-content: center;
-  gap: 10px;
-  padding: 18px;
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--bg-section) 78%, transparent);
-}
-
-.blueprint-node span {
-  color: var(--accent-cyan);
-  font-weight: 800;
-}
-
-.blueprint-node strong {
-  color: var(--text-primary);
-  font-size: 1.08rem;
-}
 
 .about-content {
   display: grid;
@@ -147,31 +77,11 @@
 }
 
 @media (max-width: 575.98px) {
-  .blueprint-card {
-    min-height: 460px;
+  .logo-reveal-container {
+    min-height: 380px;
   }
 
-  .blueprint-path {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
 
-  .path-line {
-    top: 10%;
-    right: auto;
-    bottom: 10%;
-    left: 24px;
-    width: 2px;
-    height: auto;
-  }
-
-  .path-line::after {
-    display: none;
-  }
-
-  .blueprint-node {
-    min-height: 74px;
-  }
 
   .value-item {
     grid-template-columns: 1fr;

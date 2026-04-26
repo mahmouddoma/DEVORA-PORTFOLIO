@@ -1,20 +1,20 @@
 <span class="brand-logo" [class.compact]="compact">
-  <svg class="logo-mark" viewBox="0 0 64 64" role="img" aria-label="DEVORA logo">
-    <defs>
-      <linearGradient id="devoraLogoGradient" x1="6" x2="58" y1="8" y2="58">
-        <stop offset="0" stop-color="var(--accent-cyan)" />
-        <stop offset="0.5" stop-color="var(--accent-blue)" />
-        <stop offset="1" stop-color="var(--accent-rose)" />
-      </linearGradient>
-    </defs>
-    <path class="logo-frame" d="M16 8h18c13 0 22 9 22 24s-9 24-22 24H16V8Z" />
-    <path class="logo-core" d="M25 19h9c7 0 12 5 12 13s-5 13-12 13h-9V19Z" />
-    <path class="logo-circuit" d="M12 18h13M12 46h13M39 15l9-7M39 49l9 7" />
-    <circle class="logo-node node-a" cx="12" cy="18" r="3" />
-    <circle class="logo-node node-b" cx="12" cy="46" r="3" />
-    <circle class="logo-node node-c" cx="50" cy="6" r="3" />
-    <circle class="logo-node node-d" cx="50" cy="58" r="3" />
+  <svg
+    viewBox="20 30 860 140"
+    xmlns="http://www.w3.org/2000/svg"
+    class="logo-mark"
+  >
+    <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="14">
+      <path d="M 40 65 L 75 100 L 40 135" stroke="#00f0ff" />
+      <path d="M 100 150 L 150 150" stroke="#00f0ff" />
+      <g stroke="#ffffff">
+        <path d="M 190 50 L 230 50 A 50 50 0 0 1 230 150 L 190 150" />
+        <path d="M 320 50 L 380 50 M 320 100 L 370 100 M 320 150 L 380 150" />
+        <path d="M 420 50 L 460 150 L 500 50" />
+        <circle cx="585" cy="100" r="45" />
+        <path d="M 670 50 L 710 50 A 25 25 0 0 1 710 100 L 670 100 L 720 150" />
+        <path d="M 775 150 L 815 50 L 855 150" />
+      </g>
+    </g>
   </svg>
-
-  <span class="logo-word" *ngIf="!compact">{{ label }}</span>
 </span>
