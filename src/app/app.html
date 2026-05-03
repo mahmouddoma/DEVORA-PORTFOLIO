@@ -1,15 +1,23 @@
+<app-login *ngIf="isLogin || (isDashboard && !authService.isAuthenticated()); else authenticatedShell"></app-login>
+
+<ng-template #authenticatedShell>
+  <app-dashboard *ngIf="isDashboard; else portfolioSite"></app-dashboard>
+</ng-template>
+
+<ng-template #portfolioSite>
 <div class="app-container">
+  <span #siteCursor class="site-cursor" aria-hidden="true"></span>
+
   <app-navbar></app-navbar>
 
   <main>
     <app-hero></app-hero>
-    <app-about></app-about>
-    <app-services></app-services>
     <app-works></app-works>
+    <app-services></app-services>
     <app-tech-stack></app-tech-stack>
-    <app-testimonials></app-testimonials>
     <app-contact></app-contact>
   </main>
 
   <app-footer></app-footer>
 </div>
+</ng-template>

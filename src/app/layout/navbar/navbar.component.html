@@ -24,6 +24,15 @@
       </ul>
 
       <div class="nav-actions">
+        <a
+          class="dashboard-link"
+          [href]="authService.isAuthenticated() ? '/dashboard' : '/login'"
+          [attr.aria-label]="authService.isAuthenticated() ? 'Open dashboard' : 'Login'"
+          [attr.title]="authService.isAuthenticated() ? 'Open dashboard' : 'Login'"
+        >
+          {{ authService.isAuthenticated() ? i18n.t('nav.dashboard') : i18n.t('nav.login') }}
+        </a>
+
         <button class="icon-button" type="button" [attr.aria-label]="i18n.t('nav.theme')"
           [attr.title]="i18n.t('nav.theme')" (click)="themeService.toggleTheme()">
           <svg *ngIf="themeService.theme() === 'dark'; else sunIcon" width="18" height="18" viewBox="0 0 24 24"

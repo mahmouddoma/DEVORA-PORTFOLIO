@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 
+import { AuthService } from '../../core/services/auth.service';
 import { GsapService } from '../../core/services/gsap.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { ThemeService } from '../../core/services/theme.service';
@@ -24,14 +25,13 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   activeSection = 'top';
 
   readonly navItems: NavItem[] = [
-    { href: '#about', labelKey: 'nav.about' },
-    { href: '#services', labelKey: 'nav.services' },
     { href: '#work', labelKey: 'nav.work' },
+    { href: '#services', labelKey: 'nav.services' },
     { href: '#stack', labelKey: 'nav.stack' },
   ];
 
   private animationContext?: { revert: () => void };
-  private readonly sectionIds = ['top', 'about', 'services', 'work', 'stack', 'contact'];
+  private readonly sectionIds = ['top', 'work', 'services', 'stack', 'contact'];
 
   private readonly scrollHandler = () => {
     this.updateHeaderState();
@@ -49,6 +49,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly elementRef: ElementRef<HTMLElement>,
     public readonly themeService: ThemeService,
     public readonly i18n: I18nService,
+    public readonly authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -81,7 +82,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         delay: 0.15,
       });
 
-      this.gsapService.gsap.from(q('.nav-link, .nav-actions button'), {
+      this.gsapService.gsap.from(q('.nav-link, .nav-actions button, .nav-actions a'), {
         y: -14,
         opacity: 0,
         duration: 0.55,

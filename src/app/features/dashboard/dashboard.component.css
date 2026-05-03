@@ -1,0 +1,453 @@
+.dashboard-shell {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+  background:
+    radial-gradient(circle at 78% 10%, rgba(0, 229, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, #070a12, #0c111d);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.dashboard-sidebar {
+  position: sticky;
+  top: 0;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  gap: 18px;
+  padding: 18px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(6, 9, 16, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.dashboard-brand {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+}
+
+.dashboard-brand span {
+  color: var(--accent-cyan);
+  font: 900 0.78rem/1 var(--font-heading);
+  letter-spacing: 0;
+}
+
+.dashboard-brand strong {
+  font-size: 1.08rem;
+}
+
+.dashboard-brand small {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-nav {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.dashboard-nav button,
+.dashboard-actions button,
+.header-actions a,
+.header-actions button,
+.panel-heading button,
+.selected-editor button {
+  min-height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.dashboard-nav button {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  text-align: left;
+}
+
+.dashboard-nav button span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.dashboard-nav button.active {
+  border-color: rgba(0, 229, 255, 0.42);
+  background: rgba(0, 229, 255, 0.12);
+  color: var(--accent-cyan);
+}
+
+.dashboard-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.dashboard-actions .danger {
+  border-color: rgba(255, 95, 143, 0.24);
+  color: var(--accent-rose);
+}
+
+.dashboard-main {
+  min-width: 0;
+  width: 100%;
+  padding: clamp(16px, 2vw, 24px);
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.dashboard-header > div {
+  min-width: 0;
+}
+
+.dashboard-header span {
+  color: var(--accent-cyan);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.dashboard-header h1 {
+  margin: 6px 0;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.dashboard-header p {
+  max-width: 580px;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-actions a,
+.header-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  text-decoration: none;
+}
+
+.header-actions button {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  color: #031018;
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
+  gap: 18px;
+}
+
+.editor-panel,
+.visual-panel {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.26);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.panel-heading h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.panel-heading p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.panel-heading button,
+.selected-editor button {
+  padding: 0 12px;
+  color: var(--accent-cyan);
+}
+
+.field-list {
+  display: grid;
+  max-height: calc(100vh - 190px);
+  overflow: auto;
+  padding: 12px;
+  gap: 10px;
+}
+
+.field-row {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(6, 9, 16, 0.38);
+}
+
+.field-row.selected {
+  border-color: rgba(0, 229, 255, 0.42);
+}
+
+.field-row span,
+.selected-editor {
+  display: grid;
+  gap: 4px;
+}
+
+.field-row strong,
+.selected-editor span {
+  font-size: 0.88rem;
+}
+
+.field-row small,
+.selected-editor small {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.field-row input,
+.field-row textarea,
+.selected-editor textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  outline: none;
+  padding: 10px 11px;
+  resize: vertical;
+}
+
+.field-row input:focus,
+.field-row textarea:focus,
+.selected-editor textarea:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+}
+
+.visual-panel {
+  display: grid;
+  grid-template-rows: auto auto minmax(360px, 1fr);
+}
+
+.selected-editor {
+  margin: 12px;
+  padding: 12px;
+  border: 1px solid rgba(0, 229, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(0, 229, 255, 0.07);
+}
+
+.preview-frame {
+  margin: 12px;
+  overflow: auto;
+  max-height: min(74vh, 920px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: #060910;
+  overscroll-behavior: contain;
+}
+
+.portfolio-preview {
+  width: 100%;
+  min-width: 320px;
+  min-height: 680px;
+  transform-origin: top left;
+}
+
+.portfolio-preview [data-edit-key] {
+  cursor: crosshair;
+}
+
+@media (max-width: 1399.98px) {
+  .dashboard-shell {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .dashboard-layout {
+    grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .dashboard-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sidebar {
+    position: static;
+    height: auto;
+    grid-template-columns: minmax(190px, 0.7fr) minmax(0, 1.3fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    gap: 14px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dashboard-brand {
+    padding: 6px;
+  }
+
+  .dashboard-nav {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .dashboard-nav button {
+    min-width: 156px;
+  }
+
+  .dashboard-actions {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .field-list {
+    max-height: none;
+  }
+
+  .preview-frame {
+    max-height: 78vh;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dashboard-sidebar {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .dashboard-nav button {
+    min-width: 140px;
+  }
+
+  .dashboard-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .header-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .header-actions a,
+  .header-actions button {
+    width: 100%;
+  }
+
+  .dashboard-layout {
+    gap: 14px;
+  }
+
+  .panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .panel-heading button {
+    width: 100%;
+  }
+
+  .visual-panel {
+    grid-template-rows: auto auto minmax(320px, auto);
+  }
+
+  .preview-frame {
+    max-height: 70vh;
+  }
+
+  .portfolio-preview {
+    min-width: 0;
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dashboard-main {
+    padding: 12px;
+  }
+
+  .dashboard-header h1 {
+    font-size: clamp(1.8rem, 12vw, 2.5rem);
+  }
+
+  .header-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-panel,
+  .visual-panel,
+  .selected-editor,
+  .preview-frame {
+    border-radius: 8px;
+  }
+
+  .field-list {
+    padding: 8px;
+  }
+
+  .field-row {
+    padding: 10px;
+  }
+
+  .selected-editor,
+  .preview-frame {
+    margin: 8px;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .dashboard-sidebar {
+    padding: 10px;
+  }
+
+  .dashboard-nav button {
+    min-width: 128px;
+    padding: 10px;
+  }
+
+  .dashboard-main {
+    padding: 10px;
+  }
+}

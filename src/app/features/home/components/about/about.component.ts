@@ -24,11 +24,16 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
     { index: '03', titleKey: 'about.value3.title', bodyKey: 'about.value3.body' },
   ];
 
+  readonly proofPoints = [
+    { valueKey: 'about.proof1.value', labelKey: 'about.proof1.label' },
+    { valueKey: 'about.proof2.value', labelKey: 'about.proof2.label' },
+    { valueKey: 'about.proof3.value', labelKey: 'about.proof3.label' },
+  ];
+
   readonly steps = [
-    'about.blueprint.step1',
-    'about.blueprint.step2',
-    'about.blueprint.step3',
-    'about.blueprint.step4',
+    { index: '01', titleKey: 'about.blueprint.step1' },
+    { index: '02', titleKey: 'about.blueprint.step2' },
+    { index: '03', titleKey: 'about.blueprint.step3' },
   ];
 
   private animationContext?: { revert: () => void };

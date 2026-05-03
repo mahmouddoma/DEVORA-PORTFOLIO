@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { GravityGridDirective } from '../../../../shared/directives/gravity-grid.directive';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, GravityGridDirective],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })
@@ -16,10 +17,10 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
   submitted = false;
 
   readonly serviceKeys = [
+    'services.strategy.title',
     'services.web.title',
-    'services.ai.title',
     'services.saas.title',
-    'services.ux.title',
+    'services.perf.title',
   ];
 
   private animationContext?: { revert: () => void };

@@ -122,7 +122,7 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
       }),
     );
 
-    const auraCount = 1800;
+    const auraCount = 1400;
     const auraPositions = new Float32Array(auraCount * 3);
     const auraColors = new Float32Array(auraCount * 3);
 
@@ -165,10 +165,10 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     this.auraParticles = new THREE.Points(
       auraGeometry,
       new THREE.PointsMaterial({
-        size: 0.022,
+        size: 0.02,
         vertexColors: true,
         transparent: true,
-        opacity: 0.45,
+        opacity: 0.38,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       }),
@@ -363,13 +363,13 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
         this.animationId = requestAnimationFrame(loop);
         const elapsed = (performance.now() - start) * 0.001;
 
-        this.pointer.lerp(this.targetPointer, 0.075);
-        this.logoGroup.rotation.y = this.pointer.x * 0.18 + Math.sin(elapsed * 0.42) * 0.04;
-        this.logoGroup.rotation.x = -this.pointer.y * 0.12 + Math.cos(elapsed * 0.35) * 0.025;
+        this.pointer.lerp(this.targetPointer, 0.06);
+        this.logoGroup.rotation.y = this.pointer.x * 0.11 + Math.sin(elapsed * 0.42) * 0.035;
+        this.logoGroup.rotation.x = -this.pointer.y * 0.07 + Math.cos(elapsed * 0.35) * 0.02;
         this.logoGroup.position.x +=
-          (this.getLogoX() + this.pointer.x * 0.16 - this.logoGroup.position.x) * 0.05;
+          (this.getLogoX() + this.pointer.x * 0.1 - this.logoGroup.position.x) * 0.05;
         this.logoGroup.position.y +=
-          (this.getLogoY() + this.pointer.y * 0.1 - this.logoGroup.position.y) * 0.05;
+          (this.getLogoY() + this.pointer.y * 0.06 - this.logoGroup.position.y) * 0.05;
 
         this.cursorOrb.position.copy(this.cursorTarget);
         this.cursorGlow.position.copy(this.cursorOrb.position);
@@ -391,7 +391,7 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
 
   private animateLogoParticles(elapsed: number) {
     const hasCursor = this.hasPointer;
-    const cursorRadius = window.innerWidth < 992 ? 1.2 : 0.85;
+    const cursorRadius = window.innerWidth < 992 ? 1.05 : 0.74;
 
     // Animate Logo Particles
     const logoPosAttr = this.logoParticles.geometry.getAttribute(
@@ -413,11 +413,11 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
         const distance = Math.hypot(dx, dy);
 
         if (distance < cursorRadius) {
-          const force = (1 - distance / cursorRadius) ** 1.5;
+          const force = (1 - distance / cursorRadius) ** 2.1;
           const angle = Math.atan2(dy, dx);
-          pushX = Math.cos(angle) * force * 0.65;
-          pushY = Math.sin(angle) * force * 0.65;
-          pushZ = force * 0.35;
+          pushX = Math.cos(angle) * force * 0.18;
+          pushY = Math.sin(angle) * force * 0.18;
+          pushZ = force * 0.08;
         }
       }
 
@@ -446,17 +446,19 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
         const dy = baseY + this.logoGroup.position.y - this.cursorTarget.y;
         const distance = Math.hypot(dx, dy);
 
-        if (distance < cursorRadius * 1.2) {
-          const force = (1 - distance / (cursorRadius * 1.2)) ** 2;
+        if (distance < cursorRadius * 1.55) {
+          const force = (1 - distance / (cursorRadius * 1.55)) ** 2.35;
           const angle = Math.atan2(dy, dx);
-          pushX = Math.cos(angle) * force * 0.8;
-          pushY = Math.sin(angle) * force * 0.8;
-          pushZ = force * 0.4;
+          const swirl = force * 0.08;
+          const pull = force * 0.05;
+          pushX = -Math.cos(angle) * pull + -Math.sin(angle) * swirl;
+          pushY = -Math.sin(angle) * pull + Math.cos(angle) * swirl;
+          pushZ = force * 0.1;
         }
       }
 
-      auraPositions[i] = baseX + pushX + Math.sin(elapsed * 0.8 + seed) * 0.02;
-      auraPositions[i + 1] = baseY + pushY + Math.cos(elapsed * 0.6 + seed) * 0.02;
+      auraPositions[i] = baseX + pushX + Math.sin(elapsed * 0.64 + seed) * 0.018;
+      auraPositions[i + 1] = baseY + pushY + Math.cos(elapsed * 0.52 + seed) * 0.018;
       auraPositions[i + 2] = baseZ + pushZ;
     }
     auraPosAttr.needsUpdate = true;

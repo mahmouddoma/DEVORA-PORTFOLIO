@@ -1,7 +1,11 @@
 .tech-section {
+  --gravity-accent: var(--accent-green);
   position: relative;
   overflow: hidden;
-  background: var(--bg-section-alt);
+  background:
+    radial-gradient(circle at 84% 18%, rgba(53, 211, 157, 0.13), transparent 28%),
+    radial-gradient(circle at 18% 78%, rgba(0, 229, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, var(--bg-section-alt), #070b12);
 }
 
 .tech-header {
@@ -19,6 +23,7 @@
 .stack-board {
   position: relative;
   display: grid;
+  width: 100%;
   max-width: 980px;
   grid-template-columns: repeat(6, minmax(110px, 1fr));
   gap: 10px;
@@ -85,6 +90,7 @@
   .tech-header {
     align-items: flex-start;
     flex-direction: column;
+    gap: 18px;
   }
 
   .stack-board {
@@ -92,12 +98,31 @@
   }
 }
 
+@media (max-width: 767.98px) {
+  .tech-chip {
+    min-width: 128px;
+    min-height: 52px;
+    padding: 0 18px;
+    font-size: 0.82rem;
+  }
+}
+
 @media (max-width: 575.98px) {
   .stack-board {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 36px;
+    padding: 8px;
   }
 
   .board-cell {
     min-height: 72px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .stack-board {
+    grid-template-columns: 1fr;
   }
 }

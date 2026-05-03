@@ -1,9 +1,26 @@
-<section id="work" class="works-section section-padding">
+<section id="work" class="works-section section-padding" appGravityGrid>
   <div class="container">
     <div class="works-heading">
-      <div>
-        <span class="section-kicker motion-item">{{ i18n.t('work.kicker') }}</span>
-        <h2 class="section-title motion-item">{{ i18n.t('work.title') }}</h2>
+      <span class="section-kicker motion-item" data-edit-key="work.kicker">{{ i18n.t('work.kicker') }}</span>
+      <h2 class="section-title motion-item" data-edit-key="work.title">{{ i18n.t('work.title') }}</h2>
+      <p class="works-lede motion-item" data-edit-key="work.body">{{ i18n.t('work.body') }}</p>
+
+      <div class="works-actions motion-item">
+        <a class="work-contact" href="#contact" data-edit-key="work.contactCta">{{ i18n.t('work.contactCta') }}</a>
+        <a class="work-view-all" href="#work" data-edit-key="work.viewAll">
+          {{ i18n.t('work.viewAll') }}
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
       </div>
 
       <div class="filter-controls motion-item" role="group" [attr.aria-label]="i18n.t('work.filters')">
@@ -12,33 +29,58 @@
           type="button"
           *ngFor="let filter of filters"
           [class.active]="activeFilter === filter.id"
+          [attr.aria-pressed]="activeFilter === filter.id"
           (click)="setFilter(filter.id)"
         >
-          {{ i18n.t(filter.labelKey) }}
+          <span [attr.data-edit-key]="filter.labelKey">{{ i18n.t(filter.labelKey) }}</span>
         </button>
       </div>
     </div>
 
-    <div class="project-grid">
+    <div
+      #showcaseTrack
+      class="project-showcase"
+      [class.single-project]="filteredProjects.length === 1"
+      (scroll)="onShowcaseScroll()"
+    >
       <article
         class="project-card"
         *ngFor="let project of filteredProjects; let i = index; trackBy: trackProject"
         [style.--project-accent]="project.accent"
+        [class.active]="activeProjectIndex === i"
+        (mouseenter)="activateProject(i); playPreview($event)"
+        (mouseleave)="stopPreview($event)"
       >
         <a class="project-link" [href]="project.link" target="_blank" rel="noopener noreferrer">
           <div class="project-browser">
-            <div class="project-visual" [class.image-missing]="isImageMissing(project.image)">
+            <div
+              class="project-media"
+              [class.image-missing]="isProjectMediaMissing(project)"
+              [class.has-video]="project.previewVideo"
+            >
+              <video
+                *ngIf="project.previewVideo && !isImageMissing(project.previewVideo.src)"
+                muted
+                loop
+                playsinline
+                preload="auto"
+                [poster]="project.image"
+                (error)="markImageMissing(project.previewVideo.src)"
+              >
+                <source [src]="project.previewVideo.src" [type]="project.previewVideo.type" />
+              </video>
+
               <img
-                *ngIf="!isImageMissing(project.image)"
+                *ngIf="shouldShowImage(project) || project.previewVideo"
                 [src]="project.image"
                 [alt]="i18n.t(project.titleKey)"
                 (error)="markImageMissing(project.image)"
               />
 
               <div class="visual-fallback" aria-hidden="true">
-                <span class="fallback-icon">{{ project.icon === 'angular' ? 'A' : 'D' }}</span>
-                <strong>{{ i18n.t(project.titleKey) }}</strong>
-                <small>{{ i18n.t('work.projectBuild') }}</small>
+                <span class="fallback-icon">{{ project.categoryInitial }}</span>
+                <strong [attr.data-edit-key]="project.titleKey">{{ i18n.t(project.titleKey) }}</strong>
+                <small data-edit-key="work.projectBuild">{{ i18n.t('work.projectBuild') }}</small>
               </div>
 
               <div class="project-grid-overlay"></div>
@@ -48,19 +90,19 @@
           <div class="project-info">
             <div class="project-meta">
               <span class="project-category">
-                <span class="angular-mark">A</span>
-                {{ i18n.t(project.categoryKey) }}
+                <span class="category-mark">{{ project.categoryInitial }}</span>
+                <span [attr.data-edit-key]="project.categoryKey">{{ i18n.t(project.categoryKey) }}</span>
               </span>
             </div>
 
             <div class="project-copy">
-              <h3>{{ i18n.t(project.titleKey) }}</h3>
-              <p>{{ i18n.t(project.descriptionKey) }}</p>
+              <h3 [attr.data-edit-key]="project.titleKey">{{ i18n.t(project.titleKey) }}</h3>
+              <p [attr.data-edit-key]="project.descriptionKey">{{ i18n.t(project.descriptionKey) }}</p>
             </div>
 
             <div class="project-footer">
-              <span class="live-pill">{{ i18n.t('work.live') }}</span>
-              <span class="view-project" aria-hidden="true">
+              <span class="live-pill" data-edit-key="work.live">{{ i18n.t('work.live') }}</span>
+              <span class="view-project" aria-hidden="true" data-edit-key="work.visit">
                 {{ i18n.t('work.visit') }}
                 <svg
                   width="18"
@@ -79,6 +121,17 @@
 
         </a>
       </article>
+    </div>
+
+    <div class="work-dots" role="tablist" [attr.aria-label]="i18n.t('work.projectsNav')">
+      <button
+        type="button"
+        *ngFor="let project of filteredProjects; let i = index"
+        [class.active]="activeProjectIndex === i"
+        [attr.aria-label]="i18n.t('work.showProject') + ' ' + i18n.t(project.titleKey)"
+        [attr.aria-selected]="activeProjectIndex === i"
+        (click)="scrollToProject(i)"
+      ></button>
     </div>
   </div>
 </section>

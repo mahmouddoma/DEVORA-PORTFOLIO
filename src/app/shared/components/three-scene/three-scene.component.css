@@ -16,6 +16,7 @@
 }
 
 .cursor-marker {
+  display: none;
   position: absolute;
   left: var(--cursor-x, 50%);
   top: var(--cursor-y, 50%);

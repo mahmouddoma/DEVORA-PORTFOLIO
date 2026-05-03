@@ -53,6 +53,12 @@
   box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -62,8 +68,7 @@ body {
   min-width: 320px;
   background:
     linear-gradient(90deg, transparent 31px, var(--grid-line) 32px),
-    linear-gradient(0deg, transparent 31px, var(--grid-line) 32px),
-    var(--bg-page);
+    linear-gradient(0deg, transparent 31px, var(--grid-line) 32px), var(--bg-page);
   background-size: 32px 32px;
   color: var(--text-primary);
   font-family: var(--font-primary);
@@ -90,6 +95,13 @@ a {
   color: inherit;
 }
 
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -100,6 +112,7 @@ h6 {
   font-family: var(--font-heading);
   font-weight: 800;
   letter-spacing: 0;
+  overflow-wrap: anywhere;
 }
 
 .lang-ar h1,
@@ -113,9 +126,7 @@ h6 {
 
 .app-container {
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, transparent 0, var(--bg-page) 100%),
-    var(--bg-page);
+  background: linear-gradient(180deg, transparent 0, var(--bg-page) 100%), var(--bg-page);
 }
 
 main {
@@ -148,7 +159,7 @@ main {
 .section-title {
   margin: 0;
   color: var(--text-primary);
-  font-size: 3.35rem;
+  font-size: clamp(2.1rem, 4.6vw, 3.35rem);
   line-height: 1.08;
 }
 
@@ -172,8 +183,7 @@ main {
 
 .glass {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    var(--surface);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)), var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: 8px;
   box-shadow: var(--shadow-soft);
@@ -249,6 +259,81 @@ main {
   will-change: transform, opacity;
 }
 
+.gravity-section {
+  --gravity-x: 50%;
+  --gravity-y: 50%;
+  --gravity-accent: var(--accent-cyan);
+  position: relative;
+  isolation: isolate;
+}
+
+.gravity-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.gravity-section > :not(.gravity-grid-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+.gravity-grid-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 900px;
+}
+
+.gravity-grid-layer::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 22% 24%,
+      color-mix(in srgb, var(--gravity-accent) 12%, transparent),
+      transparent 14%
+    ),
+    radial-gradient(circle at 72% 18%, rgba(139, 92, 246, 0.1), transparent 18%),
+    radial-gradient(circle at 42% 72%, rgba(255, 255, 255, 0.055) 0 1px, transparent 2px);
+  background-size:
+    auto,
+    auto,
+    190px 190px;
+  content: '';
+  opacity: 0.42;
+}
+
+.gravity-grid-layer::after {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--gravity-x) var(--gravity-y),
+    color-mix(in srgb, var(--gravity-accent) 18%, transparent) 0 42px,
+    color-mix(in srgb, var(--gravity-accent) 9%, transparent) 43px 120px,
+    transparent 210px
+  );
+  content: '';
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(0.96);
+  transition:
+    opacity 0.18s ease,
+    transform 0.2s ease;
+}
+
+.gravity-section.gravity-active .gravity-grid-layer::after {
+  opacity: 0.48;
+  transform: scale(1);
+}
+
+@media (pointer: coarse) {
+  .gravity-grid-layer::after {
+    transition-duration: 0.2s;
+  }
+}
+
 .scan-line {
   position: absolute;
   inset: 0;
@@ -317,7 +402,26 @@ main {
   }
 
   .section-title {
-    font-size: 2.55rem;
+    font-size: clamp(2rem, 6.4vw, 2.55rem);
+  }
+}
+
+@media (max-width: 767.98px) {
+  body {
+    background-size: 28px 28px;
+  }
+
+  .container {
+    --bs-gutter-x: 1.5rem;
+  }
+
+  .section-copy {
+    font-size: 0.96rem;
+    line-height: 1.72;
+  }
+
+  .scroll-indicator {
+    display: none;
   }
 }
 
@@ -327,11 +431,21 @@ main {
   }
 
   .section-title {
-    font-size: 2.1rem;
+    font-size: clamp(1.85rem, 10vw, 2.1rem);
   }
 
   .btn-primary-neon,
   .btn-outline-panel {
     width: 100%;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .container {
+    --bs-gutter-x: 1.15rem;
+  }
+
+  .section-padding {
+    padding: 64px 0;
   }
 }

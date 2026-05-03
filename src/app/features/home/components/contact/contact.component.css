@@ -1,5 +1,11 @@
 .contact-section {
-  background: var(--bg-section-alt);
+  --gravity-accent: var(--accent-blue);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(76, 141, 255, 0.14), transparent 28%),
+    radial-gradient(circle at 15% 86%, rgba(0, 229, 255, 0.09), transparent 30%),
+    linear-gradient(180deg, #070b12, var(--bg-section-alt));
 }
 
 .contact-card {
@@ -59,19 +65,20 @@
 .contact-form {
   display: grid;
   align-content: center;
-  gap: 20px;
+  gap: 18px;
   padding: 16px 10px;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 18px;
 }
 
 .form-field {
+  position: relative;
   display: grid;
-  gap: 8px;
+  gap: 9px;
 }
 
 .form-field.full {
@@ -79,25 +86,42 @@
 }
 
 .form-field span {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 800;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245, 247, 255, 0.76);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.form-field span::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.52);
+  content: '';
 }
 
 input,
 select,
 textarea {
   width: 100%;
-  border: 1px solid var(--border-soft);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  background: var(--input-bg);
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.055), transparent 38%),
+    rgba(255, 255, 255, 0.052);
   color: var(--text-primary);
   outline: none;
-  padding: 14px 15px;
+  padding: 15px 16px;
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    background 0.25s ease;
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
 select option {
@@ -105,6 +129,7 @@ select option {
 }
 
 textarea {
+  min-height: 158px;
   resize: vertical;
 }
 
@@ -117,7 +142,13 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.095), transparent 42%),
+    rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 0 4px rgba(0, 229, 255, 0.1),
+    0 16px 38px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
 }
 
 .submit-button {
@@ -150,6 +181,8 @@ textarea:focus {
 @media (max-width: 991.98px) {
   .contact-card {
     grid-template-columns: 1fr;
+    max-width: 760px;
+    margin-inline: auto;
   }
 
   .contact-info {
@@ -157,9 +190,45 @@ textarea:focus {
   }
 }
 
+@media (max-width: 767.98px) {
+  .contact-card {
+    gap: 24px;
+    padding: 18px;
+  }
+
+  .contact-info {
+    min-height: auto;
+    align-content: start;
+    gap: 30px;
+    padding: 24px;
+  }
+
+  .contact-details {
+    gap: 14px;
+  }
+
+  .contact-track {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .contact-form {
+    gap: 18px;
+    padding: 0;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+}
+
 @media (max-width: 575.98px) {
   .contact-card {
-    padding: 14px;
+    padding: 0;
   }
 
   .contact-info {
@@ -168,5 +237,42 @@ textarea:focus {
 
   .form-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .form-field span {
+    font-size: 0.72rem;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 54px;
+    font-size: 0.95rem;
+  }
+
+  textarea {
+    min-height: 142px;
+  }
+
+  .submit-button {
+    min-height: 54px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .contact-info {
+    padding: 18px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 12px;
+  }
+
+  textarea {
+    min-height: 132px;
   }
 }

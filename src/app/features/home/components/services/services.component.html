@@ -1,79 +1,45 @@
-<section id="services" class="services-section section-padding">
+<section id="services" class="services-section section-padding" appGravityGrid>
   <div class="container">
     <div class="section-heading">
-      <span class="section-kicker motion-item">{{ i18n.t('services.kicker') }}</span>
-      <h2 class="section-title motion-item">{{ i18n.t('services.title') }}</h2>
-      <p class="section-copy motion-item">
-        Strategy, interface craft, and production engineering arranged around what each product
-        actually needs next.
-      </p>
+      <span class="section-kicker motion-item" data-edit-key="services.kicker">{{ i18n.t('services.kicker') }}</span>
+      <h2 class="section-title motion-item" data-edit-key="services.title">{{ i18n.t('services.title') }}</h2>
+      <p class="section-copy motion-item" data-edit-key="services.body">{{ i18n.t('services.body') }}</p>
     </div>
 
-    <div class="services-bento">
-      <article class="service-card" *ngFor="let service of services"
-        [ngClass]="['service-card--' + service.layout, 'service-card--' + service.visual]" #serviceCard>
-        <div class="service-glow" aria-hidden="true"></div>
+    <div class="services-shell">
+      <aside class="services-offer">
+        <span class="offer-label" data-edit-key="services.offer.label">{{ i18n.t('services.offer.label') }}</span>
+        <h3 data-edit-key="services.offer.title">{{ i18n.t('services.offer.title') }}</h3>
+        <p data-edit-key="services.offer.body">{{ i18n.t('services.offer.body') }}</p>
 
-        <div class="service-copy">
-          <div class="service-meta">
-            <span class="service-index">{{ service.index }}</span>
-            <span class="service-icon" [class]="'service-icon service-icon--' + service.icon"></span>
-          </div>
-
-          <h3>{{ i18n.t(service.titleKey) }}</h3>
-          <p>{{ i18n.t(service.bodyKey) }}</p>
-          <a class="service-link" href="#work">
-            View proof
-            <span aria-hidden="true">+</span>
-          </a>
-        </div>
-
-        <div class="service-visual" aria-hidden="true" [ngSwitch]="service.visual">
-          <div class="browser-visual" *ngSwitchCase="'browser'">
-            <span></span>
-            <span></span>
-            <span></span>
-            <div class="browser-hero"></div>
-            <div class="browser-row"></div>
-            <div class="browser-row short"></div>
-          </div>
-
-          <div class="system-visual" *ngSwitchCase="'system'">
-            <span class="system-node node-a"></span>
-            <span class="system-node node-b"></span>
-            <span class="system-node node-c"></span>
-            <span class="system-line line-a"></span>
-            <span class="system-line line-b"></span>
-            <span class="system-core"></span>
-          </div>
-
-          <div class="code-visual" *ngSwitchCase="'code'">
-            <span>const signal = await strategy.scan();</span>
-            <span>render(product.flow);</span>
-            <span>deploy(scale.ready);</span>
-          </div>
-
-          <div class="interface-visual" *ngSwitchCase="'interface'">
-            <span class="panel panel-a"></span>
-            <span class="panel panel-b"></span>
-            <span class="panel panel-c"></span>
-            <strong>Everything<br />connected</strong>
-          </div>
-
-          <div class="mobile-visual" *ngSwitchCase="'mobile'">
-            <span class="phone-shell"></span>
-            <span class="message message-a">Realtime sync</span>
-            <span class="message message-b">Release ready</span>
-            <span class="message message-c">99.9% target</span>
-          </div>
-
-          <div class="shield-visual" *ngSwitchDefault>
-            <span class="shield-ring"></span>
-            <span class="shield-core"></span>
-            <span class="shield-check"></span>
+        <div class="services-stats">
+          <div class="service-stat" *ngFor="let stat of stats">
+            <strong [attr.data-edit-key]="stat.valueKey">{{ i18n.t(stat.valueKey) }}</strong>
+            <span [attr.data-edit-key]="stat.labelKey">{{ i18n.t(stat.labelKey) }}</span>
           </div>
         </div>
-      </article>
+
+        <div class="services-actions">
+          <a class="services-primary" href="#contact" data-edit-key="services.primaryCta">{{ i18n.t('services.primaryCta') }}</a>
+          <a class="services-secondary" href="#work" data-edit-key="services.secondaryCta">{{ i18n.t('services.secondaryCta') }}</a>
+        </div>
+      </aside>
+
+      <div class="services-grid">
+        <article class="service-card" *ngFor="let service of services" #serviceCard>
+          <span class="service-index">{{ service.index }}</span>
+          <h3 [attr.data-edit-key]="service.titleKey">{{ i18n.t(service.titleKey) }}</h3>
+          <p [attr.data-edit-key]="service.bodyKey">{{ i18n.t(service.bodyKey) }}</p>
+          <strong [attr.data-edit-key]="service.outcomeKey">{{ i18n.t(service.outcomeKey) }}</strong>
+        </article>
+      </div>
+    </div>
+
+    <div class="delivery-strip" aria-label="Delivery process">
+      <div class="delivery-step" *ngFor="let step of deliverySteps">
+        <span [attr.data-edit-key]="step.labelKey">{{ i18n.t(step.labelKey) }}</span>
+        <strong [attr.data-edit-key]="step.titleKey">{{ i18n.t(step.titleKey) }}</strong>
+      </div>
     </div>
   </div>
 </section>

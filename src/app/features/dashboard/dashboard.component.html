@@ -1,0 +1,105 @@
+<section class="dashboard-shell">
+  <aside class="dashboard-sidebar">
+    <div class="dashboard-brand">
+      <span>DEVORA</span>
+      <strong>Portfolio Dashboard</strong>
+      <small>{{ authService.email() }}</small>
+    </div>
+
+    <nav class="dashboard-nav" aria-label="Dashboard sections">
+      <button
+        type="button"
+        *ngFor="let section of sections"
+        [class.active]="activeSectionId === section.id"
+        (click)="setActiveSection(section.id)"
+      >
+        <strong>{{ section.title }}</strong>
+        <span>{{ section.fields.length }} fields</span>
+      </button>
+    </nav>
+
+    <div class="dashboard-actions">
+      <button type="button" (click)="i18n.toggleLanguage()">
+        Edit {{ i18n.language() === 'en' ? 'Arabic' : 'English' }}
+      </button>
+      <button type="button" (click)="logout()">Logout</button>
+      <button type="button" class="danger" (click)="resetAll()">Reset all text</button>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-header">
+      <div>
+        <span>Content control</span>
+        <h1>{{ activeSection.title }}</h1>
+        <p>{{ activeSection.description }}</p>
+      </div>
+
+      <div class="header-actions">
+        <a href="/">Back to site</a>
+        <button type="button" (click)="openPortfolio()">Open portfolio</button>
+      </div>
+    </header>
+
+    <div class="dashboard-layout">
+      <section class="editor-panel">
+        <div class="panel-heading">
+          <h2>{{ activeSection.title }} Fields</h2>
+          <button type="button" (click)="resetActiveSection()">Reset section</button>
+        </div>
+
+        <div class="field-list">
+          <label class="field-row" *ngFor="let field of activeSection.fields" [class.selected]="field.key === selectedKey">
+            <span (click)="selectField(field)">
+              <strong>{{ field.label }}</strong>
+              <small>{{ field.key }}</small>
+            </span>
+
+            <textarea
+              *ngIf="field.multiline; else singleLine"
+              rows="3"
+              [ngModel]="i18n.t(field.key)"
+              (focus)="selectField(field)"
+              (ngModelChange)="updateField(field.key, $event)"
+            ></textarea>
+
+            <ng-template #singleLine>
+              <input
+                type="text"
+                [ngModel]="i18n.t(field.key)"
+                (focus)="selectField(field)"
+                (ngModelChange)="updateField(field.key, $event)"
+              />
+            </ng-template>
+          </label>
+        </div>
+      </section>
+
+      <section class="visual-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Visual Edit</h2>
+            <p>Click any highlighted text in the preview, then edit it here.</p>
+          </div>
+        </div>
+
+        <div class="selected-editor">
+          <span>{{ selectedLabel }}</span>
+          <small>{{ selectedKey }}</small>
+          <textarea rows="4" [(ngModel)]="selectedValue" (ngModelChange)="updateSelectedValue($event)"></textarea>
+          <button type="button" (click)="resetSelected()">Reset selected</button>
+        </div>
+
+        <div class="preview-frame">
+          <div class="portfolio-preview" (click)="onPreviewClick($event)">
+            <app-hero></app-hero>
+            <app-works></app-works>
+            <app-services></app-services>
+            <app-tech-stack></app-tech-stack>
+            <app-contact></app-contact>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</section>

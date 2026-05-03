@@ -4,31 +4,31 @@
 
   <div class="container hero-grid">
     <div class="hero-content">
-      <span class="hero-kicker section-kicker">{{ i18n.t('hero.kicker') }}</span>
+      <span class="hero-kicker section-kicker" data-edit-key="hero.kicker">{{ i18n.t('hero.kicker') }}</span>
 
       <h1 class="hero-title">
-        <span>{{ i18n.t('hero.title.line1') }}</span>
-        <span class="gradient-text">{{ i18n.t('hero.title.line2') }}</span>
-        <span>{{ i18n.t('hero.title.line3') }}</span>
+        <span data-edit-key="hero.title.line1">{{ i18n.t('hero.title.line1') }}</span>
+        <span class="gradient-text" data-edit-key="hero.title.line2">{{ i18n.t('hero.title.line2') }}</span>
+        <span data-edit-key="hero.title.line3">{{ i18n.t('hero.title.line3') }}</span>
       </h1>
 
-      <p class="hero-subtitle">
+      <p class="hero-subtitle" data-edit-key="hero.subtitle">
         {{ i18n.t('hero.subtitle') }}
       </p>
 
       <div class="hero-actions">
-        <a href="#work" class="btn-primary-neon">{{ i18n.t('hero.primaryCta') }}</a>
-        <a href="#contact" class="btn-outline-panel">{{ i18n.t('hero.secondaryCta') }}</a>
+        <a href="#work" class="btn-primary-neon" data-edit-key="hero.primaryCta">{{ i18n.t('hero.primaryCta') }}</a>
+        <a href="#contact" class="btn-outline-panel" data-edit-key="hero.secondaryCta">{{ i18n.t('hero.secondaryCta') }}</a>
       </div>
 
       <div class="hero-proof">
-        <span>{{ i18n.t('hero.proof') }}</span>
+        <span data-edit-key="hero.proof">{{ i18n.t('hero.proof') }}</span>
       </div>
 
       <div class="hero-metrics">
         <div class="hero-metric" *ngFor="let metric of metrics">
-          <strong>{{ i18n.t(metric.valueKey) }}</strong>
-          <span>{{ i18n.t(metric.labelKey) }}</span>
+          <strong [attr.data-edit-key]="metric.valueKey">{{ i18n.t(metric.valueKey) }}</strong>
+          <span [attr.data-edit-key]="metric.labelKey">{{ i18n.t(metric.labelKey) }}</span>
         </div>
       </div>
     </div>

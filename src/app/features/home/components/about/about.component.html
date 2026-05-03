@@ -1,76 +1,25 @@
 <section id="about" class="about-section section-padding">
   <div class="container">
     <div class="about-grid">
-      <div class="logo-reveal-container glass">
-        <!-- Cinematic Background & Particles -->
-        <div class="cinematic-bg">
-          <div class="smoke"></div>
-        </div>
-        <div class="particles-container">
-          <div
-            class="particle p1"
-            style="
-              top: 20%;
-              left: 10%;
-              --dx: 30px;
-              --dy: -40px;
-              --duration: 6s;
-              width: 4px;
-              height: 4px;
-            "
-          ></div>
-          <div
-            class="particle p2"
-            style="
-              top: 80%;
-              left: 15%;
-              --dx: -20px;
-              --dy: -30px;
-              --duration: 5s;
-              width: 3px;
-              height: 3px;
-            "
-          ></div>
-          <div
-            class="particle p3"
-            style="
-              top: 40%;
-              left: 80%;
-              --dx: 40px;
-              --dy: 20px;
-              --duration: 7s;
-              width: 5px;
-              height: 5px;
-            "
-          ></div>
-          <div
-            class="particle p4"
-            style="
-              top: 70%;
-              left: 75%;
-              --dx: -30px;
-              --dy: -50px;
-              --duration: 4s;
-              width: 3px;
-              height: 3px;
-            "
-          ></div>
-          <div
-            class="particle p5"
-            style="
-              top: 15%;
-              left: 60%;
-              --dx: 20px;
-              --dy: 30px;
-              --duration: 8s;
-              width: 4px;
-              height: 4px;
-            "
-          ></div>
+      <aside class="why-panel motion-item">
+        <span class="why-label">{{ i18n.t('about.panel.label') }}</span>
+        <h3>{{ i18n.t('about.panel.title') }}</h3>
+        <p>{{ i18n.t('about.panel.body') }}</p>
+
+        <div class="proof-grid">
+          <div class="proof-item" *ngFor="let point of proofPoints">
+            <strong>{{ i18n.t(point.valueKey) }}</strong>
+            <span>{{ i18n.t(point.labelKey) }}</span>
+          </div>
         </div>
 
-        <!-- Removed redundant logo reveal -->
-      </div>
+        <div class="blueprint-flow" [attr.aria-label]="i18n.t('about.blueprint.title')">
+          <div class="flow-step" *ngFor="let step of steps">
+            <span>{{ step.index }}</span>
+            <strong>{{ i18n.t(step.titleKey) }}</strong>
+          </div>
+        </div>
+      </aside>
 
       <div class="about-content">
         <span class="section-kicker motion-item">{{ i18n.t('about.kicker') }}</span>

@@ -3,11 +3,12 @@ import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { GravityGridDirective } from '../../../../shared/directives/gravity-grid.directive';
 
 @Component({
   selector: 'app-tech-stack',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GravityGridDirective],
   templateUrl: './tech-stack.component.html',
   styleUrl: './tech-stack.component.css',
 })

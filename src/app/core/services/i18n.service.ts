@@ -5,24 +5,26 @@ export type LanguageCode = 'en' | 'ar';
 
 const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
   en: {
-    'nav.about': 'About',
+    'nav.about': 'Why DEVORA',
     'nav.services': 'Services',
     'nav.work': 'Work',
     'nav.stack': 'Stack',
     'nav.contact': 'Start a Project',
+    'nav.login': 'Login',
+    'nav.dashboard': 'Dashboard',
     'nav.theme': 'Toggle theme',
     'nav.language': 'Arabic',
     'nav.home': 'DEVORA home',
 
     'hero.kicker': 'Software engineering studio',
-    'hero.title.line1': 'Engineering Digital',
-    'hero.title.line2': 'Systems That Scale',
-    'hero.title.line3': 'The Future',
+    'hero.title.line1': 'Digital Products',
+    'hero.title.line2': 'Built to Scale',
+    'hero.title.line3': 'By DEVORA',
     'hero.subtitle':
-      'DEVORA builds AI-ready products, resilient SaaS platforms, and immersive interfaces for teams that need speed without losing craft.',
+      'We design and engineer web, SaaS, and AI products from idea to launch.',
     'hero.primaryCta': 'Explore Work',
     'hero.secondaryCta': 'Contact DEVORA',
-    'hero.proof': 'A focused path from idea, to launch, to measurable product growth.',
+    'hero.proof': 'Strategy, UI, engineering, and launch in one focused team.',
     'hero.map.eyebrow': 'Delivery system',
     'hero.map.title': 'From product signal to shipped software',
     'hero.map.status': 'Live Method',
@@ -44,51 +46,94 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'hero.console.line2': 'prototype.render()',
     'hero.console.line3': 'scale.deploy()',
     'hero.metric1.value': '42',
-    'hero.metric1.label': 'Product launches',
+    'hero.metric1.label': 'Launches',
     'hero.metric2.value': '7x',
-    'hero.metric2.label': 'Faster iteration',
+    'hero.metric2.label': 'Faster builds',
     'hero.metric3.value': '99.9%',
-    'hero.metric3.label': 'Uptime targets',
+    'hero.metric3.label': 'Uptime',
     'hero.scroll': 'Scroll',
 
-    'about.kicker': 'The Studio',
-    'about.title': 'Pioneering the Digital Frontier',
+    'about.kicker': 'Why DEVORA',
+    'about.title': 'A focused team for serious digital launches',
     'about.body':
-      'We combine product strategy, software architecture, and polished interface motion to turn ambitious ideas into dependable digital systems.',
-    'about.value1.title': 'Architecture That Holds',
-    'about.value1.body': 'Cloud-native foundations shaped for growth, observability, and clean ownership.',
-    'about.value2.title': 'AI With Purpose',
-    'about.value2.body': 'Intelligent workflows that solve real business problems instead of adding noise.',
-    'about.value3.title': 'Motion-Led Interfaces',
-    'about.value3.body': 'High-performance screens that feel sharp, guided, and memorable.',
+      'Clients choose us when the product has to look premium, work reliably, and move from idea to launch without scattered vendors.',
+    'about.panel.label': 'Built for clients',
+    'about.panel.title': 'Less confusion, faster decisions, stronger launch quality.',
+    'about.panel.body':
+      'We keep strategy, UX, engineering, and launch decisions in one delivery loop so your product moves with clarity.',
+    'about.proof1.value': '01',
+    'about.proof1.label': 'Team from plan to launch',
+    'about.proof2.value': '3x',
+    'about.proof2.label': 'Cleaner decision cycles',
+    'about.proof3.value': '100%',
+    'about.proof3.label': 'Custom execution',
+    'about.value1.title': 'We make the offer clear',
+    'about.value1.body': 'Your product message, structure, and user journey are shaped around what helps clients trust and act.',
+    'about.value2.title': 'We build with real business use in mind',
+    'about.value2.body': 'Every screen, flow, and technical choice supports daily operations, future growth, and easier ownership.',
+    'about.value3.title': 'We polish the experience before launch',
+    'about.value3.body': 'Performance, responsiveness, motion, and content are tuned so the product feels finished, not rushed.',
     'about.blueprint.title': 'Delivery Blueprint',
-    'about.blueprint.step1': 'Discovery',
-    'about.blueprint.step2': 'Prototype',
-    'about.blueprint.step3': 'Build',
-    'about.blueprint.step4': 'Scale',
+    'about.blueprint.step1': 'Clarify the goal',
+    'about.blueprint.step2': 'Build the product',
+    'about.blueprint.step3': 'Launch and improve',
 
-    'services.kicker': 'Capabilities',
-    'services.title': 'Specialized Engineering',
+    'services.kicker': 'What We Do',
+    'services.title': 'Build the product your market can trust',
+    'services.body':
+      'Clear strategy, sharp interfaces, and reliable engineering for businesses that need a serious digital product, not another generic website.',
+    'services.offer.label': 'Client outcome',
+    'services.offer.title': 'From first idea to a polished launch people can use and remember.',
+    'services.offer.body':
+      'We shape the product, design the experience, build the system, and prepare it for real users with a focused delivery path.',
+    'services.primaryCta': 'Start a project',
+    'services.secondaryCta': 'See proof',
+    'services.stat1.value': '01',
+    'services.stat1.label': 'Focused product team',
+    'services.stat2.value': '3x',
+    'services.stat2.label': 'Faster launch cycles',
+    'services.stat3.value': '100%',
+    'services.stat3.label': 'Custom build',
+    'services.strategy.title': 'Product Strategy',
+    'services.strategy.body':
+      'We clarify the offer, user journey, core screens, and launch scope before a single sprint is wasted.',
+    'services.strategy.outcome': 'Clear roadmap',
     'services.web.title': 'Web Development',
-    'services.web.body': 'Fast, accessible Angular and modern frontend builds with durable component systems.',
+    'services.web.body':
+      'Modern websites and landing experiences built to communicate trust, load fast, and convert visitors into serious leads.',
+    'services.web.outcome': 'More qualified leads',
     'services.saas.title': 'SaaS Architecture',
-    'services.saas.body': 'Multi-tenant platforms, billing flows, APIs, and cloud infrastructure ready for scale.',
-    'services.ai.title': 'AI Integration',
-    'services.ai.body': 'LLM copilots, retrieval systems, analytics, and automation built into real workflows.',
-    'services.ux.title': 'UI/UX Systems',
-    'services.ux.body': 'Design systems and interaction models that make complex software easier to use.',
-    'services.perf.title': 'Performance Engineering',
-    'services.perf.body': 'Audits, optimization, and re-engineering for faster loading and smoother interaction.',
-    'services.security.title': 'Enterprise Security',
-    'services.security.body': 'Hardened architecture, roles, audit trails, and zero-trust product decisions.',
+    'services.saas.body':
+      'Dashboards, portals, admin systems, APIs, and workflows designed for daily use and future growth.',
+    'services.saas.outcome': 'Scalable platform',
+    'services.perf.title': 'Optimization & Growth',
+    'services.perf.body':
+      'We improve speed, UX friction, technical quality, and release readiness so the product feels premium under pressure.',
+    'services.perf.outcome': 'Stronger experience',
+    'services.step1.label': 'Step 01',
+    'services.step1.title': 'Map the business goal',
+    'services.step2.label': 'Step 02',
+    'services.step2.title': 'Design and build the product',
+    'services.step3.label': 'Step 03',
+    'services.step3.title': 'Launch, measure, improve',
 
     'work.kicker': 'Case Studies',
     'work.title': 'Selected Work',
+    'work.body':
+      'A handpicked collection of our most impactful projects. Hover or click on each image to preview the experience.',
+    'work.contactCta': 'Contact us',
+    'work.viewAll': 'View All Projects',
+    'work.projectsNav': 'Selected work projects',
+    'work.showProject': 'Show project',
     'work.filters': 'Work filters',
-    'work.filter.all': 'All',
-    'work.filter.angular': 'Angular',
-    'work.category.angular': 'Angular',
-    'work.projectBuild': 'Angular build',
+    'work.filter.all': 'All Projects',
+    'work.filter.realEstate': 'Real Estate',
+    'work.filter.education': 'Education',
+    'work.filter.agriculture': 'Agriculture',
+    'work.category.realEstate': 'Real Estate Platform',
+    'work.category.education': 'Education Platform',
+    'work.category.agriculture': 'Agriculture Website',
+    'work.projectBuild': 'Live digital product',
     'work.live': 'Live Project',
     'work.visit': 'Visit',
     'work.osos.title': 'Osos Al-Riadah',
@@ -144,24 +189,26 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'footer.rights': 'All rights reserved.',
   },
   ar: {
-    'nav.about': 'عن الشركة',
+    'nav.about': 'لماذا DEVORA',
     'nav.services': 'الخدمات',
     'nav.work': 'الأعمال',
     'nav.stack': 'التقنيات',
     'nav.contact': 'ابدأ مشروعك',
+    'nav.login': 'دخول',
+    'nav.dashboard': 'لوحة التحكم',
     'nav.theme': 'تغيير الوضع',
     'nav.language': 'English',
     'nav.home': 'العودة إلى الرئيسية',
 
     'hero.kicker': 'استوديو هندسة برمجيات',
-    'hero.title.line1': 'نصمم أنظمة',
-    'hero.title.line2': 'رقمية قابلة للتوسع',
-    'hero.title.line3': 'للمستقبل',
+    'hero.title.line1': 'منتجات رقمية',
+    'hero.title.line2': 'قابلة للنمو',
+    'hero.title.line3': 'من DEVORA',
     'hero.subtitle':
-      'تبني DEVORA منتجات جاهزة للذكاء الاصطناعي، ومنصات SaaS مرنة، وواجهات تفاعلية مصقولة للفرق التي تحتاج إلى السرعة دون فقدان الجودة.',
+      'نصمم ونبني مواقع ومنصات SaaS ومنتجات AI من الفكرة إلى الإطلاق.',
     'hero.primaryCta': 'استكشف الأعمال',
     'hero.secondaryCta': 'تواصل معنا',
-    'hero.proof': 'مسار مركز من الفكرة إلى الإطلاق ثم نمو المنتج بالأرقام.',
+    'hero.proof': 'استراتيجية، واجهة، هندسة، وإطلاق داخل فريق واحد.',
     'hero.map.eyebrow': 'نظام التسليم',
     'hero.map.title': 'من إشارة المنتج إلى برنامج جاهز للإطلاق',
     'hero.map.status': 'منهج مباشر',
@@ -183,51 +230,94 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'hero.console.line2': 'prototype.render()',
     'hero.console.line3': 'scale.deploy()',
     'hero.metric1.value': '42',
-    'hero.metric1.label': 'إطلاق منتج',
+    'hero.metric1.label': 'إطلاقات',
     'hero.metric2.value': '7x',
-    'hero.metric2.label': 'تكرار أسرع',
+    'hero.metric2.label': 'بناء أسرع',
     'hero.metric3.value': '99.9%',
-    'hero.metric3.label': 'أهداف جاهزية',
+    'hero.metric3.label': 'جاهزية',
     'hero.scroll': 'مرر',
 
-    'about.kicker': 'الاستوديو',
-    'about.title': 'نقود حدود التجربة الرقمية',
+    'about.kicker': 'لماذا DEVORA',
+    'about.title': 'فريق مركز لإطلاق منتجات رقمية جادة',
     'about.body':
-      'نجمع بين استراتيجية المنتج، وهندسة البرمجيات، وحركة الواجهات المصقولة لتحويل الأفكار الطموحة إلى أنظمة رقمية موثوقة.',
-    'about.value1.title': 'معمارية تتحمل النمو',
-    'about.value1.body': 'أساسات سحابية مصممة للنمو، والمراقبة، ووضوح الملكية التقنية.',
-    'about.value2.title': 'ذكاء اصطناعي بهدف',
-    'about.value2.body': 'تدفقات عمل ذكية تحل مشكلات أعمال حقيقية دون إضافة ضوضاء.',
-    'about.value3.title': 'واجهات تقودها الحركة',
-    'about.value3.body': 'شاشات عالية الأداء تشعر المستخدم بالوضوح، والانسيابية، والتميّز.',
+      'يختارنا العملاء عندما يحتاج المنتج إلى شكل احترافي، أداء موثوق، وانتقال واضح من الفكرة إلى الإطلاق دون تشتت بين أكثر من جهة.',
+    'about.panel.label': 'مصمم للعميل',
+    'about.panel.title': 'وضوح أكثر، قرارات أسرع، وجودة إطلاق أقوى.',
+    'about.panel.body':
+      'نجمع الاستراتيجية وتجربة المستخدم والهندسة وقرارات الإطلاق في مسار واحد حتى يتحرك المنتج بوضوح.',
+    'about.proof1.value': '01',
+    'about.proof1.label': 'فريق من الخطة للإطلاق',
+    'about.proof2.value': '3x',
+    'about.proof2.label': 'قرارات أوضح وأسرع',
+    'about.proof3.value': '100%',
+    'about.proof3.label': 'تنفيذ مخصص',
+    'about.value1.title': 'نوضح عرضك للعميل',
+    'about.value1.body': 'نرتب رسالة المنتج وهيكله ورحلة المستخدم حول ما يجعل العميل يثق ويتخذ خطوة.',
+    'about.value2.title': 'نبني لاستخدام العمل الحقيقي',
+    'about.value2.body': 'كل شاشة وتدفق وقرار تقني يخدم التشغيل اليومي والنمو المستقبلي وسهولة إدارة المنتج.',
+    'about.value3.title': 'نصقل التجربة قبل الإطلاق',
+    'about.value3.body': 'نضبط الأداء والتجاوب والحركة والمحتوى حتى يظهر المنتج مكتمل الجودة وليس متعجلا.',
     'about.blueprint.title': 'خطة التسليم',
-    'about.blueprint.step1': 'اكتشاف',
-    'about.blueprint.step2': 'نموذج أولي',
-    'about.blueprint.step3': 'بناء',
-    'about.blueprint.step4': 'توسّع',
+    'about.blueprint.step1': 'توضيح الهدف',
+    'about.blueprint.step2': 'بناء المنتج',
+    'about.blueprint.step3': 'إطلاق وتحسين',
 
-    'services.kicker': 'القدرات',
-    'services.title': 'هندسة برمجية متخصصة',
-    'services.web.title': 'تطوير الويب',
-    'services.web.body': 'تطبيقات Angular وواجهات حديثة سريعة وقابلة للوصول بنظام مكونات متين.',
-    'services.saas.title': 'معمارية SaaS',
-    'services.saas.body': 'منصات متعددة العملاء، تدفقات دفع واشتراكات، واجهات API، وبنية سحابية جاهزة للنمو.',
-    'services.ai.title': 'دمج الذكاء الاصطناعي',
-    'services.ai.body': 'مساعدات LLM، وأنظمة استرجاع، وتحليلات، وأتمتة داخل سير العمل الحقيقي.',
-    'services.ux.title': 'أنظمة UI/UX',
-    'services.ux.body': 'أنظمة تصميم ونماذج تفاعل تجعل البرمجيات المعقدة أسهل في الاستخدام.',
-    'services.perf.title': 'هندسة الأداء',
-    'services.perf.body': 'تدقيق وتحسين وإعادة هندسة من أجل تحميل أسرع وتفاعل أكثر سلاسة.',
-    'services.security.title': 'أمان المؤسسات',
-    'services.security.body': 'معمارية مؤمنة، وصلاحيات، وسجلات تدقيق، وقرارات منتج مبنية على الثقة الصفرية.',
+    'services.kicker': 'ماذا نقدم',
+    'services.title': 'نبني المنتج الذي يثق به عملاؤك',
+    'services.body':
+      'استراتيجية واضحة، واجهات قوية، وهندسة يعتمد عليها للشركات التي تحتاج منتجا رقميا جادا وليس موقعا عاديا.',
+    'services.offer.label': 'نتيجة العميل',
+    'services.offer.title': 'من الفكرة الأولى إلى إطلاق مصقول يستخدمه الناس ويتذكرونه.',
+    'services.offer.body':
+      'نصمم شكل المنتج، نبني التجربة، ننفذ النظام، ونجهزه للمستخدمين الحقيقيين بخطة تسليم مركزة.',
+    'services.primaryCta': 'ابدأ مشروعك',
+    'services.secondaryCta': 'شاهد الأعمال',
+    'services.stat1.value': '01',
+    'services.stat1.label': 'فريق منتج مركز',
+    'services.stat2.value': '3x',
+    'services.stat2.label': 'دورات إطلاق أسرع',
+    'services.stat3.value': '100%',
+    'services.stat3.label': 'تنفيذ مخصص',
+    'services.strategy.title': 'استراتيجية المنتج',
+    'services.strategy.body':
+      'نوضح العرض، رحلة المستخدم، الشاشات الأساسية، ونطاق الإطلاق قبل إهدار أي وقت في التنفيذ.',
+    'services.strategy.outcome': 'خريطة طريق واضحة',
+    'services.web.title': 'مواقع تقنع العميل',
+    'services.web.body':
+      'مواقع وتجارب هبوط حديثة تعرض الثقة بسرعة وتحول الزائر إلى عميل جاد.',
+    'services.web.outcome': 'عملاء محتملون أفضل',
+    'services.saas.title': 'منصات وتطبيقات ويب',
+    'services.saas.body':
+      'لوحات تحكم، بوابات عملاء، أنظمة إدارة، واجهات API، وسير عمل مصمم للاستخدام اليومي والنمو.',
+    'services.saas.outcome': 'منصة قابلة للنمو',
+    'services.perf.title': 'تحسين ونمو',
+    'services.perf.body':
+      'نحسن السرعة، سهولة الاستخدام، جودة الكود، وجاهزية الإطلاق ليظهر المنتج بمستوى احترافي تحت الضغط.',
+    'services.perf.outcome': 'تجربة أقوى',
+    'services.step1.label': 'خطوة 01',
+    'services.step1.title': 'تحديد هدف العمل',
+    'services.step2.label': 'خطوة 02',
+    'services.step2.title': 'تصميم وبناء المنتج',
+    'services.step3.label': 'خطوة 03',
+    'services.step3.title': 'إطلاق وقياس وتحسين',
 
     'work.kicker': 'دراسات حالة',
     'work.title': 'أعمال مختارة',
+    'work.body':
+      'مجموعة مختارة من أهم مشاريعنا. مرر على أي صورة أو اضغط لمعاينة التجربة.',
+    'work.contactCta': 'تواصل معنا',
+    'work.viewAll': 'عرض كل المشاريع',
+    'work.projectsNav': 'مشاريع الأعمال المختارة',
+    'work.showProject': 'عرض مشروع',
     'work.filters': 'فلاتر الأعمال',
-    'work.filter.all': 'الكل',
-    'work.filter.angular': 'Angular',
-    'work.category.angular': 'Angular',
-    'work.projectBuild': 'تنفيذ Angular',
+    'work.filter.all': 'كل المشاريع',
+    'work.filter.realEstate': 'عقارات',
+    'work.filter.education': 'تعليم',
+    'work.filter.agriculture': 'زراعة',
+    'work.category.realEstate': 'منصة عقارية',
+    'work.category.education': 'منصة تعليمية',
+    'work.category.agriculture': 'موقع زراعي',
+    'work.projectBuild': 'منتج رقمي مباشر',
     'work.live': 'مشروع مباشر',
     'work.visit': 'زيارة',
     'work.osos.title': 'أسس الريادة',
@@ -289,18 +379,62 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
 })
 export class I18nService {
   private readonly storageKey = 'devora-language';
+  private readonly overridesStorageKey = 'devora-content-overrides';
   readonly language = signal<LanguageCode>('en');
+  readonly contentOverrides = signal<Partial<Record<LanguageCode, Record<string, string>>>>({});
 
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: object,
     @Inject(DOCUMENT) private readonly document: Document,
   ) {
+    this.contentOverrides.set(this.readStoredOverrides());
     const storedLanguage = this.readStoredLanguage();
     this.setLanguage(storedLanguage ?? 'en', false);
   }
 
   t(key: string): string {
+    const override = this.contentOverrides()[this.language()]?.[key];
+    if (override !== undefined) {
+      return override;
+    }
+
     return TRANSLATIONS[this.language()][key] ?? TRANSLATIONS.en[key] ?? key;
+  }
+
+  setTranslation(key: string, value: string, language = this.language()) {
+    const currentOverrides = this.contentOverrides();
+    const languageOverrides = { ...(currentOverrides[language] ?? {}) };
+    const fallback = this.defaultText(key, language);
+
+    if (value === fallback) {
+      delete languageOverrides[key];
+    } else {
+      languageOverrides[key] = value;
+    }
+
+    const nextOverrides = {
+      ...currentOverrides,
+      [language]: languageOverrides,
+    };
+
+    this.contentOverrides.set(nextOverrides);
+    this.persistOverrides(nextOverrides);
+  }
+
+  resetTranslation(key: string, language = this.language()) {
+    this.setTranslation(key, this.defaultText(key, language), language);
+  }
+
+  resetAllTranslations(language = this.language()) {
+    const currentOverrides = this.contentOverrides();
+    const nextOverrides = { ...currentOverrides };
+    delete nextOverrides[language];
+    this.contentOverrides.set(nextOverrides);
+    this.persistOverrides(nextOverrides);
+  }
+
+  defaultText(key: string, language = this.language()) {
+    return TRANSLATIONS[language][key] ?? TRANSLATIONS.en[key] ?? key;
   }
 
   toggleLanguage() {
@@ -327,5 +461,26 @@ export class I18nService {
 
     const stored = localStorage.getItem(this.storageKey);
     return stored === 'en' || stored === 'ar' ? stored : null;
+  }
+
+  private readStoredOverrides(): Partial<Record<LanguageCode, Record<string, string>>> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return {};
+    }
+
+    try {
+      const stored = localStorage.getItem(this.overridesStorageKey);
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  private persistOverrides(overrides: Partial<Record<LanguageCode, Record<string, string>>>) {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    localStorage.setItem(this.overridesStorageKey, JSON.stringify(overrides));
   }
 }

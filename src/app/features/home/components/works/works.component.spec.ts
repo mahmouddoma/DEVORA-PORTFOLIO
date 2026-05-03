@@ -35,13 +35,17 @@ describe('WorksComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should filter projects by type', () => {
-    component.setFilter('angular');
-    expect(component.filteredProjects.length).toBe(3);
+  it('should filter projects by sector', () => {
+    component.setFilter('education');
+    expect(component.filteredProjects.map((project) => project.id)).toEqual([102]);
   });
 
-  it('should contain the provided live Angular projects', () => {
+  it('should contain the provided live sector projects', () => {
     expect(component.projects.map((project) => project.id)).toEqual([101, 102, 103]);
-    expect(component.projects.every((project) => project.categoryKey === 'work.category.angular')).toBe(true);
+    expect(component.projects.map((project) => project.filter)).toEqual([
+      'realEstate',
+      'education',
+      'agriculture',
+    ]);
   });
 });

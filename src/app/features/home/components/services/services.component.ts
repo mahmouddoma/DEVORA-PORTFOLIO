@@ -10,20 +10,19 @@ import {
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { GravityGridDirective } from '../../../../shared/directives/gravity-grid.directive';
 
 interface Service {
   index: string;
-  icon: string;
-  layout: string;
-  visual: string;
   titleKey: string;
   bodyKey: string;
+  outcomeKey: string;
 }
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GravityGridDirective],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
 })
@@ -33,52 +32,40 @@ export class ServicesComponent implements AfterViewInit, OnDestroy {
   readonly services: Service[] = [
     {
       index: '01',
-      icon: 'web',
-      layout: 'wide',
-      visual: 'browser',
-      titleKey: 'services.web.title',
-      bodyKey: 'services.web.body',
+      titleKey: 'services.strategy.title',
+      bodyKey: 'services.strategy.body',
+      outcomeKey: 'services.strategy.outcome',
     },
     {
       index: '02',
-      icon: 'saas',
-      layout: 'tall',
-      visual: 'system',
-      titleKey: 'services.saas.title',
-      bodyKey: 'services.saas.body',
+      titleKey: 'services.web.title',
+      bodyKey: 'services.web.body',
+      outcomeKey: 'services.web.outcome',
     },
     {
       index: '03',
-      icon: 'ai',
-      layout: 'standard',
-      visual: 'code',
-      titleKey: 'services.ai.title',
-      bodyKey: 'services.ai.body',
+      titleKey: 'services.saas.title',
+      bodyKey: 'services.saas.body',
+      outcomeKey: 'services.saas.outcome',
     },
     {
       index: '04',
-      icon: 'ux',
-      layout: 'standard',
-      visual: 'interface',
-      titleKey: 'services.ux.title',
-      bodyKey: 'services.ux.body',
-    },
-    {
-      index: '05',
-      icon: 'perf',
-      layout: 'wide',
-      visual: 'mobile',
       titleKey: 'services.perf.title',
       bodyKey: 'services.perf.body',
+      outcomeKey: 'services.perf.outcome',
     },
-    {
-      index: '06',
-      icon: 'security',
-      layout: 'standard',
-      visual: 'shield',
-      titleKey: 'services.security.title',
-      bodyKey: 'services.security.body',
-    },
+  ];
+
+  readonly stats = [
+    { valueKey: 'services.stat1.value', labelKey: 'services.stat1.label' },
+    { valueKey: 'services.stat2.value', labelKey: 'services.stat2.label' },
+    { valueKey: 'services.stat3.value', labelKey: 'services.stat3.label' },
+  ];
+
+  readonly deliverySteps = [
+    { labelKey: 'services.step1.label', titleKey: 'services.step1.title' },
+    { labelKey: 'services.step2.label', titleKey: 'services.step2.title' },
+    { labelKey: 'services.step3.label', titleKey: 'services.step3.title' },
   ];
 
   private animationContext?: { revert: () => void };
@@ -109,29 +96,31 @@ export class ServicesComponent implements AfterViewInit, OnDestroy {
 
       gsap.from(q('.service-card'), {
         opacity: 0,
-        y: 34,
-        rotate: (index) => [-2.5, 1.5, -1, 2, -1.8, 1][index] ?? 0,
-        clipPath: 'inset(18% 18% 18% 18% round 8px)',
-        duration: 1,
+        y: 28,
+        duration: 0.78,
         stagger: {
           each: 0.08,
-          from: 'center',
+          from: 'start',
         },
-        ease: 'expo.out',
+        ease: 'power3.out',
         scrollTrigger: {
-          trigger: q('.services-bento')[0],
+          trigger: q('.services-grid')[0],
           start: 'top 78%',
           once: true,
         },
       });
 
-      gsap.to(q('.service-visual'), {
-        y: (index) => (index % 2 === 0 ? -8 : 8),
-        repeat: -1,
-        yoyo: true,
-        duration: 2.8,
-        ease: 'sine.inOut',
-        stagger: 0.16,
+      gsap.from(q('.services-offer, .delivery-step'), {
+        opacity: 0,
+        y: 24,
+        duration: 0.85,
+        stagger: 0.08,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: q('.services-shell')[0],
+          start: 'top 76%',
+          once: true,
+        },
       });
     });
   }
