@@ -1,11 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
-import { GravityGridDirective } from '../../../../shared/directives/gravity-grid.directive';
 
 type WorkFilter = 'all' | 'realEstate' | 'education' | 'agriculture';
+type ScreenshotExtension = 'png' | 'jpg' | 'jpeg' | 'webp' | 'avif';
 
 interface Project {
   id: number;
@@ -16,6 +23,10 @@ interface Project {
   filter: Exclude<WorkFilter, 'all'>;
   image: string;
   previewVideo?: ProjectVideo;
+  screenshotPrefix?: string;
+  screenshotExtension?: ScreenshotExtension;
+  screenshotFrames?: string[];
+  screenshotDuration?: string;
   link: string;
   accent: string;
 }
@@ -25,10 +36,14 @@ interface ProjectVideo {
   type: 'video/mp4' | 'video/webm';
 }
 
+function getScreenshotDuration(frameCount: number) {
+  return `${Math.max(10, frameCount * 2.6)}s`;
+}
+
 @Component({
   selector: 'app-works',
   standalone: true,
-  imports: [CommonModule, GravityGridDirective],
+  imports: [CommonModule],
   templateUrl: './works.component.html',
   styleUrl: './works.component.css',
 })
@@ -68,6 +83,10 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
         src: 'assets/Projects/osos.mp4',
         type: 'video/mp4',
       },
+      screenshotPrefix: 'osos',
+      screenshotExtension: 'png',
+      screenshotFrames: [],
+      screenshotDuration: getScreenshotDuration(0),
       link: 'https://osos-alriadah.com/',
       accent: '#00e5ff',
     },
@@ -83,6 +102,10 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
         src: 'assets/Projects/ajyal.webm',
         type: 'video/webm',
       },
+      screenshotPrefix: 'ajyal',
+      screenshotExtension: 'png',
+      screenshotFrames: [],
+      screenshotDuration: getScreenshotDuration(0),
       link: 'https://ajyal-alquran.com/',
       accent: '#35d39d',
     },
@@ -98,6 +121,10 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
         src: 'assets/Projects/zaytona.webm',
         type: 'video/webm',
       },
+      screenshotPrefix: 'zaytona',
+      screenshotExtension: 'png',
+      screenshotFrames: [],
+      screenshotDuration: getScreenshotDuration(0),
       link: 'https://zaytona.info/',
       accent: '#73d13d',
     },
@@ -111,6 +138,7 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
   constructor(
     private readonly gsapService: GsapService,
     private readonly elementRef: ElementRef<HTMLElement>,
+    private readonly changeDetectorRef: ChangeDetectorRef,
     public readonly i18n: I18nService,
   ) {}
 
@@ -123,6 +151,8 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.discoverScreenshotPreviews();
+
     this.animationContext = this.gsapService.context(this.elementRef.nativeElement, () => {
       this.setupAnimations();
     });
@@ -156,7 +186,19 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     return this.missingImages.has(image);
   }
 
+  hasScreenshotPreview(project: Project) {
+    return this.screenshotFrames(project).some((screenshot) => !this.isImageMissing(screenshot));
+  }
+
+  screenshotFrames(project: Project) {
+    return project.screenshotFrames ?? [];
+  }
+
   shouldShowImage(project: Project) {
+    if (this.hasScreenshotPreview(project)) {
+      return !this.isImageMissing(project.image);
+    }
+
     const previewMissing = project.previewVideo
       ? this.isImageMissing(project.previewVideo.src)
       : true;
@@ -164,10 +206,13 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
   }
 
   isProjectMediaMissing(project: Project) {
+    const screenshotsMissing = project.screenshotFrames
+      ? !this.hasScreenshotPreview(project)
+      : true;
     const previewMissing = project.previewVideo
       ? this.isImageMissing(project.previewVideo.src)
       : true;
-    return !this.shouldShowImage(project) && previewMissing;
+    return !this.shouldShowImage(project) && screenshotsMissing && previewMissing;
   }
 
   activateProject(index: number) {
@@ -218,8 +263,13 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     }, 80);
   }
 
-  playPreview(event: MouseEvent) {
+  startPreview(event: MouseEvent, project: Project) {
     const card = event.currentTarget as HTMLElement;
+    if (this.hasScreenshotPreview(project)) {
+      card.classList.add('screenshot-playing');
+      return;
+    }
+
     const video = card.querySelector('video');
     if (!video) return;
 
@@ -231,15 +281,59 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
   stopPreview(event: MouseEvent) {
     const card = event.currentTarget as HTMLElement;
     const video = card.querySelector('video');
+
+    card.classList.remove('screenshot-playing');
+    card.classList.remove('preview-playing');
     if (!video) return;
 
-    card.classList.remove('preview-playing');
     video.pause();
     video.currentTime = 0;
   }
 
   trackProject(_: number, project: Project) {
     return project.id;
+  }
+
+  trackScreenshot(_: number, screenshot: string) {
+    return screenshot;
+  }
+
+  private discoverScreenshotPreviews() {
+    if (!this.gsapService.isBrowser) return;
+
+    this.projects
+      .filter((project) => project.screenshotPrefix)
+      .forEach((project) => {
+        void this.discoverScreenshotFrames(
+          project.screenshotPrefix ?? '',
+          project.screenshotExtension ?? 'png',
+        ).then((frames) => {
+          project.screenshotFrames = [...frames];
+          project.screenshotDuration = getScreenshotDuration(frames.length);
+          this.changeDetectorRef.detectChanges();
+        });
+      });
+  }
+
+  private discoverScreenshotFrames(prefix: string, extension: ScreenshotExtension) {
+    return new Promise<readonly string[]>((resolve) => {
+      const frames: string[] = [];
+
+      const loadNext = (index: number) => {
+        const src = `assets/Projects/${prefix}${index}.${extension}`;
+        const image = new Image();
+
+        image.onload = () => {
+          frames.push(src);
+          loadNext(index + 1);
+        };
+
+        image.onerror = () => resolve(frames);
+        image.src = src;
+      };
+
+      loadNext(1);
+    });
   }
 
   private animateCards() {

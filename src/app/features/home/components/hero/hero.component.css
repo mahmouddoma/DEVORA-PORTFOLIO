@@ -2,9 +2,7 @@
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  background:
-    linear-gradient(120deg, rgba(0, 229, 255, 0.08), transparent 32%),
-    linear-gradient(300deg, rgba(255, 95, 143, 0.1), transparent 36%), var(--bg-page);
+  background: transparent;
 }
 
 .hero-scrim {
@@ -23,23 +21,23 @@
   display: grid;
   min-height: 100svh;
   grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.9fr);
-  gap: 42px;
+  gap: 32px;
   align-items: center;
-  padding-top: 108px;
-  padding-bottom: 82px;
+  padding-top: 92px;
+  padding-bottom: 66px;
 }
 
 .hero-content {
-  max-width: 760px;
+  max-width: 680px;
   min-width: 0;
 }
 
 .hero-title {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   margin: 0;
-  font-size: clamp(3.6rem, 6vw, 4.8rem);
-  line-height: 0.98;
+  font-size: clamp(3rem, 5.2vw, 4.1rem);
+  line-height: 1.02;
   text-transform: uppercase;
 }
 
@@ -49,27 +47,27 @@
 }
 
 .hero-subtitle {
-  max-width: 660px;
-  margin: 28px 0 0;
+  max-width: 590px;
+  margin: 22px 0 0;
   color: var(--text-secondary);
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 0.98rem;
+  line-height: 1.72;
 }
 
 .hero-actions,
 .hero-proof {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 30px;
+  gap: 12px;
+  margin-top: 24px;
 }
 
 .hero-proof {
   align-items: center;
   gap: 10px;
-  margin-top: 24px;
+  margin-top: 18px;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 800;
 }
 
@@ -84,15 +82,15 @@
 
 .hero-metrics {
   display: grid;
-  max-width: 660px;
+  max-width: 590px;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 28px;
+  gap: 10px;
+  margin-top: 22px;
 }
 
 .hero-metric {
-  min-height: 94px;
-  padding: 16px;
+  min-height: 78px;
+  padding: 13px;
   border: 1px solid var(--border-soft);
   border-radius: 8px;
   background: linear-gradient(135deg, rgba(0, 229, 255, 0.07), transparent 54%), var(--surface);
@@ -102,15 +100,15 @@
   display: block;
   color: var(--text-primary);
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: 1.42rem;
   line-height: 1;
 }
 
 .hero-metric span {
   display: block;
-  margin-top: 10px;
+  margin-top: 7px;
   color: var(--text-muted);
-  font-size: 0.84rem;
+  font-size: 0.76rem;
   font-weight: 800;
 }
 
@@ -227,7 +225,7 @@
 
 @media (max-width: 1199.98px) {
   .hero-title {
-    font-size: clamp(3.15rem, 6.5vw, 4rem);
+    font-size: clamp(2.65rem, 5.8vw, 3.45rem);
   }
 }
 
@@ -235,9 +233,9 @@
   .hero-grid {
     min-height: auto;
     grid-template-columns: 1fr;
-    gap: 34px;
-    padding-top: 132px;
-    padding-bottom: 112px;
+    gap: 28px;
+    padding-top: 112px;
+    padding-bottom: 88px;
   }
 
   .hero-content {
@@ -249,7 +247,7 @@
   }
 
   .hero-title {
-    font-size: clamp(2.55rem, 8.5vw, 3.35rem);
+    font-size: clamp(2.2rem, 7.6vw, 2.9rem);
   }
 
   .hero-logo-space {
@@ -262,9 +260,9 @@
 
 @media (max-width: 767.98px) {
   .hero-grid {
-    gap: 28px;
-    padding-top: 118px;
-    padding-bottom: 78px;
+    gap: 24px;
+    padding-top: 102px;
+    padding-bottom: 66px;
   }
 
   .hero-logo-space {
@@ -272,21 +270,21 @@
   }
 
   .hero-subtitle {
-    margin-top: 22px;
-    font-size: 1rem;
-    line-height: 1.72;
+    margin-top: 18px;
+    font-size: 0.92rem;
+    line-height: 1.66;
   }
 
   .hero-actions,
   .hero-proof {
-    margin-top: 24px;
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 575.98px) {
   .hero-title {
-    font-size: clamp(2.05rem, 11.2vw, 2.42rem);
-    line-height: 1.02;
+    font-size: clamp(1.85rem, 9.8vw, 2.15rem);
+    line-height: 1.06;
   }
 
   .hero-actions {
@@ -296,7 +294,7 @@
   .hero-proof {
     align-items: flex-start;
     flex-wrap: nowrap;
-    font-size: 0.82rem;
+    font-size: 0.76rem;
   }
 
   .hero-metrics {
@@ -311,14 +309,14 @@
 
 @media (max-width: 374.98px) {
   .hero-grid {
-    padding-top: 108px;
+    padding-top: 96px;
   }
 
   .hero-title {
-    font-size: 1.9rem;
+    font-size: 1.68rem;
   }
 
   .hero-subtitle {
-    font-size: 0.94rem;
+    font-size: 0.88rem;
   }
 }

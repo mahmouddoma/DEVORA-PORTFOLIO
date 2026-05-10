@@ -1,4 +1,4 @@
-<section id="work" class="works-section section-padding" appGravityGrid>
+<section id="work" class="works-section section-padding">
   <div class="container">
     <div class="works-heading">
       <span class="section-kicker motion-item" data-edit-key="work.kicker">{{ i18n.t('work.kicker') }}</span>
@@ -48,7 +48,7 @@
         *ngFor="let project of filteredProjects; let i = index; trackBy: trackProject"
         [style.--project-accent]="project.accent"
         [class.active]="activeProjectIndex === i"
-        (mouseenter)="activateProject(i); playPreview($event)"
+        (mouseenter)="activateProject(i); startPreview($event, project)"
         (mouseleave)="stopPreview($event)"
       >
         <a class="project-link" [href]="project.link" target="_blank" rel="noopener noreferrer">
@@ -56,10 +56,15 @@
             <div
               class="project-media"
               [class.image-missing]="isProjectMediaMissing(project)"
-              [class.has-video]="project.previewVideo"
+              [class.has-video]="project.previewVideo && !hasScreenshotPreview(project)"
+              [class.has-screenshots]="hasScreenshotPreview(project)"
             >
               <video
-                *ngIf="project.previewVideo && !isImageMissing(project.previewVideo.src)"
+                *ngIf="
+                  project.previewVideo &&
+                  !hasScreenshotPreview(project) &&
+                  !isImageMissing(project.previewVideo.src)
+                "
                 muted
                 loop
                 playsinline
@@ -76,6 +81,32 @@
                 [alt]="i18n.t(project.titleKey)"
                 (error)="markImageMissing(project.image)"
               />
+
+              <ng-container *ngIf="screenshotFrames(project) as screenshots">
+                <div
+                  class="screenshot-preview"
+                  *ngIf="screenshots.length"
+                  [style.animation-duration]="project.screenshotDuration"
+                  aria-hidden="true"
+                >
+                  <div class="screenshot-scroll-track">
+                    <img
+                      class="screenshot-frame"
+                      *ngFor="let screenshot of screenshots; trackBy: trackScreenshot"
+                      [src]="screenshot"
+                      [alt]="''"
+                      (error)="markImageMissing(screenshot)"
+                    />
+                    <img
+                      class="screenshot-frame"
+                      *ngFor="let screenshot of screenshots; trackBy: trackScreenshot"
+                      [src]="screenshot"
+                      [alt]="''"
+                      (error)="markImageMissing(screenshot)"
+                    />
+                  </div>
+                </div>
+              </ng-container>
 
               <div class="visual-fallback" aria-hidden="true">
                 <span class="fallback-icon">{{ project.categoryInitial }}</span>

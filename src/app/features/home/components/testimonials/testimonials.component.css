@@ -42,7 +42,7 @@
   width: 62px;
   height: 62px;
   color: var(--accent-cyan);
-  font-family: Georgia, serif;
+  font-family: var(--font-heading);
   font-size: 5rem;
   line-height: 0.82;
 }

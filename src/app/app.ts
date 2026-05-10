@@ -49,12 +49,7 @@ export class App implements AfterViewInit, OnDestroy {
 
   private readonly hashScrollDelays = [0, 80, 260];
   private hashScrollTimers: number[] = [];
-  private readonly hashChangeHandler = () => this.scheduleHashScroll();
-  private cursorAnimationFrame?: number;
-  private cursorX = 0;
-  private cursorY = 0;
-  private targetCursorX = 0;
-  private targetCursorY = 0;
+  private readonly hashChangeHandler = () => this.scheduleHashScroll(true);
   private readonly pointerMoveHandler = (event: PointerEvent) => this.onPointerMove(event);
   private readonly pointerLeaveHandler = () => this.onPointerLeave();
   private readonly pointerDownHandler = () => this.siteCursor?.nativeElement.classList.add('pressed');
@@ -91,10 +86,6 @@ export class App implements AfterViewInit, OnDestroy {
     window.removeEventListener('pointerdown', this.pointerDownHandler);
     window.removeEventListener('pointerup', this.pointerUpHandler);
     this.hashScrollTimers.forEach((timer) => window.clearTimeout(timer));
-
-    if (this.cursorAnimationFrame) {
-      window.cancelAnimationFrame(this.cursorAnimationFrame);
-    }
   }
 
   private setupSiteCursor() {
@@ -112,55 +103,37 @@ export class App implements AfterViewInit, OnDestroy {
     const cursor = this.siteCursor?.nativeElement;
     if (!cursor) return;
 
-    this.targetCursorX = event.clientX;
-    this.targetCursorY = event.clientY;
+    this.applyCursorPosition(event.clientX, event.clientY);
     cursor.classList.add('visible');
     cursor.classList.toggle('interactive', this.isInteractiveTarget(event.target));
-    this.scheduleCursorFrame();
   }
 
   private onPointerLeave() {
     this.siteCursor?.nativeElement.classList.remove('visible', 'interactive', 'pressed');
   }
 
-  private scheduleCursorFrame() {
-    if (this.cursorAnimationFrame) return;
-
-    this.cursorAnimationFrame = window.requestAnimationFrame(() => {
-      this.cursorAnimationFrame = undefined;
-      this.updateCursorPosition();
-    });
-  }
-
-  private updateCursorPosition() {
+  private applyCursorPosition(x: number, y: number) {
     const cursor = this.siteCursor?.nativeElement;
     if (!cursor) return;
 
-    this.cursorX += (this.targetCursorX - this.cursorX) * 0.34;
-    this.cursorY += (this.targetCursorY - this.cursorY) * 0.34;
-    cursor.style.transform = `translate3d(${this.cursorX}px, ${this.cursorY}px, 0) translate(-50%, -50%)`;
-
-    const distance = Math.hypot(this.targetCursorX - this.cursorX, this.targetCursorY - this.cursorY);
-    if (distance > 0.25) {
-      this.scheduleCursorFrame();
-    }
+    cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
   }
 
   private isInteractiveTarget(target: EventTarget | null) {
     return target instanceof Element && !!target.closest('a, button, input, select, textarea, [role="button"]');
   }
 
-  private scheduleHashScroll() {
+  private scheduleHashScroll(animate = false) {
     this.hashScrollTimers.forEach((timer) => window.clearTimeout(timer));
     this.hashScrollTimers = this.hashScrollDelays.map((delay) =>
       window.setTimeout(() => {
-        this.scrollToCurrentHash();
+        this.scrollToCurrentHash(animate);
         this.gsapService.refreshScrollTriggers();
       }, delay),
     );
   }
 
-  private scrollToCurrentHash() {
+  private scrollToCurrentHash(animate: boolean) {
     const id = decodeURIComponent(window.location.hash.slice(1));
     if (!id) return;
 
@@ -170,6 +143,11 @@ export class App implements AfterViewInit, OnDestroy {
     const navbar = document.querySelector<HTMLElement>('app-navbar .navbar');
     const topOffset = navbar?.getBoundingClientRect().height ?? 0;
     const targetTop = target.getBoundingClientRect().top + window.scrollY - topOffset;
+
+    if (animate) {
+      this.gsapService.scrollToY(targetTop, { duration: 0.95, ease: 'power3.inOut' });
+      return;
+    }
 
     window.scrollTo({ top: Math.max(targetTop, 0), behavior: 'auto' });
   }

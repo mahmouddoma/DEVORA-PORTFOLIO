@@ -38,6 +38,9 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
   private readonly cursorLocal = new THREE.Vector3();
   private readonly pointer = new THREE.Vector2();
   private readonly targetPointer = new THREE.Vector2();
+  private resizeObserver?: ResizeObserver;
+  private lastPointerClientX = 0;
+  private lastPointerClientY = 0;
   private readonly resizeHandler = () => this.onWindowResize();
   private readonly pointerHandler = (event: PointerEvent) => this.onPointerMove(event);
 
@@ -56,6 +59,8 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     this.animate();
     window.addEventListener('resize', this.resizeHandler);
     window.addEventListener('pointermove', this.pointerHandler, { passive: true });
+    this.resizeObserver = new ResizeObserver(this.resizeHandler);
+    this.resizeObserver.observe(this.rendererContainer.nativeElement);
   }
 
   ngOnDestroy() {
@@ -64,6 +69,7 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     cancelAnimationFrame(this.animationId);
     window.removeEventListener('resize', this.resizeHandler);
     window.removeEventListener('pointermove', this.pointerHandler);
+    this.resizeObserver?.disconnect();
     this.disposeObject(this.logoParticles);
     this.disposeObject(this.auraParticles);
     this.disposeObject(this.cursorOrb);
@@ -465,7 +471,9 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
   }
 
   private onPointerMove(event: PointerEvent) {
-    const pointer = this.updateCursorFromPointer(event);
+    this.lastPointerClientX = event.clientX;
+    this.lastPointerClientY = event.clientY;
+    const pointer = this.updateCursorFromClientPosition(event.clientX, event.clientY);
     this.targetPointer.copy(pointer);
     this.raycaster.setFromCamera(pointer, this.camera);
     this.raycaster.ray.intersectPlane(this.cursorPlane, this.cursorTarget);
@@ -480,8 +488,16 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     const { width, height } = this.getCanvasSize();
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.setSize(width, height);
     this.positionLogo();
+
+    if (this.hasPointer) {
+      const pointer = this.updateCursorFromClientPosition(this.lastPointerClientX, this.lastPointerClientY);
+      this.targetPointer.copy(pointer);
+      this.raycaster.setFromCamera(pointer, this.camera);
+      this.raycaster.ray.intersectPlane(this.cursorPlane, this.cursorTarget);
+    }
   }
 
   private positionLogo() {
@@ -502,17 +518,17 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
   private getCanvasSize() {
     const element = this.rendererContainer.nativeElement;
     return {
-      width: element.clientWidth || window.innerWidth,
-      height: element.clientHeight || window.innerHeight,
+      width: Math.max(element.clientWidth || window.innerWidth, 1),
+      height: Math.max(element.clientHeight || window.innerHeight, 1),
     };
   }
 
-  private updateCursorFromPointer(event: PointerEvent) {
+  private updateCursorFromClientPosition(clientX: number, clientY: number) {
     const rect = this.rendererContainer.nativeElement.getBoundingClientRect();
     const width = rect.width || window.innerWidth;
     const height = rect.height || window.innerHeight;
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
 
     this.cursorMarker.nativeElement.style.setProperty('--cursor-x', `${x}px`);
     this.cursorMarker.nativeElement.style.setProperty('--cursor-y', `${y}px`);

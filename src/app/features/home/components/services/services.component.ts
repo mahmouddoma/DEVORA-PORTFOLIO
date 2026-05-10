@@ -10,7 +10,6 @@ import {
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
-import { GravityGridDirective } from '../../../../shared/directives/gravity-grid.directive';
 
 interface Service {
   index: string;
@@ -22,7 +21,7 @@ interface Service {
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, GravityGridDirective],
+  imports: [CommonModule],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
 })

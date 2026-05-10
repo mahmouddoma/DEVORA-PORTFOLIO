@@ -4,9 +4,7 @@
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 61% 45%, rgba(0, 229, 255, 0.1), transparent 24%),
-    radial-gradient(circle at 88% 60%, rgba(255, 95, 143, 0.08), transparent 28%);
+  background: transparent;
 }
 
 .three-container canvas {

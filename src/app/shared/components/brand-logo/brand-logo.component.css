@@ -5,7 +5,7 @@
 
 .logo-mark {
   display: block;
-  width: clamp(140px, 15vw, 190px);
+  width: clamp(128px, 12vw, 168px);
   height: auto;
   overflow: visible;
   filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.25));
@@ -96,11 +96,11 @@
 }
 
 .brand-logo.compact .logo-mark {
-  width: 130px;
+  width: 118px;
 }
 
 @media (max-width: 575.98px) {
   .logo-mark {
-    width: 168px;
+    width: 146px;
   }
 }

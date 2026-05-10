@@ -83,12 +83,12 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
       this.gsapService.gsap.from(q('.nav-link, .nav-actions button, .nav-actions a'), {
-        y: -14,
         opacity: 0,
         duration: 0.55,
         stagger: 0.06,
         ease: 'power3.out',
         delay: 0.35,
+        clearProps: 'opacity',
       });
 
       this.updateHeaderState();
@@ -135,16 +135,22 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         window.history.pushState(null, '', href);
       }
 
-      window.scrollTo({
-        top: Math.max(targetTop, 0),
-        behavior: 'smooth',
+      this.gsapService.scrollToY(targetTop, {
+        duration: 1.08,
+        ease: 'power4.inOut',
+        onUpdate: () => this.updateActiveSection(),
+        onComplete: () => {
+          this.updateHeaderState();
+          this.updateActiveSection();
+          this.gsapService.refreshScrollTriggers();
+        },
       });
 
       window.setTimeout(() => {
         this.updateHeaderState();
         this.updateActiveSection();
         this.gsapService.refreshScrollTriggers();
-      }, 350);
+      }, 1120);
     });
   }
 

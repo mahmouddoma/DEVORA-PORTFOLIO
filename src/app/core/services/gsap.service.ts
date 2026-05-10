@@ -2,6 +2,7 @@ import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 export class GsapService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
-      gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
     }
   }
 
@@ -40,14 +41,31 @@ export class GsapService {
     ScrollTrigger.refresh();
   }
 
+  public scrollToY(y: number, config: gsap.TweenVars = {}) {
+    if (!this.isBrowser) return undefined;
+
+    return gsap.to(window, {
+      duration: 1.05,
+      ease: 'power3.inOut',
+      overwrite: 'auto',
+      scrollTo: {
+        y: Math.max(y, 0),
+        autoKill: true,
+      },
+      ...config,
+    });
+  }
+
   public reveal(element: any, config: gsap.TweenVars = {}) {
     if (!this.isBrowser) return;
 
     return gsap.from(element, {
       opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: 'power3.out',
+      y: 28,
+      filter: 'blur(8px)',
+      duration: 0.82,
+      ease: 'power2.out',
+      clearProps: 'filter,transform,opacity',
       scrollTrigger: {
         trigger: element,
         start: 'top 85%',
@@ -65,13 +83,15 @@ export class GsapService {
 
     return gsap.from(items, {
       opacity: 0,
-      y: 48,
-      duration: 0.9,
-      stagger: 0.12,
-      ease: 'power3.out',
+      y: 28,
+      filter: 'blur(8px)',
+      duration: 0.78,
+      stagger: 0.08,
+      ease: 'power2.out',
+      clearProps: 'filter,transform,opacity',
       scrollTrigger: {
         trigger: scope,
-        start: 'top 78%',
+        start: 'top 82%',
         once: true,
       },
     });

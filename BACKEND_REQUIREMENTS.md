@@ -256,7 +256,7 @@ Current projects:
     image: 'Images/osos.png',
     previewVideo: 'assets/Projects/osos.mp4',
     liveUrl: 'https://osos-alriadah.com/',
-    accentColor: '#00e5ff'
+    accentColor: '#00e5ff',
   },
   {
     slug: 'ajyal-al-quran-school',
@@ -264,7 +264,7 @@ Current projects:
     image: 'Images/ajyal.png',
     previewVideo: 'assets/Projects/ajyal.webm',
     liveUrl: 'https://ajyal-alquran.com/',
-    accentColor: '#35d39d'
+    accentColor: '#35d39d',
   },
   {
     slug: 'zaytona-agriculture',
@@ -272,9 +272,9 @@ Current projects:
     image: 'Images/zaytona.png',
     previewVideo: 'assets/Projects/zaytona.webm',
     liveUrl: 'https://zaytona.info/',
-    accentColor: '#73d13d'
-  }
-]
+    accentColor: '#73d13d',
+  },
+];
 ```
 
 Work section content:
@@ -383,14 +383,35 @@ type Technology = {
 Current board cells:
 
 ```ts
-['API', 'AI', 'UX', 'DB', 'CI', 'SEC']
+['API', 'AI', 'UX', 'DB', 'CI', 'SEC'];
 ```
 
 Current marquee items:
 
 ```ts
-['Angular', 'TypeScript', 'Node.js', 'GSAP', 'Three.js', 'PostgreSQL', 'Docker', 'Kubernetes', 'Azure', 'AWS']
-['Python', 'PyTorch', 'TensorFlow', 'OpenAI', 'LangChain', 'Redis', 'GraphQL', 'Next.js', 'WebGPU', 'Rust']
+[
+  'Angular',
+  'TypeScript',
+  'Node.js',
+  'GSAP',
+  'Three.js',
+  'PostgreSQL',
+  'Docker',
+  'Kubernetes',
+  'Azure',
+  'AWS',
+][
+  ('Python',
+  'PyTorch',
+  'TensorFlow',
+  'OpenAI',
+  'LangChain',
+  'Redis',
+  'GraphQL',
+  'Next.js',
+  'WebGPU',
+  'Rust')
+];
 ```
 
 ### 3.9 Contact
@@ -468,7 +489,7 @@ type FooterContent = {
 Current footer social links:
 
 ```ts
-['Twitter', 'LinkedIn', 'GitHub', 'Dribbble']
+['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'];
 ```
 
 Need real URLs from dashboard.
@@ -911,7 +932,16 @@ type EditableFieldDefinition = {
   entityId: string;
   path: string;
   label: string;
-  inputType: 'text' | 'textarea' | 'url' | 'color' | 'select' | 'image' | 'video' | 'number' | 'boolean';
+  inputType:
+    | 'text'
+    | 'textarea'
+    | 'url'
+    | 'color'
+    | 'select'
+    | 'image'
+    | 'video'
+    | 'number'
+    | 'boolean';
   languageAware: boolean;
   sectionSlug: string;
 };
@@ -1438,4 +1468,3 @@ Backend يعتبر جاهز لما:
 - اللغتين `en/ar` يرجعوا من API بدون مشاكل encoding.
 - كل endpoint محمي حسب الصلاحيات.
 - يوجد seed data مطابق للموقع الحالي.
-

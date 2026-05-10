@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&family=Syncopate:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   color-scheme: dark;
-  --font-primary: 'Inter', sans-serif;
-  --font-heading: 'Sora', sans-serif;
-  --font-arabic: 'Noto Kufi Arabic', sans-serif;
+  --font-primary: 'Cairo', sans-serif;
+  --font-heading: 'Cairo', sans-serif;
+  --font-arabic: 'Cairo', sans-serif;
   --bg-page: #060910;
-  --bg-section: #0b111d;
-  --bg-section-alt: #090d15;
+  --bg-section: var(--bg-page);
+  --bg-section-alt: var(--bg-page);
   --surface: rgba(255, 255, 255, 0.055);
   --surface-strong: rgba(255, 255, 255, 0.1);
   --surface-solid: #111927;
@@ -21,7 +21,6 @@
   --accent-rose: #ff5f8f;
   --accent-green: #35d39d;
   --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.32);
-  --grid-line: rgba(0, 229, 255, 0.12);
   --hero-scrim: rgba(6, 9, 16, 0.72);
   --input-bg: rgba(255, 255, 255, 0.055);
 }
@@ -29,8 +28,8 @@
 :root[data-theme='light'] {
   color-scheme: light;
   --bg-page: #f4f7fb;
-  --bg-section: #ffffff;
-  --bg-section-alt: #edf3fb;
+  --bg-section: var(--bg-page);
+  --bg-section-alt: var(--bg-page);
   --surface: rgba(255, 255, 255, 0.74);
   --surface-strong: rgba(11, 24, 44, 0.08);
   --surface-solid: #ffffff;
@@ -44,7 +43,6 @@
   --accent-rose: #d92f67;
   --accent-green: #0c9f6e;
   --shadow-soft: 0 24px 70px rgba(32, 55, 92, 0.15);
-  --grid-line: rgba(37, 99, 235, 0.12);
   --hero-scrim: rgba(244, 247, 251, 0.76);
   --input-bg: rgba(255, 255, 255, 0.82);
 }
@@ -60,18 +58,17 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  font-size: 15px;
+  scroll-behavior: auto;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    linear-gradient(90deg, transparent 31px, var(--grid-line) 32px),
-    linear-gradient(0deg, transparent 31px, var(--grid-line) 32px), var(--bg-page);
-  background-size: 32px 32px;
+  background: var(--bg-page);
   color: var(--text-primary);
   font-family: var(--font-primary);
+  font-size: 0.95rem;
   overflow-x: hidden;
   transition:
     background-color 0.35s ease,
@@ -126,7 +123,7 @@ h6 {
 
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(180deg, transparent 0, var(--bg-page) 100%), var(--bg-page);
+  background: var(--bg-page);
 }
 
 main {
@@ -134,16 +131,16 @@ main {
 }
 
 .section-padding {
-  padding: 112px 0;
+  padding: 88px 0;
 }
 
 .section-kicker {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: var(--accent-cyan);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -151,7 +148,7 @@ main {
 
 .section-kicker::before {
   content: '';
-  width: 34px;
+  width: 28px;
   height: 2px;
   background: linear-gradient(90deg, var(--accent-cyan), var(--accent-rose));
 }
@@ -159,14 +156,14 @@ main {
 .section-title {
   margin: 0;
   color: var(--text-primary);
-  font-size: clamp(2.1rem, 4.6vw, 3.35rem);
-  line-height: 1.08;
+  font-size: clamp(1.85rem, 3.8vw, 2.8rem);
+  line-height: 1.12;
 }
 
 .section-copy {
   color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 0.94rem;
+  line-height: 1.72;
 }
 
 .text-secondary {
@@ -196,8 +193,8 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 24px;
+  min-height: 42px;
+  padding: 0 18px;
   border-radius: 8px;
   font-weight: 800;
   line-height: 1;
@@ -235,8 +232,8 @@ main {
 
 .icon-button {
   display: inline-grid;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   place-items: center;
   border: 1px solid var(--border-soft);
   border-radius: 8px;
@@ -398,26 +395,22 @@ main {
 
 @media (max-width: 991.98px) {
   .section-padding {
-    padding: 88px 0;
+    padding: 72px 0;
   }
 
   .section-title {
-    font-size: clamp(2rem, 6.4vw, 2.55rem);
+    font-size: clamp(1.78rem, 5.8vw, 2.25rem);
   }
 }
 
 @media (max-width: 767.98px) {
-  body {
-    background-size: 28px 28px;
-  }
-
   .container {
     --bs-gutter-x: 1.5rem;
   }
 
   .section-copy {
-    font-size: 0.96rem;
-    line-height: 1.72;
+    font-size: 0.9rem;
+    line-height: 1.68;
   }
 
   .scroll-indicator {
@@ -427,11 +420,11 @@ main {
 
 @media (max-width: 575.98px) {
   .section-padding {
-    padding: 72px 0;
+    padding: 60px 0;
   }
 
   .section-title {
-    font-size: clamp(1.85rem, 10vw, 2.1rem);
+    font-size: clamp(1.65rem, 8.8vw, 1.95rem);
   }
 
   .btn-primary-neon,
@@ -446,6 +439,6 @@ main {
   }
 
   .section-padding {
-    padding: 64px 0;
+    padding: 54px 0;
   }
 }
