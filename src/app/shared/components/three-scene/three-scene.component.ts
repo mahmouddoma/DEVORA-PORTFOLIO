@@ -39,6 +39,7 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
   private readonly pointer = new THREE.Vector2();
   private readonly targetPointer = new THREE.Vector2();
   private resizeObserver?: ResizeObserver;
+  private themeObserver?: MutationObserver;
   private lastPointerClientX = 0;
   private lastPointerClientY = 0;
   private readonly resizeHandler = () => this.onWindowResize();
@@ -55,6 +56,8 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     this.initThree();
     this.createDevoraLogo();
     this.createCursorOrb();
+    this.observeTheme();
+    this.applySceneTheme();
     this.positionLogo();
     this.animate();
     window.addEventListener('resize', this.resizeHandler);
@@ -70,6 +73,7 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     window.removeEventListener('resize', this.resizeHandler);
     window.removeEventListener('pointermove', this.pointerHandler);
     this.resizeObserver?.disconnect();
+    this.themeObserver?.disconnect();
     this.disposeObject(this.logoParticles);
     this.disposeObject(this.auraParticles);
     this.disposeObject(this.cursorOrb);
@@ -184,6 +188,70 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
   }
 
   private auraBasePositions!: Float32Array;
+
+  private observeTheme() {
+    this.themeObserver = new MutationObserver(() => this.applySceneTheme());
+    this.themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+  }
+
+  private applySceneTheme() {
+    const isLight = document.documentElement.dataset['theme'] === 'light';
+    const logoMaterial = this.logoParticles.material as THREE.PointsMaterial;
+    const auraMaterial = this.auraParticles.material as THREE.PointsMaterial;
+    const orbMaterial = this.cursorOrb.material as THREE.MeshBasicMaterial;
+    const glowMaterial = this.cursorGlow.material as THREE.MeshBasicMaterial;
+
+    logoMaterial.size = 0.042;
+    logoMaterial.opacity = 0;
+    logoMaterial.blending = THREE.AdditiveBlending;
+    logoMaterial.needsUpdate = true;
+
+    auraMaterial.size = isLight ? 0.03 : 0.02;
+    auraMaterial.opacity = isLight ? 0.68 : 0.38;
+    auraMaterial.blending = isLight ? THREE.NormalBlending : THREE.AdditiveBlending;
+    auraMaterial.needsUpdate = true;
+
+    orbMaterial.color.set(isLight ? '#7c3aed' : '#8b5cf6');
+    orbMaterial.blending = isLight ? THREE.NormalBlending : THREE.AdditiveBlending;
+    orbMaterial.needsUpdate = true;
+
+    glowMaterial.color.set(isLight ? '#008aa0' : '#00e5ff');
+    glowMaterial.opacity = isLight ? 0.16 : 0.1;
+    glowMaterial.blending = isLight ? THREE.NormalBlending : THREE.AdditiveBlending;
+    glowMaterial.needsUpdate = true;
+
+    this.recolorParticles(isLight);
+  }
+
+  private recolorParticles(isLight: boolean) {
+    const logoPalette = isLight
+      ? ['#008aa0', '#2563eb', '#d92f67']
+      : ['#00e5ff', '#4c8dff', '#ff5f8f'];
+    const auraPalette = isLight
+      ? ['#00758a', '#1d4ed8', '#be185d']
+      : ['#00e5ff', '#4c8dff', '#ff5f8f'];
+
+    this.writeParticleColors(this.logoParticles, logoPalette);
+    this.writeParticleColors(this.auraParticles, auraPalette);
+  }
+
+  private writeParticleColors(points: THREE.Points, palette: string[]) {
+    const colorAttr = points.geometry.getAttribute('color') as THREE.BufferAttribute;
+    const colors = colorAttr.array as Float32Array;
+    const color = new THREE.Color();
+
+    for (let i = 0; i < colors.length; i += 3) {
+      color.set(palette[(i / 3) % palette.length]);
+      colors[i] = color.r;
+      colors[i + 1] = color.g;
+      colors[i + 2] = color.b;
+    }
+
+    colorAttr.needsUpdate = true;
+  }
 
   private createCursorOrb() {
     const orbMaterial = new THREE.MeshBasicMaterial({

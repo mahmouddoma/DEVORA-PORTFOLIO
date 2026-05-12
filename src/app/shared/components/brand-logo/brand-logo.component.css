@@ -101,6 +101,12 @@
 
 @media (max-width: 575.98px) {
   .logo-mark {
-    width: 146px;
+    width: 134px;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .logo-mark {
+    width: 118px;
   }
 }

@@ -218,7 +218,18 @@
 
 @media (max-width: 575.98px) {
   .why-panel {
-    padding: 22px;
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .why-panel h3 {
+    font-size: clamp(1.52rem, 8vw, 2.05rem);
+    line-height: 1.08;
+  }
+
+  .why-panel p {
+    margin-top: 0;
+    font-size: 0.88rem;
   }
 
   .proof-grid {
@@ -227,5 +238,13 @@
 
   .value-item {
     grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .flow-step {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
   }
 }

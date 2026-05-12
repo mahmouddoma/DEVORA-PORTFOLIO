@@ -216,6 +216,8 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
   }
 
   activateProject(index: number) {
+    if (this.isMobileShowcase()) return;
+
     this.activeProjectIndex = index;
   }
 
@@ -264,6 +266,8 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
   }
 
   startPreview(event: MouseEvent, project: Project) {
+    if (this.isMobileShowcase()) return;
+
     const card = event.currentTarget as HTMLElement;
     if (this.hasScreenshotPreview(project)) {
       card.classList.add('screenshot-playing');
@@ -279,6 +283,8 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
   }
 
   stopPreview(event: MouseEvent) {
+    if (this.isMobileShowcase()) return;
+
     const card = event.currentTarget as HTMLElement;
     const video = card.querySelector('video');
 
@@ -341,6 +347,10 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
 
     const cards = this.elementRef.nativeElement.querySelectorAll('.project-card');
     this.gsapService.gsap.from(cards, this.cardRevealVars);
+  }
+
+  private isMobileShowcase() {
+    return this.gsapService.isBrowser && window.matchMedia('(max-width: 991.98px)').matches;
   }
 
   private setupAnimations() {

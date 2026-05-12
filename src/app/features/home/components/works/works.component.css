@@ -501,21 +501,30 @@
     margin-top: 38px;
     padding: 12px 0 34px;
     overflow-x: auto;
+    overflow-y: visible;
     scroll-behavior: smooth;
+    scroll-padding-inline: 0;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .project-card {
+    display: block;
     flex: 0 0 100%;
+    width: 100%;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .project-card,
   .project-card:nth-child(2),
   .project-card:nth-child(3),
   .project-card.active,
-  .project-card:hover {
+  .project-card:hover,
+  .project-card:nth-child(2):not(:hover):not(.active),
+  .project-card:nth-child(3):not(:hover):not(.active) {
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
     transform: none;
   }
 
@@ -543,9 +552,34 @@
     align-items: flex-start;
     flex-direction: column;
   }
+
+  .project-card .screenshot-preview {
+    opacity: 1;
+  }
+
+  .project-card .screenshot-scroll-track {
+    animation-duration: inherit;
+    animation-iteration-count: infinite;
+    animation-name: screenshot-pan;
+    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+    transition: none;
+  }
 }
 
 @media (max-width: 767.98px) {
+  .works-heading {
+    justify-items: start;
+    text-align: start;
+  }
+
+  .works-heading .section-kicker {
+    justify-content: flex-start;
+  }
+
+  .works-lede {
+    margin-top: 14px;
+  }
+
   .works-actions {
     gap: 10px;
     margin-top: 24px;
@@ -558,7 +592,12 @@
 
 @media (max-width: 575.98px) {
   .works-heading .section-title {
-    font-size: clamp(1.9rem, 10vw, 3rem);
+    font-size: clamp(1.9rem, 9vw, 2.55rem);
+    line-height: 1.08;
+  }
+
+  .works-lede {
+    font-size: 0.88rem;
   }
 
   .works-actions,
@@ -582,6 +621,27 @@
     padding: 18px;
   }
 
+  .project-showcase {
+    max-width: 100%;
+    margin-top: 28px;
+    padding-bottom: 18px;
+  }
+
+  .project-card {
+    width: 100%;
+  }
+
+  .project-info,
+  .project-card:first-child .project-info,
+  .project-card:not(:first-child) .project-info {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .project-info p {
+    font-size: 0.8rem;
+  }
+
   .project-category,
   .live-pill {
     font-size: 0.68rem;
@@ -590,6 +650,10 @@
 
 @media (max-width: 374.98px) {
   .filter-btn {
+    flex-basis: 100%;
+  }
+
+  .project-card {
     flex-basis: 100%;
   }
 

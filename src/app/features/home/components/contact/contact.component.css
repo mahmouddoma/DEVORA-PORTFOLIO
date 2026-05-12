@@ -174,6 +174,77 @@ textarea:focus {
   font-weight: 800;
 }
 
+:host-context(.theme-light) .contact-card {
+  border-color: rgba(15, 23, 42, 0.14);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 252, 0.88)),
+    #f7fafc;
+  box-shadow: 0 26px 80px rgba(15, 23, 42, 0.12);
+}
+
+:host-context(.theme-light) .contact-info {
+  border-color: rgba(15, 23, 42, 0.14);
+  background:
+    linear-gradient(135deg, rgba(0, 138, 160, 0.08), transparent 44%),
+    linear-gradient(315deg, rgba(217, 47, 103, 0.07), transparent 50%),
+    rgba(255, 255, 255, 0.86);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58);
+}
+
+:host-context(.theme-light) .contact-details {
+  color: rgba(6, 20, 38, 0.72);
+}
+
+:host-context(.theme-light) .contact-details a {
+  color: #008aa0;
+}
+
+:host-context(.theme-light) .contact-track {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+:host-context(.theme-light) .form-field span {
+  color: rgba(6, 20, 38, 0.68);
+}
+
+:host-context(.theme-light) .form-field span::before {
+  background: #008aa0;
+  box-shadow: 0 0 12px rgba(0, 138, 160, 0.28);
+}
+
+:host-context(.theme-light) input,
+:host-context(.theme-light) select,
+:host-context(.theme-light) textarea {
+  border-color: rgba(15, 23, 42, 0.16);
+  background:
+    linear-gradient(135deg, rgba(0, 138, 160, 0.035), transparent 38%),
+    rgba(255, 255, 255, 0.92);
+  color: #061426;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+:host-context(.theme-light) input::placeholder,
+:host-context(.theme-light) textarea::placeholder {
+  color: rgba(6, 20, 38, 0.46);
+}
+
+:host-context(.theme-light) input:focus,
+:host-context(.theme-light) select:focus,
+:host-context(.theme-light) textarea:focus {
+  border-color: #008aa0;
+  background:
+    linear-gradient(135deg, rgba(0, 138, 160, 0.07), transparent 42%),
+    #ffffff;
+  box-shadow:
+    0 0 0 4px rgba(0, 138, 160, 0.1),
+    0 16px 34px rgba(15, 23, 42, 0.1);
+}
+
+:host-context(.theme-light) .submit-button {
+  color: #04111f;
+  box-shadow: 0 16px 34px rgba(37, 99, 235, 0.16);
+}
+
 @media (max-width: 991.98px) {
   .contact-card {
     grid-template-columns: 1fr;
@@ -217,6 +288,10 @@ textarea:focus {
     padding: 0;
   }
 
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
   textarea {
     min-height: 124px;
   }
@@ -225,6 +300,15 @@ textarea:focus {
 @media (max-width: 575.98px) {
   .contact-card {
     padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  :host-context(.theme-light) .contact-card {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .contact-info {

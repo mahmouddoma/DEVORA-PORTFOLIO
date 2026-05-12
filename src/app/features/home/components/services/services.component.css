@@ -295,6 +295,74 @@
   font-size: clamp(0.9rem, 1.15vw, 1rem);
 }
 
+:host-context(.theme-light) .services-section {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 138, 160, 0.055), transparent 28%),
+    radial-gradient(circle at 74% 24%, rgba(217, 47, 103, 0.045), transparent 30%),
+    #edf3f7;
+}
+
+:host-context(.theme-light) .section-heading .section-copy {
+  color: rgba(6, 20, 38, 0.76);
+}
+
+:host-context(.theme-light) .services-offer,
+:host-context(.theme-light) .service-card,
+:host-context(.theme-light) .delivery-strip {
+  border-color: rgba(15, 23, 42, 0.16);
+  box-shadow: 0 22px 64px rgba(15, 23, 42, 0.14);
+}
+
+:host-context(.theme-light) .services-offer {
+  background:
+    linear-gradient(145deg, rgba(0, 138, 160, 0.08), transparent 42%),
+    linear-gradient(315deg, rgba(217, 47, 103, 0.07), transparent 46%),
+    rgba(244, 249, 252, 0.92);
+}
+
+:host-context(.theme-light) .services-offer p,
+:host-context(.theme-light) .service-card p {
+  color: rgba(6, 20, 38, 0.74);
+}
+
+:host-context(.theme-light) .service-card {
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(0, 138, 160, 0.08), transparent 32%),
+    linear-gradient(140deg, rgba(248, 251, 253, 0.95), rgba(229, 238, 245, 0.84)),
+    rgba(241, 247, 251, 0.92);
+}
+
+:host-context(.theme-light) .service-card::before {
+  background:
+    linear-gradient(120deg, transparent 0 44%, rgba(255, 255, 255, 0.46), transparent 58%),
+    radial-gradient(circle at 88% 16%, rgba(217, 47, 103, 0.08), transparent 30%);
+  opacity: 0.72;
+}
+
+:host-context(.theme-light) .service-card:hover {
+  border-color: rgba(0, 138, 160, 0.3);
+  box-shadow: 0 26px 74px rgba(15, 23, 42, 0.17);
+}
+
+:host-context(.theme-light) .service-stat,
+:host-context(.theme-light) .delivery-step {
+  border-color: rgba(15, 23, 42, 0.14);
+  background: rgba(248, 251, 253, 0.78);
+}
+
+:host-context(.theme-light) .service-stat span {
+  color: rgba(6, 20, 38, 0.62);
+}
+
+:host-context(.theme-light) .delivery-strip {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+:host-context(.theme-light) .services-secondary {
+  border-color: rgba(15, 23, 42, 0.16);
+  background: rgba(248, 251, 253, 0.72);
+}
+
 @media (max-width: 991.98px) {
   .services-shell {
     grid-template-columns: 1fr;
@@ -336,6 +404,10 @@
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .services-offer {
+    gap: 16px;
   }
 
   .service-card {
@@ -390,6 +462,15 @@
     padding: 16px;
   }
 
+  .services-offer h3 {
+    font-size: clamp(1.42rem, 8vw, 2rem);
+    line-height: 1.12;
+  }
+
+  .services-offer p {
+    font-size: 0.86rem;
+  }
+
   .services-stats,
   .delivery-strip {
     grid-template-columns: 1fr;
@@ -408,6 +489,9 @@
   .delivery-step {
     align-items: flex-start;
     flex-direction: column;
+    gap: 6px;
+    min-height: 62px;
+    padding: 14px 16px;
   }
 }
 

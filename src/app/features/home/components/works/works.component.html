@@ -1,12 +1,18 @@
 <section id="work" class="works-section section-padding">
   <div class="container">
     <div class="works-heading">
-      <span class="section-kicker motion-item" data-edit-key="work.kicker">{{ i18n.t('work.kicker') }}</span>
-      <h2 class="section-title motion-item" data-edit-key="work.title">{{ i18n.t('work.title') }}</h2>
+      <span class="section-kicker motion-item" data-edit-key="work.kicker">{{
+        i18n.t('work.kicker')
+      }}</span>
+      <h2 class="section-title motion-item" data-edit-key="work.title">
+        {{ i18n.t('work.title') }}
+      </h2>
       <p class="works-lede motion-item" data-edit-key="work.body">{{ i18n.t('work.body') }}</p>
 
       <div class="works-actions motion-item">
-        <a class="work-contact" href="#contact" data-edit-key="work.contactCta">{{ i18n.t('work.contactCta') }}</a>
+        <a class="work-contact" href="#contact" data-edit-key="work.contactCta">{{
+          i18n.t('work.contactCta')
+        }}</a>
         <a class="work-view-all" href="#work" data-edit-key="work.viewAll">
           {{ i18n.t('work.viewAll') }}
           <svg
@@ -23,7 +29,11 @@
         </a>
       </div>
 
-      <div class="filter-controls motion-item" role="group" [attr.aria-label]="i18n.t('work.filters')">
+      <div
+        class="filter-controls motion-item"
+        role="group"
+        [attr.aria-label]="i18n.t('work.filters')"
+      >
         <button
           class="filter-btn"
           type="button"
@@ -51,7 +61,12 @@
         (mouseenter)="activateProject(i); startPreview($event, project)"
         (mouseleave)="stopPreview($event)"
       >
-        <a class="project-link" [href]="project.link" target="_blank" rel="noopener noreferrer">
+        <a
+          class="project-link"
+          [href]="project.link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div class="project-browser">
             <div
               class="project-media"
@@ -110,7 +125,9 @@
 
               <div class="visual-fallback" aria-hidden="true">
                 <span class="fallback-icon">{{ project.categoryInitial }}</span>
-                <strong [attr.data-edit-key]="project.titleKey">{{ i18n.t(project.titleKey) }}</strong>
+                <strong [attr.data-edit-key]="project.titleKey">{{
+                  i18n.t(project.titleKey)
+                }}</strong>
                 <small data-edit-key="work.projectBuild">{{ i18n.t('work.projectBuild') }}</small>
               </div>
 
@@ -122,13 +139,17 @@
             <div class="project-meta">
               <span class="project-category">
                 <span class="category-mark">{{ project.categoryInitial }}</span>
-                <span [attr.data-edit-key]="project.categoryKey">{{ i18n.t(project.categoryKey) }}</span>
+                <span [attr.data-edit-key]="project.categoryKey">{{
+                  i18n.t(project.categoryKey)
+                }}</span>
               </span>
             </div>
 
             <div class="project-copy">
               <h3 [attr.data-edit-key]="project.titleKey">{{ i18n.t(project.titleKey) }}</h3>
-              <p [attr.data-edit-key]="project.descriptionKey">{{ i18n.t(project.descriptionKey) }}</p>
+              <p [attr.data-edit-key]="project.descriptionKey">
+                {{ i18n.t(project.descriptionKey) }}
+              </p>
             </div>
 
             <div class="project-footer">
@@ -149,7 +170,6 @@
               </span>
             </div>
           </div>
-
         </a>
       </article>
     </div>
