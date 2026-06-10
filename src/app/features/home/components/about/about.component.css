@@ -107,6 +107,12 @@
   background: rgba(255, 255, 255, 0.045);
 }
 
+.proof-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-cyan);
+}
+
 .proof-item strong {
   color: var(--text-primary);
   font: 900 1.35rem/1 var(--font-heading);
@@ -146,6 +152,12 @@
   border-radius: 8px;
   color: var(--accent-cyan);
   font-weight: 900;
+}
+
+.flow-step app-icon,
+.value-index app-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .flow-step strong {

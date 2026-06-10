@@ -7,6 +7,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
   en: {
     'nav.about': 'Why DEVORA',
     'nav.services': 'Services',
+    'nav.cybersecurity': 'Cybersecurity',
     'nav.work': 'Work',
     'nav.stack': 'Stack',
     'nav.contact': 'Start a Project',
@@ -142,6 +143,41 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'services.support.body':
       'We support releases, fixes, UX improvements, performance checks, and small product iterations so the platform keeps moving after launch.',
     'services.support.outcome': 'Reliable product evolution',
+    'services.cyber.title': 'Cybersecurity and penetration testing',
+    'services.cyber.body':
+      'We assess web apps, APIs, dashboards, and launch infrastructure with PT testing, vulnerability review, hardening priorities, and a clear remediation report.',
+    'services.cyber.outcome': 'Lower security risk',
+
+    'cyber.kicker': 'Cybersecurity services',
+    'cyber.title': 'PT, vulnerability review, and hardening for digital products',
+    'cyber.body':
+      'We test web applications, APIs, dashboards, forms, authentication flows, and launch infrastructure to find exploitable risk before attackers or customers do.',
+    'cyber.primaryCta': 'Request a security assessment',
+    'cyber.secondaryCta': 'See delivery services',
+    'cyber.panel.label': 'Security scope',
+    'cyber.panel.title': 'Practical testing with clear fixes, not vague alerts.',
+    'cyber.signal1.label': 'Testing',
+    'cyber.signal1.value': 'Web app, API, auth, forms, and dashboard PT',
+    'cyber.signal2.label': 'Method',
+    'cyber.signal2.value': 'OWASP-based review, manual validation, risk ranking',
+    'cyber.signal3.label': 'Output',
+    'cyber.signal3.value': 'Executive summary, technical report, and retest path',
+    'cyber.capability.pt.title': 'Penetration testing',
+    'cyber.capability.pt.body':
+      'Focused PT for websites, SaaS products, portals, dashboards, and critical user journeys with validated findings.',
+    'cyber.capability.api.title': 'API and auth testing',
+    'cyber.capability.api.body':
+      'Review of API exposure, broken access control, token handling, authentication flows, and sensitive data paths.',
+    'cyber.capability.vuln.title': 'Vulnerability assessment',
+    'cyber.capability.vuln.body':
+      'Structured scan and manual verification for misconfigurations, injection risk, weak forms, and unsafe dependencies.',
+    'cyber.capability.hardening.title': 'Hardening and remediation',
+    'cyber.capability.hardening.body':
+      'Clear remediation priorities for headers, access rules, deployment settings, logging, rate limits, and secure release steps.',
+    'cyber.deliverables.label': 'Deliverables',
+    'cyber.deliverables.title': 'Risk map, remediation plan, and retest-ready report.',
+    'cyber.deliverables.body':
+      'Every engagement ends with severity ranking, business impact, reproduction notes, fix guidance, and a clean path to verify the fixes.',
     'services.step1.label': 'Step 01',
     'services.step1.title': 'Clarify the commercial objective',
     'services.step2.label': 'Step 02',
@@ -249,7 +285,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'contact.kicker': 'Project intake',
     'contact.title': 'Tell us what needs to launch, convert, or scale',
     'contact.body':
-      'Send the business goal, project type, budget range, and timeline. We will reply with the most practical path to ship something useful.',
+      'Send the business goal, project type, and timeline. We will reply with the most practical path to ship something useful.',
     'contact.name': 'Full Name',
     'contact.namePlaceholder': 'John Doe',
     'contact.email': 'Email Address',
@@ -260,13 +296,9 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'contact.option.mvp': 'MVP or new product',
     'contact.option.platform': 'SaaS / portal / platform',
     'contact.option.dashboard': 'Dashboard or internal tool',
+    'contact.option.cybersecurity': 'Cybersecurity / penetration test',
     'contact.option.optimization': 'Optimization / rebuild',
-    'contact.budget': 'Budget range',
-    'contact.chooseBudget': 'Choose budget range',
-    'contact.budget.option1': 'Under $3k',
-    'contact.budget.option2': '$3k - $8k',
-    'contact.budget.option3': '$8k - $20k',
-    'contact.budget.option4': '$20k+',
+    'contact.option.other': 'Other',
     'contact.timeline': 'Timeline',
     'contact.chooseTimeline': 'Choose timeline',
     'contact.timeline.option1': 'Launch this month',
@@ -277,13 +309,15 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'contact.submit': 'Request Project Plan',
     'contact.success': 'Thanks. DEVORA will review the details and reply with the next practical step.',
     'contact.legal': 'Registered Saudi technology establishment',
-    'contact.location': 'Riyadh, Saudi Arabia / Remote delivery',
+    'contact.location': 'Jeddah, Al-Waha District, Abdulrahman Ibn Amr',
+    'contact.nationalNumber': 'National Unified Number: 7054431932',
 
     'footer.rights': 'All rights reserved.',
   },
   ar: {
     'nav.about': 'لماذا DEVORA',
     'nav.services': 'الخدمات',
+    'nav.cybersecurity': 'الأمن السيبراني',
     'nav.work': 'الأعمال',
     'nav.stack': 'التقنيات',
     'nav.contact': 'ابدأ مشروعك',
@@ -461,7 +495,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'contact.detailsPlaceholder': 'اكتب نبذة عن مشروعك...',
     'contact.submit': 'إرسال الرسالة',
     'contact.success': 'شكرًا لك. سيتواصل فريق DEVORA معك قريبًا.',
-    'contact.location': 'القاهرة، مصر',
+    'contact.location': 'جدة، حي الواحة، عبدالرحمن ابن عمرو',
+    'contact.nationalNumber': 'الرقم الوطني الموحد: 7054431932',
 
     'services.trust.kicker': 'دليل ثقة قانوني',
     'services.trust.title': 'شهادة سجل تجاري موثقة من وزارة التجارة السعودية.',
@@ -511,6 +546,41 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'services.support.body':
       'ندعم الإصدارات والإصلاحات وتحسينات UX وفحوصات الأداء وتطويرات صغيرة حتى يستمر المنتج في التحسن بعد الإطلاق.',
     'services.support.outcome': 'تطوير منتج مستقر',
+    'services.cyber.title': 'أمن سيبراني واختبار اختراق',
+    'services.cyber.body':
+      'ننفذ اختبارات اختراق PT لتطبيقات الويب وواجهات API ولوحات التحكم وبيئة الإطلاق، مع فحص ثغرات، تقوية حماية، وتقرير معالجة واضح بالأولويات.',
+    'services.cyber.outcome': 'مخاطر أمنية أقل',
+
+    'cyber.kicker': 'خدمات الأمن السيبراني',
+    'cyber.title': 'اختبار اختراق PT وفحص ثغرات وتقوية حماية للمنتجات الرقمية',
+    'cyber.body':
+      'نختبر تطبيقات الويب وواجهات API ولوحات التحكم والنماذج وتدفقات تسجيل الدخول وبيئة الإطلاق لاكتشاف المخاطر القابلة للاستغلال قبل أن تظهر للمستخدمين أو المهاجمين.',
+    'cyber.primaryCta': 'اطلب تقييم أمني',
+    'cyber.secondaryCta': 'راجع خدمات التنفيذ',
+    'cyber.panel.label': 'نطاق الحماية',
+    'cyber.panel.title': 'اختبار عملي بإصلاحات واضحة، وليس تنبيهات مبهمة.',
+    'cyber.signal1.label': 'الاختبار',
+    'cyber.signal1.value': 'PT لتطبيقات الويب وAPI والتسجيل والنماذج ولوحات التحكم',
+    'cyber.signal2.label': 'المنهجية',
+    'cyber.signal2.value': 'مراجعة وفق OWASP، تحقق يدوي، وترتيب للمخاطر',
+    'cyber.signal3.label': 'المخرجات',
+    'cyber.signal3.value': 'ملخص تنفيذي، تقرير تقني، ومسار إعادة اختبار',
+    'cyber.capability.pt.title': 'اختبار اختراق',
+    'cyber.capability.pt.body':
+      'PT موجه للمواقع ومنتجات SaaS والبوابات ولوحات التحكم ورحلات المستخدم الحساسة مع نتائج مؤكدة.',
+    'cyber.capability.api.title': 'اختبار API وتسجيل الدخول',
+    'cyber.capability.api.body':
+      'مراجعة تعرض API، مشاكل الصلاحيات، التعامل مع التوكن، تدفقات الدخول، ومسارات البيانات الحساسة.',
+    'cyber.capability.vuln.title': 'تقييم الثغرات',
+    'cyber.capability.vuln.body':
+      'فحص منظم وتحقق يدوي من الإعدادات الخاطئة، مخاطر الحقن، ضعف النماذج، والاعتماديات غير الآمنة.',
+    'cyber.capability.hardening.title': 'تقوية الحماية والمعالجة',
+    'cyber.capability.hardening.body':
+      'أولويات معالجة واضحة للهيدرز، قواعد الوصول، إعدادات النشر، التسجيل، حدود الطلبات، وخطوات الإطلاق الآمن.',
+    'cyber.deliverables.label': 'المخرجات',
+    'cyber.deliverables.title': 'خريطة مخاطر وخطة معالجة وتقرير جاهز لإعادة الاختبار.',
+    'cyber.deliverables.body':
+      'كل تعاون ينتهي بترتيب للشدة، أثر تجاري، خطوات إعادة إنتاج، إرشادات إصلاح، ومسار واضح للتحقق من المعالجة.',
 
     'process.kicker': 'طريقة التسليم',
     'process.title': 'نظام تنفيذ عملي للشركات التي تحتاج زخما واضحا',
@@ -557,13 +627,9 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'contact.option.mvp': 'MVP أو منتج جديد',
     'contact.option.platform': 'SaaS / بوابة / منصة',
     'contact.option.dashboard': 'لوحة تحكم أو أداة داخلية',
+    'contact.option.cybersecurity': 'أمن سيبراني / اختبار اختراق',
     'contact.option.optimization': 'تحسين أو إعادة بناء',
-    'contact.budget': 'نطاق الميزانية',
-    'contact.chooseBudget': 'اختر نطاق الميزانية',
-    'contact.budget.option1': 'أقل من 3 آلاف دولار',
-    'contact.budget.option2': '3 - 8 آلاف دولار',
-    'contact.budget.option3': '8 - 20 ألف دولار',
-    'contact.budget.option4': '20 ألف دولار فأكثر',
+    'contact.option.other': 'أخرى',
     'contact.timeline': 'الجدول الزمني',
     'contact.chooseTimeline': 'اختر الجدول الزمني',
     'contact.timeline.option1': 'إطلاق هذا الشهر',

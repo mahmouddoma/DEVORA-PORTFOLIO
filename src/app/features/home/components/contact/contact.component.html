@@ -7,9 +7,26 @@
         <p class="section-copy motion-item" data-edit-key="contact.body">{{ i18n.t('contact.body') }}</p>
 
         <div class="contact-details motion-item">
-          <a href="mailto:hello@devora.studio">hello&#64;devora.studio</a>
-          <span data-edit-key="contact.legal">{{ i18n.t('contact.legal') }}</span>
-          <span data-edit-key="contact.location">{{ i18n.t('contact.location') }}</span>
+          <a href="mailto:Info@devora-sa.com">
+            <app-icon name="mail"></app-icon>
+            Info&#64;devora-sa.com
+          </a>
+          <a href="tel:+966501798566">
+            <app-icon name="phone"></app-icon>
+            +966 50 179 8566
+          </a>
+          <a href="tel:+966556955662">
+            <app-icon name="phone"></app-icon>
+            +966 55 695 5662
+          </a>
+          <span data-edit-key="contact.location">
+            <app-icon name="location"></app-icon>
+            {{ i18n.t('contact.location') }}
+          </span>
+          <span data-edit-key="contact.nationalNumber">
+            <app-icon name="briefcase"></app-icon>
+            {{ i18n.t('contact.nationalNumber') }}
+          </span>
         </div>
 
         <div class="contact-track" aria-hidden="true">
@@ -20,17 +37,17 @@
       <form class="contact-form" (ngSubmit)="onSubmit()">
         <div class="form-grid">
           <label class="form-field">
-            <span data-edit-key="contact.name">{{ i18n.t('contact.name') }}</span>
+            <span data-edit-key="contact.name"><app-icon name="user"></app-icon>{{ i18n.t('contact.name') }}</span>
             <input type="text" [placeholder]="i18n.t('contact.namePlaceholder')" data-edit-key="contact.namePlaceholder" />
           </label>
 
           <label class="form-field">
-            <span data-edit-key="contact.email">{{ i18n.t('contact.email') }}</span>
+            <span data-edit-key="contact.email"><app-icon name="mail"></app-icon>{{ i18n.t('contact.email') }}</span>
             <input type="email" [placeholder]="i18n.t('contact.emailPlaceholder')" data-edit-key="contact.emailPlaceholder" />
           </label>
 
           <label class="form-field full">
-            <span data-edit-key="contact.service">{{ i18n.t('contact.service') }}</span>
+            <span data-edit-key="contact.service"><app-icon name="briefcase"></app-icon>{{ i18n.t('contact.service') }}</span>
             <select>
               <option selected disabled data-edit-key="contact.chooseService">{{ i18n.t('contact.chooseService') }}</option>
               @for (service of serviceKeys; track service) {
@@ -39,18 +56,8 @@
             </select>
           </label>
 
-          <label class="form-field">
-            <span data-edit-key="contact.budget">{{ i18n.t('contact.budget') }}</span>
-            <select>
-              <option selected disabled data-edit-key="contact.chooseBudget">{{ i18n.t('contact.chooseBudget') }}</option>
-              @for (budget of budgetKeys; track budget) {
-                <option [attr.data-edit-key]="budget">{{ i18n.t(budget) }}</option>
-              }
-            </select>
-          </label>
-
-          <label class="form-field">
-            <span data-edit-key="contact.timeline">{{ i18n.t('contact.timeline') }}</span>
+          <label class="form-field full">
+            <span data-edit-key="contact.timeline"><app-icon name="clock"></app-icon>{{ i18n.t('contact.timeline') }}</span>
             <select>
               <option selected disabled data-edit-key="contact.chooseTimeline">{{ i18n.t('contact.chooseTimeline') }}</option>
               @for (timeline of timelineKeys; track timeline) {
@@ -60,7 +67,7 @@
           </label>
 
           <label class="form-field full">
-            <span data-edit-key="contact.details">{{ i18n.t('contact.details') }}</span>
+            <span data-edit-key="contact.details"><app-icon name="strategy"></app-icon>{{ i18n.t('contact.details') }}</span>
             <textarea rows="5" [placeholder]="i18n.t('contact.detailsPlaceholder')" data-edit-key="contact.detailsPlaceholder"></textarea>
           </label>
         </div>

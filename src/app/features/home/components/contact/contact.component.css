@@ -35,6 +35,19 @@
   font-weight: 800;
 }
 
+.contact-details a,
+.contact-details span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-details app-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--accent-cyan);
+}
+
 .contact-details a {
   color: var(--accent-cyan);
   text-decoration: none;
@@ -93,12 +106,13 @@
 }
 
 .form-field span::before {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-cyan);
-  box-shadow: 0 0 14px rgba(0, 229, 255, 0.52);
-  content: '';
+  display: none;
+}
+
+.form-field app-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-cyan);
 }
 
 input,
@@ -152,7 +166,18 @@ select {
 }
 
 select option {
-  color: #101828;
+  background: #0b1018;
+  color: #f8fbff;
+}
+
+select option:disabled {
+  display: none;
+}
+
+select option:checked,
+select option:hover {
+  background: #15243a;
+  color: #ffffff;
 }
 
 textarea {
@@ -208,8 +233,8 @@ textarea:focus {
 :host-context(.theme-light) .contact-card {
   border-color: rgba(15, 23, 42, 0.14);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 252, 0.88)),
-    #f7fafc;
+    linear-gradient(135deg, rgba(248, 251, 253, 0.94), rgba(232, 240, 247, 0.86)),
+    #eef4f8;
   box-shadow: 0 26px 80px rgba(15, 23, 42, 0.12);
 }
 
@@ -218,7 +243,7 @@ textarea:focus {
   background:
     linear-gradient(135deg, rgba(0, 138, 160, 0.08), transparent 44%),
     linear-gradient(315deg, rgba(217, 47, 103, 0.07), transparent 50%),
-    rgba(255, 255, 255, 0.86);
+    rgba(246, 250, 253, 0.9);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58);
 }
 
@@ -257,6 +282,17 @@ textarea:focus {
 :host-context(.theme-light) input::placeholder,
 :host-context(.theme-light) textarea::placeholder {
   color: rgba(6, 20, 38, 0.46);
+}
+
+:host-context(.theme-light) select option {
+  background: #f4f8fb;
+  color: #061426;
+}
+
+:host-context(.theme-light) select option:checked,
+:host-context(.theme-light) select option:hover {
+  background: rgba(0, 138, 160, 0.14);
+  color: #061426;
 }
 
 :host-context(.theme-light) input:focus,
@@ -307,7 +343,7 @@ textarea:focus {
 :host-context(.theme-light) select,
 :host-context(.theme-light) textarea {
   border-color: rgba(0, 0, 0, 0.11) !important;
-  background: #ffffff !important;
+  background: #f7fafc !important;
   color: #1d1d1f !important;
 }
 

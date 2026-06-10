@@ -14,23 +14,20 @@ import {
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { AppIconComponent, type AppIconName } from '../../../../shared/components/app-icon/app-icon.component';
 
 interface Service {
   index: string;
   titleKey: string;
   bodyKey: string;
   outcomeKey: string;
-}
-
-interface TrustFact {
-  labelKey: string;
-  valueKey: string;
+  icon: AppIconName;
 }
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppIconComponent],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
 })
@@ -46,67 +43,78 @@ export class ServicesComponent implements AfterViewInit, OnDestroy {
       titleKey: 'services.launch.title',
       bodyKey: 'services.launch.body',
       outcomeKey: 'services.launch.outcome',
+      icon: 'rocket',
     },
     {
       index: '02',
       titleKey: 'services.mvp.title',
       bodyKey: 'services.mvp.body',
       outcomeKey: 'services.mvp.outcome',
+      icon: 'target',
     },
     {
       index: '03',
       titleKey: 'services.modernize.title',
       bodyKey: 'services.modernize.body',
       outcomeKey: 'services.modernize.outcome',
+      icon: 'wrench',
     },
     {
       index: '04',
       titleKey: 'services.internal.title',
       bodyKey: 'services.internal.body',
       outcomeKey: 'services.internal.outcome',
+      icon: 'briefcase',
     },
     {
       index: '05',
       titleKey: 'services.conversion.title',
       bodyKey: 'services.conversion.body',
       outcomeKey: 'services.conversion.outcome',
+      icon: 'growth',
     },
     {
       index: '06',
       titleKey: 'services.scale.title',
       bodyKey: 'services.scale.body',
       outcomeKey: 'services.scale.outcome',
+      icon: 'layers',
     },
     {
       index: '07',
       titleKey: 'services.brand.title',
       bodyKey: 'services.brand.body',
       outcomeKey: 'services.brand.outcome',
+      icon: 'spark',
     },
     {
       index: '08',
       titleKey: 'services.commerce.title',
       bodyKey: 'services.commerce.body',
       outcomeKey: 'services.commerce.outcome',
+      icon: 'analytics',
     },
     {
       index: '09',
       titleKey: 'services.integrations.title',
       bodyKey: 'services.integrations.body',
       outcomeKey: 'services.integrations.outcome',
+      icon: 'code',
     },
     {
       index: '10',
       titleKey: 'services.support.title',
       bodyKey: 'services.support.body',
       outcomeKey: 'services.support.outcome',
+      icon: 'shield',
     },
-  ];
-
-  readonly trustFacts: readonly TrustFact[] = [
-    { labelKey: 'services.trust.statusLabel', valueKey: 'services.trust.statusValue' },
-    { labelKey: 'services.trust.entityLabel', valueKey: 'services.trust.entityValue' },
-    { labelKey: 'services.trust.issueLabel', valueKey: 'services.trust.issueValue' },
+    {
+      index: '11',
+      titleKey: 'services.cyber.title',
+      bodyKey: 'services.cyber.body',
+      outcomeKey: 'services.cyber.outcome',
+      icon: 'cyber',
+    },
   ];
 
   readonly stats = [
@@ -116,10 +124,10 @@ export class ServicesComponent implements AfterViewInit, OnDestroy {
   ];
 
   readonly deliverySteps = [
-    { labelKey: 'services.step1.label', titleKey: 'services.step1.title' },
-    { labelKey: 'services.step2.label', titleKey: 'services.step2.title' },
-    { labelKey: 'services.step3.label', titleKey: 'services.step3.title' },
-  ];
+    { labelKey: 'services.step1.label', titleKey: 'services.step1.title', icon: 'target' },
+    { labelKey: 'services.step2.label', titleKey: 'services.step2.title', icon: 'design' },
+    { labelKey: 'services.step3.label', titleKey: 'services.step3.title', icon: 'launch' },
+  ] satisfies Array<{ labelKey: string; titleKey: string; icon: AppIconName }>;
 
   private animationContext?: { revert: () => void };
 
@@ -166,18 +174,6 @@ export class ServicesComponent implements AfterViewInit, OnDestroy {
         });
       });
 
-      gsap.from(q('.services-trust-banner'), {
-        opacity: 0,
-        y: -30,
-        duration: 0.8,
-        ease: 'power3.out',
-        clearProps: 'transform,opacity',
-        scrollTrigger: {
-          trigger: this.elementRef.nativeElement,
-          start: 'top 76%',
-        },
-      });
-
       gsap.from(q('.services-carousel-wrapper'), {
         opacity: 0,
         y: 40,
@@ -199,7 +195,7 @@ export class ServicesComponent implements AfterViewInit, OnDestroy {
         ease: 'power4.out',
         clearProps: 'transform,opacity',
         scrollTrigger: {
-          trigger: q('.services-trust-banner')[0] || this.elementRef.nativeElement,
+          trigger: q('.services-carousel-wrapper')[0] || this.elementRef.nativeElement,
           start: 'top 70%',
         },
       });

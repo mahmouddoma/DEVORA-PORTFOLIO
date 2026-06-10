@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { AppIconComponent } from '../../../../shared/components/app-icon/app-icon.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AppIconComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })
@@ -20,14 +21,9 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
     'contact.option.mvp',
     'contact.option.platform',
     'contact.option.dashboard',
+    'contact.option.cybersecurity',
     'contact.option.optimization',
-  ];
-
-  readonly budgetKeys = [
-    'contact.budget.option1',
-    'contact.budget.option2',
-    'contact.budget.option3',
-    'contact.budget.option4',
+    'contact.option.other',
   ];
 
   readonly timelineKeys = [

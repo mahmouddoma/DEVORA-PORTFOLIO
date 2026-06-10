@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { ContactComponent } from '../home/components/contact/contact.component';
+import { CybersecurityComponent } from '../home/components/cybersecurity/cybersecurity.component';
 import { HeroComponent } from '../home/components/hero/hero.component';
 import { ServicesComponent } from '../home/components/services/services.component';
 import { TechStackComponent } from '../home/components/tech-stack/tech-stack.component';
@@ -33,6 +34,7 @@ interface EditableSection {
     HeroComponent,
     WorksComponent,
     ServicesComponent,
+    CybersecurityComponent,
     TechStackComponent,
     ContactComponent,
   ],
@@ -123,6 +125,9 @@ export class DashboardComponent {
         { key: 'services.support.title', label: 'Support title' },
         { key: 'services.support.body', label: 'Support body', multiline: true },
         { key: 'services.support.outcome', label: 'Support outcome' },
+        { key: 'services.cyber.title', label: 'Cybersecurity title' },
+        { key: 'services.cyber.body', label: 'Cybersecurity body', multiline: true },
+        { key: 'services.cyber.outcome', label: 'Cybersecurity outcome' },
       ],
     },
     {
@@ -149,11 +154,45 @@ export class DashboardComponent {
         { key: 'contact.emailPlaceholder', label: 'Email placeholder' },
         { key: 'contact.service', label: 'Service label' },
         { key: 'contact.chooseService', label: 'Choose service' },
+        { key: 'contact.option.cybersecurity', label: 'Cybersecurity option' },
+        { key: 'contact.option.other', label: 'Other option' },
         { key: 'contact.details', label: 'Details label' },
         { key: 'contact.detailsPlaceholder', label: 'Details placeholder', multiline: true },
         { key: 'contact.submit', label: 'Submit button' },
         { key: 'contact.success', label: 'Success message', multiline: true },
         { key: 'contact.location', label: 'Location' },
+        { key: 'contact.nationalNumber', label: 'National unified number' },
+      ],
+    },
+    {
+      id: 'cybersecurity',
+      title: 'Cybersecurity',
+      description: 'Penetration testing, vulnerability review, hardening, and reporting.',
+      fields: [
+        { key: 'cyber.kicker', label: 'Kicker' },
+        { key: 'cyber.title', label: 'Title' },
+        { key: 'cyber.body', label: 'Body', multiline: true },
+        { key: 'cyber.primaryCta', label: 'Primary CTA' },
+        { key: 'cyber.secondaryCta', label: 'Secondary CTA' },
+        { key: 'cyber.panel.label', label: 'Panel label' },
+        { key: 'cyber.panel.title', label: 'Panel title' },
+        { key: 'cyber.signal1.label', label: 'Signal 1 label' },
+        { key: 'cyber.signal1.value', label: 'Signal 1 value' },
+        { key: 'cyber.signal2.label', label: 'Signal 2 label' },
+        { key: 'cyber.signal2.value', label: 'Signal 2 value' },
+        { key: 'cyber.signal3.label', label: 'Signal 3 label' },
+        { key: 'cyber.signal3.value', label: 'Signal 3 value' },
+        { key: 'cyber.capability.pt.title', label: 'PT title' },
+        { key: 'cyber.capability.pt.body', label: 'PT body', multiline: true },
+        { key: 'cyber.capability.api.title', label: 'API title' },
+        { key: 'cyber.capability.api.body', label: 'API body', multiline: true },
+        { key: 'cyber.capability.vuln.title', label: 'Vulnerability title' },
+        { key: 'cyber.capability.vuln.body', label: 'Vulnerability body', multiline: true },
+        { key: 'cyber.capability.hardening.title', label: 'Hardening title' },
+        { key: 'cyber.capability.hardening.body', label: 'Hardening body', multiline: true },
+        { key: 'cyber.deliverables.label', label: 'Deliverables label' },
+        { key: 'cyber.deliverables.title', label: 'Deliverables title' },
+        { key: 'cyber.deliverables.body', label: 'Deliverables body', multiline: true },
       ],
     },
   ];

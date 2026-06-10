@@ -13,6 +13,7 @@ import {
 import { GsapService } from '../../core/services/gsap.service';
 import { ScrollService } from '../../core/services/scroll.service';
 import { ContactComponent } from '../home/components/contact/contact.component';
+import { CybersecurityComponent } from '../home/components/cybersecurity/cybersecurity.component';
 import { HeroComponent } from '../home/components/hero/hero.component';
 import { ServicesComponent } from '../home/components/services/services.component';
 import { TechStackComponent } from '../home/components/tech-stack/tech-stack.component';
@@ -30,6 +31,7 @@ import { BackToTopComponent } from '../../shared/components/back-to-top/back-to-
     HeroComponent,
     WorksComponent,
     ServicesComponent,
+    CybersecurityComponent,
     TechStackComponent,
     ContactComponent,
     BackToTopComponent,

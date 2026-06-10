@@ -14,11 +14,16 @@
   <div class="container process-track" aria-label="Delivery process timeline">
     @for (step of steps; track step.marker) {
       <article class="process-step glass" devTilt>
-        <span class="step-marker">{{ step.marker }}</span>
+        <span class="step-marker">
+          <app-icon [name]="step.icon"></app-icon>
+        </span>
         <h3 [attr.data-edit-key]="step.titleKey">{{ i18n.t(step.titleKey) }}</h3>
         <ul>
           @for (point of step.bodyKeys; track point) {
-            <li [attr.data-edit-key]="point">{{ i18n.t(point) }}</li>
+            <li>
+              <app-icon name="check"></app-icon>
+              <span [attr.data-edit-key]="point">{{ i18n.t(point) }}</span>
+            </li>
           }
         </ul>
       </article>
@@ -28,7 +33,10 @@
   <div class="container engagement-grid" aria-label="Engagement models">
     @for (model of models; track model.labelKey) {
       <article class="engagement-card">
-        <span [attr.data-edit-key]="model.labelKey">{{ i18n.t(model.labelKey) }}</span>
+        <span [attr.data-edit-key]="model.labelKey">
+          <app-icon [name]="model.icon"></app-icon>
+          {{ i18n.t(model.labelKey) }}
+        </span>
         <h3 [attr.data-edit-key]="model.titleKey">{{ i18n.t(model.titleKey) }}</h3>
         <p [attr.data-edit-key]="model.bodyKey">{{ i18n.t(model.bodyKey) }}</p>
         <strong [attr.data-edit-key]="model.metaKey">{{ i18n.t(model.metaKey) }}</strong>

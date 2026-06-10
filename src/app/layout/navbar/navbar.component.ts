@@ -28,11 +28,12 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly navItems: NavItem[] = [
     { fragment: 'work', labelKey: 'nav.work' },
     { fragment: 'services', labelKey: 'nav.services' },
+    { fragment: 'cybersecurity', labelKey: 'nav.cybersecurity' },
     { fragment: 'stack', labelKey: 'nav.stack' },
   ];
 
   private animationContext?: { revert: () => void };
-  private readonly sectionIds = ['top', 'work', 'services', 'stack', 'contact'];
+  private readonly sectionIds = ['top', 'work', 'services', 'cybersecurity', 'stack', 'contact'];
   private readonly sectionScrollGap = 24;
 
   private readonly scrollHandler = () => {

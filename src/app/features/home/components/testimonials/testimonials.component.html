@@ -11,15 +11,19 @@
         *ngFor="let testimonial of testimonials; let i = index"
         [class.active]="i === activeIndex"
       >
-        <div class="quote-mark">“</div>
+        <div class="quote-mark">
+          <app-icon name="quote"></app-icon>
+        </div>
         <p>{{ i18n.t(testimonial.contentKey) }}</p>
 
         <div class="testimonial-author">
-          <span class="author-mark">{{ i + 1 }}</span>
+          <span class="author-mark">
+            <app-icon name="user"></app-icon>
+          </span>
           <div>
             <h3>{{ i18n.t(testimonial.nameKey) }}</h3>
             <span>
-              {{ i18n.t(testimonial.roleKey) }} · {{ i18n.t(testimonial.companyKey) }}
+              {{ i18n.t(testimonial.roleKey) }} &middot; {{ i18n.t(testimonial.companyKey) }}
             </span>
           </div>
         </div>

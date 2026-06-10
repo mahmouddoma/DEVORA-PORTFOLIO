@@ -1,0 +1,66 @@
+<section id="cybersecurity" class="cyber-section section-padding">
+  <div class="container">
+    <div class="cyber-shell">
+      <div class="cyber-intro">
+        <span class="section-kicker motion-item" data-edit-key="cyber.kicker">
+          {{ i18n.t('cyber.kicker') }}
+        </span>
+        <h2 class="section-title motion-item" data-edit-key="cyber.title">
+          {{ i18n.t('cyber.title') }}
+        </h2>
+        <p class="section-copy motion-item" data-edit-key="cyber.body">
+          {{ i18n.t('cyber.body') }}
+        </p>
+
+        <div class="cyber-actions">
+          <a class="cyber-primary" href="#contact" data-edit-key="cyber.primaryCta">
+            <app-icon name="shield"></app-icon>
+            {{ i18n.t('cyber.primaryCta') }}
+          </a>
+          <a class="cyber-secondary" href="#services" data-edit-key="cyber.secondaryCta">
+            {{ i18n.t('cyber.secondaryCta') }}
+            <app-icon name="arrow"></app-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="cyber-panel" aria-label="Cybersecurity delivery summary">
+        <div class="cyber-panel-header">
+          <app-icon name="cyber"></app-icon>
+          <div>
+            <span data-edit-key="cyber.panel.label">{{ i18n.t('cyber.panel.label') }}</span>
+            <strong data-edit-key="cyber.panel.title">{{ i18n.t('cyber.panel.title') }}</strong>
+          </div>
+        </div>
+
+        <div class="cyber-signals">
+          @for (signal of signals; track signal.labelKey) {
+            <div class="cyber-signal">
+              <app-icon [name]="signal.icon"></app-icon>
+              <span [attr.data-edit-key]="signal.labelKey">{{ i18n.t(signal.labelKey) }}</span>
+              <strong [attr.data-edit-key]="signal.valueKey">{{ i18n.t(signal.valueKey) }}</strong>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="cyber-grid">
+      @for (capability of capabilities; track capability.titleKey) {
+        <article class="cyber-card">
+          <span class="cyber-card-icon">
+            <app-icon [name]="capability.icon"></app-icon>
+          </span>
+          <h3 [attr.data-edit-key]="capability.titleKey">{{ i18n.t(capability.titleKey) }}</h3>
+          <p [attr.data-edit-key]="capability.bodyKey">{{ i18n.t(capability.bodyKey) }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="cyber-deliverables">
+      <span data-edit-key="cyber.deliverables.label">{{ i18n.t('cyber.deliverables.label') }}</span>
+      <strong data-edit-key="cyber.deliverables.title">{{ i18n.t('cyber.deliverables.title') }}</strong>
+      <p data-edit-key="cyber.deliverables.body">{{ i18n.t('cyber.deliverables.body') }}</p>
+    </div>
+  </div>
+</section>

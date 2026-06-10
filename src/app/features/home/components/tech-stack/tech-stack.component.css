@@ -37,8 +37,10 @@
 
 .board-cell {
   position: relative;
-  display: grid;
-  place-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   min-height: 82px;
   overflow: hidden;
   border-radius: 6px;
@@ -66,6 +68,12 @@
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
+.board-cell app-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--accent-cyan);
+}
+
 .marquee-track {
   display: flex;
   flex: 0 0 auto;
@@ -85,6 +93,7 @@
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
+  gap: 8px;
   min-width: 128px;
   justify-content: center;
   min-height: 48px;
@@ -113,9 +122,15 @@
   }
 }
 
+.tech-chip app-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-cyan);
+}
+
 @media (max-width: 767.98px) {
   .tech-section {
-    overflow: visible;
+    overflow: hidden;
   }
 
   .tech-header {
@@ -127,7 +142,7 @@
   }
 
   .tech-chip {
-    min-width: 112px;
+    min-width: 118px;
     min-height: 44px;
     padding: 0 14px;
     font-size: 0.76rem;
@@ -150,9 +165,15 @@
   }
 
   .tech-chip {
-    min-width: 104px;
+    min-width: 112px;
     min-height: 40px;
     padding: 0 12px;
+  }
+
+  .tech-marquee {
+    margin-inline: calc(-1 * clamp(14px, 5vw, 22px));
+    width: calc(100% + (2 * clamp(14px, 5vw, 22px)));
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
   }
 }
 
@@ -162,7 +183,7 @@
   }
 
   .tech-chip {
-    min-width: 96px;
+    min-width: 104px;
     padding: 0 10px;
     font-size: 0.72rem;
   }

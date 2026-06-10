@@ -10,6 +10,7 @@ import {
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { AppIconComponent, type AppIconName } from '../../../../shared/components/app-icon/app-icon.component';
 
 type WorkFilter = 'all' | 'realEstate' | 'education' | 'agriculture';
 type ScreenshotExtension = 'png' | 'jpg' | 'jpeg' | 'webp' | 'avif';
@@ -43,7 +44,7 @@ function getScreenshotDuration(frameCount: number) {
 @Component({
   selector: 'app-works',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppIconComponent],
   templateUrl: './works.component.html',
   styleUrl: './works.component.css',
 })
@@ -62,11 +63,11 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     overwrite: true,
   };
 
-  readonly filters: { id: WorkFilter; labelKey: string }[] = [
-    { id: 'all', labelKey: 'work.filter.all' },
-    { id: 'realEstate', labelKey: 'work.filter.realEstate' },
-    { id: 'education', labelKey: 'work.filter.education' },
-    { id: 'agriculture', labelKey: 'work.filter.agriculture' },
+  readonly filters: { id: WorkFilter; labelKey: string; icon: AppIconName }[] = [
+    { id: 'all', labelKey: 'work.filter.all', icon: 'filter' },
+    { id: 'realEstate', labelKey: 'work.filter.realEstate', icon: 'briefcase' },
+    { id: 'education', labelKey: 'work.filter.education', icon: 'layers' },
+    { id: 'agriculture', labelKey: 'work.filter.agriculture', icon: 'growth' },
   ];
 
   readonly projects: Project[] = [
@@ -398,12 +399,12 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
       },
     });
     
-    this.gsapService.gsap.from(q('.filter-btn'), {
+    this.gsapService.gsap.from(q('.filter-controls'), {
       opacity: 0,
-      y: 20,
-      duration: 0.6,
-      stagger: 0.08,
+      y: 14,
+      duration: 0.45,
       ease: 'power2.out',
+      clearProps: 'transform,opacity',
       scrollTrigger: {
         trigger: q('.filter-controls'),
         start: 'top 90%',

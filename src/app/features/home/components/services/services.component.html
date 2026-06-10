@@ -6,28 +6,6 @@
       <p class="section-copy motion-item" data-edit-key="services.body">{{ i18n.t('services.body') }}</p>
     </div>
 
-    <!-- Sleek Horizontal Trust Banner -->
-    <div class="services-trust-banner">
-      <div class="banner-badge">
-        <span class="offer-label" data-edit-key="services.offer.label">{{ i18n.t('services.offer.label') }}</span>
-        <div class="badge-text">
-          <h3 data-edit-key="services.offer.title">{{ i18n.t('services.offer.title') }}</h3>
-          <p data-edit-key="services.offer.body">{{ i18n.t('services.offer.body') }}</p>
-        </div>
-      </div>
-      
-      <div class="banner-divider"></div>
-      
-      <div class="banner-facts">
-        @for (fact of trustFacts; track fact.labelKey) {
-          <div class="banner-fact">
-            <small [attr.data-edit-key]="fact.labelKey">{{ i18n.t(fact.labelKey) }}</small>
-            <b [attr.data-edit-key]="fact.valueKey">{{ i18n.t(fact.valueKey) }}</b>
-          </div>
-        }
-      </div>
-    </div>
-
     <!-- Horizontal Services Carousel -->
     <div class="services-carousel-wrapper">
       <div class="services-grid" #carousel>
@@ -37,7 +15,9 @@
             <span class="card-watermark" aria-hidden="true">{{ service.index }}</span>
 
             <div class="card-top">
-              <span class="service-index">{{ service.index }}</span>
+              <span class="service-index">
+                <app-icon [name]="service.icon"></app-icon>
+              </span>
             </div>
 
             <div class="card-content">
@@ -87,6 +67,7 @@
       <div class="delivery-strip" aria-label="Delivery process">
         @for (step of deliverySteps; track step.labelKey) {
         <div class="delivery-step">
+          <app-icon class="delivery-icon" [name]="step.icon"></app-icon>
           <span [attr.data-edit-key]="step.labelKey">{{ i18n.t(step.labelKey) }}</span>
           <strong [attr.data-edit-key]="step.titleKey">{{ i18n.t(step.titleKey) }}</strong>
         </div>

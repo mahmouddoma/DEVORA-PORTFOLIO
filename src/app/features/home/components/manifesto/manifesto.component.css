@@ -53,8 +53,19 @@
 }
 
 .principle-item span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid rgba(0, 229, 255, 0.22);
+  border-radius: 8px;
   color: var(--accent-cyan);
   font-weight: 900;
+}
+
+.principle-item app-icon {
+  width: 15px;
+  height: 15px;
 }
 
 .principle-item strong {

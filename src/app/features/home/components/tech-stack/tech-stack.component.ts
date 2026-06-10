@@ -3,11 +3,12 @@ import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { AppIconComponent } from '../../../../shared/components/app-icon/app-icon.component';
 
 @Component({
   selector: 'app-tech-stack',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppIconComponent],
   templateUrl: './tech-stack.component.html',
   styleUrl: './tech-stack.component.css',
 })
@@ -39,7 +40,7 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
   ];
 
   readonly boardCells = ['STRATEGY', 'UX', 'ANGULAR', 'SYSTEMS', 'LAUNCH', 'GROWTH'];
-  readonly marqueeCopies = [0, 1] as const;
+  readonly marqueeCopies = [0, 1, 2] as const;
   private animationContext?: { revert: () => void };
 
   constructor(

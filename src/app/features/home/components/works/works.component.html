@@ -12,36 +12,28 @@
       <div class="works-actions motion-item">
         <a class="work-contact" href="#contact" data-edit-key="work.contactCta">{{
           i18n.t('work.contactCta')
-        }}</a>
+        }} <app-icon name="mail"></app-icon></a>
         <a class="work-view-all" href="#work" data-edit-key="work.viewAll">
           {{ i18n.t('work.viewAll') }}
-          <svg
-            width="17"
-            height="17"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M5 12h14"></path>
-            <path d="m13 6 6 6-6 6"></path>
-          </svg>
+          <app-icon name="arrow"></app-icon>
         </a>
       </div>
 
       <div
         class="filter-controls motion-item"
-        role="group"
+        role="tablist"
         [attr.aria-label]="i18n.t('work.filters')"
       >
         <button
           class="filter-btn"
           type="button"
+          role="tab"
           *ngFor="let filter of filters"
           [class.active]="activeFilter === filter.id"
-          [attr.aria-pressed]="activeFilter === filter.id"
+          [attr.aria-selected]="activeFilter === filter.id"
           (click)="setFilter(filter.id)"
         >
+          <app-icon class="filter-icon" [name]="filter.icon"></app-icon>
           <span [attr.data-edit-key]="filter.labelKey">{{ i18n.t(filter.labelKey) }}</span>
         </button>
       </div>

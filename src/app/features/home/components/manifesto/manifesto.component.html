@@ -14,10 +14,12 @@
     </h2>
 
     <div class="principle-list" aria-label="DEVORA principles">
-      @for (principle of principles; track principle) {
+      @for (principle of principles; track principle.key) {
         <div class="principle-item" devReveal="clip-left">
-          <span>/</span>
-          <strong [attr.data-edit-key]="principle">{{ i18n.t(principle) }}</strong>
+          <span>
+            <app-icon [name]="principle.icon"></app-icon>
+          </span>
+          <strong [attr.data-edit-key]="principle.key">{{ i18n.t(principle.key) }}</strong>
         </div>
       }
     </div>

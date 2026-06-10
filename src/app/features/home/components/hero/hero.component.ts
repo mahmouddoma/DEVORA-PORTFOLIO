@@ -12,12 +12,13 @@ import {
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { AppIconComponent, type AppIconName } from '../../../../shared/components/app-icon/app-icon.component';
 import { ThreeSceneComponent } from '../../../../shared/components/three-scene/three-scene.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [ThreeSceneComponent],
+  imports: [ThreeSceneComponent, AppIconComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
 })
@@ -25,10 +26,10 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   readonly i18n = inject(I18nService);
   readonly isPageTourActive = signal(false);
   readonly metrics = [
-    { valueKey: 'hero.metric1.value', labelKey: 'hero.metric1.label' },
-    { valueKey: 'hero.metric2.value', labelKey: 'hero.metric2.label' },
-    { valueKey: 'hero.metric3.value', labelKey: 'hero.metric3.label' },
-  ];
+    { valueKey: 'hero.metric1.value', labelKey: 'hero.metric1.label', icon: 'launch' },
+    { valueKey: 'hero.metric2.value', labelKey: 'hero.metric2.label', icon: 'growth' },
+    { valueKey: 'hero.metric3.value', labelKey: 'hero.metric3.label', icon: 'shield' },
+  ] satisfies Array<{ valueKey: string; labelKey: string; icon: AppIconName }>;
 
   private readonly gsapService = inject(GsapService);
   private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);

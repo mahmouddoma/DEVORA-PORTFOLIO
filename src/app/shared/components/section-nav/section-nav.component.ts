@@ -130,6 +130,7 @@ export class SectionNavComponent implements OnInit, OnDestroy {
     { id: 'top', labelKey: 'nav.home' },
     { id: 'work', labelKey: 'nav.work' },
     { id: 'services', labelKey: 'nav.services' },
+    { id: 'cybersecurity', labelKey: 'nav.cybersecurity' },
     { id: 'process', labelKey: 'nav.process' },
     { id: 'stack', labelKey: 'nav.tech' },
     { id: 'contact', labelKey: 'nav.contact' }

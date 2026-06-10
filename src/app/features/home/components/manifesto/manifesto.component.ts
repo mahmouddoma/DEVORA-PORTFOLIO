@@ -3,17 +3,22 @@ import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { AppIconComponent, type AppIconName } from '../../../../shared/components/app-icon/app-icon.component';
 import { RevealDirective } from '../../../../shared/directives/reveal.directive';
 
 @Component({
   selector: 'app-manifesto',
   standalone: true,
-  imports: [CommonModule, RevealDirective],
+  imports: [CommonModule, RevealDirective, AppIconComponent],
   templateUrl: './manifesto.component.html',
   styleUrl: './manifesto.component.css',
 })
 export class ManifestoComponent implements AfterViewInit, OnDestroy {
-  readonly principles = ['manifesto.item1', 'manifesto.item2', 'manifesto.item3'];
+  readonly principles = [
+    { key: 'manifesto.item1', icon: 'target' },
+    { key: 'manifesto.item2', icon: 'shield' },
+    { key: 'manifesto.item3', icon: 'growth' },
+  ] satisfies Array<{ key: string; icon: AppIconName }>;
   private animationContext?: { revert: () => void };
 
   constructor(

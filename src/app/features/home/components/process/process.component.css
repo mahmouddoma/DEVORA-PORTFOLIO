@@ -66,6 +66,11 @@
   font-weight: 900;
 }
 
+.step-marker app-icon {
+  width: 19px;
+  height: 19px;
+}
+
 .process-step h3 {
   margin: 0;
   font-size: clamp(1rem, 1.25vw, 1.18rem);
@@ -76,9 +81,23 @@
   display: grid;
   gap: 8px;
   margin: 0;
-  padding-left: 18px;
+  padding: 0;
   color: var(--text-secondary);
+  list-style: none;
   line-height: 1.6;
+}
+
+.process-step li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.process-step li app-icon {
+  width: 15px;
+  height: 15px;
+  margin-top: 5px;
+  color: var(--accent-cyan);
 }
 
 .engagement-grid {
@@ -100,6 +119,9 @@
 }
 
 .engagement-card span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   width: fit-content;
   padding: 5px 9px;
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 42%, var(--border-soft));
@@ -108,6 +130,11 @@
   font-size: 0.7rem;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.engagement-card span app-icon {
+  width: 14px;
+  height: 14px;
 }
 
 .engagement-card h3 {
@@ -160,10 +187,6 @@
     min-height: auto;
     padding: 18px;
     transform: none;
-  }
-
-  .process-step ul {
-    padding-left: 16px;
   }
 
   .engagement-card {

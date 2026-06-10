@@ -8,6 +8,7 @@
 
         <div class="proof-grid">
           <div class="proof-item" *ngFor="let point of proofPoints">
+            <app-icon class="proof-icon" [name]="point.icon"></app-icon>
             <strong>{{ i18n.t(point.valueKey) }}</strong>
             <span>{{ i18n.t(point.labelKey) }}</span>
           </div>
@@ -15,7 +16,9 @@
 
         <div class="blueprint-flow" [attr.aria-label]="i18n.t('about.blueprint.title')">
           <div class="flow-step" *ngFor="let step of steps">
-            <span>{{ step.index }}</span>
+            <span>
+              <app-icon [name]="step.icon"></app-icon>
+            </span>
             <strong>{{ i18n.t(step.titleKey) }}</strong>
           </div>
         </div>
@@ -28,7 +31,9 @@
 
         <div class="values-list">
           <article class="value-item motion-item" *ngFor="let value of values">
-            <span class="value-index">{{ value.index }}</span>
+            <span class="value-index">
+              <app-icon [name]="value.icon"></app-icon>
+            </span>
             <div>
               <h3>{{ i18n.t(value.titleKey) }}</h3>
               <p>{{ i18n.t(value.bodyKey) }}</p>

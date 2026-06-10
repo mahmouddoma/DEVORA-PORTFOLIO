@@ -9,9 +9,9 @@
   --apple-primary: #0066cc;
   --apple-primary-focus: #0071e3;
   --apple-primary-on-dark: #2997ff;
-  --apple-canvas: #ffffff;
-  --apple-parchment: #f5f5f7;
-  --apple-pearl: #fafafc;
+  --apple-canvas: #f4f8fc;
+  --apple-parchment: #e9f0f6;
+  --apple-pearl: #f8fbfd;
   --apple-tile-1: #272729;
   --apple-tile-2: #2a2a2c;
   --apple-tile-3: #252527;
@@ -19,14 +19,14 @@
   --apple-ink: #1d1d1f;
   --apple-muted: #7a7a7a;
   --apple-muted-dark: #cccccc;
-  --apple-hairline: #e0e0e0;
+  --apple-hairline: #cfdbe6;
   --apple-radius-sm: 8px;
   --apple-radius-lg: 18px;
   --apple-pill: 9999px;
   --apple-product-shadow: 3px 5px 30px rgba(0, 0, 0, 0.22);
 
-  --page-bg: var(--apple-canvas);
-  --tile-light: var(--apple-canvas);
+  --page-bg: #eef4f8;
+  --tile-light: #f7fafc;
   --tile-soft: var(--apple-parchment);
   --tile-dark: var(--apple-tile-1);
   --tile-deeper: var(--apple-tile-2);
@@ -34,7 +34,7 @@
   --text-soft: rgba(29, 29, 31, 0.72);
   --text-on-dark: #ffffff;
   --text-on-dark-soft: var(--apple-muted-dark);
-  --line: rgba(0, 0, 0, 0.08);
+  --line: rgba(22, 39, 64, 0.13);
 
   --font-primary: 'Cairo', sans-serif;
   --font-heading: 'Cairo', sans-serif;
@@ -55,9 +55,9 @@
   --accent-violet: var(--apple-primary);
   --accent-rose: var(--apple-primary);
   --accent-green: var(--apple-primary);
-  --hero-scrim: rgba(255, 255, 255, 0.76);
-  --input-bg: var(--apple-canvas);
-  --shadow-soft: none;
+  --hero-scrim: rgba(246, 250, 253, 0.82);
+  --input-bg: #f6f9fc;
+  --shadow-soft: 0 18px 50px rgba(33, 55, 86, 0.1);
 
   --three-primary: var(--apple-primary);
   --three-secondary: var(--apple-ink);
@@ -258,7 +258,9 @@ body button:active {
 
 body .hero-section {
   min-height: 100svh;
-  background: var(--tile-light) !important;
+  background:
+    radial-gradient(circle at 74% 18%, rgba(0, 102, 204, 0.06), transparent 28%),
+    linear-gradient(180deg, var(--tile-light), var(--page-bg)) !important;
   color: var(--text-main) !important;
 }
 
@@ -320,7 +322,8 @@ body .logo-letters {
 }
 
 body .works-section {
-  background: var(--tile-soft) !important;
+  background:
+    linear-gradient(180deg, var(--tile-soft), var(--page-bg)) !important;
   color: var(--text-main) !important;
 }
 
@@ -330,7 +333,9 @@ body .works-section {
 }
 
 body .tech-section {
-  background: var(--apple-parchment) !important;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(0, 102, 204, 0.045), transparent 25%),
+    var(--apple-parchment) !important;
   color: var(--text-main) !important;
 }
 
@@ -393,8 +398,8 @@ body .service-stat {
 :root[data-theme='light'] body .stack-board,
 :root[data-theme='light'] body .tech-chip,
 :root[data-theme='light'] body .board-cell {
-  background: #ffffff !important;
-  border-color: #e5e5ea !important;
+  background: #f8fbfd !important;
+  border-color: var(--line) !important;
   color: #1d1d1f !important;
 }
 
@@ -419,8 +424,9 @@ body .service-stat {
 
 :root[data-theme='light'] body .contact-section .contact-card,
 :root[data-theme='light'] body .contact-section .contact-info {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-color: rgba(255, 255, 255, 0.16) !important;
+  background:
+    linear-gradient(135deg, rgba(248, 251, 253, 0.92), rgba(232, 240, 247, 0.82)) !important;
+  border-color: rgba(22, 39, 64, 0.14) !important;
 }
 
 :root[data-theme='dark'] body .contact-section .contact-card,
@@ -548,13 +554,18 @@ body textarea {
 
 :root[data-theme='light'] body .contact-section input,
 :root[data-theme='light'] body .contact-section select,
-:root[data-theme='light'] body .contact-section textarea,
+:root[data-theme='light'] body .contact-section textarea {
+  background: #f7fafc !important;
+  border-color: rgba(22, 39, 64, 0.14) !important;
+  color: #1d1d1f !important;
+}
+
 :root[data-theme='dark'] body .contact-section input,
 :root[data-theme='dark'] body .contact-section select,
 :root[data-theme='dark'] body .contact-section textarea {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border-color: rgba(255, 255, 255, 0.22) !important;
-  color: #1d1d1f !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #f5f5f7 !important;
 }
 
 body textarea {
@@ -575,9 +586,11 @@ body .form-field span {
 }
 
 body .footer-section {
-  padding: 64px 0 !important;
+  padding: clamp(18px, 3vw, 30px) 0 !important;
   border-top: 0 !important;
-  background: var(--apple-parchment) !important;
+  background:
+    linear-gradient(90deg, rgba(0, 102, 204, 0.06), transparent 34%, rgba(0, 138, 160, 0.045)),
+    var(--apple-parchment) !important;
   color: var(--apple-muted) !important;
 }
 
@@ -596,15 +609,25 @@ body .social-link:hover {
 }
 
 body .back-to-top {
-  width: 44px;
-  height: 44px;
-  border: 0 !important;
+  width: 46px;
+  height: 46px;
+  border: 1px solid color-mix(in srgb, var(--apple-primary) 22%, var(--line)) !important;
   border-radius: 50% !important;
-  background: rgba(210, 210, 215, 0.64) !important;
-  color: var(--apple-ink) !important;
-  box-shadow: none !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(232, 240, 247, 0.88)) !important;
+  color: var(--apple-primary) !important;
+  box-shadow:
+    0 14px 34px rgba(32, 55, 92, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+:root[data-theme='dark'] body .back-to-top {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  background: rgba(29, 29, 31, 0.82) !important;
+  color: var(--apple-primary-on-dark) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
 }
 
 body .site-cursor,
@@ -813,28 +836,28 @@ body .tech-section .tech-chip {
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --theme-bg: #ffffff;
-  --theme-bg-alt: #f5f5f7;
-  --theme-surface: #ffffff;
-  --theme-surface-soft: #f5f5f7;
-  --theme-surface-raised: rgba(255, 255, 255, 0.86);
-  --theme-card: rgba(255, 255, 255, 0.92);
-  --theme-card-hover: #ffffff;
+  --theme-bg: #eef4f8;
+  --theme-bg-alt: #e6eef5;
+  --theme-surface: #f7fafc;
+  --theme-surface-soft: #e9f1f7;
+  --theme-surface-raised: rgba(248, 251, 253, 0.88);
+  --theme-card: rgba(247, 250, 252, 0.9);
+  --theme-card-hover: #f4f8fb;
   --theme-text: #1d1d1f;
   --theme-text-soft: rgba(29, 29, 31, 0.72);
   --theme-text-muted: rgba(29, 29, 31, 0.56);
-  --theme-border: rgba(0, 0, 0, 0.11);
-  --theme-border-strong: rgba(0, 0, 0, 0.18);
+  --theme-border: rgba(22, 39, 64, 0.14);
+  --theme-border-strong: rgba(22, 39, 64, 0.22);
   --theme-accent: #0066cc;
   --theme-accent-hover: #0071e3;
   --theme-accent-soft: rgba(0, 102, 204, 0.1);
   --theme-success: #0a7f52;
   --theme-danger: #c92756;
   --theme-focus: rgba(0, 102, 204, 0.18);
-  --theme-shadow: 0 18px 48px rgba(0, 0, 0, 0.09);
+  --theme-shadow: 0 18px 48px rgba(33, 55, 86, 0.1);
   --theme-product-shadow: 3px 5px 28px rgba(0, 0, 0, 0.18);
   --theme-grid: rgba(0, 102, 204, 0.08);
-  --theme-input: #ffffff;
+  --theme-input: #f7fafc;
   --theme-input-placeholder: rgba(29, 29, 31, 0.46);
 
   --section-hero-bg: var(--theme-bg);
@@ -871,7 +894,7 @@ body .tech-section .tech-chip {
   --accent-violet: var(--theme-accent);
   --accent-rose: var(--theme-danger);
   --accent-green: var(--theme-success);
-  --hero-scrim: rgba(255, 255, 255, 0.72);
+  --hero-scrim: rgba(246, 250, 253, 0.78);
   --input-bg: var(--theme-input);
   --shadow-soft: var(--theme-shadow);
   --color-void: var(--theme-bg);
@@ -1004,6 +1027,10 @@ body .works-section {
 }
 
 body .services-section {
+  background: var(--section-services-bg) !important;
+}
+
+body .cyber-section {
   background: var(--section-services-bg) !important;
 }
 
@@ -1153,6 +1180,8 @@ body .services-offer::before,
 body .services-offer::after,
 body .service-card::before,
 body .service-card::after,
+body .cyber-section::before,
+body .cyber-section::after,
 body .why-panel::before,
 body .why-panel::after,
 body .testimonial-card::before,
@@ -1287,10 +1316,13 @@ body .dev-otp {
 }
 
 body .back-to-top {
-  border-color: var(--theme-border) !important;
-  background: color-mix(in srgb, var(--theme-surface) 78%, transparent) !important;
-  color: var(--theme-text) !important;
-  box-shadow: none !important;
+  border-color: color-mix(in srgb, var(--theme-accent) 24%, var(--theme-border)) !important;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--theme-surface) 92%, transparent), var(--theme-surface-soft)) !important;
+  color: var(--theme-accent) !important;
+  box-shadow:
+    0 14px 34px color-mix(in srgb, var(--theme-accent) 12%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 72%, transparent) !important;
 }
 
 body .site-cursor,
@@ -1470,4 +1502,296 @@ body app-project-detail {
 :root.theme-light body .contact-section input::placeholder,
 :root.theme-light body .contact-section textarea::placeholder {
   color: var(--theme-input-placeholder) !important;
+}
+
+/*
+  Final light-mode polish.
+  Keeps light mode calm and readable without returning to stark white surfaces.
+*/
+:root[data-theme='light'] body,
+:root.theme-light body,
+:root[data-theme='light'] body .app-container,
+:root.theme-light body .app-container,
+:root[data-theme='light'] body .home-shell,
+:root.theme-light body .home-shell {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(0, 102, 204, 0.045), transparent 26%),
+    radial-gradient(circle at 82% 22%, rgba(0, 138, 160, 0.04), transparent 28%),
+    var(--theme-bg) !important;
+}
+
+:root[data-theme='light'] body .hero-section,
+:root.theme-light body .hero-section {
+  background:
+    radial-gradient(circle at 72% 18%, rgba(0, 102, 204, 0.06), transparent 29%),
+    linear-gradient(180deg, var(--theme-surface), var(--theme-bg)) !important;
+}
+
+:root[data-theme='light'] body .works-section,
+:root.theme-light body .works-section,
+:root[data-theme='light'] body .contact-section,
+:root.theme-light body .contact-section,
+:root[data-theme='light'] body .process-section,
+:root.theme-light body .process-section,
+:root[data-theme='light'] body .about-section,
+:root.theme-light body .about-section,
+:root[data-theme='light'] body .testimonials-section,
+:root.theme-light body .testimonials-section,
+:root[data-theme='light'] body .manifesto-section,
+:root.theme-light body .manifesto-section {
+  background:
+    linear-gradient(180deg, var(--theme-bg-alt), var(--theme-bg)) !important;
+}
+
+:root[data-theme='light'] body .services-section,
+:root.theme-light body .services-section,
+:root[data-theme='light'] body .tech-section,
+:root.theme-light body .tech-section,
+:root[data-theme='light'] body .footer-section,
+:root.theme-light body .footer-section {
+  background:
+    radial-gradient(circle at 16% 10%, rgba(0, 102, 204, 0.04), transparent 24%),
+    var(--theme-bg) !important;
+}
+
+:root[data-theme='light'] body .glass,
+:root.theme-light body .glass,
+:root[data-theme='light'] body .hero-metric,
+:root.theme-light body .hero-metric,
+:root[data-theme='light'] body .project-card,
+:root.theme-light body .project-card,
+:root[data-theme='light'] body .service-card,
+:root.theme-light body .service-card,
+:root[data-theme='light'] body .contact-card,
+:root.theme-light body .contact-card,
+:root[data-theme='light'] body .contact-info,
+:root.theme-light body .contact-info,
+:root[data-theme='light'] body .footer-shell,
+:root.theme-light body .footer-shell {
+  border-color: var(--theme-border) !important;
+  background:
+    linear-gradient(145deg, rgba(248, 251, 253, 0.94), rgba(232, 240, 247, 0.84)) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+:root[data-theme='light'] body input,
+:root.theme-light body input,
+:root[data-theme='light'] body select,
+:root.theme-light body select,
+:root[data-theme='light'] body textarea,
+:root.theme-light body textarea {
+  background: var(--theme-input) !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='light'] body .back-to-top,
+:root.theme-light body .back-to-top {
+  width: 46px !important;
+  height: 46px !important;
+  border-color: color-mix(in srgb, var(--theme-accent) 24%, var(--theme-border)) !important;
+  background:
+    linear-gradient(135deg, rgba(248, 251, 253, 0.94), rgba(224, 235, 245, 0.94)) !important;
+  color: var(--theme-accent) !important;
+  box-shadow:
+    0 16px 38px rgba(33, 55, 86, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
+}
+
+/*
+  Light color system.
+  Each section gets a soft identity color so the site does not read as one flat white canvas.
+*/
+:root[data-theme='light'],
+:root.theme-light {
+  --theme-bg: #edf4f8;
+  --theme-bg-alt: #e6eef6;
+  --theme-surface: #f7fbff;
+  --theme-surface-soft: #e8f0f7;
+  --theme-card: rgba(248, 252, 255, 0.9);
+  --theme-card-hover: #f5f9fd;
+  --theme-input: #f4f8fc;
+  --theme-border: rgba(21, 41, 69, 0.15);
+  --theme-shadow: 0 20px 54px rgba(39, 62, 94, 0.11);
+
+  --light-sky: #e4f2ff;
+  --light-sky-strong: #d7ebff;
+  --light-lavender: #f0edff;
+  --light-lavender-strong: #e5e0ff;
+  --light-mint: #e8f8f0;
+  --light-mint-strong: #d9f1e7;
+  --light-amber: #fff4e4;
+  --light-amber-strong: #ffe9c8;
+  --light-teal: #e5f5f6;
+  --light-teal-strong: #d5edf0;
+  --light-slate: #e5edf5;
+}
+
+:root[data-theme='light'] body,
+:root.theme-light body,
+:root[data-theme='light'] body .app-container,
+:root.theme-light body .app-container,
+:root[data-theme='light'] body .home-shell,
+:root.theme-light body .home-shell {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(0, 102, 204, 0.07), transparent 24%),
+    radial-gradient(circle at 86% 16%, rgba(217, 47, 103, 0.055), transparent 25%),
+    linear-gradient(180deg, #edf4f8, #e7eff6) !important;
+}
+
+:root[data-theme='light'] body .hero-section,
+:root.theme-light body .hero-section {
+  background:
+    radial-gradient(circle at 74% 17%, rgba(0, 102, 204, 0.13), transparent 30%),
+    radial-gradient(circle at 28% 72%, rgba(0, 138, 160, 0.08), transparent 26%),
+    linear-gradient(135deg, var(--light-sky), #f7fbff 56%, #eaf3fb) !important;
+}
+
+:root[data-theme='light'] body .works-section,
+:root.theme-light body .works-section {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(124, 58, 237, 0.11), transparent 26%),
+    radial-gradient(circle at 84% 24%, rgba(217, 47, 103, 0.07), transparent 28%),
+    linear-gradient(180deg, var(--light-lavender), #edf3fb) !important;
+}
+
+:root[data-theme='light'] body .services-section,
+:root.theme-light body .services-section {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(10, 127, 82, 0.1), transparent 28%),
+    radial-gradient(circle at 80% 18%, rgba(0, 102, 204, 0.065), transparent 25%),
+    linear-gradient(180deg, var(--light-mint), #eef6fa) !important;
+}
+
+:root[data-theme='light'] body .cyber-section,
+:root.theme-light body .cyber-section {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(0, 102, 204, 0.12), transparent 28%),
+    radial-gradient(circle at 84% 18%, rgba(0, 138, 160, 0.1), transparent 28%),
+    linear-gradient(180deg, #e4f2ff, #e8f5f4) !important;
+}
+
+:root[data-theme='light'] body .process-section,
+:root.theme-light body .process-section,
+:root[data-theme='light'] body .about-section,
+:root.theme-light body .about-section,
+:root[data-theme='light'] body .testimonials-section,
+:root.theme-light body .testimonials-section,
+:root[data-theme='light'] body .manifesto-section,
+:root.theme-light body .manifesto-section {
+  background:
+    radial-gradient(circle at 20% 12%, rgba(0, 138, 160, 0.08), transparent 26%),
+    linear-gradient(180deg, #edf5fa, #e8eff7) !important;
+}
+
+:root[data-theme='light'] body .tech-section,
+:root.theme-light body .tech-section {
+  background:
+    radial-gradient(circle at 18% 16%, rgba(226, 135, 32, 0.1), transparent 25%),
+    radial-gradient(circle at 82% 18%, rgba(0, 102, 204, 0.055), transparent 26%),
+    linear-gradient(180deg, var(--light-amber), #eef4fb) !important;
+}
+
+:root[data-theme='light'] body .contact-section,
+:root.theme-light body .contact-section {
+  background:
+    radial-gradient(circle at 18% 14%, rgba(0, 138, 160, 0.11), transparent 28%),
+    radial-gradient(circle at 86% 22%, rgba(0, 102, 204, 0.07), transparent 26%),
+    linear-gradient(180deg, var(--light-teal), #eaf2f8) !important;
+}
+
+:root[data-theme='light'] body .footer-section,
+:root.theme-light body .footer-section {
+  background:
+    linear-gradient(90deg, rgba(0, 102, 204, 0.08), transparent 34%, rgba(0, 138, 160, 0.07)),
+    linear-gradient(180deg, var(--light-slate), #dfe9f2) !important;
+}
+
+:root[data-theme='light'] body .navbar,
+:root.theme-light body .navbar,
+:root[data-theme='light'] body .nav-list,
+:root.theme-light body .nav-list,
+:root[data-theme='light'] body .nav-panel,
+:root.theme-light body .nav-panel,
+:root[data-theme='light'] body .nav-actions .icon-button,
+:root.theme-light body .nav-actions .icon-button,
+:root[data-theme='light'] body .language-button,
+:root.theme-light body .language-button,
+:root[data-theme='light'] body .dashboard-link,
+:root.theme-light body .dashboard-link {
+  background: rgba(247, 251, 255, 0.78) !important;
+  border-color: rgba(21, 41, 69, 0.15) !important;
+  box-shadow: 0 12px 34px rgba(39, 62, 94, 0.08) !important;
+}
+
+:root[data-theme='light'] body .hero-metric,
+:root.theme-light body .hero-metric {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(215, 235, 255, 0.62)) !important;
+}
+
+:root[data-theme='light'] body .works-section .project-card,
+:root.theme-light body .works-section .project-card,
+:root[data-theme='light'] body .works-section .filter-controls {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(229, 224, 255, 0.62)) !important;
+}
+
+:root.theme-light body .works-section .filter-controls {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(229, 224, 255, 0.62)) !important;
+}
+
+:root[data-theme='light'] body .services-section .service-card,
+:root.theme-light body .services-section .service-card,
+:root[data-theme='light'] body .services-section .services-offer,
+:root.theme-light body .services-section .services-offer,
+:root[data-theme='light'] body .services-section .delivery-strip,
+:root.theme-light body .services-section .delivery-strip,
+:root[data-theme='light'] body .services-section .delivery-step,
+:root.theme-light body .services-section .delivery-step {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(217, 241, 231, 0.62)) !important;
+}
+
+:root[data-theme='light'] body .cyber-section .cyber-panel,
+:root.theme-light body .cyber-section .cyber-panel,
+:root[data-theme='light'] body .cyber-section .cyber-card,
+:root.theme-light body .cyber-section .cyber-card,
+:root[data-theme='light'] body .cyber-section .cyber-deliverables,
+:root.theme-light body .cyber-section .cyber-deliverables {
+  border-color: rgba(0, 102, 204, 0.18) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(207, 235, 244, 0.66)) !important;
+  box-shadow: 0 22px 58px rgba(39, 62, 94, 0.12) !important;
+}
+
+:root[data-theme='light'] body .tech-section .stack-board,
+:root.theme-light body .tech-section .stack-board,
+:root[data-theme='light'] body .tech-section .board-cell,
+:root.theme-light body .tech-section .board-cell,
+:root[data-theme='light'] body .tech-section .tech-chip,
+:root.theme-light body .tech-section .tech-chip {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 233, 200, 0.58)) !important;
+}
+
+:root[data-theme='light'] body .contact-section .contact-card,
+:root.theme-light body .contact-section .contact-card,
+:root[data-theme='light'] body .contact-section .contact-info,
+:root.theme-light body .contact-section .contact-info,
+:root[data-theme='light'] body .footer-shell,
+:root.theme-light body .footer-shell {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(213, 237, 240, 0.64)) !important;
+}
+
+:root[data-theme='light'] body input,
+:root.theme-light body input,
+:root[data-theme='light'] body select,
+:root.theme-light body select,
+:root[data-theme='light'] body textarea,
+:root.theme-light body textarea {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(232, 240, 247, 0.68)) !important;
 }

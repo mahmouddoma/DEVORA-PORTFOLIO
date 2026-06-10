@@ -233,6 +233,11 @@
   background: rgba(0, 229, 255, 0.05);
 }
 
+.service-index app-icon {
+  width: 15px;
+  height: 15px;
+}
+
 .card-content {
   flex: 1;
 }
@@ -456,6 +461,12 @@
   gap: 14px;
   padding: 14px 22px;
   background: rgba(10, 12, 24, 0.8);
+}
+
+.delivery-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-cyan);
 }
 
 .delivery-step span {

@@ -9,7 +9,10 @@
 
   <div class="stack-board glass motion-item">
     <div class="board-scan"></div>
-    <div class="board-cell" *ngFor="let cell of boardCells">{{ cell }}</div>
+    <div class="board-cell" *ngFor="let cell of boardCells">
+      <app-icon name="spark"></app-icon>
+      <span>{{ cell }}</span>
+    </div>
   </div>
 
   <div class="tech-marquee">
@@ -19,7 +22,10 @@
         *ngFor="let copy of marqueeCopies"
         [attr.aria-hidden]="copy === 1 ? 'true' : null"
       >
-        <span class="tech-chip glass" *ngFor="let tech of technologies">{{ tech }}</span>
+        <span class="tech-chip glass" *ngFor="let tech of technologies">
+          <app-icon name="code"></app-icon>
+          {{ tech }}
+        </span>
       </div>
     </div>
   </div>
@@ -31,7 +37,10 @@
         *ngFor="let copy of marqueeCopies"
         [attr.aria-hidden]="copy === 1 ? 'true' : null"
       >
-        <span class="tech-chip glass" *ngFor="let tech of technologiesReverse">{{ tech }}</span>
+        <span class="tech-chip glass" *ngFor="let tech of technologiesReverse">
+          <app-icon name="layers"></app-icon>
+          {{ tech }}
+        </span>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ import { NoiseOverlayComponent } from '../../shared/components/noise-overlay/noi
 import { PulseGridComponent } from '../../shared/components/pulse-grid/pulse-grid.component';
 import { SectionNavComponent } from '../../shared/components/section-nav/section-nav.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CybersecurityComponent } from './components/cybersecurity/cybersecurity.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ProcessComponent } from './components/process/process.component';
 import { ServicesComponent } from './components/services/services.component';
@@ -27,6 +28,7 @@ import { WorksComponent } from './components/works/works.component';
     HeroComponent,
     WorksComponent,
     ServicesComponent,
+    CybersecurityComponent,
     ProcessComponent,
     TechStackComponent,
     ContactComponent,

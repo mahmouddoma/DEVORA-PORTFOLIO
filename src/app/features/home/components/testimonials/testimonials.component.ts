@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
+import { AppIconComponent } from '../../../../shared/components/app-icon/app-icon.component';
 
 interface Testimonial {
   nameKey: string;
@@ -14,7 +15,7 @@ interface Testimonial {
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AppIconComponent],
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.css',
 })
