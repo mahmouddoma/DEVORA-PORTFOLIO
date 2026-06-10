@@ -105,19 +105,50 @@ input,
 select,
 textarea {
   width: 100%;
+  min-height: 48px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+  border-radius: 12px;
   background:
     linear-gradient(135deg, rgba(0, 229, 255, 0.055), transparent 38%),
     rgba(255, 255, 255, 0.052);
   color: var(--text-primary);
   outline: none;
   padding: 12px 13px;
+  appearance: none;
+  -webkit-appearance: none;
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
     background 0.25s ease,
     transform 0.25s ease;
+}
+
+select {
+  padding-inline-end: 42px;
+  cursor: pointer;
+}
+
+.form-field:has(select)::after {
+  position: absolute;
+  right: 15px;
+  bottom: 18px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  color: var(--text-muted);
+  content: '';
+  pointer-events: none;
+  transform: rotate(45deg);
+}
+
+:host-context([dir='rtl']) .form-field:has(select)::after {
+  right: auto;
+  left: 15px;
+}
+
+:host-context([dir='rtl']) select {
+  padding-inline: 13px 42px;
 }
 
 select option {
@@ -245,10 +276,45 @@ textarea:focus {
   box-shadow: 0 16px 34px rgba(37, 99, 235, 0.16);
 }
 
+:host-context(.theme-light) .contact-section {
+  background: #f5f5f7 !important;
+  color: #1d1d1f !important;
+}
+
+:host-context(.theme-light) .contact-section .section-title,
+:host-context(.theme-light) .contact-section h2,
+:host-context(.theme-light) .contact-section h3,
+:host-context(.theme-light) .contact-section .form-field span,
+:host-context(.theme-light) .contact-section .contact-details span {
+  color: #1d1d1f !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:host-context(.theme-light) .contact-section p,
+:host-context(.theme-light) .contact-section .section-copy,
+:host-context(.theme-light) .contact-section .contact-details {
+  color: rgba(29, 29, 31, 0.72) !important;
+}
+
+:host-context(.theme-light) .contact-card,
+:host-context(.theme-light) .contact-info {
+  border-color: rgba(0, 0, 0, 0.11) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.09) !important;
+}
+
+:host-context(.theme-light) input,
+:host-context(.theme-light) select,
+:host-context(.theme-light) textarea {
+  border-color: rgba(0, 0, 0, 0.11) !important;
+  background: #ffffff !important;
+  color: #1d1d1f !important;
+}
+
 @media (max-width: 991.98px) {
   .contact-card {
     grid-template-columns: 1fr;
-    max-width: 700px;
+    max-width: 760px;
     margin-inline: auto;
   }
 
@@ -258,20 +324,44 @@ textarea:focus {
 }
 
 @media (max-width: 767.98px) {
+  .contact-section {
+    overflow: visible;
+  }
+
   .contact-card {
-    gap: 18px;
-    padding: 14px;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 14px;
   }
 
   .contact-info {
     min-height: auto;
     align-content: start;
-    gap: 22px;
-    padding: 18px;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .contact-info .section-kicker {
+    margin-bottom: 2px;
+    font-size: 0.68rem;
+  }
+
+  .contact-info .section-title {
+    font-size: clamp(1.82rem, 8vw, 2.45rem);
+    line-height: 1.16;
+  }
+
+  .contact-info .section-copy {
+    font-size: 0.9rem;
+    line-height: 1.72;
   }
 
   .contact-details {
-    gap: 10px;
+    gap: 9px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
   }
 
   .contact-track {
@@ -285,11 +375,17 @@ textarea:focus {
 
   .contact-form {
     gap: 14px;
-    padding: 0;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background:
+      linear-gradient(135deg, rgba(0, 229, 255, 0.04), transparent 42%),
+      rgba(255, 255, 255, 0.035);
   }
 
   .form-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   textarea {
@@ -299,6 +395,7 @@ textarea:focus {
 
 @media (max-width: 575.98px) {
   .contact-card {
+    gap: 14px;
     padding: 0;
     border: 0;
     background: transparent;
@@ -312,44 +409,84 @@ textarea:focus {
   }
 
   .contact-info {
-    padding: 16px;
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .contact-info .section-title {
+    font-size: clamp(1.68rem, 8.6vw, 2.18rem);
+    line-height: 1.18;
+  }
+
+  .contact-info .section-copy {
+    font-size: 0.88rem;
   }
 
   .form-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 13px;
   }
 
   .form-field span {
-    font-size: 0.68rem;
+    gap: 7px;
+    font-size: 0.64rem;
+    line-height: 1.35;
+    width: auto;
+  }
+
+  .form-field span::before {
+    width: 5px;
+    height: 5px;
   }
 
   input,
   select,
   textarea {
-    min-height: 54px;
-    font-size: 0.88rem;
+    min-height: 48px;
+    border-radius: 12px;
+    padding: 11px 14px;
+    background:
+      linear-gradient(135deg, rgba(0, 229, 255, 0.07), transparent 42%),
+      rgba(255, 255, 255, 0.07);
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  select {
+    padding-inline-end: 40px;
+  }
+
+  .form-field:has(select)::after {
+    right: 16px;
+    bottom: 17px;
   }
 
   textarea {
-    min-height: 118px;
+    min-height: 112px;
   }
 
   .submit-button {
     min-height: 46px;
     width: 100%;
+    text-align: center;
   }
 }
 
 @media (max-width: 374.98px) {
   .contact-info {
+    padding: 16px;
+  }
+
+  .contact-form {
     padding: 14px;
   }
 
   input,
   select,
   textarea {
-    padding: 12px;
+    min-height: 46px;
+    padding: 10px 12px;
+    font-size: 0.84rem;
   }
 
   textarea {

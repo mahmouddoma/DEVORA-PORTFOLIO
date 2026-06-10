@@ -1,0 +1,20 @@
+:host {
+  display: contents;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image:
+    radial-gradient(circle at 25% 20%, #fff 0 1px, transparent 1px),
+    radial-gradient(circle at 70% 62%, #fff 0 1px, transparent 1px),
+    radial-gradient(circle at 42% 78%, #fff 0 1px, transparent 1px);
+  background-size:
+    37px 37px,
+    53px 53px,
+    71px 71px;
+  mix-blend-mode: screen;
+}

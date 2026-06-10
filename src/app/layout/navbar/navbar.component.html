@@ -1,12 +1,23 @@
 <nav class="navbar fixed-top" [class.compact]="isHeaderCompact" [class.menu-open]="isMenuOpen">
   <div class="container navbar-shell">
-    <a class="navbar-brand" [class.active]="activeSection === 'top'" href="#top" [attr.aria-label]="i18n.t('nav.home')"
-      (click)="navigateTo($event, '#top')">
+    <a
+      class="navbar-brand"
+      [class.active]="activeSection === 'top'"
+      [routerLink]="['/']"
+      fragment="top"
+      [attr.aria-label]="i18n.t('nav.home')"
+      (click)="closeMenu()"
+    >
       <app-brand-logo></app-brand-logo>
     </a>
 
-    <button class="nav-toggle" type="button" aria-controls="mainNavigation" [attr.aria-expanded]="isMenuOpen"
-      (click)="toggleMenu()">
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-controls="mainNavigation"
+      [attr.aria-expanded]="isMenuOpen"
+      (click)="toggleMenu()"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -15,9 +26,14 @@
     <div id="mainNavigation" class="nav-panel" [class.open]="isMenuOpen">
       <ul class="nav-list">
         <li class="nav-item" *ngFor="let item of navItems">
-          <a class="nav-link" [class.active]="isActive(item.href)"
-            [attr.aria-current]="isActive(item.href) ? 'page' : null" [href]="item.href"
-            (click)="navigateTo($event, item.href)">
+          <a
+            class="nav-link"
+            [class.active]="activeSection === item.fragment"
+            [attr.aria-current]="activeSection === item.fragment ? 'page' : null"
+            [routerLink]="['/']"
+            [fragment]="item.fragment"
+            (click)="closeMenu()"
+          >
             {{ i18n.t(item.labelKey) }}
           </a>
         </li>
@@ -26,37 +42,66 @@
       <div class="nav-actions">
         <a
           class="dashboard-link"
-          [href]="authService.isAuthenticated() ? '/dashboard' : '/login'"
+          [routerLink]="authService.isAuthenticated() ? ['/dashboard'] : ['/login']"
           [attr.aria-label]="authService.isAuthenticated() ? 'Open dashboard' : 'Login'"
           [attr.title]="authService.isAuthenticated() ? 'Open dashboard' : 'Login'"
         >
           {{ authService.isAuthenticated() ? i18n.t('nav.dashboard') : i18n.t('nav.login') }}
         </a>
 
-        <button class="icon-button" type="button" [attr.aria-label]="i18n.t('nav.theme')"
-          [attr.title]="i18n.t('nav.theme')" (click)="themeService.toggleTheme()">
-          <svg *ngIf="themeService.theme() === 'dark'; else sunIcon" width="18" height="18" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2">
+        <button
+          class="icon-button"
+          type="button"
+          [attr.aria-label]="i18n.t('nav.theme')"
+          [attr.title]="i18n.t('nav.theme')"
+          (click)="themeService.toggleTheme()"
+        >
+          <svg
+            *ngIf="themeService.theme() === 'dark'; else sunIcon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path d="M12 3a6 6 0 0 0 9 7.4A9 9 0 1 1 12 3Z"></path>
           </svg>
           <ng-template #sunIcon>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <circle cx="12" cy="12" r="4"></circle>
               <path
-                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4">
-              </path>
+                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+              ></path>
             </svg>
           </ng-template>
         </button>
 
-        <button class="language-button" type="button" [attr.aria-label]="i18n.t('nav.language')"
-          [attr.title]="i18n.t('nav.language')" (click)="i18n.toggleLanguage()">
+        <button
+          class="language-button"
+          type="button"
+          [attr.aria-label]="i18n.t('nav.language')"
+          [attr.title]="i18n.t('nav.language')"
+          (click)="i18n.toggleLanguage()"
+        >
           {{ i18n.language() === 'en' ? 'AR' : 'EN' }}
         </button>
 
-        <a class="contact-link" [class.active]="activeSection === 'contact'"
-          [attr.aria-current]="activeSection === 'contact' ? 'page' : null" href="#contact"
-          (click)="navigateTo($event, '#contact')">
+        <a
+          class="contact-link"
+          [class.active]="activeSection === 'contact'"
+          [attr.aria-current]="activeSection === 'contact' ? 'page' : null"
+          [routerLink]="['/']"
+          fragment="contact"
+          (click)="closeMenu()"
+        >
           {{ i18n.t('nav.contact') }}
         </a>
       </div>

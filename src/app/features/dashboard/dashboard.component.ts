@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../core/services/auth.service';
 import { I18nService } from '../../core/services/i18n.service';
@@ -110,6 +111,18 @@ export class DashboardComponent {
         { key: 'services.perf.title', label: 'Growth title' },
         { key: 'services.perf.body', label: 'Growth body', multiline: true },
         { key: 'services.perf.outcome', label: 'Growth outcome' },
+        { key: 'services.brand.title', label: 'Brand title' },
+        { key: 'services.brand.body', label: 'Brand body', multiline: true },
+        { key: 'services.brand.outcome', label: 'Brand outcome' },
+        { key: 'services.commerce.title', label: 'Commerce title' },
+        { key: 'services.commerce.body', label: 'Commerce body', multiline: true },
+        { key: 'services.commerce.outcome', label: 'Commerce outcome' },
+        { key: 'services.integrations.title', label: 'Integrations title' },
+        { key: 'services.integrations.body', label: 'Integrations body', multiline: true },
+        { key: 'services.integrations.outcome', label: 'Integrations outcome' },
+        { key: 'services.support.title', label: 'Support title' },
+        { key: 'services.support.body', label: 'Support body', multiline: true },
+        { key: 'services.support.outcome', label: 'Support outcome' },
       ],
     },
     {
@@ -155,6 +168,7 @@ export class DashboardComponent {
     public readonly i18n: I18nService,
     public readonly authService: AuthService,
     private readonly elementRef: ElementRef<HTMLElement>,
+    private readonly router: Router,
   ) {
     this.selectedValue = this.i18n.t(this.selectedKey);
   }
@@ -222,12 +236,12 @@ export class DashboardComponent {
   }
 
   openPortfolio() {
-    window.open('/', '_blank', 'noopener,noreferrer');
+    window.open(this.router.serializeUrl(this.router.createUrlTree(['/'])), '_blank', 'noopener,noreferrer');
   }
 
   logout() {
     this.authService.logout();
-    window.location.href = '/login';
+    void this.router.navigate(['/login']);
   }
 
   private findField(key: string) {

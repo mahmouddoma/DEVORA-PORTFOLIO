@@ -15,30 +15,31 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
   readonly technologies = [
     'Angular',
     'TypeScript',
-    'Node.js',
+    'Signals',
+    'Standalone UI',
+    'Forms',
     'GSAP',
-    'Three.js',
-    'PostgreSQL',
-    'Docker',
-    'Kubernetes',
-    'Azure',
-    'AWS',
+    'API Integration',
+    'SEO',
+    'Performance',
+    'Deployment',
   ];
 
   readonly technologiesReverse = [
-    'Python',
-    'PyTorch',
-    'TensorFlow',
-    'OpenAI',
-    'LangChain',
-    'Redis',
-    'GraphQL',
-    'Next.js',
-    'WebGPU',
-    'Rust',
+    'Product Strategy',
+    'UX Architecture',
+    'Design Systems',
+    'Dashboards',
+    'SaaS',
+    'Admin Panels',
+    'Lead Flow',
+    'Analytics',
+    'Handover',
+    'Growth',
   ];
 
-  readonly boardCells = ['API', 'AI', 'UX', 'DB', 'CI', 'SEC'];
+  readonly boardCells = ['STRATEGY', 'UX', 'ANGULAR', 'SYSTEMS', 'LAUNCH', 'GROWTH'];
+  readonly marqueeCopies = [0, 1] as const;
   private animationContext?: { revert: () => void };
 
   constructor(
@@ -54,37 +55,47 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
 
       this.gsapService.sectionReveal(this.elementRef.nativeElement);
 
-      gsap.to(q('.marquee-track.primary'), {
-        xPercent: -50,
-        repeat: -1,
-        duration: 22,
-        ease: 'none',
-      });
+      const createMarqueeLoop = (
+        track: HTMLElement | undefined,
+        direction: 'left' | 'right',
+        duration: number,
+      ) => {
+        const firstSet = track?.querySelector<HTMLElement>('.marquee-set');
+        if (!track || !firstSet) return;
 
-      gsap.to(q('.marquee-track.secondary'), {
-        xPercent: 0,
-        repeat: -1,
-        duration: 26,
-        ease: 'none',
-        startAt: { xPercent: -50 },
-      });
+        const styles = window.getComputedStyle(track);
+        const gap = Number.parseFloat(styles.columnGap || styles.gap || '0');
+        const distance = firstSet.offsetWidth + (Number.isFinite(gap) ? gap : 0);
+
+        gsap.set(track, { x: direction === 'left' ? 0 : -distance });
+        gsap.to(track, {
+          x: direction === 'left' ? -distance : 0,
+          repeat: -1,
+          duration,
+          ease: 'none',
+        });
+      };
+
+      createMarqueeLoop(q('.marquee-track.primary')[0] as HTMLElement | undefined, 'left', 34);
+      createMarqueeLoop(q('.marquee-track.secondary')[0] as HTMLElement | undefined, 'right', 38);
 
       gsap.from(q('.board-cell'), {
         opacity: 0,
-        y: 20,
-        stagger: 0.08,
-        duration: 0.6,
-        ease: 'power3.out',
+        scale: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: 'back.out(1.5)',
+        clearProps: 'transform,opacity',
         scrollTrigger: {
           trigger: q('.stack-board')[0],
-          start: 'top 78%',
+          start: 'top 85%',
         },
       });
 
       gsap.to(q('.board-scan'), {
-        xPercent: 120,
+        xPercent: 330,
         repeat: -1,
-        duration: 3.4,
+        duration: 4.8,
         ease: 'none',
       });
     });

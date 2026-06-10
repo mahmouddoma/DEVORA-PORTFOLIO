@@ -16,10 +16,24 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
   submitted = false;
 
   readonly serviceKeys = [
-    'services.strategy.title',
-    'services.web.title',
-    'services.saas.title',
-    'services.perf.title',
+    'contact.option.launch',
+    'contact.option.mvp',
+    'contact.option.platform',
+    'contact.option.dashboard',
+    'contact.option.optimization',
+  ];
+
+  readonly budgetKeys = [
+    'contact.budget.option1',
+    'contact.budget.option2',
+    'contact.budget.option3',
+    'contact.budget.option4',
+  ];
+
+  readonly timelineKeys = [
+    'contact.timeline.option1',
+    'contact.timeline.option2',
+    'contact.timeline.option3',
   ];
 
   private animationContext?: { revert: () => void };
@@ -39,20 +53,34 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
 
       gsap.from(q('.form-field'), {
         opacity: 0,
-        y: 20,
-        duration: 0.55,
-        stagger: 0.08,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.1,
         ease: 'power3.out',
+        clearProps: 'transform,opacity',
         scrollTrigger: {
           trigger: q('.contact-card')[0],
-          start: 'top 74%',
+          start: 'top 80%',
+        },
+      });
+
+      gsap.from(q('.contact-info'), {
+        opacity: 0,
+        filter: 'blur(20px)',
+        scale: 0.9,
+        duration: 1.2,
+        ease: 'power2.out',
+        clearProps: 'filter,transform,opacity',
+        scrollTrigger: {
+          trigger: q('.contact-card')[0],
+          start: 'top 80%',
         },
       });
 
       gsap.to(q('.contact-track span'), {
         xPercent: 110,
         repeat: -1,
-        duration: 2.6,
+        duration: 4.2,
         ease: 'none',
       });
     });

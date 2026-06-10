@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 
 export type ThemeMode = 'dark' | 'light';
 
@@ -8,12 +8,12 @@ export type ThemeMode = 'dark' | 'light';
 })
 export class ThemeService {
   private readonly storageKey = 'devora-theme';
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly document = inject(DOCUMENT);
+
   readonly theme = signal<ThemeMode>('dark');
 
-  constructor(
-    @Inject(PLATFORM_ID) private readonly platformId: object,
-    @Inject(DOCUMENT) private readonly document: Document,
-  ) {
+  constructor() {
     const savedTheme = this.readStoredTheme();
     this.setTheme(savedTheme ?? 'dark', false);
   }
@@ -29,6 +29,10 @@ export class ThemeService {
     root.dataset['theme'] = theme;
     root.classList.toggle('theme-dark', theme === 'dark');
     root.classList.toggle('theme-light', theme === 'light');
+
+    const body = this.document.body;
+    body?.classList.toggle('theme-dark', theme === 'dark');
+    body?.classList.toggle('theme-light', theme === 'light');
 
     if (persist && isPlatformBrowser(this.platformId)) {
       localStorage.setItem(this.storageKey, theme);

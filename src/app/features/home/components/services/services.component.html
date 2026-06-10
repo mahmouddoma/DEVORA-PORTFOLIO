@@ -6,39 +6,91 @@
       <p class="section-copy motion-item" data-edit-key="services.body">{{ i18n.t('services.body') }}</p>
     </div>
 
-    <div class="services-shell">
-      <aside class="services-offer">
+    <!-- Sleek Horizontal Trust Banner -->
+    <div class="services-trust-banner">
+      <div class="banner-badge">
         <span class="offer-label" data-edit-key="services.offer.label">{{ i18n.t('services.offer.label') }}</span>
-        <h3 data-edit-key="services.offer.title">{{ i18n.t('services.offer.title') }}</h3>
-        <p data-edit-key="services.offer.body">{{ i18n.t('services.offer.body') }}</p>
-
-        <div class="services-stats">
-          <div class="service-stat" *ngFor="let stat of stats">
-            <strong [attr.data-edit-key]="stat.valueKey">{{ i18n.t(stat.valueKey) }}</strong>
-            <span [attr.data-edit-key]="stat.labelKey">{{ i18n.t(stat.labelKey) }}</span>
+        <div class="badge-text">
+          <h3 data-edit-key="services.offer.title">{{ i18n.t('services.offer.title') }}</h3>
+          <p data-edit-key="services.offer.body">{{ i18n.t('services.offer.body') }}</p>
+        </div>
+      </div>
+      
+      <div class="banner-divider"></div>
+      
+      <div class="banner-facts">
+        @for (fact of trustFacts; track fact.labelKey) {
+          <div class="banner-fact">
+            <small [attr.data-edit-key]="fact.labelKey">{{ i18n.t(fact.labelKey) }}</small>
+            <b [attr.data-edit-key]="fact.valueKey">{{ i18n.t(fact.valueKey) }}</b>
           </div>
-        </div>
-
-        <div class="services-actions">
-          <a class="services-primary" href="#contact" data-edit-key="services.primaryCta">{{ i18n.t('services.primaryCta') }}</a>
-          <a class="services-secondary" href="#work" data-edit-key="services.secondaryCta">{{ i18n.t('services.secondaryCta') }}</a>
-        </div>
-      </aside>
-
-      <div class="services-grid">
-        <article class="service-card" *ngFor="let service of services" #serviceCard>
-          <span class="service-index">{{ service.index }}</span>
-          <h3 [attr.data-edit-key]="service.titleKey">{{ i18n.t(service.titleKey) }}</h3>
-          <p [attr.data-edit-key]="service.bodyKey">{{ i18n.t(service.bodyKey) }}</p>
-          <strong [attr.data-edit-key]="service.outcomeKey">{{ i18n.t(service.outcomeKey) }}</strong>
-        </article>
+        }
       </div>
     </div>
 
-    <div class="delivery-strip" aria-label="Delivery process">
-      <div class="delivery-step" *ngFor="let step of deliverySteps">
-        <span [attr.data-edit-key]="step.labelKey">{{ i18n.t(step.labelKey) }}</span>
-        <strong [attr.data-edit-key]="step.titleKey">{{ i18n.t(step.titleKey) }}</strong>
+    <!-- Horizontal Services Carousel -->
+    <div class="services-carousel-wrapper">
+      <div class="services-grid" #carousel>
+        @for (service of services; track service.index) {
+          <article class="service-card" #serviceCard>
+            <div class="card-glow-bg"></div>
+            <span class="card-watermark" aria-hidden="true">{{ service.index }}</span>
+
+            <div class="card-top">
+              <span class="service-index">{{ service.index }}</span>
+            </div>
+
+            <div class="card-content">
+              <h3 [attr.data-edit-key]="service.titleKey">{{ i18n.t(service.titleKey) }}</h3>
+              <p [attr.data-edit-key]="service.bodyKey">{{ i18n.t(service.bodyKey) }}</p>
+            </div>
+
+            <div class="outcome-row">
+              <svg class="outcome-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+              <strong class="outcome-badge" [attr.data-edit-key]="service.outcomeKey">{{ i18n.t(service.outcomeKey) }}</strong>
+            </div>
+          </article>
+        }
+      </div>
+
+      <!-- Controls & Sliding Thumb Progress -->
+      <div class="carousel-controls-container">
+        <div class="carousel-progress-track">
+          <div class="carousel-progress-fill" #progressBar></div>
+          <div class="carousel-progress-dot" #progressDot></div>
+        </div>
+
+        <div class="carousel-nav">
+          <button class="nav-btn prev" type="button" aria-label="Previous service" (click)="scrollPrev()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <button class="nav-btn next" type="button" aria-label="Next service" (click)="scrollNext()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick CTAs & Delivery strip -->
+    <div class="services-footer-shell">
+      <div class="services-actions">
+        <a class="services-primary btn-primary-neon" href="#contact" data-edit-key="services.primaryCta">{{ i18n.t('services.primaryCta') }}</a>
+        <a class="services-secondary" href="#work" data-edit-key="services.secondaryCta">{{ i18n.t('services.secondaryCta') }}</a>
+      </div>
+
+      <div class="delivery-strip" aria-label="Delivery process">
+        @for (step of deliverySteps; track step.labelKey) {
+        <div class="delivery-step">
+          <span [attr.data-edit-key]="step.labelKey">{{ i18n.t(step.labelKey) }}</span>
+          <strong [attr.data-edit-key]="step.titleKey">{{ i18n.t(step.titleKey) }}</strong>
+        </div>
+        }
       </div>
     </div>
   </div>

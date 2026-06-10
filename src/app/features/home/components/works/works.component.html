@@ -174,7 +174,12 @@
       </article>
     </div>
 
-    <div class="work-dots" role="tablist" [attr.aria-label]="i18n.t('work.projectsNav')">
+    <div
+      *ngIf="filteredProjects.length > 1"
+      class="work-dots"
+      role="tablist"
+      [attr.aria-label]="i18n.t('work.projectsNav')"
+    >
       <button
         type="button"
         *ngFor="let project of filteredProjects; let i = index"

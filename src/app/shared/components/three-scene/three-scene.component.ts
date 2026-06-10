@@ -184,58 +184,64 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
       }),
     );
 
-    this.logoGroup.add(this.auraParticles, this.logoParticles);
+    this.logoGroup.add(this.auraParticles);
   }
 
   private auraBasePositions!: Float32Array;
 
   private observeTheme() {
-    this.themeObserver = new MutationObserver(() => this.applySceneTheme());
+    this.themeObserver = new MutationObserver(() => {
+      this.applySceneTheme();
+      this.positionLogo();
+    });
     this.themeObserver.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme'],
+      attributeFilter: ['data-theme', 'dir'],
     });
   }
 
   private applySceneTheme() {
     const isLight = document.documentElement.dataset['theme'] === 'light';
+    const primary = this.getThemeColor('--three-primary', isLight ? '#087c68' : '#12c9a3');
+    const secondary = this.getThemeColor('--three-secondary', isLight ? '#245f77' : '#2f7f9b');
+    const tertiary = this.getThemeColor('--three-tertiary', isLight ? '#9c762f' : '#d7b56d');
+    const cursor = this.getThemeColor('--three-cursor', tertiary);
+    const glow = this.getThemeColor('--three-glow', primary);
     const logoMaterial = this.logoParticles.material as THREE.PointsMaterial;
     const auraMaterial = this.auraParticles.material as THREE.PointsMaterial;
     const orbMaterial = this.cursorOrb.material as THREE.MeshBasicMaterial;
     const glowMaterial = this.cursorGlow.material as THREE.MeshBasicMaterial;
 
-    logoMaterial.size = 0.042;
-    logoMaterial.opacity = 0;
+    logoMaterial.size = isLight ? 0.038 : 0.042;
+    logoMaterial.opacity = isLight ? 0.7 : 0.86;
     logoMaterial.blending = THREE.AdditiveBlending;
     logoMaterial.needsUpdate = true;
 
     auraMaterial.size = isLight ? 0.03 : 0.02;
-    auraMaterial.opacity = isLight ? 0.68 : 0.38;
+    auraMaterial.opacity = isLight ? 0.46 : 0.34;
     auraMaterial.blending = isLight ? THREE.NormalBlending : THREE.AdditiveBlending;
     auraMaterial.needsUpdate = true;
 
-    orbMaterial.color.set(isLight ? '#7c3aed' : '#8b5cf6');
+    orbMaterial.color.set(cursor);
     orbMaterial.blending = isLight ? THREE.NormalBlending : THREE.AdditiveBlending;
     orbMaterial.needsUpdate = true;
 
-    glowMaterial.color.set(isLight ? '#008aa0' : '#00e5ff');
-    glowMaterial.opacity = isLight ? 0.16 : 0.1;
+    glowMaterial.color.set(glow);
+    glowMaterial.opacity = isLight ? 0.14 : 0.11;
     glowMaterial.blending = isLight ? THREE.NormalBlending : THREE.AdditiveBlending;
     glowMaterial.needsUpdate = true;
 
-    this.recolorParticles(isLight);
+    this.recolorParticles([primary, secondary, tertiary], [secondary, primary, tertiary]);
   }
 
-  private recolorParticles(isLight: boolean) {
-    const logoPalette = isLight
-      ? ['#008aa0', '#2563eb', '#d92f67']
-      : ['#00e5ff', '#4c8dff', '#ff5f8f'];
-    const auraPalette = isLight
-      ? ['#00758a', '#1d4ed8', '#be185d']
-      : ['#00e5ff', '#4c8dff', '#ff5f8f'];
-
+  private recolorParticles(logoPalette: string[], auraPalette: string[]) {
     this.writeParticleColors(this.logoParticles, logoPalette);
     this.writeParticleColors(this.auraParticles, auraPalette);
+  }
+
+  private getThemeColor(variableName: string, fallback: string) {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+    return value || fallback;
   }
 
   private writeParticleColors(points: THREE.Points, palette: string[]) {
@@ -568,14 +574,20 @@ export class ThreeSceneComponent implements OnInit, OnDestroy {
     }
   }
 
+  private isRtl() {
+    if (typeof document === 'undefined') return false;
+    return document.documentElement.dir === 'rtl' || document.documentElement.getAttribute('dir') === 'rtl';
+  }
+
   private positionLogo() {
     this.logoGroup.position.set(this.getLogoX(), this.getLogoY(), 0);
     this.logoGroup.scale.setScalar(window.innerWidth < 992 ? 0.72 : 1.08);
   }
 
   private getLogoX() {
-    if (window.innerWidth < 992) return 0.2;
-    return 2.2;
+    const isRtl = this.isRtl();
+    if (window.innerWidth < 992) return isRtl ? -0.2 : 0.2;
+    return isRtl ? -2.2 : 2.2;
   }
 
   private getLogoY() {

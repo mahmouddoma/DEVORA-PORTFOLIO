@@ -82,5 +82,14 @@
 
   .footer-brand p {
     font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .footer-social {
+    gap: 10px 14px;
+  }
+
+  .social-link {
+    font-size: 0.82rem;
   }
 }

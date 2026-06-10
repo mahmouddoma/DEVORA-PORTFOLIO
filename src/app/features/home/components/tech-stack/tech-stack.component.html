@@ -14,15 +14,25 @@
 
   <div class="tech-marquee">
     <div class="marquee-track primary">
-      <span class="tech-chip glass" *ngFor="let tech of technologies">{{ tech }}</span>
-      <span class="tech-chip glass" *ngFor="let tech of technologies">{{ tech }}</span>
+      <div
+        class="marquee-set"
+        *ngFor="let copy of marqueeCopies"
+        [attr.aria-hidden]="copy === 1 ? 'true' : null"
+      >
+        <span class="tech-chip glass" *ngFor="let tech of technologies">{{ tech }}</span>
+      </div>
     </div>
   </div>
 
   <div class="tech-marquee">
     <div class="marquee-track secondary">
-      <span class="tech-chip glass" *ngFor="let tech of technologiesReverse">{{ tech }}</span>
-      <span class="tech-chip glass" *ngFor="let tech of technologiesReverse">{{ tech }}</span>
+      <div
+        class="marquee-set"
+        *ngFor="let copy of marqueeCopies"
+        [attr.aria-hidden]="copy === 1 ? 'true' : null"
+      >
+        <span class="tech-chip glass" *ngFor="let tech of technologiesReverse">{{ tech }}</span>
+      </div>
     </div>
   </div>
 </section>

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../core/services/auth.service';
 import { BrandLogoComponent } from '../../shared/components/brand-logo/brand-logo.component';
@@ -19,7 +20,10 @@ export class LoginComponent {
   status = '';
   error = '';
 
-  constructor(public readonly authService: AuthService) {}
+  constructor(
+    public readonly authService: AuthService,
+    private readonly router: Router,
+  ) {}
 
   requestOtp() {
     this.error = '';
@@ -40,7 +44,7 @@ export class LoginComponent {
 
     try {
       this.authService.verifyOtp(this.email, this.otp);
-      window.location.href = '/dashboard';
+      void this.router.navigate(['/dashboard']);
     } catch (error) {
       this.error = this.readError(error);
     }

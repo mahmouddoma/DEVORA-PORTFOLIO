@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.home-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.home-content {
+  position: relative;
+  z-index: 2;
+}

@@ -1,0 +1,25 @@
+<section class="manifesto-section section-padding" aria-labelledby="manifestoTitle">
+  <div class="container manifesto-shell">
+    <span class="section-kicker" devReveal="fade-up" data-edit-key="manifesto.kicker">
+      {{ i18n.t('manifesto.kicker') }}
+    </span>
+
+    <h2 id="manifestoTitle" class="manifesto-title">
+      <span class="manifesto-line" data-edit-key="manifesto.line1">
+        {{ i18n.t('manifesto.line1') }}
+      </span>
+      <span class="manifesto-line gradient-text" data-edit-key="manifesto.line2">
+        {{ i18n.t('manifesto.line2') }}
+      </span>
+    </h2>
+
+    <div class="principle-list" aria-label="DEVORA principles">
+      @for (principle of principles; track principle) {
+        <div class="principle-item" devReveal="clip-left">
+          <span>/</span>
+          <strong [attr.data-edit-key]="principle">{{ i18n.t(principle) }}</strong>
+        </div>
+      }
+    </div>
+  </div>
+</section>

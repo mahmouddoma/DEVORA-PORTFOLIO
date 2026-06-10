@@ -1,0 +1,38 @@
+<section id="process" class="process-section section-padding" aria-labelledby="processTitle">
+  <div class="container process-header">
+    <span class="section-kicker motion-item" data-edit-key="process.kicker">
+      {{ i18n.t('process.kicker') }}
+    </span>
+    <h2 id="processTitle" class="section-title motion-item" data-edit-key="process.title">
+      {{ i18n.t('process.title') }}
+    </h2>
+    <p class="section-copy motion-item" data-edit-key="process.body">
+      {{ i18n.t('process.body') }}
+    </p>
+  </div>
+
+  <div class="container process-track" aria-label="Delivery process timeline">
+    @for (step of steps; track step.marker) {
+      <article class="process-step glass" devTilt>
+        <span class="step-marker">{{ step.marker }}</span>
+        <h3 [attr.data-edit-key]="step.titleKey">{{ i18n.t(step.titleKey) }}</h3>
+        <ul>
+          @for (point of step.bodyKeys; track point) {
+            <li [attr.data-edit-key]="point">{{ i18n.t(point) }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </div>
+
+  <div class="container engagement-grid" aria-label="Engagement models">
+    @for (model of models; track model.labelKey) {
+      <article class="engagement-card">
+        <span [attr.data-edit-key]="model.labelKey">{{ i18n.t(model.labelKey) }}</span>
+        <h3 [attr.data-edit-key]="model.titleKey">{{ i18n.t(model.titleKey) }}</h3>
+        <p [attr.data-edit-key]="model.bodyKey">{{ i18n.t(model.bodyKey) }}</p>
+        <strong [attr.data-edit-key]="model.metaKey">{{ i18n.t(model.metaKey) }}</strong>
+      </article>
+    }
+  </div>
+</section>

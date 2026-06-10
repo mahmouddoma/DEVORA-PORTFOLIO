@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
   color-scheme: dark;
@@ -23,6 +23,15 @@
   --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.32);
   --hero-scrim: rgba(6, 9, 16, 0.72);
   --input-bg: rgba(255, 255, 255, 0.055);
+
+  /* New Tokens */
+  --section-transition-duration: 0.85s;
+  --section-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --floating-cta-z: 999;
+  --gradient-hero: linear-gradient(135deg, #00e5ff 0%, #4c8dff 50%, #ff5f8f 100%);
+  --gradient-magenta: linear-gradient(135deg, #ff2bd6, #9d4dff);
+  --surface-glass: rgba(255, 255, 255, 0.055);
+  --blur-glass: blur(20px);
 }
 
 :root[data-theme='light'] {
@@ -130,6 +139,83 @@ main {
   overflow: hidden;
 }
 
+/* Override Bootstrap Container for Full-Width Layout */
+.container {
+  max-width: 100% !important;
+  padding-inline: 4vw !important;
+}
+
+@media (max-width: 767.98px) {
+  .container {
+    padding-inline: 6vw !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    padding-inline: clamp(14px, 5vw, 22px) !important;
+  }
+}
+
+/* Full Page Scroll Utilities */
+.snap-container {
+  height: 100svh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.snap-container::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100svh;
+}
+
+@media (max-width: 991.98px) {
+  .snap-container {
+    scroll-snap-type: y proximity;
+  }
+
+  .snap-section {
+    scroll-snap-stop: normal;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .snap-container {
+    scroll-snap-type: none;
+  }
+
+  .snap-section {
+    scroll-snap-align: none;
+    min-height: auto;
+  }
+}
+
+/* Reveal Utilities */
+.reveal-clip {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--section-transition-duration) var(--section-ease);
+}
+.reveal-clip.is-revealed {
+  clip-path: inset(0 0% 0 0);
+}
+.reveal-up {
+  transform: translateY(40px);
+  opacity: 0;
+  transition:
+    transform var(--section-transition-duration) var(--section-ease),
+    opacity var(--section-transition-duration) var(--section-ease);
+}
+.reveal-up.is-revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .section-padding {
   padding: 88px 0;
 }
@@ -212,6 +298,19 @@ main {
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
   color: #031018;
   box-shadow: 0 18px 42px rgba(0, 229, 255, 0.22);
+  animation: pulse-border 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 229, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+  }
 }
 
 .btn-outline-panel {
@@ -406,8 +505,7 @@ html[data-theme='light'] body .contact-section,
 html[data-theme='light'] body .footer-section {
   background:
     radial-gradient(circle at 20% 18%, rgba(0, 138, 160, 0.045), transparent 26%),
-    radial-gradient(circle at 78% 24%, rgba(124, 58, 237, 0.045), transparent 28%),
-    var(--bg-page);
+    radial-gradient(circle at 78% 24%, rgba(124, 58, 237, 0.045), transparent 28%), var(--bg-page);
 }
 
 html[data-theme='light'] body .section-title,
@@ -437,8 +535,7 @@ html[data-theme='light'] body .gradient-text {
 html[data-theme='light'] body .glass,
 html[data-theme='light'] body .contact-card {
   background:
-    linear-gradient(135deg, rgba(248, 251, 253, 0.94), rgba(232, 240, 246, 0.78)),
-    var(--surface);
+    linear-gradient(135deg, rgba(248, 251, 253, 0.94), rgba(232, 240, 246, 0.78)), var(--surface);
   border-color: var(--border-soft);
   box-shadow: var(--shadow-soft);
 }
@@ -464,8 +561,7 @@ html[data-theme='light'] body .cursor-marker {
 html[data-theme='light'] body .navbar.compact,
 html[data-theme='light'] body .navbar.menu-open {
   background:
-    linear-gradient(90deg, rgba(0, 138, 160, 0.08), transparent 34%),
-    rgba(248, 251, 255, 0.82);
+    linear-gradient(90deg, rgba(0, 138, 160, 0.08), transparent 34%), rgba(248, 251, 255, 0.82);
 }
 
 html[data-theme='light'] body .nav-list,
@@ -487,7 +583,12 @@ html[data-theme='light'] body .nav-panel {
 
 html[data-theme='light'] body .hero-scrim {
   background:
-    linear-gradient(90deg, rgba(237, 243, 247, 0.86), rgba(237, 243, 247, 0.48) 48%, transparent 76%),
+    linear-gradient(
+      90deg,
+      rgba(237, 243, 247, 0.86),
+      rgba(237, 243, 247, 0.48) 48%,
+      transparent 76%
+    ),
     linear-gradient(180deg, transparent 68%, var(--bg-page));
 }
 
@@ -496,8 +597,7 @@ html[data-theme='light'] body .board-cell,
 html[data-theme='light'] body .tech-chip,
 html[data-theme='light'] body .author-mark {
   background:
-    linear-gradient(135deg, rgba(0, 138, 160, 0.08), transparent 56%),
-    rgba(248, 251, 253, 0.82);
+    linear-gradient(135deg, rgba(0, 138, 160, 0.08), transparent 56%), rgba(248, 251, 253, 0.82);
 }
 
 html[data-theme='light'] body .works-heading .section-title {
@@ -575,12 +675,15 @@ html[data-theme='light'] body .project-media.has-video > video {
 html[data-theme='light'] body .project-grid-overlay {
   background:
     linear-gradient(180deg, transparent 48%, rgba(248, 251, 255, 0.2)),
-    radial-gradient(circle at 82% 14%, color-mix(in srgb, var(--project-accent) 20%, transparent), transparent 25%);
+    radial-gradient(
+      circle at 82% 14%,
+      color-mix(in srgb, var(--project-accent) 20%, transparent),
+      transparent 25%
+    );
 }
 
 html[data-theme='light'] body .project-info {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(240, 246, 253, 0.94));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(240, 246, 253, 0.94));
 }
 
 html[data-theme='light'] body .project-category,
@@ -624,8 +727,7 @@ html[data-theme='light'] body .services-secondary {
 html[data-theme='light'] body .contact-info {
   background:
     linear-gradient(135deg, rgba(0, 138, 160, 0.09), transparent 42%),
-    linear-gradient(315deg, rgba(217, 47, 103, 0.08), transparent 48%),
-    rgba(255, 255, 255, 0.82);
+    linear-gradient(315deg, rgba(217, 47, 103, 0.08), transparent 48%), rgba(255, 255, 255, 0.82);
 }
 
 html[data-theme='light'] body input,
@@ -637,8 +739,7 @@ html[data-theme='light'] body .field-row textarea,
 html[data-theme='light'] body .selected-editor textarea {
   border-color: var(--border-soft);
   background:
-    linear-gradient(135deg, rgba(0, 138, 160, 0.045), transparent 38%),
-    rgba(255, 255, 255, 0.86);
+    linear-gradient(135deg, rgba(0, 138, 160, 0.045), transparent 38%), rgba(255, 255, 255, 0.86);
   color: var(--text-primary);
 }
 
@@ -650,8 +751,7 @@ html[data-theme='light'] body .field-row input:focus,
 html[data-theme='light'] body .field-row textarea:focus,
 html[data-theme='light'] body .selected-editor textarea:focus {
   background:
-    linear-gradient(135deg, rgba(0, 138, 160, 0.08), transparent 42%),
-    rgba(255, 255, 255, 0.94);
+    linear-gradient(135deg, rgba(0, 138, 160, 0.08), transparent 42%), rgba(255, 255, 255, 0.94);
   box-shadow:
     0 0 0 4px rgba(0, 138, 160, 0.1),
     0 16px 38px rgba(32, 55, 92, 0.12);
@@ -770,6 +870,8 @@ html[data-theme='light'] body .preview-frame {
   .btn-outline-panel {
     width: 100%;
     min-height: 44px;
+    white-space: normal;
+    text-align: center;
   }
 }
 
@@ -786,3 +888,5 @@ html[data-theme='light'] body .preview-frame {
     font-size: 0.86rem;
   }
 }
+
+@import './styles/theme';

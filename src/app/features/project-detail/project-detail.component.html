@@ -1,0 +1,34 @@
+<main class="project-detail" [style.--project-accent]="project().accent">
+  <section class="project-hero">
+    <a class="back-link" routerLink="/" fragment="work">Back to work</a>
+    <span class="project-kicker">{{ project().category }}</span>
+    <h1>{{ project().title }}</h1>
+    <p>{{ project().summary }}</p>
+    <div class="project-actions">
+      <a class="primary-link" [href]="project().liveUrl" target="_blank" rel="noopener noreferrer">
+        Live Project
+      </a>
+      <a class="secondary-link" routerLink="/" fragment="contact">Start a Similar Build</a>
+    </div>
+  </section>
+
+  <section class="project-grid">
+    <article class="project-panel">
+      <span>Outcomes</span>
+      <ul>
+        @for (outcome of project().outcomes; track outcome) {
+          <li>{{ outcome }}</li>
+        }
+      </ul>
+    </article>
+
+    <article class="project-panel">
+      <span>Stack</span>
+      <div class="stack-list">
+        @for (item of project().stack; track item) {
+          <strong>{{ item }}</strong>
+        }
+      </div>
+    </article>
+  </section>
+</main>

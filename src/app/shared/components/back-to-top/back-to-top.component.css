@@ -1,0 +1,62 @@
+:host {
+  display: contents;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1050;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  color: #071018;
+  background: linear-gradient(135deg, var(--accent-cyan, #00e5ff), #3b82f6);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  box-shadow:
+    0 16px 38px rgba(0, 229, 255, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 20px 44px rgba(59, 130, 246, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.86);
+  outline-offset: 4px;
+}
+
+.back-to-top svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+}
+
+@media (max-width: 575.98px) {
+  .back-to-top {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+  }
+}

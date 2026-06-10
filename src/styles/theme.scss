@@ -1,0 +1,1473 @@
+/*
+  DEVORA Apple-style theme
+  Single source for light/dark mode. No legacy theme layers.
+*/
+
+:root {
+  color-scheme: light;
+
+  --apple-primary: #0066cc;
+  --apple-primary-focus: #0071e3;
+  --apple-primary-on-dark: #2997ff;
+  --apple-canvas: #ffffff;
+  --apple-parchment: #f5f5f7;
+  --apple-pearl: #fafafc;
+  --apple-tile-1: #272729;
+  --apple-tile-2: #2a2a2c;
+  --apple-tile-3: #252527;
+  --apple-black: #000000;
+  --apple-ink: #1d1d1f;
+  --apple-muted: #7a7a7a;
+  --apple-muted-dark: #cccccc;
+  --apple-hairline: #e0e0e0;
+  --apple-radius-sm: 8px;
+  --apple-radius-lg: 18px;
+  --apple-pill: 9999px;
+  --apple-product-shadow: 3px 5px 30px rgba(0, 0, 0, 0.22);
+
+  --page-bg: var(--apple-canvas);
+  --tile-light: var(--apple-canvas);
+  --tile-soft: var(--apple-parchment);
+  --tile-dark: var(--apple-tile-1);
+  --tile-deeper: var(--apple-tile-2);
+  --text-main: var(--apple-ink);
+  --text-soft: rgba(29, 29, 31, 0.72);
+  --text-on-dark: #ffffff;
+  --text-on-dark-soft: var(--apple-muted-dark);
+  --line: rgba(0, 0, 0, 0.08);
+
+  --font-primary: 'Cairo', sans-serif;
+  --font-heading: 'Cairo', sans-serif;
+  --font-arabic: 'Cairo', sans-serif;
+
+  --bg-page: var(--page-bg);
+  --bg-section: var(--page-bg);
+  --bg-section-alt: var(--tile-soft);
+  --surface: var(--apple-canvas);
+  --surface-solid: var(--apple-canvas);
+  --surface-strong: var(--tile-soft);
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-soft);
+  --text-muted: var(--apple-muted);
+  --border-soft: var(--apple-hairline);
+  --accent-cyan: var(--apple-primary);
+  --accent-blue: var(--apple-primary);
+  --accent-violet: var(--apple-primary);
+  --accent-rose: var(--apple-primary);
+  --accent-green: var(--apple-primary);
+  --hero-scrim: rgba(255, 255, 255, 0.76);
+  --input-bg: var(--apple-canvas);
+  --shadow-soft: none;
+
+  --three-primary: var(--apple-primary);
+  --three-secondary: var(--apple-ink);
+  --three-tertiary: var(--apple-muted);
+  --three-cursor: var(--apple-primary);
+  --three-glow: var(--apple-primary);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --page-bg: var(--apple-black);
+  --tile-light: #111113;
+  --tile-soft: #1d1d1f;
+  --tile-dark: #000000;
+  --tile-deeper: #161618;
+  --text-main: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.74);
+  --line: rgba(255, 255, 255, 0.14);
+
+  --bg-page: var(--page-bg);
+  --bg-section: var(--page-bg);
+  --bg-section-alt: var(--tile-soft);
+  --surface: var(--tile-light);
+  --surface-solid: var(--tile-light);
+  --surface-strong: var(--tile-soft);
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-soft);
+  --text-muted: var(--apple-muted-dark);
+  --border-soft: var(--line);
+  --hero-scrim: rgba(0, 0, 0, 0.38);
+  --input-bg: rgba(255, 255, 255, 0.08);
+
+  --three-primary: var(--apple-primary-on-dark);
+  --three-secondary: #ffffff;
+  --three-tertiary: var(--apple-muted-dark);
+  --three-cursor: var(--apple-primary-on-dark);
+  --three-glow: var(--apple-primary-on-dark);
+}
+
+html,
+body,
+body .app-container,
+body .home-shell {
+  background: var(--page-bg) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-primary) !important;
+}
+
+body::before,
+body .pulse-grid,
+body .noise-overlay {
+  display: none !important;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body .section-title,
+body .hero-title {
+  color: inherit !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+}
+
+body p,
+body .section-copy,
+body .hero-subtitle,
+body .works-lede,
+body .project-info p,
+body .services-offer p,
+body .service-card p,
+body .contact-details {
+  color: var(--text-soft) !important;
+  font-size: 15px !important;
+  line-height: 1.47 !important;
+}
+
+body .section-padding {
+  padding: 80px 0 !important;
+}
+
+body .section-kicker,
+body .hero-kicker {
+  color: var(--apple-primary) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+
+:root[data-theme='dark'] body .section-kicker,
+:root[data-theme='dark'] body .hero-kicker {
+  color: var(--apple-primary-on-dark) !important;
+}
+
+body .section-kicker::before {
+  background: currentColor !important;
+}
+
+body .hero-kicker::after {
+  display: none !important;
+  content: none !important;
+}
+
+body .navbar,
+body .navbar.compact,
+body .navbar.menu-open {
+  min-height: 44px;
+  padding: 0 !important;
+  border-bottom: 0 !important;
+  background: color-mix(in srgb, var(--page-bg) 86%, transparent) !important;
+  box-shadow: none !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+body .navbar-shell {
+  min-height: 44px;
+}
+
+body .nav-list,
+body .nav-panel,
+body .nav-actions .icon-button,
+body .language-button,
+body .dashboard-link {
+  border: 1px solid var(--line) !important;
+  border-radius: var(--apple-radius-sm) !important;
+  background: color-mix(in srgb, var(--surface) 72%, transparent) !important;
+  box-shadow: none !important;
+}
+
+body .nav-link,
+body .dashboard-link,
+body .language-button,
+body .icon-button {
+  color: var(--text-main) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+body .nav-link:hover,
+body .nav-link.active {
+  background: color-mix(in srgb, var(--apple-primary) 14%, transparent) !important;
+}
+
+body .nav-link::after {
+  height: 1px;
+  background: var(--apple-primary) !important;
+}
+
+body .contact-link,
+body .btn-primary-neon,
+body .services-primary,
+body .submit-button,
+body .work-contact {
+  min-height: 42px !important;
+  padding: 0 22px !important;
+  border: 1px solid var(--apple-primary) !important;
+  border-radius: var(--apple-pill) !important;
+  background: var(--apple-primary) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+}
+
+body .btn-outline-panel,
+body .services-secondary,
+body .work-view-all {
+  min-height: 42px !important;
+  padding: 0 22px !important;
+  border: 1px solid var(--apple-primary) !important;
+  border-radius: var(--apple-pill) !important;
+  background: transparent !important;
+  color: var(--apple-primary) !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+}
+
+:root[data-theme='dark'] body .btn-outline-panel,
+:root[data-theme='dark'] body .services-secondary,
+:root[data-theme='dark'] body .work-view-all {
+  border-color: var(--apple-primary-on-dark) !important;
+  color: var(--apple-primary-on-dark) !important;
+}
+
+body a:active,
+body button:active {
+  transform: scale(0.95);
+}
+
+body .hero-section {
+  min-height: 100svh;
+  background: var(--tile-light) !important;
+  color: var(--text-main) !important;
+}
+
+body .hero-scrim {
+  background:
+    linear-gradient(90deg, var(--hero-scrim), transparent 68%),
+    linear-gradient(180deg, transparent 72%, var(--tile-light)) !important;
+}
+
+body .hero-title {
+  font-size: clamp(40px, 6vw, 56px) !important;
+  line-height: 1.07 !important;
+  text-transform: none !important;
+}
+
+body .gradient-text {
+  background: none !important;
+  color: var(--apple-primary) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root[data-theme='dark'] body .gradient-text {
+  color: var(--apple-primary-on-dark) !important;
+}
+
+body .hero-proof {
+  color: var(--text-soft) !important;
+}
+
+body .hero-proof::before {
+  background: var(--apple-primary) !important;
+  box-shadow: none !important;
+}
+
+body .hero-metric {
+  border: 1px solid var(--line) !important;
+  border-radius: var(--apple-radius-lg) !important;
+  background: color-mix(in srgb, var(--surface) 88%, transparent) !important;
+  box-shadow: none !important;
+}
+
+body .hero-metric strong,
+body .hero-metric span {
+  color: var(--text-main) !important;
+}
+
+body .reveal-svg {
+  color: var(--text-main) !important;
+  filter: none !important;
+}
+
+body .logo-arrow,
+body .logo-underscore {
+  stroke: var(--apple-primary) !important;
+}
+
+body .logo-letters {
+  stroke: currentColor !important;
+}
+
+body .works-section {
+  background: var(--tile-soft) !important;
+  color: var(--text-main) !important;
+}
+
+:root[data-theme='dark'] body .services-section {
+  background: var(--tile-dark) !important;
+  color: var(--text-on-dark) !important;
+}
+
+body .tech-section {
+  background: var(--apple-parchment) !important;
+  color: var(--text-main) !important;
+}
+
+:root[data-theme='dark'] body .contact-section {
+  background: var(--tile-dark) !important;
+  color: var(--text-on-dark) !important;
+}
+
+:root[data-theme='dark'] body .tech-section {
+  background: #111113 !important;
+  color: #ffffff !important;
+}
+
+:root[data-theme='dark'] body .contact-section {
+  background: #000000 !important;
+}
+
+body .works-heading .section-title,
+body .services-section .section-title,
+body .tech-section .section-title,
+body .contact-section .section-title {
+  font-size: clamp(40px, 5vw, 56px) !important;
+  line-height: 1.1 !important;
+}
+
+:root[data-theme='dark'] body .services-section .section-title,
+:root[data-theme='dark'] body .services-section .section-copy,
+:root[data-theme='dark'] body .services-section h3,
+:root[data-theme='dark'] body .services-section p,
+:root[data-theme='dark'] body .contact-section .section-title,
+:root[data-theme='dark'] body .contact-section .section-copy,
+:root[data-theme='dark'] body .contact-section .contact-details {
+  color: var(--text-on-dark) !important;
+}
+
+:root[data-theme='dark'] body .services-section .section-copy,
+:root[data-theme='dark'] body .services-section p,
+:root[data-theme='dark'] body .contact-section .section-copy,
+:root[data-theme='dark'] body .contact-section .contact-details {
+  color: var(--text-on-dark-soft) !important;
+}
+
+body .project-card,
+body .services-offer,
+body .service-card,
+body .delivery-strip,
+body .delivery-step,
+body .stack-board,
+body .tech-chip,
+body .board-cell,
+body .contact-card,
+body .contact-info,
+body .service-stat {
+  border: 1px solid var(--line) !important;
+  border-radius: var(--apple-radius-lg) !important;
+  background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
+  box-shadow: none !important;
+}
+
+:root[data-theme='light'] body .stack-board,
+:root[data-theme='light'] body .tech-chip,
+:root[data-theme='light'] body .board-cell {
+  background: #ffffff !important;
+  border-color: #e5e5ea !important;
+  color: #1d1d1f !important;
+}
+
+:root[data-theme='dark'] body .stack-board,
+:root[data-theme='dark'] body .tech-chip,
+:root[data-theme='dark'] body .board-cell {
+  background: #1d1d1f !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+}
+
+:root[data-theme='dark'] body .services-section .services-offer,
+:root[data-theme='dark'] body .services-section .service-card,
+:root[data-theme='dark'] body .services-section .delivery-strip,
+:root[data-theme='dark'] body .services-section .delivery-step,
+:root[data-theme='dark'] body .services-section .service-stat,
+:root[data-theme='dark'] body .contact-section .contact-card,
+:root[data-theme='dark'] body .contact-section .contact-info {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+:root[data-theme='light'] body .contact-section .contact-card,
+:root[data-theme='light'] body .contact-section .contact-info {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+:root[data-theme='dark'] body .contact-section .contact-card,
+:root[data-theme='dark'] body .contact-section .contact-info {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+body .project-card:hover,
+body .project-card.active,
+body .service-card:hover,
+body .services-offer:hover,
+body .tech-chip:hover {
+  border-color: color-mix(in srgb, currentColor 18%, transparent) !important;
+  box-shadow: none !important;
+}
+
+body .project-media > img,
+body .project-media > video,
+body .screenshot-frame {
+  box-shadow: var(--apple-product-shadow);
+}
+
+body .project-info,
+body .project-browser,
+body .screenshot-preview,
+body .project-media.has-video > video {
+  background: color-mix(in srgb, var(--surface) 90%, transparent) !important;
+}
+
+body .project-info h3,
+body .project-info p,
+body .project-category,
+body .live-pill {
+  color: var(--text-main) !important;
+}
+
+body .view-project,
+body .live-pill,
+body .contact-details a {
+  color: var(--apple-primary) !important;
+}
+
+:root[data-theme='dark'] body .view-project,
+:root[data-theme='dark'] body .live-pill,
+:root[data-theme='dark'] body .contact-details a {
+  color: var(--apple-primary-on-dark) !important;
+}
+
+body .filter-btn,
+body .project-category,
+body .live-pill,
+body .offer-label,
+body .service-index,
+body .service-card strong {
+  border: 1px solid var(--apple-primary) !important;
+  border-radius: var(--apple-pill) !important;
+  background: transparent !important;
+  color: var(--apple-primary) !important;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+body .filter-btn.active,
+body .filter-btn:hover {
+  background: var(--apple-primary) !important;
+  color: #ffffff !important;
+}
+
+body .category-mark {
+  background: var(--apple-primary) !important;
+  color: #ffffff !important;
+}
+
+body .service-card::before,
+body .service-card::after,
+body .services-offer::before,
+body .services-offer::after,
+body .contact-info::before {
+  opacity: 0 !important;
+}
+
+body .tech-section::before,
+body .tech-section::after,
+body .contact-section::before,
+body .contact-section::after,
+body .services-section::before,
+body .services-section::after {
+  display: none !important;
+  opacity: 0 !important;
+  content: none !important;
+}
+
+body .board-scan,
+body .contact-track span {
+  background: linear-gradient(90deg, transparent, var(--apple-primary), transparent) !important;
+}
+
+:root[data-theme='dark'] body .tech-section .section-title,
+:root[data-theme='dark'] body .tech-section .section-copy,
+:root[data-theme='dark'] body .tech-section .section-kicker {
+  color: #ffffff !important;
+}
+
+:root[data-theme='dark'] body .tech-section .section-copy {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+:root[data-theme='dark'] body .tech-section .section-kicker {
+  color: var(--apple-primary-on-dark) !important;
+}
+
+body input,
+body select,
+body textarea {
+  min-height: 44px;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--apple-pill) !important;
+  background: var(--input-bg) !important;
+  color: var(--text-main) !important;
+  box-shadow: none !important;
+  font-size: 15px !important;
+}
+
+:root[data-theme='light'] body .contact-section input,
+:root[data-theme='light'] body .contact-section select,
+:root[data-theme='light'] body .contact-section textarea,
+:root[data-theme='dark'] body .contact-section input,
+:root[data-theme='dark'] body .contact-section select,
+:root[data-theme='dark'] body .contact-section textarea {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  color: #1d1d1f !important;
+}
+
+body textarea {
+  border-radius: var(--apple-radius-lg) !important;
+}
+
+body input:focus,
+body select:focus,
+body textarea:focus {
+  border-color: var(--apple-primary-focus) !important;
+  box-shadow: 0 0 0 2px var(--apple-primary-focus) !important;
+}
+
+body .form-field span {
+  border: 0 !important;
+  background: transparent !important;
+  color: currentColor !important;
+}
+
+body .footer-section {
+  padding: 64px 0 !important;
+  border-top: 0 !important;
+  background: var(--apple-parchment) !important;
+  color: var(--apple-muted) !important;
+}
+
+:root[data-theme='dark'] body .footer-section {
+  background: var(--apple-black) !important;
+}
+
+body .footer-grid > p,
+body .social-link {
+  color: var(--apple-muted) !important;
+  font-size: 12px !important;
+}
+
+body .social-link:hover {
+  color: var(--apple-primary) !important;
+}
+
+body .back-to-top {
+  width: 44px;
+  height: 44px;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: rgba(210, 210, 215, 0.64) !important;
+  color: var(--apple-ink) !important;
+  box-shadow: none !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+body .site-cursor,
+body .cursor-marker {
+  border-color: var(--apple-primary) !important;
+  background: color-mix(in srgb, var(--apple-primary) 10%, transparent) !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 833px) {
+  body .nav-panel {
+    background: color-mix(in srgb, var(--page-bg) 94%, transparent) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body .section-padding {
+    padding: 56px 0 !important;
+  }
+
+  body .hero-title,
+  body .works-heading .section-title,
+  body .services-section .section-title,
+  body .tech-section .section-title,
+  body .contact-section .section-title {
+    font-size: 34px !important;
+    line-height: 1.12 !important;
+  }
+}
+
+@media (max-width: 419px) {
+  body .hero-title,
+  body .works-heading .section-title,
+  body .services-section .section-title,
+  body .tech-section .section-title,
+  body .contact-section .section-title {
+    font-size: 28px !important;
+  }
+}
+
+/*
+  Contrast lock
+  Keeps text and the DEVORA logo readable when dark/light mode backgrounds change.
+*/
+body .navbar-brand,
+body .navbar-brand:hover,
+body .navbar-brand:focus,
+body .brand-logo,
+body .brand-logo .logo-mark {
+  color: var(--text-main) !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+body .brand-logo .logo-mark,
+body .reveal-svg {
+  filter: drop-shadow(0 8px 18px color-mix(in srgb, var(--apple-primary) 18%, transparent)) !important;
+}
+
+body .brand-logo .logo-arrow,
+body .brand-logo .logo-cursor,
+body .logo-arrow,
+body .logo-cursor,
+body .logo-underscore {
+  stroke: var(--apple-primary) !important;
+}
+
+body .brand-logo .logo-letters,
+body .logo-letters {
+  stroke: var(--text-main) !important;
+  opacity: 1 !important;
+}
+
+:root[data-theme='dark'] body .navbar-brand,
+:root[data-theme='dark'] body .brand-logo,
+:root[data-theme='dark'] body .brand-logo .logo-mark {
+  color: #f5f5f7 !important;
+}
+
+:root[data-theme='dark'] body .brand-logo .logo-letters,
+:root[data-theme='dark'] body .logo-letters {
+  stroke: #f5f5f7 !important;
+}
+
+:root[data-theme='dark'] body .brand-logo .logo-arrow,
+:root[data-theme='dark'] body .brand-logo .logo-cursor,
+:root[data-theme='dark'] body .logo-arrow,
+:root[data-theme='dark'] body .logo-cursor,
+:root[data-theme='dark'] body .logo-underscore {
+  stroke: var(--apple-primary-on-dark) !important;
+}
+
+:root[data-theme='light'] body .navbar-brand,
+:root[data-theme='light'] body .brand-logo,
+:root[data-theme='light'] body .brand-logo .logo-mark {
+  color: #1d1d1f !important;
+}
+
+:root[data-theme='light'] body .brand-logo .logo-letters,
+:root[data-theme='light'] body .logo-letters {
+  stroke: #1d1d1f !important;
+}
+
+body .tech-section {
+  background: var(--apple-parchment) !important;
+  color: #1d1d1f !important;
+}
+
+:root[data-theme='dark'] body .tech-section {
+  background: #111113 !important;
+  color: #f5f5f7 !important;
+}
+
+body .tech-section .section-title,
+body .tech-section h2,
+body .tech-section h3,
+body .tech-section .board-cell,
+body .tech-section .tech-chip {
+  color: #1d1d1f !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+body .tech-section .section-copy {
+  color: rgba(29, 29, 31, 0.72) !important;
+}
+
+body .tech-section .section-kicker {
+  color: var(--apple-primary) !important;
+}
+
+:root[data-theme='dark'] body .tech-section .section-title,
+:root[data-theme='dark'] body .tech-section h2,
+:root[data-theme='dark'] body .tech-section h3,
+:root[data-theme='dark'] body .tech-section .board-cell,
+:root[data-theme='dark'] body .tech-section .tech-chip {
+  color: #f5f5f7 !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root[data-theme='dark'] body .tech-section .section-copy {
+  color: rgba(245, 245, 247, 0.72) !important;
+}
+
+:root[data-theme='dark'] body .tech-section .section-kicker {
+  color: var(--apple-primary-on-dark) !important;
+}
+
+body .tech-section .stack-board,
+body .tech-section .board-cell,
+body .tech-section .tech-chip {
+  background: #ffffff !important;
+  border-color: rgba(29, 29, 31, 0.12) !important;
+}
+
+:root[data-theme='dark'] body .tech-section .stack-board,
+:root[data-theme='dark'] body .tech-section .board-cell,
+:root[data-theme='dark'] body .tech-section .tech-chip {
+  background: #1d1d1f !important;
+  border-color: rgba(245, 245, 247, 0.16) !important;
+}
+
+:root[data-theme='dark'] body .contact-section {
+  background: #000000 !important;
+  color: #f5f5f7 !important;
+}
+
+:root[data-theme='dark'] body .contact-section .section-title,
+:root[data-theme='dark'] body .contact-section h2,
+:root[data-theme='dark'] body .contact-section h3,
+:root[data-theme='dark'] body .contact-section .form-field span,
+:root[data-theme='dark'] body .contact-section .contact-details span {
+  color: #f5f5f7 !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root[data-theme='dark'] body .contact-section .section-copy,
+:root[data-theme='dark'] body .contact-section p {
+  color: rgba(245, 245, 247, 0.72) !important;
+}
+
+:root[data-theme='dark'] body .contact-section .contact-card,
+:root[data-theme='dark'] body .contact-section .contact-info {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(245, 245, 247, 0.16) !important;
+}
+
+:root[data-theme='dark'] body .contact-section input,
+:root[data-theme='dark'] body .contact-section select,
+:root[data-theme='dark'] body .contact-section textarea {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  color: #1d1d1f !important;
+}
+
+:root[data-theme='dark'] body .contact-section input::placeholder,
+:root[data-theme='dark'] body .contact-section textarea::placeholder {
+  color: rgba(29, 29, 31, 0.54) !important;
+}
+
+/*
+  Unified dark/light theme layer
+  Keeps the existing component styles intact while normalizing every screen
+  through one set of semantic tokens.
+*/
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --theme-bg: #ffffff;
+  --theme-bg-alt: #f5f5f7;
+  --theme-surface: #ffffff;
+  --theme-surface-soft: #f5f5f7;
+  --theme-surface-raised: rgba(255, 255, 255, 0.86);
+  --theme-card: rgba(255, 255, 255, 0.92);
+  --theme-card-hover: #ffffff;
+  --theme-text: #1d1d1f;
+  --theme-text-soft: rgba(29, 29, 31, 0.72);
+  --theme-text-muted: rgba(29, 29, 31, 0.56);
+  --theme-border: rgba(0, 0, 0, 0.11);
+  --theme-border-strong: rgba(0, 0, 0, 0.18);
+  --theme-accent: #0066cc;
+  --theme-accent-hover: #0071e3;
+  --theme-accent-soft: rgba(0, 102, 204, 0.1);
+  --theme-success: #0a7f52;
+  --theme-danger: #c92756;
+  --theme-focus: rgba(0, 102, 204, 0.18);
+  --theme-shadow: 0 18px 48px rgba(0, 0, 0, 0.09);
+  --theme-product-shadow: 3px 5px 28px rgba(0, 0, 0, 0.18);
+  --theme-grid: rgba(0, 102, 204, 0.08);
+  --theme-input: #ffffff;
+  --theme-input-placeholder: rgba(29, 29, 31, 0.46);
+
+  --section-hero-bg: var(--theme-bg);
+  --section-work-bg: var(--theme-bg-alt);
+  --section-services-bg: var(--theme-bg);
+  --section-process-bg: var(--theme-bg-alt);
+  --section-stack-bg: var(--theme-bg);
+  --section-contact-bg: var(--theme-bg-alt);
+  --section-footer-bg: var(--theme-bg);
+
+  --page-bg: var(--theme-bg);
+  --tile-light: var(--theme-surface);
+  --tile-soft: var(--theme-bg-alt);
+  --tile-dark: var(--theme-bg);
+  --tile-deeper: var(--theme-surface-soft);
+  --text-main: var(--theme-text);
+  --text-soft: var(--theme-text-soft);
+  --text-on-dark: var(--theme-text);
+  --text-on-dark-soft: var(--theme-text-soft);
+  --line: var(--theme-border);
+
+  --bg-page: var(--theme-bg);
+  --bg-section: var(--theme-bg);
+  --bg-section-alt: var(--theme-bg-alt);
+  --surface: var(--theme-surface-raised);
+  --surface-solid: var(--theme-surface);
+  --surface-strong: var(--theme-surface-soft);
+  --text-primary: var(--theme-text);
+  --text-secondary: var(--theme-text-soft);
+  --text-muted: var(--theme-text-muted);
+  --border-soft: var(--theme-border);
+  --accent-cyan: var(--theme-accent);
+  --accent-blue: var(--theme-accent);
+  --accent-violet: var(--theme-accent);
+  --accent-rose: var(--theme-danger);
+  --accent-green: var(--theme-success);
+  --hero-scrim: rgba(255, 255, 255, 0.72);
+  --input-bg: var(--theme-input);
+  --shadow-soft: var(--theme-shadow);
+  --color-void: var(--theme-bg);
+
+  --three-primary: var(--theme-accent);
+  --three-secondary: var(--theme-text);
+  --three-tertiary: var(--theme-text-muted);
+  --three-cursor: var(--theme-accent);
+  --three-glow: var(--theme-accent);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --theme-bg: #000000;
+  --theme-bg-alt: #111113;
+  --theme-surface: #1d1d1f;
+  --theme-surface-soft: #272729;
+  --theme-surface-raised: rgba(29, 29, 31, 0.84);
+  --theme-card: rgba(29, 29, 31, 0.9);
+  --theme-card-hover: rgba(39, 39, 41, 0.94);
+  --theme-text: #f5f5f7;
+  --theme-text-soft: rgba(245, 245, 247, 0.72);
+  --theme-text-muted: rgba(245, 245, 247, 0.56);
+  --theme-border: rgba(255, 255, 255, 0.14);
+  --theme-border-strong: rgba(255, 255, 255, 0.22);
+  --theme-accent: #2997ff;
+  --theme-accent-hover: #46a8ff;
+  --theme-accent-soft: rgba(41, 151, 255, 0.14);
+  --theme-success: #35d39d;
+  --theme-danger: #ff5f8f;
+  --theme-focus: rgba(41, 151, 255, 0.24);
+  --theme-shadow: none;
+  --theme-product-shadow: 3px 5px 30px rgba(0, 0, 0, 0.42);
+  --theme-grid: rgba(41, 151, 255, 0.12);
+  --theme-input: rgba(255, 255, 255, 0.08);
+  --theme-input-placeholder: rgba(245, 245, 247, 0.44);
+
+  --section-hero-bg: var(--theme-bg);
+  --section-work-bg: var(--theme-bg-alt);
+  --section-services-bg: var(--theme-bg);
+  --section-process-bg: var(--theme-bg-alt);
+  --section-stack-bg: var(--theme-bg);
+  --section-contact-bg: var(--theme-bg-alt);
+  --section-footer-bg: var(--theme-bg);
+
+  --hero-scrim: rgba(0, 0, 0, 0.42);
+}
+
+html,
+body,
+body .app-container,
+body .home-shell,
+body .home-content,
+body main {
+  background: var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+body {
+  accent-color: var(--theme-accent);
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body .section-title,
+body .hero-title {
+  color: var(--theme-text) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+body p,
+body li,
+body small,
+body .section-copy,
+body .hero-subtitle,
+body .works-lede,
+body .project-info p,
+body .services-offer p,
+body .service-card p,
+body .process-step ul,
+body .why-panel p,
+body .value-item p,
+body .contact-details,
+body .testimonial-author span,
+body .dashboard-header p,
+body .panel-heading p,
+body .login-card p {
+  color: var(--theme-text-soft) !important;
+}
+
+body .section-kicker,
+body .hero-kicker,
+body .login-kicker,
+body .dashboard-header span,
+body .dashboard-brand span,
+body .project-kicker,
+body .back-link,
+body .view-project,
+body .live-pill,
+body .contact-details a,
+body .service-index,
+body .offer-label,
+body .step-marker,
+body .value-index,
+body .quote-mark {
+  color: var(--theme-accent) !important;
+}
+
+body .section-kicker::before,
+body .hero-proof::before,
+body .form-field span::before,
+body .category-mark,
+body .board-scan,
+body .contact-track span {
+  background: var(--theme-accent) !important;
+  box-shadow: none !important;
+}
+
+body .hero-section {
+  background: var(--section-hero-bg) !important;
+}
+
+body .works-section {
+  background: var(--section-work-bg) !important;
+}
+
+body .services-section {
+  background: var(--section-services-bg) !important;
+}
+
+body .process-section,
+body .about-section,
+body .testimonials-section,
+body .manifesto-section {
+  background: var(--section-process-bg) !important;
+}
+
+body .tech-section {
+  background: var(--section-stack-bg) !important;
+}
+
+body .contact-section {
+  background: var(--section-contact-bg) !important;
+}
+
+body .footer-section {
+  background: var(--section-footer-bg) !important;
+  border-top-color: var(--theme-border) !important;
+}
+
+body .hero-scrim {
+  background:
+    linear-gradient(90deg, var(--hero-scrim), transparent 68%),
+    linear-gradient(180deg, transparent 72%, var(--section-hero-bg)) !important;
+}
+
+body .navbar,
+body .navbar.compact,
+body .navbar.menu-open {
+  background: color-mix(in srgb, var(--theme-bg) 82%, transparent) !important;
+  border-bottom-color: var(--theme-border) !important;
+  color: var(--theme-text) !important;
+  box-shadow: none !important;
+}
+
+body .nav-panel,
+body .nav-list,
+body .nav-toggle,
+body .nav-actions .icon-button,
+body .language-button,
+body .dashboard-link {
+  border-color: var(--theme-border) !important;
+  background: color-mix(in srgb, var(--theme-surface) 76%, transparent) !important;
+  color: var(--theme-text) !important;
+  box-shadow: none !important;
+}
+
+body .nav-link,
+body .dashboard-link,
+body .language-button,
+body .icon-button,
+body .social-link {
+  color: var(--theme-text) !important;
+}
+
+body .nav-link:hover,
+body .nav-link.active,
+body .dashboard-link:hover,
+body .dashboard-nav button.active,
+body .field-row.selected {
+  border-color: color-mix(in srgb, var(--theme-accent) 38%, var(--theme-border)) !important;
+  background: var(--theme-accent-soft) !important;
+  color: var(--theme-accent) !important;
+}
+
+body .nav-link::after {
+  background: var(--theme-accent) !important;
+}
+
+body .contact-link,
+body .btn-primary-neon,
+body .services-primary,
+body .submit-button,
+body .work-contact,
+body .login-form button:not(.ghost-button),
+body .header-actions button,
+body .primary-link {
+  border-color: var(--theme-accent) !important;
+  background: var(--theme-accent) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body .btn-outline-panel,
+body .services-secondary,
+body .work-view-all,
+body .secondary-link,
+body .header-actions a,
+body .panel-heading button,
+body .selected-editor button,
+body .login-form .ghost-button {
+  border-color: var(--theme-border) !important;
+  background: color-mix(in srgb, var(--theme-surface) 74%, transparent) !important;
+  color: var(--theme-accent) !important;
+  box-shadow: none !important;
+}
+
+body .glass,
+body .hero-metric,
+body .project-card,
+body .services-offer,
+body .service-card,
+body .delivery-strip,
+body .delivery-step,
+body .service-stat,
+body .process-step,
+body .why-panel,
+body .proof-item,
+body .flow-step,
+body .value-item,
+body .stack-board,
+body .board-cell,
+body .tech-chip,
+body .contact-card,
+body .contact-info,
+body .testimonial-card,
+body .author-mark,
+body .login-card,
+body .dashboard-sidebar,
+body .editor-panel,
+body .visual-panel,
+body .field-row,
+body .selected-editor,
+body .preview-frame,
+body .project-panel,
+body .stack-list strong {
+  border-color: var(--theme-border) !important;
+  background: var(--theme-card) !important;
+  color: var(--theme-text) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+body .project-card:hover,
+body .project-card.active,
+body .service-card:hover,
+body .process-step:hover,
+body .value-item:hover,
+body .tech-chip:hover {
+  border-color: color-mix(in srgb, var(--theme-accent) 42%, var(--theme-border)) !important;
+  background: var(--theme-card-hover) !important;
+}
+
+body .services-offer::before,
+body .services-offer::after,
+body .service-card::before,
+body .service-card::after,
+body .why-panel::before,
+body .why-panel::after,
+body .testimonial-card::before,
+body .tech-section::before,
+body .tech-section::after,
+body .contact-section::before,
+body .contact-section::after,
+body .services-section::before,
+body .services-section::after {
+  opacity: 0 !important;
+  content: none !important;
+}
+
+body .project-browser,
+body .project-info,
+body .screenshot-preview,
+body .screenshot-frame,
+body .project-media.has-video > video,
+body .visual-fallback {
+  background: var(--theme-surface-soft) !important;
+}
+
+body .project-media > img,
+body .project-media > video,
+body .screenshot-frame {
+  box-shadow: var(--theme-product-shadow) !important;
+}
+
+body .filter-btn,
+body .project-category,
+body .live-pill,
+body .offer-label,
+body .service-index,
+body .service-card strong {
+  border-color: color-mix(in srgb, var(--theme-accent) 45%, var(--theme-border)) !important;
+  background: transparent !important;
+  color: var(--theme-accent) !important;
+}
+
+body .filter-btn.active,
+body .filter-btn:hover {
+  background: var(--theme-accent) !important;
+  color: #ffffff !important;
+}
+
+body .service-stat strong,
+body .service-stat span,
+body .delivery-step strong,
+body .delivery-step span,
+body .proof-item strong,
+body .proof-item span,
+body .hero-metric strong,
+body .hero-metric span,
+body .form-field span,
+body .field-row span,
+body .selected-editor span,
+body .dashboard-brand small,
+body .dashboard-nav button span,
+body .footer-brand p,
+body .footer-grid > p {
+  color: var(--theme-text-soft) !important;
+}
+
+body input,
+body select,
+body textarea,
+body .login-form input,
+body .field-row input,
+body .field-row textarea,
+body .selected-editor textarea,
+body .contact-section input,
+body .contact-section select,
+body .contact-section textarea {
+  border-color: var(--theme-border) !important;
+  background: var(--theme-input) !important;
+  color: var(--theme-text) !important;
+  box-shadow: none !important;
+}
+
+body input::placeholder,
+body textarea::placeholder,
+body .contact-section input::placeholder,
+body .contact-section textarea::placeholder {
+  color: var(--theme-input-placeholder) !important;
+}
+
+body input:focus,
+body select:focus,
+body textarea:focus,
+body .login-form input:focus,
+body .field-row input:focus,
+body .field-row textarea:focus,
+body .selected-editor textarea:focus {
+  border-color: var(--theme-accent-hover) !important;
+  box-shadow: 0 0 0 3px var(--theme-focus) !important;
+}
+
+body .login-shell {
+  background:
+    radial-gradient(circle at 66% 22%, var(--theme-accent-soft), transparent 28%),
+    radial-gradient(circle at 28% 76%, color-mix(in srgb, var(--theme-accent) 8%, transparent), transparent 31%),
+    var(--theme-bg) !important;
+}
+
+body .login-shell::before {
+  background:
+    linear-gradient(90deg, transparent 31px, var(--theme-grid) 32px),
+    linear-gradient(0deg, transparent 31px, var(--theme-grid) 32px) !important;
+}
+
+body .dashboard-shell {
+  background:
+    radial-gradient(circle at 78% 10%, var(--theme-accent-soft), transparent 28%),
+    var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+body .dashboard-actions .danger,
+body .login-error {
+  color: var(--theme-danger) !important;
+}
+
+body .login-status,
+body .success-message,
+body .dev-otp strong {
+  color: var(--theme-success) !important;
+}
+
+body .dev-otp {
+  border-color: color-mix(in srgb, var(--theme-accent) 34%, var(--theme-border)) !important;
+  background: var(--theme-accent-soft) !important;
+}
+
+body .back-to-top {
+  border-color: var(--theme-border) !important;
+  background: color-mix(in srgb, var(--theme-surface) 78%, transparent) !important;
+  color: var(--theme-text) !important;
+  box-shadow: none !important;
+}
+
+body .site-cursor,
+body .cursor-marker {
+  border-color: var(--theme-accent) !important;
+  background: color-mix(in srgb, var(--theme-accent) 12%, transparent) !important;
+  box-shadow: none !important;
+}
+
+body app-project-detail {
+  background:
+    radial-gradient(circle at 76% 18%, color-mix(in srgb, var(--project-accent, var(--theme-accent)) 14%, transparent), transparent 30%),
+    var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='dark'] body .footer-section,
+:root[data-theme='dark'] body .contact-section,
+:root[data-theme='dark'] body .tech-section,
+:root[data-theme='dark'] body .services-section {
+  color: var(--theme-text) !important;
+}
+
+/*
+  Light mode must be light everywhere. These selectors intentionally outrank
+  the older dark-contrast section rules without changing component structure.
+*/
+:root[data-theme='light'] body .hero-section,
+:root[data-theme='light'] body .works-section,
+:root[data-theme='light'] body .services-section,
+:root[data-theme='light'] body .process-section,
+:root[data-theme='light'] body .about-section,
+:root[data-theme='light'] body .testimonials-section,
+:root[data-theme='light'] body .manifesto-section,
+:root[data-theme='light'] body .tech-section,
+:root[data-theme='light'] body .contact-section,
+:root[data-theme='light'] body .footer-section {
+  background: var(--theme-bg-alt) !important;
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='light'] body .hero-section,
+:root[data-theme='light'] body .services-section,
+:root[data-theme='light'] body .tech-section,
+:root[data-theme='light'] body .footer-section {
+  background: var(--theme-bg) !important;
+}
+
+:root[data-theme='light'] body .services-section .section-title,
+:root[data-theme='light'] body .services-section h2,
+:root[data-theme='light'] body .services-section h3,
+:root[data-theme='light'] body .services-section p,
+:root[data-theme='light'] body .services-section .section-copy,
+:root[data-theme='light'] body .services-section .service-stat strong,
+:root[data-theme='light'] body .services-section .service-stat span,
+:root[data-theme='light'] body .services-section .delivery-step strong,
+:root[data-theme='light'] body .contact-section .section-title,
+:root[data-theme='light'] body .contact-section h2,
+:root[data-theme='light'] body .contact-section h3,
+:root[data-theme='light'] body .contact-section p,
+:root[data-theme='light'] body .contact-section .section-copy,
+:root[data-theme='light'] body .contact-section .contact-details,
+:root[data-theme='light'] body .contact-section .contact-details span,
+:root[data-theme='light'] body .contact-section .form-field span {
+  color: var(--theme-text) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root[data-theme='light'] body .services-section p,
+:root[data-theme='light'] body .services-section .section-copy,
+:root[data-theme='light'] body .services-section .service-card p,
+:root[data-theme='light'] body .services-section .services-offer p,
+:root[data-theme='light'] body .contact-section p,
+:root[data-theme='light'] body .contact-section .section-copy,
+:root[data-theme='light'] body .contact-section .contact-details {
+  color: var(--theme-text-soft) !important;
+}
+
+:root[data-theme='light'] body .services-section .services-offer,
+:root[data-theme='light'] body .services-section .service-card,
+:root[data-theme='light'] body .services-section .delivery-strip,
+:root[data-theme='light'] body .services-section .delivery-step,
+:root[data-theme='light'] body .services-section .service-stat,
+:root[data-theme='light'] body .contact-section .contact-card,
+:root[data-theme='light'] body .contact-section .contact-info {
+  border-color: var(--theme-border) !important;
+  background: var(--theme-card) !important;
+  color: var(--theme-text) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+:root[data-theme='light'] body .contact-section input,
+:root[data-theme='light'] body .contact-section select,
+:root[data-theme='light'] body .contact-section textarea {
+  border-color: var(--theme-border) !important;
+  background: var(--theme-input) !important;
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='light'] body .contact-section input::placeholder,
+:root[data-theme='light'] body .contact-section textarea::placeholder {
+  color: var(--theme-input-placeholder) !important;
+}
+
+:root.theme-light body .hero-section,
+:root.theme-light body .works-section,
+:root.theme-light body .services-section,
+:root.theme-light body .process-section,
+:root.theme-light body .about-section,
+:root.theme-light body .testimonials-section,
+:root.theme-light body .manifesto-section,
+:root.theme-light body .tech-section,
+:root.theme-light body .contact-section,
+:root.theme-light body .footer-section {
+  background: var(--theme-bg-alt) !important;
+  color: var(--theme-text) !important;
+}
+
+:root.theme-light body .hero-section,
+:root.theme-light body .services-section,
+:root.theme-light body .tech-section,
+:root.theme-light body .footer-section {
+  background: var(--theme-bg) !important;
+}
+
+:root.theme-light body .services-section .section-title,
+:root.theme-light body .services-section h2,
+:root.theme-light body .services-section h3,
+:root.theme-light body .services-section p,
+:root.theme-light body .services-section .section-copy,
+:root.theme-light body .services-section .service-stat strong,
+:root.theme-light body .services-section .service-stat span,
+:root.theme-light body .services-section .delivery-step strong,
+:root.theme-light body .contact-section .section-title,
+:root.theme-light body .contact-section h2,
+:root.theme-light body .contact-section h3,
+:root.theme-light body .contact-section p,
+:root.theme-light body .contact-section .section-copy,
+:root.theme-light body .contact-section .contact-details,
+:root.theme-light body .contact-section .contact-details span,
+:root.theme-light body .contact-section .form-field span {
+  color: var(--theme-text) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root.theme-light body .services-section p,
+:root.theme-light body .services-section .section-copy,
+:root.theme-light body .services-section .service-card p,
+:root.theme-light body .services-section .services-offer p,
+:root.theme-light body .contact-section p,
+:root.theme-light body .contact-section .section-copy,
+:root.theme-light body .contact-section .contact-details {
+  color: var(--theme-text-soft) !important;
+}
+
+:root.theme-light body .services-section .services-offer,
+:root.theme-light body .services-section .service-card,
+:root.theme-light body .services-section .delivery-strip,
+:root.theme-light body .services-section .delivery-step,
+:root.theme-light body .services-section .service-stat,
+:root.theme-light body .contact-section .contact-card,
+:root.theme-light body .contact-section .contact-info {
+  border-color: var(--theme-border) !important;
+  background: var(--theme-card) !important;
+  color: var(--theme-text) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+:root.theme-light body .contact-section input,
+:root.theme-light body .contact-section select,
+:root.theme-light body .contact-section textarea {
+  border-color: var(--theme-border) !important;
+  background: var(--theme-input) !important;
+  color: var(--theme-text) !important;
+}
+
+:root.theme-light body .contact-section input::placeholder,
+:root.theme-light body .contact-section textarea::placeholder {
+  color: var(--theme-input-placeholder) !important;
+}

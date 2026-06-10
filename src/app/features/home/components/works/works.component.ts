@@ -55,11 +55,10 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
 
   private readonly cardRevealVars = {
     opacity: 0,
-    y: 54,
-    scale: 0.96,
-    duration: 0.72,
-    stagger: 0.1,
-    ease: 'power3.out',
+    x: 40,
+    duration: 0.85,
+    stagger: 0.15,
+    ease: 'back.out(1.2)',
     overwrite: true,
   };
 
@@ -227,11 +226,20 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     if (!this.gsapService.isBrowser) return;
 
     const track = this.showcaseTrack?.nativeElement;
-    const card = track?.querySelectorAll<HTMLElement>('.project-card')[index];
+    const cards = track?.querySelectorAll<HTMLElement>('.project-card');
+    const card = cards?.[index];
     if (!track || !card) return;
 
+    const isRtl = this.i18n.language() === 'ar';
+    let targetLeft = card.offsetLeft - track.offsetLeft;
+
+    if (isRtl) {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      targetLeft = -(maxScroll - targetLeft);
+    }
+
     track.scrollTo({
-      left: card.offsetLeft - track.offsetLeft,
+      left: targetLeft,
       behavior,
     });
   }
@@ -248,12 +256,14 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
       if (!track) return;
 
       const cards = Array.from(track.querySelectorAll<HTMLElement>('.project-card'));
-      const trackCenter = track.scrollLeft + track.clientWidth / 2;
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
       let closestIndex = 0;
       let closestDistance = Number.POSITIVE_INFINITY;
 
       cards.forEach((card, index) => {
-        const cardCenter = card.offsetLeft - track.offsetLeft + card.offsetWidth / 2;
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
         const distance = Math.abs(trackCenter - cardCenter);
         if (distance < closestDistance) {
           closestDistance = distance;
@@ -364,16 +374,40 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     if (!showcase) return;
 
     const q = this.gsapService.gsap.utils.selector(this.elementRef.nativeElement);
+    
+    // Animate section heading with clip-path
+    this.gsapService.gsap.fromTo(q('.works-heading .section-title'),
+      { clipPath: 'inset(100% 0 0 0)', y: 40 },
+      { clipPath: 'inset(0% 0 0 0)', y: 0, duration: 1, ease: 'power4.out',
+        scrollTrigger: {
+          trigger: this.elementRef.nativeElement,
+          start: 'top 80%',
+        }
+      }
+    );
+
     this.gsapService.gsap.from(q('.project-browser, .project-copy > *'), {
       opacity: 0,
-      y: 22,
-      duration: 0.72,
-      stagger: 0.045,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.05,
       ease: 'power3.out',
       scrollTrigger: {
         trigger: showcase,
-        start: 'top 72%',
+        start: 'top 75%',
       },
+    });
+    
+    this.gsapService.gsap.from(q('.filter-btn'), {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: q('.filter-controls'),
+        start: 'top 90%',
+      }
     });
   }
 }

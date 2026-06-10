@@ -1,0 +1,23 @@
+<svg width="1600" height="600" viewBox="0 0 1600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="600" rx="72" fill="#050505"/>
+  <circle cx="800" cy="300" r="390" fill="url(#glow)" opacity="0.75"/>
+  <g transform="translate(92 164) scale(1.6)" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="14">
+    <path d="M 40 65 L 75 100 L 40 135" stroke="#00D7FF"/>
+    <path d="M 100 150 L 150 150" stroke="#00D7FF"/>
+    <g stroke="#F5F5F7">
+      <path d="M 190 50 L 230 50 A 50 50 0 0 1 230 150 L 190 150"/>
+      <path d="M 320 50 L 380 50 M 320 100 L 370 100 M 320 150 L 380 150"/>
+      <path d="M 420 50 L 460 150 L 500 50"/>
+      <circle cx="585" cy="100" r="45"/>
+      <path d="M 670 50 L 710 50 A 25 25 0 0 1 710 100 L 670 100 L 720 150"/>
+      <path d="M 775 150 L 815 50 L 855 150"/>
+    </g>
+  </g>
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 300) rotate(90) scale(390)">
+      <stop stop-color="#10202B"/>
+      <stop offset="0.7" stop-color="#061017"/>
+      <stop offset="1" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

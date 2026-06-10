@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { AuthService } from '../../core/services/auth.service';
 import { GsapService } from '../../core/services/gsap.service';
@@ -8,14 +9,14 @@ import { ThemeService } from '../../core/services/theme.service';
 import { BrandLogoComponent } from '../../shared/components/brand-logo/brand-logo.component';
 
 interface NavItem {
-  href: string;
+  fragment: string;
   labelKey: string;
 }
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, BrandLogoComponent],
+  imports: [CommonModule, RouterLink, BrandLogoComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
@@ -25,13 +26,14 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   activeSection = 'top';
 
   readonly navItems: NavItem[] = [
-    { href: '#work', labelKey: 'nav.work' },
-    { href: '#services', labelKey: 'nav.services' },
-    { href: '#stack', labelKey: 'nav.stack' },
+    { fragment: 'work', labelKey: 'nav.work' },
+    { fragment: 'services', labelKey: 'nav.services' },
+    { fragment: 'stack', labelKey: 'nav.stack' },
   ];
 
   private animationContext?: { revert: () => void };
   private readonly sectionIds = ['top', 'work', 'services', 'stack', 'contact'];
+  private readonly sectionScrollGap = 24;
 
   private readonly scrollHandler = () => {
     this.updateHeaderState();
@@ -114,46 +116,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isMenuOpen = false;
   }
 
-  navigateTo(event: MouseEvent, href: string) {
-    if (!this.gsapService.isBrowser) return;
-
-    event.preventDefault();
-    const targetId = href.replace('#', '');
-    const target = document.getElementById(targetId);
-
-    if (!target) return;
-
-    this.activeSection = targetId;
-    this.closeMenu();
-
-    window.requestAnimationFrame(() => {
-      const navbar = this.elementRef.nativeElement.querySelector<HTMLElement>('.navbar');
-      const topOffset = navbar?.getBoundingClientRect().height ?? 0;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - topOffset;
-
-      if (window.location.hash !== href) {
-        window.history.pushState(null, '', href);
-      }
-
-      this.gsapService.scrollToY(targetTop, {
-        duration: 1.08,
-        ease: 'power4.inOut',
-        onUpdate: () => this.updateActiveSection(),
-        onComplete: () => {
-          this.updateHeaderState();
-          this.updateActiveSection();
-          this.gsapService.refreshScrollTriggers();
-        },
-      });
-
-      window.setTimeout(() => {
-        this.updateHeaderState();
-        this.updateActiveSection();
-        this.gsapService.refreshScrollTriggers();
-      }, 1120);
-    });
-  }
-
   updateHeaderState(scrollY = window.scrollY) {
     this.isHeaderCompact = scrollY >= 80;
   }
@@ -163,7 +125,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const navbar = this.elementRef.nativeElement.querySelector<HTMLElement>('.navbar');
     const topOffset = navbar?.getBoundingClientRect().height ?? 0;
-    const activationLine = scrollY + topOffset + viewportHeight * 0.28;
+    const activationLine = scrollY + topOffset + this.sectionScrollGap + viewportHeight * 0.24;
     let activeSection = 'top';
 
     for (const sectionId of this.sectionIds) {

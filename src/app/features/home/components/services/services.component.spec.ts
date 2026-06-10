@@ -34,7 +34,7 @@ describe('ServicesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should expose six services', () => {
-    expect(component.services.length).toBe(6);
+  it('should expose ten services', () => {
+    expect(component.services.length).toBe(10);
   });
 });

@@ -94,12 +94,42 @@
 }
 
 @media (max-width: 575.98px) {
+  .testimonial-shell {
+    margin-top: 32px;
+  }
+
   .testimonial-card {
-    min-height: 430px;
-    padding: 24px;
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .testimonial-card.active {
+    gap: 28px;
+  }
+
+  .quote-mark {
+    width: 48px;
+    height: 48px;
+    font-size: 3.9rem;
   }
 
   .testimonial-card p {
     font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  .testimonial-author {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .testimonial-card {
+    padding: 18px;
+  }
+
+  .testimonial-author {
+    flex-direction: column;
+    gap: 10px;
   }
 }

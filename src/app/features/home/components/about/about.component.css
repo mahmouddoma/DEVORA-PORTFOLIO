@@ -214,9 +214,17 @@
     grid-template-columns: 1fr;
     gap: 36px;
   }
+
+  .about-content {
+    max-width: 760px;
+  }
 }
 
 @media (max-width: 575.98px) {
+  .about-section {
+    overflow: visible;
+  }
+
   .why-panel {
     gap: 18px;
     padding: 18px;
@@ -230,6 +238,7 @@
   .why-panel p {
     margin-top: 0;
     font-size: 0.88rem;
+    line-height: 1.7;
   }
 
   .proof-grid {
@@ -242,9 +251,35 @@
     padding: 16px;
   }
 
+  .value-index {
+    width: 42px;
+    height: 42px;
+  }
+
+  .value-item h3 {
+    font-size: 1rem;
+  }
+
+  .value-item p,
+  .flow-step strong,
+  .proof-item span {
+    overflow-wrap: anywhere;
+  }
+
   .flow-step {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
+  }
+}
+
+@media (max-width: 374.98px) {
+  .why-panel {
+    padding: 16px;
+  }
+
+  .proof-item {
+    min-height: 72px;
+    padding: 12px;
   }
 }

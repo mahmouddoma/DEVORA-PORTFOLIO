@@ -36,18 +36,27 @@
 }
 
 .board-cell {
+  position: relative;
   display: grid;
-  min-height: 72px;
-  place-items: center;
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
+  place-content: center;
+  min-height: 82px;
+  overflow: hidden;
+  border-radius: 6px;
   background:
-    linear-gradient(135deg, rgba(0, 229, 255, 0.09), transparent),
-    var(--surface);
-  color: var(--text-primary);
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 800;
+    radial-gradient(circle at top right, rgba(0, 229, 255, 0.08), transparent 60%),
+    rgba(14, 15, 23, 0.6);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.8vw, 0.76rem);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.board-cell:hover {
+  color: var(--accent-cyan);
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.4), 0 0 20px rgba(0, 229, 255, 0.2);
 }
 
 .tech-marquee {
@@ -61,12 +70,20 @@
   display: flex;
   flex: 0 0 auto;
   gap: 10px;
-  min-width: max-content;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-set {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
   padding: 8px 0;
 }
 
 .tech-chip {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   min-width: 128px;
   justify-content: center;
@@ -92,12 +109,21 @@
 
   .stack-board {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 720px;
   }
 }
 
 @media (max-width: 767.98px) {
+  .tech-section {
+    overflow: visible;
+  }
+
   .tech-header {
     gap: 12px;
+  }
+
+  .tech-header .section-copy {
+    max-width: 100%;
   }
 
   .tech-chip {
@@ -119,6 +145,8 @@
   .board-cell {
     min-height: 58px;
     font-size: 0.76rem;
+    letter-spacing: 0.4px;
+    text-align: center;
   }
 
   .tech-chip {
@@ -131,5 +159,11 @@
 @media (max-width: 374.98px) {
   .stack-board {
     grid-template-columns: 1fr;
+  }
+
+  .tech-chip {
+    min-width: 96px;
+    padding: 0 10px;
+    font-size: 0.72rem;
   }
 }

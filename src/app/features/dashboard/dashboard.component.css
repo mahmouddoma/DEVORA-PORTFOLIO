@@ -321,6 +321,7 @@
     overflow-x: auto;
     padding-bottom: 4px;
     scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
 
   .dashboard-nav button {
@@ -346,6 +347,10 @@
 }
 
 @media (max-width: 767.98px) {
+  .dashboard-shell {
+    min-height: 100svh;
+  }
+
   .dashboard-sidebar {
     grid-template-columns: 1fr;
     padding: 14px;
@@ -363,6 +368,10 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 14px;
+  }
+
+  .dashboard-header p {
+    line-height: 1.65;
   }
 
   .header-actions {
@@ -400,6 +409,7 @@
   .portfolio-preview {
     min-width: 0;
     min-height: 560px;
+    overflow-x: hidden;
   }
 }
 
@@ -410,6 +420,7 @@
 
   .dashboard-header h1 {
     font-size: clamp(1.8rem, 12vw, 2.5rem);
+    line-height: 1.08;
   }
 
   .header-actions {
@@ -431,6 +442,12 @@
     padding: 10px;
   }
 
+  .field-row input,
+  .field-row textarea,
+  .selected-editor textarea {
+    font-size: 0.88rem;
+  }
+
   .selected-editor,
   .preview-frame {
     margin: 8px;
@@ -449,5 +466,14 @@
 
   .dashboard-main {
     padding: 10px;
+  }
+
+  .dashboard-nav button {
+    min-width: 118px;
+  }
+
+  .header-actions a,
+  .header-actions button {
+    padding: 0 12px;
   }
 }

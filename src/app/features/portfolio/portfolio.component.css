@@ -1,0 +1,70 @@
+:host {
+  display: block;
+}
+
+.app-container {
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+main {
+  min-width: 0;
+}
+
+.site-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #8b5cf6;
+  border-radius: 50%;
+  background: rgba(0, 229, 255, 0.14);
+  box-shadow:
+    0 0 0 18px rgba(0, 229, 255, 0.09),
+    0 0 30px rgba(0, 229, 255, 0.22);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.site-cursor.visible {
+  opacity: 1;
+}
+
+.site-cursor.interactive {
+  width: 28px;
+  height: 28px;
+  border-color: var(--accent-cyan);
+  background: rgba(139, 92, 246, 0.12);
+  box-shadow:
+    0 0 0 14px rgba(139, 92, 246, 0.08),
+    0 0 34px rgba(0, 229, 255, 0.26);
+}
+
+.site-cursor.pressed {
+  width: 16px;
+  height: 16px;
+  box-shadow:
+    0 0 0 10px rgba(0, 229, 255, 0.08),
+    0 0 22px rgba(0, 229, 255, 0.22);
+}
+
+@media (pointer: coarse) {
+  .site-cursor {
+    display: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .app-container {
+    min-height: 100svh;
+  }
+}

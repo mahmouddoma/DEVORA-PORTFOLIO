@@ -8,6 +8,7 @@
 
         <div class="contact-details motion-item">
           <a href="mailto:hello@devora.studio">hello&#64;devora.studio</a>
+          <span data-edit-key="contact.legal">{{ i18n.t('contact.legal') }}</span>
           <span data-edit-key="contact.location">{{ i18n.t('contact.location') }}</span>
         </div>
 
@@ -32,7 +33,29 @@
             <span data-edit-key="contact.service">{{ i18n.t('contact.service') }}</span>
             <select>
               <option selected disabled data-edit-key="contact.chooseService">{{ i18n.t('contact.chooseService') }}</option>
-              <option *ngFor="let service of serviceKeys" [attr.data-edit-key]="service">{{ i18n.t(service) }}</option>
+              @for (service of serviceKeys; track service) {
+                <option [attr.data-edit-key]="service">{{ i18n.t(service) }}</option>
+              }
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span data-edit-key="contact.budget">{{ i18n.t('contact.budget') }}</span>
+            <select>
+              <option selected disabled data-edit-key="contact.chooseBudget">{{ i18n.t('contact.chooseBudget') }}</option>
+              @for (budget of budgetKeys; track budget) {
+                <option [attr.data-edit-key]="budget">{{ i18n.t(budget) }}</option>
+              }
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span data-edit-key="contact.timeline">{{ i18n.t('contact.timeline') }}</span>
+            <select>
+              <option selected disabled data-edit-key="contact.chooseTimeline">{{ i18n.t('contact.chooseTimeline') }}</option>
+              @for (timeline of timelineKeys; track timeline) {
+                <option [attr.data-edit-key]="timeline">{{ i18n.t(timeline) }}</option>
+              }
             </select>
           </label>
 
@@ -42,7 +65,7 @@
           </label>
         </div>
 
-        <button type="submit" class="submit-button">
+        <button type="submit" class="submit-button btn-primary-neon">
           <span data-edit-key="contact.submit">{{ i18n.t('contact.submit') }}</span>
           <svg
             width="18"
