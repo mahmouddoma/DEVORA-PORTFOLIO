@@ -24,8 +24,7 @@
   border-radius: 8px;
   background:
     linear-gradient(135deg, rgba(0, 229, 255, 0.1), transparent 42%),
-    linear-gradient(315deg, rgba(255, 95, 143, 0.1), transparent 48%),
-    var(--surface);
+    linear-gradient(315deg, rgba(255, 95, 143, 0.1), transparent 48%), var(--surface);
 }
 
 .contact-details {
@@ -35,8 +34,8 @@
   font-weight: 800;
 }
 
-.contact-details a,
-.contact-details span {
+.contact-details > a,
+.contact-details > span {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -120,11 +119,10 @@ select,
 textarea {
   width: 100%;
   min-height: 48px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 12px;
   background:
-    linear-gradient(135deg, rgba(0, 229, 255, 0.055), transparent 38%),
-    rgba(255, 255, 255, 0.052);
+    linear-gradient(135deg, rgba(0, 229, 255, 0.045), transparent 38%), rgba(7, 10, 18, 0.92);
   color: var(--text-primary);
   outline: none;
   padding: 12px 13px;
@@ -187,7 +185,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--text-muted);
+  color: rgba(231, 238, 248, 0.46);
 }
 
 input:focus,
@@ -195,8 +193,7 @@ select:focus,
 textarea:focus {
   border-color: var(--accent-cyan);
   background:
-    linear-gradient(135deg, rgba(0, 229, 255, 0.095), transparent 42%),
-    rgba(255, 255, 255, 0.07);
+    linear-gradient(135deg, rgba(0, 229, 255, 0.085), transparent 42%), rgba(10, 16, 28, 0.96);
   box-shadow:
     0 0 0 4px rgba(0, 229, 255, 0.1),
     0 16px 38px rgba(0, 0, 0, 0.18);
@@ -233,8 +230,7 @@ textarea:focus {
 :host-context(.theme-light) .contact-card {
   border-color: rgba(15, 23, 42, 0.14);
   background:
-    linear-gradient(135deg, rgba(248, 251, 253, 0.94), rgba(232, 240, 247, 0.86)),
-    #eef4f8;
+    linear-gradient(135deg, rgba(248, 251, 253, 0.94), rgba(232, 240, 247, 0.86)), #eef4f8;
   box-shadow: 0 26px 80px rgba(15, 23, 42, 0.12);
 }
 
@@ -242,8 +238,7 @@ textarea:focus {
   border-color: rgba(15, 23, 42, 0.14);
   background:
     linear-gradient(135deg, rgba(0, 138, 160, 0.08), transparent 44%),
-    linear-gradient(315deg, rgba(217, 47, 103, 0.07), transparent 50%),
-    rgba(246, 250, 253, 0.9);
+    linear-gradient(315deg, rgba(217, 47, 103, 0.07), transparent 50%), rgba(246, 250, 253, 0.9);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58);
 }
 
@@ -273,8 +268,7 @@ textarea:focus {
 :host-context(.theme-light) textarea {
   border-color: rgba(15, 23, 42, 0.16);
   background:
-    linear-gradient(135deg, rgba(0, 138, 160, 0.035), transparent 38%),
-    rgba(255, 255, 255, 0.92);
+    linear-gradient(135deg, rgba(0, 138, 160, 0.035), transparent 38%), rgba(255, 255, 255, 0.92);
   color: #061426;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
@@ -299,9 +293,7 @@ textarea:focus {
 :host-context(.theme-light) select:focus,
 :host-context(.theme-light) textarea:focus {
   border-color: #008aa0;
-  background:
-    linear-gradient(135deg, rgba(0, 138, 160, 0.07), transparent 42%),
-    #ffffff;
+  background: linear-gradient(135deg, rgba(0, 138, 160, 0.07), transparent 42%), #ffffff;
   box-shadow:
     0 0 0 4px rgba(0, 138, 160, 0.1),
     0 16px 34px rgba(15, 23, 42, 0.1);
@@ -415,8 +407,7 @@ textarea:focus {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
     background:
-      linear-gradient(135deg, rgba(0, 229, 255, 0.04), transparent 42%),
-      rgba(255, 255, 255, 0.035);
+      linear-gradient(135deg, rgba(0, 229, 255, 0.04), transparent 42%), rgba(255, 255, 255, 0.035);
   }
 
   .form-grid {
@@ -482,8 +473,7 @@ textarea:focus {
     border-radius: 12px;
     padding: 11px 14px;
     background:
-      linear-gradient(135deg, rgba(0, 229, 255, 0.07), transparent 42%),
-      rgba(255, 255, 255, 0.07);
+      linear-gradient(135deg, rgba(0, 229, 255, 0.055), transparent 42%), rgba(7, 10, 18, 0.92);
     font-size: 0.86rem;
     line-height: 1.45;
   }
@@ -528,4 +518,62 @@ textarea:focus {
   textarea {
     min-height: 108px;
   }
+}
+
+:host-context(.theme-dark) input,
+:host-context(.theme-dark) select,
+:host-context(.theme-dark) textarea {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.055), transparent 40%), #090d16 !important;
+  color: #f8fbff !important;
+}
+
+:host-context(.theme-dark) input::placeholder,
+:host-context(.theme-dark) textarea::placeholder {
+  color: rgba(231, 238, 248, 0.5) !important;
+}
+
+:host-context(.theme-dark) input:focus,
+:host-context(.theme-dark) select:focus,
+:host-context(.theme-dark) textarea:focus {
+  border-color: var(--accent-cyan) !important;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.09), transparent 42%), #0b1220 !important;
+}
+
+.contact-section .contact-form input,
+.contact-section .contact-form select,
+.contact-section .contact-form textarea {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.055), transparent 40%),
+    #090d16 !important;
+  color: #f8fbff !important;
+}
+
+.contact-section .contact-form input::placeholder,
+.contact-section .contact-form textarea::placeholder {
+  color: rgba(231, 238, 248, 0.5) !important;
+}
+
+.contact-section .contact-form input:focus,
+.contact-section .contact-form select:focus,
+.contact-section .contact-form textarea:focus {
+  border-color: var(--accent-cyan) !important;
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.09), transparent 42%),
+    #0b1220 !important;
+}
+
+:host-context(.theme-light) .contact-section .contact-form input,
+:host-context(.theme-light) .contact-section .contact-form select,
+:host-context(.theme-light) .contact-section .contact-form textarea {
+  border-color: rgba(0, 0, 0, 0.11) !important;
+  background: #f7fafc !important;
+  color: #1d1d1f !important;
+}
+
+:host-context(.theme-light) .contact-section .contact-form input::placeholder,
+:host-context(.theme-light) .contact-section .contact-form textarea::placeholder {
+  color: rgba(6, 20, 38, 0.46) !important;
 }

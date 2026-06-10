@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top" [class.compact]="isHeaderCompact" [class.menu-open]="isMenuOpen">
-  <div class="container navbar-shell">
+  <div class="container navbar-shell p-2">
     <a
       class="navbar-brand"
       [class.active]="activeSection === 'top'"
@@ -43,8 +43,12 @@
         <a
           class="dashboard-link"
           [routerLink]="authService.isAuthenticated() ? ['/dashboard'] : ['/login']"
-          [attr.aria-label]="authService.isAuthenticated() ? 'Open dashboard' : 'Login'"
-          [attr.title]="authService.isAuthenticated() ? 'Open dashboard' : 'Login'"
+          [attr.aria-label]="
+            authService.isAuthenticated() ? i18n.t('nav.openDashboard') : i18n.t('nav.login')
+          "
+          [attr.title]="
+            authService.isAuthenticated() ? i18n.t('nav.openDashboard') : i18n.t('nav.login')
+          "
         >
           {{ authService.isAuthenticated() ? i18n.t('nav.dashboard') : i18n.t('nav.login') }}
         </a>

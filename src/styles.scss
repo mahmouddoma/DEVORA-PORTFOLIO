@@ -101,6 +101,15 @@ a {
   color: inherit;
 }
 
+.bidi-isolate {
+  unicode-bidi: isolate;
+}
+
+.bidi-isolate[dir='ltr'] {
+  direction: ltr;
+  text-align: start;
+}
+
 img,
 video,
 svg,

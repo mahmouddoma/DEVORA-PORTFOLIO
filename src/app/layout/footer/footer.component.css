@@ -127,6 +127,10 @@
   max-width: min(100%, 310px);
 }
 
+.footer-contact-item .bidi-isolate {
+  flex: 0 0 auto;
+}
+
 .footer-contact-item span,
 .social-link span {
   overflow: hidden;

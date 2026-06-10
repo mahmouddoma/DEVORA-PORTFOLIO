@@ -2,9 +2,15 @@
   <div class="container">
     <div class="contact-card glass">
       <div class="contact-info">
-        <span class="section-kicker motion-item" data-edit-key="contact.kicker">{{ i18n.t('contact.kicker') }}</span>
-        <h2 class="section-title motion-item" data-edit-key="contact.title">{{ i18n.t('contact.title') }}</h2>
-        <p class="section-copy motion-item" data-edit-key="contact.body">{{ i18n.t('contact.body') }}</p>
+        <span class="section-kicker motion-item" data-edit-key="contact.kicker">{{
+          i18n.t('contact.kicker')
+        }}</span>
+        <h2 class="section-title motion-item" data-edit-key="contact.title">
+          {{ i18n.t('contact.title') }}
+        </h2>
+        <p class="section-copy motion-item" data-edit-key="contact.body">
+          {{ i18n.t('contact.body') }}
+        </p>
 
         <div class="contact-details motion-item">
           <a href="mailto:Info@devora-sa.com">
@@ -13,19 +19,20 @@
           </a>
           <a href="tel:+966501798566">
             <app-icon name="phone"></app-icon>
-            +966 50 179 8566
+            <span class="bidi-isolate" dir="ltr">+966 50 179 8566</span>
           </a>
           <a href="tel:+966556955662">
             <app-icon name="phone"></app-icon>
-            +966 55 695 5662
+            <span class="bidi-isolate" dir="ltr">+966 55 695 5662</span>
           </a>
           <span data-edit-key="contact.location">
             <app-icon name="location"></app-icon>
             {{ i18n.t('contact.location') }}
           </span>
-          <span data-edit-key="contact.nationalNumber">
+          <span data-edit-key="contact.nationalNumberLabel">
             <app-icon name="briefcase"></app-icon>
-            {{ i18n.t('contact.nationalNumber') }}
+            <span>{{ i18n.t('contact.nationalNumberLabel') }}</span>
+            <span class="bidi-isolate" dir="ltr">7054431932</span>
           </span>
         </div>
 
@@ -37,19 +44,35 @@
       <form class="contact-form" (ngSubmit)="onSubmit()">
         <div class="form-grid">
           <label class="form-field">
-            <span data-edit-key="contact.name"><app-icon name="user"></app-icon>{{ i18n.t('contact.name') }}</span>
-            <input type="text" [placeholder]="i18n.t('contact.namePlaceholder')" data-edit-key="contact.namePlaceholder" />
+            <span data-edit-key="contact.name"
+              ><app-icon name="user"></app-icon>{{ i18n.t('contact.name') }}</span
+            >
+            <input
+              type="text"
+              [placeholder]="i18n.t('contact.namePlaceholder')"
+              data-edit-key="contact.namePlaceholder"
+            />
           </label>
 
           <label class="form-field">
-            <span data-edit-key="contact.email"><app-icon name="mail"></app-icon>{{ i18n.t('contact.email') }}</span>
-            <input type="email" [placeholder]="i18n.t('contact.emailPlaceholder')" data-edit-key="contact.emailPlaceholder" />
+            <span data-edit-key="contact.email"
+              ><app-icon name="mail"></app-icon>{{ i18n.t('contact.email') }}</span
+            >
+            <input
+              type="email"
+              [placeholder]="i18n.t('contact.emailPlaceholder')"
+              data-edit-key="contact.emailPlaceholder"
+            />
           </label>
 
           <label class="form-field full">
-            <span data-edit-key="contact.service"><app-icon name="briefcase"></app-icon>{{ i18n.t('contact.service') }}</span>
+            <span data-edit-key="contact.service"
+              ><app-icon name="briefcase"></app-icon>{{ i18n.t('contact.service') }}</span
+            >
             <select>
-              <option selected disabled data-edit-key="contact.chooseService">{{ i18n.t('contact.chooseService') }}</option>
+              <option selected disabled data-edit-key="contact.chooseService">
+                {{ i18n.t('contact.chooseService') }}
+              </option>
               @for (service of serviceKeys; track service) {
                 <option [attr.data-edit-key]="service">{{ i18n.t(service) }}</option>
               }
@@ -57,9 +80,13 @@
           </label>
 
           <label class="form-field full">
-            <span data-edit-key="contact.timeline"><app-icon name="clock"></app-icon>{{ i18n.t('contact.timeline') }}</span>
+            <span data-edit-key="contact.timeline"
+              ><app-icon name="clock"></app-icon>{{ i18n.t('contact.timeline') }}</span
+            >
             <select>
-              <option selected disabled data-edit-key="contact.chooseTimeline">{{ i18n.t('contact.chooseTimeline') }}</option>
+              <option selected disabled data-edit-key="contact.chooseTimeline">
+                {{ i18n.t('contact.chooseTimeline') }}
+              </option>
               @for (timeline of timelineKeys; track timeline) {
                 <option [attr.data-edit-key]="timeline">{{ i18n.t(timeline) }}</option>
               }
@@ -67,8 +94,14 @@
           </label>
 
           <label class="form-field full">
-            <span data-edit-key="contact.details"><app-icon name="strategy"></app-icon>{{ i18n.t('contact.details') }}</span>
-            <textarea rows="5" [placeholder]="i18n.t('contact.detailsPlaceholder')" data-edit-key="contact.detailsPlaceholder"></textarea>
+            <span data-edit-key="contact.details"
+              ><app-icon name="strategy"></app-icon>{{ i18n.t('contact.details') }}</span
+            >
+            <textarea
+              rows="5"
+              [placeholder]="i18n.t('contact.detailsPlaceholder')"
+              data-edit-key="contact.detailsPlaceholder"
+            ></textarea>
           </label>
         </div>
 
@@ -87,7 +120,9 @@
           </svg>
         </button>
 
-        <p class="success-message" *ngIf="submitted" data-edit-key="contact.success">{{ i18n.t('contact.success') }}</p>
+        <p class="success-message" *ngIf="submitted" data-edit-key="contact.success">
+          {{ i18n.t('contact.success') }}
+        </p>
       </form>
     </div>
   </div>

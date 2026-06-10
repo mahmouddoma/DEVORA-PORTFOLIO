@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../core/services/auth.service';
+import { I18nService } from '../../core/services/i18n.service';
 import { BrandLogoComponent } from '../../shared/components/brand-logo/brand-logo.component';
 
 @Component({
@@ -22,6 +23,7 @@ export class LoginComponent {
 
   constructor(
     public readonly authService: AuthService,
+    public readonly i18n: I18nService,
     private readonly router: Router,
   ) {}
 
@@ -32,7 +34,7 @@ export class LoginComponent {
     try {
       this.authService.requestOtp(this.email);
       this.step = 'otp';
-      this.status = 'OTP generated. In this local build, use the development code shown below.';
+      this.status = this.i18n.t('login.otpGenerated');
     } catch (error) {
       this.error = this.readError(error);
     }
@@ -58,6 +60,18 @@ export class LoginComponent {
   }
 
   private readError(error: unknown) {
-    return error instanceof Error ? error.message : 'Something went wrong.';
+    if (!(error instanceof Error)) {
+      return this.i18n.t('login.genericError');
+    }
+
+    const translationKey = this.errorTranslationKeys[error.message];
+    return translationKey ? this.i18n.t(translationKey) : error.message;
   }
+
+  private readonly errorTranslationKeys: Record<string, string> = {
+    'Enter a valid email address.': 'login.error.invalidEmail',
+    'Request a new OTP for this email.': 'login.error.requestNewOtp',
+    'OTP expired. Request a new code.': 'login.error.expiredOtp',
+    'OTP is incorrect.': 'login.error.incorrectOtp',
+  };
 }

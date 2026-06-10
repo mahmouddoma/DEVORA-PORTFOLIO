@@ -1,59 +1,59 @@
 <main class="login-shell">
-  <a class="login-brand" href="/" aria-label="DEVORA home">
+  <a class="login-brand" href="/" [attr.aria-label]="i18n.t('login.home')">
     <app-brand-logo></app-brand-logo>
   </a>
 
   <section class="login-card" aria-labelledby="loginTitle">
-    <span class="login-kicker">Dashboard Access</span>
-    <h1 id="loginTitle">Login with email OTP</h1>
+    <span class="login-kicker">{{ i18n.t('login.kicker') }}</span>
+    <h1 id="loginTitle">{{ i18n.t('login.title') }}</h1>
     <p>
-      Enter your email, confirm the one-time code, then continue to the DEVORA dashboard.
+      {{ i18n.t('login.body') }}
     </p>
 
     <form *ngIf="step === 'email'; else otpStep" class="login-form" (ngSubmit)="requestOtp()">
       <label>
-        <span>Email address</span>
+        <span>{{ i18n.t('login.email') }}</span>
         <input
           type="email"
           name="email"
           autocomplete="email"
-          placeholder="admin@devora.studio"
+          [placeholder]="i18n.t('login.emailPlaceholder')"
           required
           [(ngModel)]="email"
         />
       </label>
 
-      <button type="submit">Send OTP</button>
+      <button type="submit">{{ i18n.t('login.sendOtp') }}</button>
     </form>
 
     <ng-template #otpStep>
       <form class="login-form" (ngSubmit)="verifyOtp()">
         <label>
-          <span>Email address</span>
+          <span>{{ i18n.t('login.email') }}</span>
           <input type="email" name="email" autocomplete="email" required [(ngModel)]="email" />
         </label>
 
         <label>
-          <span>OTP code</span>
+          <span>{{ i18n.t('login.otp') }}</span>
           <input
             type="text"
             name="otp"
             inputmode="numeric"
             autocomplete="one-time-code"
             maxlength="6"
-            placeholder="000000"
+            [placeholder]="i18n.t('login.otpPlaceholder')"
             required
             [(ngModel)]="otp"
           />
         </label>
 
         <div class="dev-otp" *ngIf="authService.lastDevOtp()">
-          <span>Development OTP</span>
-          <strong>{{ authService.lastDevOtp() }}</strong>
+          <span>{{ i18n.t('login.devOtp') }}</span>
+          <strong class="bidi-isolate" dir="ltr">{{ authService.lastDevOtp() }}</strong>
         </div>
 
-        <button type="submit">Verify and open dashboard</button>
-        <button class="ghost-button" type="button" (click)="useAnotherEmail()">Use another email</button>
+        <button type="submit">{{ i18n.t('login.verify') }}</button>
+        <button class="ghost-button" type="button" (click)="useAnotherEmail()">{{ i18n.t('login.useAnotherEmail') }}</button>
       </form>
     </ng-template>
 
