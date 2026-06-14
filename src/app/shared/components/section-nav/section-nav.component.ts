@@ -156,10 +156,7 @@ export class SectionNavComponent implements OnInit, OnDestroy {
 
   scrollToSection(id: string) {
     this.activeSection = id;
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    this.scrollService.scrollToSection(id, true);
   }
 
   private setupIntersectionObserver() {

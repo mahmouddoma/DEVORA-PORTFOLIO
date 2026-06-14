@@ -64,14 +64,14 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.scrollService.startTracking();
     this.scrollService.scheduleHashScroll();
     window.addEventListener('hashchange', this.hashChangeHandler);
-    window.addEventListener('click', this.anchorClickHandler);
+    window.addEventListener('click', this.anchorClickHandler, { capture: true });
   }
 
   ngOnDestroy() {
     if (!isPlatformBrowser(this.platformId)) return;
 
     window.removeEventListener('hashchange', this.hashChangeHandler);
-    window.removeEventListener('click', this.anchorClickHandler);
+    window.removeEventListener('click', this.anchorClickHandler, true);
     this.scrollService.stopTracking();
   }
 }

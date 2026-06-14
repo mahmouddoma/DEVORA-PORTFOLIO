@@ -3,10 +3,9 @@
     <a
       class="navbar-brand"
       [class.active]="activeSection === 'top'"
-      [routerLink]="['/']"
-      fragment="top"
+      [href]="scrollService.getHomeSectionUrl('top')"
       [attr.aria-label]="i18n.t('nav.home')"
-      (click)="closeMenu()"
+      (click)="navigateToSection($event, 'top')"
     >
       <app-brand-logo></app-brand-logo>
     </a>
@@ -30,9 +29,8 @@
             class="nav-link"
             [class.active]="activeSection === item.fragment"
             [attr.aria-current]="activeSection === item.fragment ? 'page' : null"
-            [routerLink]="['/']"
-            [fragment]="item.fragment"
-            (click)="closeMenu()"
+            [href]="scrollService.getHomeSectionUrl(item.fragment)"
+            (click)="navigateToSection($event, item.fragment)"
           >
             {{ i18n.t(item.labelKey) }}
           </a>
@@ -102,9 +100,8 @@
           class="contact-link"
           [class.active]="activeSection === 'contact'"
           [attr.aria-current]="activeSection === 'contact' ? 'page' : null"
-          [routerLink]="['/']"
-          fragment="contact"
-          (click)="closeMenu()"
+          [href]="scrollService.getHomeSectionUrl('contact')"
+          (click)="navigateToSection($event, 'contact')"
         >
           {{ i18n.t('nav.contact') }}
         </a>

@@ -10,9 +10,11 @@ export class ScrollService {
   readonly isPastViewport = signal(false);
 
   private readonly hashScrollDelays = [0, 80, 260];
+  private readonly sectionScrollGap = 24;
   private hashScrollTimers: number[] = [];
   private previousScrollY = 0;
   private tracking = false;
+  private activeScrollAnimation?: { kill: () => void };
   private readonly scrollHandler = () => this.updateScrollState();
 
   constructor(
@@ -49,7 +51,8 @@ export class ScrollService {
     if (!this.isBrowser()) return;
 
     this.hashScrollTimers.forEach((timer) => window.clearTimeout(timer));
-    this.hashScrollTimers = this.hashScrollDelays.map((delay) =>
+    const delays = animate ? [0] : this.hashScrollDelays;
+    this.hashScrollTimers = delays.map((delay) =>
       window.setTimeout(() => {
         this.scrollToCurrentHash(animate);
         this.gsapService.refreshScrollTriggers();
@@ -71,8 +74,18 @@ export class ScrollService {
     if (!target) return false;
 
     event.preventDefault();
+    return this.scrollToSection(targetId, true);
+  }
+
+  scrollToSection(sectionId: string, animate = true) {
+    if (!this.isBrowser()) return false;
+
+    const targetId = sectionId || 'top';
+    const target = this.document.getElementById(targetId);
+    if (!target) return false;
+
     this.pushHash(targetId);
-    this.scrollToElement(target, true);
+    this.scrollToElement(target, animate);
     return true;
   }
 
@@ -82,41 +95,37 @@ export class ScrollService {
     const targetId = decodeURIComponent(window.location.hash.slice(1));
     if (!targetId) return;
 
-    const target = this.document.getElementById(targetId);
-    if (!target) return;
-
-    this.scrollToElement(target, animate);
+    this.scrollToSection(targetId, animate);
   }
 
   scrollToTop() {
     if (!this.isBrowser()) return;
 
+    if (this.scrollToSection('top', true)) return;
+
     this.pushHash('top');
-    const scroller = this.document.querySelector('.snap-container') || window;
-    scroller.scrollTo({ top: 0, behavior: 'smooth' });
+    this.scrollToPosition(
+      this.document.querySelector<HTMLElement>('.snap-container') ?? window,
+      0,
+      true,
+    );
   }
 
   scrollToElement(target: HTMLElement, animate: boolean) {
     if (!this.isBrowser()) return;
 
-    const scroller = this.document.querySelector('.snap-container');
+    const scroller = this.document.querySelector<HTMLElement>('.snap-container');
     const navbar = this.document.querySelector<HTMLElement>('app-navbar .navbar');
     const topOffset = navbar?.getBoundingClientRect().height ?? 0;
-    
-    let targetTop = 0;
+
     if (scroller) {
-      targetTop = target.offsetTop - topOffset;
-      scroller.scrollTo({
-        top: Math.max(targetTop, 0),
-        behavior: animate ? 'smooth' : 'auto',
-      });
-    } else {
-      targetTop = target.getBoundingClientRect().top + window.scrollY - topOffset;
-      window.scrollTo({
-        top: Math.max(targetTop, 0),
-        behavior: animate ? 'smooth' : 'auto',
-      });
+      this.scrollToPosition(scroller, target.offsetTop, animate);
+      return;
     }
+
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - topOffset - this.sectionScrollGap;
+    this.scrollToPosition(window, targetTop, animate);
   }
 
   getHomeSectionUrl(sectionId: string) {
@@ -133,6 +142,35 @@ export class ScrollService {
     this.previousScrollY = nextScrollY;
     this.scrollY.set(nextScrollY);
     this.isPastViewport.set(nextScrollY >= window.innerHeight);
+  }
+
+  private scrollToPosition(scroller: HTMLElement | Window, top: number, animate: boolean) {
+    const nextTop = Math.max(top, 0);
+    this.activeScrollAnimation?.kill();
+    this.activeScrollAnimation = undefined;
+
+    if (!animate) {
+      scroller.scrollTo({ top: nextTop, behavior: 'auto' });
+      this.updateScrollState();
+      return;
+    }
+
+    this.activeScrollAnimation = this.gsapService.gsap.to(scroller, {
+      duration: 0.9,
+      ease: 'power3.inOut',
+      overwrite: true,
+      scrollTo: {
+        y: nextTop,
+        autoKill: false,
+      },
+      onComplete: () => {
+        this.activeScrollAnimation = undefined;
+        this.updateScrollState();
+      },
+      onInterrupt: () => {
+        this.activeScrollAnimation = undefined;
+      },
+    });
   }
 
   private shouldHandleClick(event: MouseEvent) {

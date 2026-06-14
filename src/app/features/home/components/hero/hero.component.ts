@@ -41,7 +41,6 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private activeTourSnapType = '';
   private activeTourScrollBehavior = '';
   private tourFrame = 0;
-  private tourPauseTimer = 0;
 
   ngAfterViewInit() {
     this.animationContext = this.gsapService.context(this.elementRef.nativeElement, () => {
@@ -184,8 +183,6 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     const maxScrollTop = this.getMaxScrollTop(scroller);
     if (maxScrollTop <= 0) return;
 
-    const heroTop = this.getHeroTop(scroller);
-
     this.isPageTourActive.set(true);
     this.activeTourScroller = scroller;
     this.activeTourSnapType = scroller.style.scrollSnapType;
@@ -194,16 +191,11 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     scroller.style.scrollBehavior = 'auto';
 
     this.ngZone.runOutsideAngular(() => {
-      const downDuration = this.getTourDuration(Math.abs(maxScrollTop - scroller.scrollTop), 'down');
-      const upDuration = this.getTourDuration(Math.abs(maxScrollTop - heroTop), 'up');
+      const downDuration = this.getTourDuration(Math.abs(maxScrollTop - scroller.scrollTop));
 
       this.animateScroller(scroller, maxScrollTop, downDuration, () => {
-        this.tourPauseTimer = window.setTimeout(() => {
-          this.animateScroller(scroller, heroTop, upDuration, () => {
-            this.restoreScrollSnap();
-            this.ngZone.run(() => this.isPageTourActive.set(false));
-          });
-        }, 80);
+        this.restoreScrollSnap();
+        this.ngZone.run(() => this.isPageTourActive.set(false));
       });
     });
   }
@@ -211,10 +203,6 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     if (this.isBrowser() && this.tourFrame) {
       window.cancelAnimationFrame(this.tourFrame);
-    }
-
-    if (this.isBrowser() && this.tourPauseTimer) {
-      window.clearTimeout(this.tourPauseTimer);
     }
 
     this.restoreScrollSnap();
@@ -261,15 +249,10 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     return Math.max(scroller.scrollHeight - scroller.clientHeight, 0);
   }
 
-  private getHeroTop(scroller: HTMLElement) {
-    return Math.max(this.elementRef.nativeElement.offsetTop - scroller.offsetTop, 0);
-  }
-
-  private getTourDuration(distance: number, direction: 'down' | 'up') {
-    const speedFactor = direction === 'down' ? 0.32 : 0.24;
-    const minDuration = direction === 'down' ? 720 : 560;
-    const maxDuration = direction === 'down' ? 1900 : 1450;
-
+  private getTourDuration(distance: number) {
+    const speedFactor = 0.32;
+    const minDuration = 720;
+    const maxDuration = 1900;
     return Math.min(Math.max(distance * speedFactor, minDuration), maxDuration);
   }
 

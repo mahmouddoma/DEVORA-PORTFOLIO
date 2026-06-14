@@ -76,7 +76,7 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
       gsap.to(q('.contact-track span'), {
         xPercent: 110,
         repeat: -1,
-        duration: 4.2,
+        duration: 6.8,
         ease: 'none',
       });
     });

@@ -10,7 +10,6 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { GsapService } from '../../core/services/gsap.service';
 import { ScrollService } from '../../core/services/scroll.service';
 import { ContactComponent } from '../home/components/contact/contact.component';
 import { CybersecurityComponent } from '../home/components/cybersecurity/cybersecurity.component';
@@ -43,10 +42,9 @@ import { BackToTopComponent } from '../../shared/components/back-to-top/back-to-
 export class PortfolioComponent implements AfterViewInit, OnDestroy {
   @ViewChild('siteCursor') private readonly siteCursor?: ElementRef<HTMLElement>;
 
-  private readonly hashScrollDelays = [0, 80, 260, 700, 1400, 2400];
-  private readonly sectionScrollGap = 24;
-  private hashScrollTimers: number[] = [];
   private readonly hashChangeHandler = () => this.scheduleHashScroll(true);
+  private readonly anchorClickHandler = (event: MouseEvent) =>
+    this.scrollService.handleSamePageAnchorClick(event);
   private readonly pointerMoveHandler = (event: PointerEvent) => this.onPointerMove(event);
   private readonly pointerLeaveHandler = () => this.onPointerLeave();
   private readonly pointerDownHandler = () =>
@@ -56,7 +54,6 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: object,
-    private readonly gsapService: GsapService,
     private readonly scrollService: ScrollService,
     private readonly ngZone: NgZone,
   ) {}
@@ -67,6 +64,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
     this.scheduleHashScroll();
     this.scrollService.startTracking();
     window.addEventListener('hashchange', this.hashChangeHandler);
+    window.addEventListener('click', this.anchorClickHandler, { capture: true });
     this.setupSiteCursor();
   }
 
@@ -74,11 +72,11 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
     if (!isPlatformBrowser(this.platformId)) return;
 
     window.removeEventListener('hashchange', this.hashChangeHandler);
+    window.removeEventListener('click', this.anchorClickHandler, true);
     window.removeEventListener('pointermove', this.pointerMoveHandler);
     window.removeEventListener('pointerleave', this.pointerLeaveHandler);
     window.removeEventListener('pointerdown', this.pointerDownHandler);
     window.removeEventListener('pointerup', this.pointerUpHandler);
-    this.hashScrollTimers.forEach((timer) => window.clearTimeout(timer));
     this.scrollService.stopTracking();
   }
 
@@ -121,35 +119,6 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
   }
 
   private scheduleHashScroll(animate = false) {
-    this.hashScrollTimers.forEach((timer) => window.clearTimeout(timer));
-    this.hashScrollTimers = this.hashScrollDelays.map((delay, index) =>
-      window.setTimeout(() => {
-        this.scrollToCurrentHash(animate && index === 0);
-        this.gsapService.refreshScrollTriggers();
-      }, delay),
-    );
-  }
-
-  private scrollToCurrentHash(animateFirstScroll: boolean) {
-    const id = decodeURIComponent(window.location.hash.slice(1));
-    if (!id) return;
-
-    const target = document.getElementById(id);
-    if (!target) return;
-
-    const navbar = document.querySelector<HTMLElement>('app-navbar .navbar');
-    const topOffset = navbar?.getBoundingClientRect().height ?? 0;
-    const targetViewportTop = topOffset + this.sectionScrollGap;
-    const targetTop = target.getBoundingClientRect().top + window.scrollY - targetViewportTop;
-    const distanceFromExpectedTop = Math.abs(
-      target.getBoundingClientRect().top - targetViewportTop,
-    );
-
-    if (distanceFromExpectedTop <= 8) return;
-
-    window.scrollTo({
-      top: Math.max(targetTop, 0),
-      behavior: animateFirstScroll ? 'smooth' : 'auto',
-    });
+    this.scrollService.scheduleHashScroll(animate);
   }
 }

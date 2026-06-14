@@ -1795,3 +1795,157 @@ body app-project-detail {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(232, 240, 247, 0.68)) !important;
 }
+
+/*
+  Unified section canvas.
+  Keeps every public section on the same background as the DEVORA hero.
+*/
+:root[data-theme='light'],
+:root.theme-light {
+  --site-section-bg:
+    radial-gradient(circle at 74% 17%, rgba(0, 102, 204, 0.13), transparent 30%),
+    radial-gradient(circle at 28% 72%, rgba(0, 138, 160, 0.08), transparent 26%),
+    linear-gradient(135deg, var(--light-sky), #f7fbff 56%, #eaf3fb);
+  --site-section-surface:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(226, 239, 250, 0.66));
+}
+
+:root[data-theme='light'] body,
+:root.theme-light body,
+:root[data-theme='light'] body .app-container,
+:root.theme-light body .app-container,
+:root[data-theme='light'] body .home-shell,
+:root.theme-light body .home-shell,
+:root[data-theme='light'] body .home-content,
+:root.theme-light body .home-content,
+:root[data-theme='light'] body main,
+:root.theme-light body main {
+  background: var(--site-section-bg) !important;
+  background-attachment: fixed !important;
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='light'] body .hero-section,
+:root.theme-light body .hero-section,
+:root[data-theme='light'] body .works-section,
+:root.theme-light body .works-section,
+:root[data-theme='light'] body .services-section,
+:root.theme-light body .services-section,
+:root[data-theme='light'] body .cyber-section,
+:root.theme-light body .cyber-section,
+:root[data-theme='light'] body .process-section,
+:root.theme-light body .process-section,
+:root[data-theme='light'] body .about-section,
+:root.theme-light body .about-section,
+:root[data-theme='light'] body .testimonials-section,
+:root.theme-light body .testimonials-section,
+:root[data-theme='light'] body .manifesto-section,
+:root.theme-light body .manifesto-section,
+:root[data-theme='light'] body .tech-section,
+:root.theme-light body .tech-section,
+:root[data-theme='light'] body .contact-section,
+:root.theme-light body .contact-section,
+:root[data-theme='light'] body .footer-section,
+:root.theme-light body .footer-section {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='light'] body app-hero .hero-section.hero-section,
+:root.theme-light body app-hero .hero-section.hero-section,
+:root[data-theme='light'] body app-works .works-section.works-section,
+:root.theme-light body app-works .works-section.works-section,
+:root[data-theme='light'] body app-services .services-section.services-section,
+:root.theme-light body app-services .services-section.services-section,
+:root[data-theme='light'] body app-cybersecurity .cyber-section.cyber-section,
+:root.theme-light body app-cybersecurity .cyber-section.cyber-section,
+:root[data-theme='light'] body app-process .process-section.process-section,
+:root.theme-light body app-process .process-section.process-section,
+:root[data-theme='light'] body app-tech-stack .tech-section.tech-section,
+:root.theme-light body app-tech-stack .tech-section.tech-section,
+:root[data-theme='light'] body app-contact .contact-section.contact-section,
+:root.theme-light body app-contact .contact-section.contact-section,
+:root[data-theme='light'] body app-footer .footer-section.footer-section,
+:root.theme-light body app-footer .footer-section.footer-section {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='light'] body .glass,
+:root.theme-light body .glass,
+:root[data-theme='light'] body .hero-metric,
+:root.theme-light body .hero-metric,
+:root[data-theme='light'] body .works-section .project-card,
+:root.theme-light body .works-section .project-card,
+:root[data-theme='light'] body .works-section .filter-controls,
+:root.theme-light body .works-section .filter-controls,
+:root[data-theme='light'] body .services-section .service-card,
+:root.theme-light body .services-section .service-card,
+:root[data-theme='light'] body .services-section .services-offer,
+:root.theme-light body .services-section .services-offer,
+:root[data-theme='light'] body .services-section .delivery-strip,
+:root.theme-light body .services-section .delivery-strip,
+:root[data-theme='light'] body .services-section .delivery-step,
+:root.theme-light body .services-section .delivery-step,
+:root[data-theme='light'] body .cyber-section .cyber-panel,
+:root.theme-light body .cyber-section .cyber-panel,
+:root[data-theme='light'] body .cyber-section .cyber-card,
+:root.theme-light body .cyber-section .cyber-card,
+:root[data-theme='light'] body .cyber-section .cyber-deliverables,
+:root.theme-light body .cyber-section .cyber-deliverables,
+:root[data-theme='light'] body .tech-section .stack-board,
+:root.theme-light body .tech-section .stack-board,
+:root[data-theme='light'] body .tech-section .board-cell,
+:root.theme-light body .tech-section .board-cell,
+:root[data-theme='light'] body .tech-section .tech-chip,
+:root.theme-light body .tech-section .tech-chip,
+:root[data-theme='light'] body .contact-section .contact-card,
+:root.theme-light body .contact-section .contact-card,
+:root[data-theme='light'] body .contact-section .contact-info,
+:root.theme-light body .contact-section .contact-info,
+:root[data-theme='light'] body .footer-shell,
+:root.theme-light body .footer-shell {
+  border-color: var(--theme-border) !important;
+  background: var(--site-section-surface) !important;
+  color: var(--theme-text) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+:root[data-theme='light'] body app-contact .contact-card.contact-card,
+:root.theme-light body app-contact .contact-card.contact-card,
+:root[data-theme='light'] body app-contact .contact-info.contact-info,
+:root.theme-light body app-contact .contact-info.contact-info,
+:root[data-theme='light'] body app-cybersecurity .cyber-panel.cyber-panel,
+:root.theme-light body app-cybersecurity .cyber-panel.cyber-panel,
+:root[data-theme='light'] body app-cybersecurity .cyber-card.cyber-card,
+:root.theme-light body app-cybersecurity .cyber-card.cyber-card,
+:root[data-theme='light'] body app-cybersecurity .cyber-deliverables.cyber-deliverables,
+:root.theme-light body app-cybersecurity .cyber-deliverables.cyber-deliverables,
+:root[data-theme='light'] body app-footer .footer-shell.footer-shell,
+:root.theme-light body app-footer .footer-shell.footer-shell {
+  border-color: var(--theme-border) !important;
+  background: var(--site-section-surface) !important;
+  color: var(--theme-text) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+:root[data-theme='dark'] body .hero-section,
+:root[data-theme='dark'] body .works-section,
+:root[data-theme='dark'] body .services-section,
+:root[data-theme='dark'] body .cyber-section,
+:root[data-theme='dark'] body .process-section,
+:root[data-theme='dark'] body .about-section,
+:root[data-theme='dark'] body .testimonials-section,
+:root[data-theme='dark'] body .manifesto-section,
+:root[data-theme='dark'] body .tech-section,
+:root[data-theme='dark'] body .contact-section,
+:root[data-theme='dark'] body .footer-section {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--theme-text) !important;
+}

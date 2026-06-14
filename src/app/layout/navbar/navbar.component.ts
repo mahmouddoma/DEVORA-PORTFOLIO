@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { GsapService } from '../../core/services/gsap.service';
 import { I18nService } from '../../core/services/i18n.service';
+import { ScrollService } from '../../core/services/scroll.service';
 import { ThemeService } from '../../core/services/theme.service';
 import { BrandLogoComponent } from '../../shared/components/brand-logo/brand-logo.component';
 
@@ -53,6 +54,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     public readonly themeService: ThemeService,
     public readonly i18n: I18nService,
     public readonly authService: AuthService,
+    public readonly scrollService: ScrollService,
   ) {}
 
   ngOnInit() {
@@ -115,6 +117,14 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   closeMenu() {
     this.isMenuOpen = false;
+  }
+
+  navigateToSection(event: MouseEvent, sectionId: string) {
+    this.closeMenu();
+
+    if (this.scrollService.scrollToSection(sectionId, true)) {
+      event.preventDefault();
+    }
   }
 
   updateHeaderState(scrollY = window.scrollY) {

@@ -56,7 +56,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'hero.metric3.value': '99.9%',
     'hero.metric3.label': 'Uptime',
     'hero.scroll': 'Scroll',
-    'hero.scrollTour': 'Preview the full page and return to hero',
+    'hero.scrollTour': 'Scroll down the page',
 
     'about.kicker': 'Why DEVORA',
     'about.title': 'A focused team for serious digital launches',
@@ -423,7 +423,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'hero.metric3.value': '99.9%',
     'hero.metric3.label': 'جاهزية',
     'hero.scroll': 'مرر',
-    'hero.scrollTour': 'معاينة الصفحة كاملة ثم العودة إلى البداية',
+    'hero.scrollTour': 'التمرير إلى أسفل الصفحة',
 
     'about.kicker': 'لماذا DEVORA',
     'about.title': 'فريق مركز لإطلاق منتجات رقمية جادة',
