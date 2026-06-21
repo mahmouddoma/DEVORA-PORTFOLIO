@@ -11,6 +11,15 @@ main {
   min-width: 0;
 }
 
+main > * {
+  display: block;
+  min-width: 0;
+}
+
+.app-container > app-footer {
+  display: block;
+}
+
 .site-cursor {
   position: fixed;
   top: 0;
@@ -66,5 +75,10 @@ main {
 @media (max-width: 575.98px) {
   .app-container {
     min-height: 100svh;
+  }
+
+  main > * + *,
+  .app-container > app-footer {
+    margin-top: clamp(28px, 9vw, 44px);
   }
 }
