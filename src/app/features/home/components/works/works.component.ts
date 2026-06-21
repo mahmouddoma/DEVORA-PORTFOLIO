@@ -151,6 +151,14 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     return this.projects.filter((project) => project.filter === this.activeFilter);
   }
 
+  get hasMultipleProjects() {
+    return this.filteredProjects.length > 1;
+  }
+
+  get projectNavStatus() {
+    return `${this.activeProjectIndex + 1} / ${this.filteredProjects.length}`;
+  }
+
   ngAfterViewInit() {
     this.discoverScreenshotPreviews();
 
@@ -238,6 +246,14 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  showPreviousProject() {
+    this.navigateProjectsBy(-1);
+  }
+
+  showNextProject() {
+    this.navigateProjectsBy(1);
+  }
+
   onShowcaseScroll() {
     if (!this.gsapService.isBrowser || !this.isMobileShowcase()) return;
 
@@ -315,6 +331,14 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
 
   trackScreenshot(_: number, screenshot: string) {
     return screenshot;
+  }
+
+  private navigateProjectsBy(offset: number) {
+    const projectCount = this.filteredProjects.length;
+    if (projectCount <= 1) return;
+
+    const nextIndex = (this.activeProjectIndex + offset + projectCount) % projectCount;
+    this.scrollToProject(nextIndex);
   }
 
   private getProjectScrollLeft(track: HTMLElement, card: HTMLElement) {

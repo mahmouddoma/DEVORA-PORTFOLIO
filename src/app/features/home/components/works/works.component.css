@@ -576,6 +576,36 @@
   transform: translateX(var(--hover-translate));
 }
 
+.work-mobile-controls {
+  display: none;
+}
+
+.work-nav-btn {
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent-cyan);
+}
+
+.work-nav-btn app-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.work-nav-prev app-icon {
+  transform: rotate(180deg);
+}
+
+.work-nav-status {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-align: center;
+}
 .work-dots {
   display: flex;
   align-items: center;
@@ -622,8 +652,9 @@
     max-width: 520px;
     margin-top: 38px;
     padding: 12px 0 34px;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: visible;
+    touch-action: pan-y;
     scroll-behavior: smooth;
     scroll-padding-inline: 0;
     scroll-snap-type: x mandatory;
@@ -692,6 +723,21 @@
     animation-name: screenshot-pan;
     animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
     transition: none;
+  }
+
+  .work-mobile-controls {
+    display: grid;
+    grid-template-columns: 44px minmax(68px, auto) 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: min(100%, 520px);
+    margin: 12px auto 0;
+    direction: ltr;
+  }
+
+  .work-dots {
+    display: none;
   }
 }
 
@@ -786,13 +832,11 @@
   .project-showcase {
     max-width: 100%;
     margin-top: 28px;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
   }
 
   .project-card {
     width: 100%;
-    min-width: 100%;
-    max-width: 100%;
   }
 
   .project-info,
