@@ -615,8 +615,9 @@
 
   .project-showcase {
     display: flex;
-    direction: inherit;
+    direction: ltr;
     gap: 14px;
+    overscroll-behavior-inline: contain;
     width: 100%;
     max-width: 520px;
     margin-top: 38px;
@@ -631,14 +632,15 @@
   }
 
   :host-context([dir='rtl']) .project-showcase {
-    direction: inherit;
+    direction: ltr;
   }
 
   .project-card {
     display: block;
     flex: 0 0 100%;
     width: 100%;
-    min-width: 0;
+    min-width: 100%;
+    max-width: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
@@ -789,6 +791,8 @@
 
   .project-card {
     width: 100%;
+    min-width: 100%;
+    max-width: 100%;
   }
 
   .project-info,

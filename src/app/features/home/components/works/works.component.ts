@@ -134,6 +134,7 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
 
   private animationContext?: { revert: () => void };
   private scrollSyncTimer?: number;
+  private readonly scrollSnapTolerance = 2;
 
   constructor(
     private readonly gsapService: GsapService,
@@ -231,22 +232,14 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
     const card = cards?.[index];
     if (!track || !card) return;
 
-    const isRtl = this.i18n.language() === 'ar';
-    let targetLeft = card.offsetLeft - track.offsetLeft;
-
-    if (isRtl) {
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      targetLeft = -(maxScroll - targetLeft);
-    }
-
     track.scrollTo({
-      left: targetLeft,
+      left: this.getProjectScrollLeft(track, card),
       behavior,
     });
   }
 
   onShowcaseScroll() {
-    if (!this.gsapService.isBrowser) return;
+    if (!this.gsapService.isBrowser || !this.isMobileShowcase()) return;
 
     if (this.scrollSyncTimer) {
       window.clearTimeout(this.scrollSyncTimer);
@@ -273,6 +266,15 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
       });
 
       this.activeProjectIndex = closestIndex;
+      this.changeDetectorRef.detectChanges();
+
+      const closestCard = cards[closestIndex];
+      if (!closestCard) return;
+
+      const targetLeft = this.getProjectScrollLeft(track, closestCard);
+      if (Math.abs(track.scrollLeft - targetLeft) > this.scrollSnapTolerance) {
+        track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+      }
     }, 80);
   }
 
@@ -313,6 +315,25 @@ export class WorksComponent implements AfterViewInit, OnDestroy {
 
   trackScreenshot(_: number, screenshot: string) {
     return screenshot;
+  }
+
+  private getProjectScrollLeft(track: HTMLElement, card: HTMLElement) {
+    const targetLeft = card.offsetLeft - track.offsetLeft;
+
+    if (!this.shouldUseRtlShowcaseScroll(track)) {
+      return targetLeft;
+    }
+
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    return -(maxScroll - targetLeft);
+  }
+
+  private shouldUseRtlShowcaseScroll(track: HTMLElement) {
+    return (
+      this.i18n.language() === 'ar' &&
+      !this.isMobileShowcase() &&
+      getComputedStyle(track).direction === 'rtl'
+    );
   }
 
   private discoverScreenshotPreviews() {
