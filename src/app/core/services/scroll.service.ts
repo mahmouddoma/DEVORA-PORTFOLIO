@@ -11,11 +11,17 @@ export class ScrollService {
 
   private readonly hashScrollDelays = [0, 80, 260];
   private readonly sectionScrollGap = 24;
+  private readonly scrollRestoreDelays = [0, 80, 260];
   private hashScrollTimers: number[] = [];
+  private scrollRestoreTimers: number[] = [];
   private previousScrollY = 0;
   private tracking = false;
+  private restoredScrollOnLoad = false;
+  private pendingPersistScrollY = 0;
+  private persistScrollFrame?: number;
   private activeScrollAnimation?: { kill: () => void };
   private readonly scrollHandler = () => this.updateScrollState();
+  private readonly pageHideHandler = () => this.persistCurrentScrollPosition();
 
   constructor(
     @Inject(PLATFORM_ID) private readonly platformId: object,
@@ -28,11 +34,16 @@ export class ScrollService {
     if (!this.isBrowser() || this.tracking) return;
 
     this.tracking = true;
+    window.history.scrollRestoration = 'manual';
+
+    const scroller = this.getScroller();
+    this.restoreScrollPositionAfterReload(scroller);
     this.updateScrollState();
+
     this.ngZone.runOutsideAngular(() => {
-      const scroller = this.document.querySelector('.snap-container') || window;
       scroller.addEventListener('scroll', this.scrollHandler, { passive: true });
       window.addEventListener('resize', this.scrollHandler, { passive: true });
+      window.addEventListener('pagehide', this.pageHideHandler, { passive: true });
     });
   }
 
@@ -40,15 +51,31 @@ export class ScrollService {
     if (!this.isBrowser() || !this.tracking) return;
 
     this.tracking = false;
-    const scroller = this.document.querySelector('.snap-container') || window;
+    this.persistCurrentScrollPosition();
+
+    const scroller = this.getScroller();
     scroller.removeEventListener('scroll', this.scrollHandler);
     window.removeEventListener('resize', this.scrollHandler);
+    window.removeEventListener('pagehide', this.pageHideHandler);
     this.hashScrollTimers.forEach((timer) => window.clearTimeout(timer));
+    this.scrollRestoreTimers.forEach((timer) => window.clearTimeout(timer));
     this.hashScrollTimers = [];
+    this.scrollRestoreTimers = [];
+
+    if (this.persistScrollFrame !== undefined) {
+      window.cancelAnimationFrame(this.persistScrollFrame);
+      this.persistScrollFrame = undefined;
+    }
   }
 
   scheduleHashScroll(animate = false) {
     if (!this.isBrowser()) return;
+
+    if (!animate && this.restoredScrollOnLoad) {
+      this.restoredScrollOnLoad = false;
+      this.gsapService.refreshScrollTriggers();
+      return;
+    }
 
     this.hashScrollTimers.forEach((timer) => window.clearTimeout(timer));
     const delays = animate ? [0] : this.hashScrollDelays;
@@ -104,11 +131,7 @@ export class ScrollService {
     if (this.scrollToSection('top', true)) return;
 
     this.pushHash('top');
-    this.scrollToPosition(
-      this.document.querySelector<HTMLElement>('.snap-container') ?? window,
-      0,
-      true,
-    );
+    this.scrollToPosition(this.getScroller(), 0, true);
   }
 
   scrollToElement(target: HTMLElement, animate: boolean) {
@@ -135,13 +158,13 @@ export class ScrollService {
   private updateScrollState() {
     if (!this.isBrowser()) return;
 
-    const scroller = this.document.querySelector('.snap-container');
-    const nextScrollY = scroller ? scroller.scrollTop : window.scrollY;
-    
+    const nextScrollY = this.getCurrentScrollTop();
+
     this.direction.set(nextScrollY >= this.previousScrollY ? 'down' : 'up');
     this.previousScrollY = nextScrollY;
     this.scrollY.set(nextScrollY);
     this.isPastViewport.set(nextScrollY >= window.innerHeight);
+    this.scheduleScrollPositionPersist(nextScrollY);
   }
 
   private scrollToPosition(scroller: HTMLElement | Window, top: number, animate: boolean) {
@@ -171,6 +194,85 @@ export class ScrollService {
         this.activeScrollAnimation = undefined;
       },
     });
+  }
+
+  private restoreScrollPositionAfterReload(scroller: HTMLElement | Window) {
+    if (!this.isReloadNavigation()) return;
+
+    const savedScrollTop = this.readStoredScrollTop();
+    if (savedScrollTop === null) return;
+
+    this.restoredScrollOnLoad = true;
+    this.scrollRestoreTimers.forEach((timer) => window.clearTimeout(timer));
+    this.scrollRestoreTimers = this.scrollRestoreDelays.map((delay) =>
+      window.setTimeout(() => {
+        this.scrollToPosition(scroller, savedScrollTop, false);
+        this.gsapService.refreshScrollTriggers();
+      }, delay),
+    );
+  }
+
+  private scheduleScrollPositionPersist(scrollTop: number) {
+    this.pendingPersistScrollY = Math.max(scrollTop, 0);
+
+    if (this.persistScrollFrame !== undefined) return;
+
+    this.persistScrollFrame = window.requestAnimationFrame(() => {
+      this.persistScrollFrame = undefined;
+      this.persistScrollPosition(this.pendingPersistScrollY);
+    });
+  }
+
+  private persistCurrentScrollPosition() {
+    if (!this.isBrowser()) return;
+
+    this.persistScrollPosition(this.getCurrentScrollTop());
+  }
+
+  private persistScrollPosition(scrollTop: number) {
+    if (!this.isBrowser()) return;
+
+    try {
+      window.sessionStorage.setItem(this.getScrollStorageKey(), String(Math.max(scrollTop, 0)));
+    } catch {
+      // Ignore storage restrictions; scroll restoration is an enhancement.
+    }
+  }
+
+  private readStoredScrollTop() {
+    let storedValue: string | null;
+
+    try {
+      storedValue = window.sessionStorage.getItem(this.getScrollStorageKey());
+    } catch {
+      return null;
+    }
+
+    if (storedValue === null) return null;
+
+    const scrollTop = Number(storedValue);
+    return Number.isFinite(scrollTop) ? scrollTop : null;
+  }
+
+  private getCurrentScrollTop() {
+    const scroller = this.document.querySelector<HTMLElement>('.snap-container');
+    return scroller ? scroller.scrollTop : window.scrollY;
+  }
+
+  private getScroller(): HTMLElement | Window {
+    return this.document.querySelector<HTMLElement>('.snap-container') ?? window;
+  }
+
+  private getScrollStorageKey() {
+    return `devora-scroll:${window.location.pathname}${window.location.search}`;
+  }
+
+  private isReloadNavigation() {
+    const [navigationEntry] = performance.getEntriesByType(
+      'navigation',
+    ) as PerformanceNavigationTiming[];
+
+    return navigationEntry?.type === 'reload';
   }
 
   private shouldHandleClick(event: MouseEvent) {

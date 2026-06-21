@@ -3,11 +3,12 @@ import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 
 import { GsapService } from '../../core/services/gsap.service';
 import { I18nService } from '../../core/services/i18n.service';
+import { PortfolioLogoIconComponent } from '../../shared/components/portfolio-logo-icon/portfolio-logo-icon.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PortfolioLogoIconComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })

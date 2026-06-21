@@ -34,13 +34,9 @@
 
 .footer-logo {
   display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
   align-items: center;
-  gap: 12px;
-  color: var(--text-primary, #f5f7ff);
-  font-family: var(--font-heading);
-  font-size: 1.04rem;
-  font-weight: 900;
-  letter-spacing: 0;
 }
 
 .logo-dash {
@@ -254,13 +250,8 @@
     padding-top: 2px;
   }
 
-  .footer-logo {
-    gap: 8px;
-    font-size: 0.9rem;
-  }
-
-  .logo-dash {
-    width: 16px;
+  .footer-logo app-portfolio-logo-icon {
+    width: clamp(110px, 34vw, 138px);
   }
 
   .footer-built {

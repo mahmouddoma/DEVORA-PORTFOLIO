@@ -4,12 +4,17 @@
 
   <div class="container">
     <div class="footer-grid">
-
       <!-- Column 1: Brand -->
       <div class="footer-col brand-col">
         <div class="footer-logo">
-          <span class="logo-dash" aria-hidden="true"></span>
-          DEVORA
+          <app-portfolio-logo-icon
+            [variant]="'full'"
+            [animation]="'intro'"
+            [width]="'clamp(118px, 14vw, 154px)'"
+            [accentColor]="'#00f0ff'"
+            [textColor]="'#ffffff'"
+            [ariaLabel]="'DEVORA logo'"
+          ></app-portfolio-logo-icon>
         </div>
         <p class="footer-built">{{ i18n.t('footer.builtBy') || 'Website built by DEVORA' }}</p>
         <p class="footer-copy">
@@ -24,17 +29,71 @@
           <div class="contact-list">
             <div class="contact-item">
               <!-- Location icon -->
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>{{ i18n.t('contact.location') || 'Jeddah, Al-Waha District, Abdulrahman Ibn Amr' }}</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="12"
+                  cy="10"
+                  r="3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>{{
+                i18n.t('contact.location') || 'Jeddah, Al-Waha District, Abdulrahman Ibn Amr'
+              }}</span>
             </div>
             <div class="contact-item">
               <!-- Briefcase icon -->
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>{{ i18n.t('contact.nationalNumber') || 'National Unified Number: 7054431932' }}</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect
+                  x="2"
+                  y="7"
+                  width="20"
+                  height="14"
+                  rx="2"
+                  ry="2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>{{
+                i18n.t('contact.nationalNumber') || 'National Unified Number: 7054431932'
+              }}</span>
             </div>
             <a href="tel:+966501798566" class="contact-item link">
               <!-- Phone icon -->
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
               <span class="bidi-isolate" dir="ltr">+966 50 179 8566</span>
             </a>
           </div>
@@ -42,11 +101,37 @@
           <div class="contact-list">
             <a href="mailto:Info@devora-sa.com" class="contact-item link">
               <!-- Email icon -->
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <polyline
+                  points="22,6 12,13 2,6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
               <span class="bidi-isolate" dir="ltr">Info@devora-sa.com</span>
             </a>
             <a href="tel:+966556955662" class="contact-item link">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6.4 6.4l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
               <span class="bidi-isolate" dir="ltr">+966 55 695 5662</span>
             </a>
           </div>
@@ -55,18 +140,133 @@
 
       <!-- Column 3: Social -->
       <div class="footer-col social-col">
-        <a class="social-icon-btn" href="#" *ngFor="let link of socialLinks" [attr.aria-label]="link" [title]="link">
+        <a
+          class="social-icon-btn"
+          href="#"
+          *ngFor="let link of socialLinks"
+          [attr.aria-label]="link"
+          [title]="link"
+        >
           <ng-container [ngSwitch]="link">
-            <svg *ngSwitchCase="'Twitter'" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 4 4 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg *ngSwitchCase="'LinkedIn'" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5.5v.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19v-6.2c0-2.3 1.4-3.8 3.5-3.8 2.2 0 3.5 1.5 3.5 4.1V19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg *ngSwitchCase="'GitHub'" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.3-4-2-5.5-2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v-3.5c.1-1-.3-1.7-.8-2.1 2.7-.3 5.6-1.4 5.6-6A4.7 4.7 0 0 0 18.5 7c.1-.3.6-1.6-.1-3.3 0 0-1.1-.3-3.5 1.3a12 12 0 0 0-6.4 0C6.1 3.4 5 3.7 5 3.7 4.3 5.4 4.8 6.7 4.9 7a4.7 4.7 0 0 0-1.3 3.4c0 4.6 2.8 5.7 5.5 6-.4.3-.8 1-.8 2.1V22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg *ngSwitchCase="'Dribbble'" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5c4.7.3 8.9-.6 12.6-2.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.2 19c1.8-4.5 5.2-7 10.4-7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.3 4.6c2.2 2.8 4 6.4 5.3 10.9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg *ngSwitchDefault viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg *ngSwitchCase="'Twitter'" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 4l16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M20 4 4 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg *ngSwitchCase="'LinkedIn'" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M5 9v10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 5.5v.1"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 19v-6.2c0-2.3 1.4-3.8 3.5-3.8 2.2 0 3.5 1.5 3.5 4.1V19"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg *ngSwitchCase="'GitHub'" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 19c-4 1.3-4-2-5.5-2.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15 22v-3.5c.1-1-.3-1.7-.8-2.1 2.7-.3 5.6-1.4 5.6-6A4.7 4.7 0 0 0 18.5 7c.1-.3.6-1.6-.1-3.3 0 0-1.1-.3-3.5 1.3a12 12 0 0 0-6.4 0C6.1 3.4 5 3.7 5 3.7 4.3 5.4 4.8 6.7 4.9 7a4.7 4.7 0 0 0-1.3 3.4c0 4.6 2.8 5.7 5.5 6-.4.3-.8 1-.8 2.1V22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg *ngSwitchCase="'Dribbble'" viewBox="0 0 24 24" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 9.5c4.7.3 8.9-.6 12.6-2.8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.2 19c1.8-4.5 5.2-7 10.4-7.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9.3 4.6c2.2 2.8 4 6.4 5.3 10.9"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg *ngSwitchDefault viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M7 17 17 7"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8 7h9v9"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </ng-container>
         </a>
       </div>
-
     </div>
   </div>
-
 </footer>
