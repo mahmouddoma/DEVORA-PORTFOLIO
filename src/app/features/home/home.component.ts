@@ -33,6 +33,7 @@ import { WorksComponent } from './components/works/works.component';
     TechStackComponent,
     ContactComponent,
     FooterComponent,
+    BackToTopComponent,
     SectionNavComponent,
     FloatingCtaComponent,
     CursorComponent,

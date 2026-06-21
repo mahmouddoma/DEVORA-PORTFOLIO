@@ -155,7 +155,7 @@ interface LogoBackgroundRect {
         opacity: 0;
         transform-box: fill-box;
         transform-origin: left center;
-        animation: portfolio-logo-cursor-typing 0.8s infinite ease-in-out 3.5s;
+        animation: portfolio-logo-cursor-typing 0.8s infinite ease-in-out 4s;
       }
 
       .portfolio-logo-icon__letter {
@@ -218,32 +218,32 @@ interface LogoBackgroundRect {
       @keyframes portfolio-logo-arrow-write {
         0% {
           opacity: 0;
-          transform: translateX(0);
+          transform: translate(0, 0);
         }
 
-        5%,
+        5% {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+
         65% {
           opacity: 1;
+          transform: translate(810px, 0);
         }
 
-        65% {
-          transform: translateX(810px);
+        72% {
+          opacity: 1;
+          transform: translate(810px, 58px);
         }
 
-        66% {
-          opacity: 0;
-          transform: translateX(810px);
+        92% {
+          opacity: 1;
+          transform: translate(0, 58px);
         }
 
-        67% {
-          opacity: 0;
-          transform: translateX(0);
-        }
-
-        68%,
         100% {
           opacity: 1;
-          transform: translateX(0);
+          transform: translate(0, 0);
         }
       }
 

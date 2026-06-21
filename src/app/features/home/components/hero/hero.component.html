@@ -29,7 +29,7 @@
         }}</a>
       </div>
 
-      <div class="hero-proof mt-4">
+      <div class="hero-proof mt-5">
         <span data-edit-key="hero.proof">{{ i18n.t('hero.proof') }}</span>
       </div>
 
@@ -37,7 +37,9 @@
         @for (metric of metrics; track metric.valueKey) {
           <div class="hero-metric">
             <app-icon class="metric-icon" [name]="metric.icon"></app-icon>
-            <strong class="bidi-isolate" dir="ltr" [attr.data-edit-key]="metric.valueKey">{{ i18n.t(metric.valueKey) }}</strong>
+            <strong class="bidi-isolate" dir="ltr" [attr.data-edit-key]="metric.valueKey">{{
+              i18n.t(metric.valueKey)
+            }}</strong>
             <span [attr.data-edit-key]="metric.labelKey">{{ i18n.t(metric.labelKey) }}</span>
           </div>
         }

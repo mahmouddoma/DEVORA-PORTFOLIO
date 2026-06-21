@@ -1,4 +1,4 @@
-﻿import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 
 export type LanguageCode = 'en' | 'ar';
@@ -353,6 +353,9 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
 
     'footer.builtBy': 'Website built by DEVORA',
     'footer.rights': 'All rights reserved.',
+    'footer.readyLabel': "Let's work together",
+    'footer.ctaHeading': 'Start your project',
+    'footer.ctaBtn': 'Get in touch',
 
     'login.home': 'DEVORA home',
     'login.kicker': 'Dashboard Access',
@@ -719,6 +722,9 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     'floating.cta.button': 'ابدأ مشروعك',
     'footer.builtBy': 'الموقع من تنفيذ شركة ديفورا',
     'footer.rights': 'جميع الحقوق محفوظة.',
+    'footer.readyLabel': 'لنعمل معًا',
+    'footer.ctaHeading': 'ابدأ مشروعك',
+    'footer.ctaBtn': 'تواصل معنا',
 
     'login.home': 'العودة إلى الرئيسية',
     'login.kicker': 'دخول لوحة التحكم',
