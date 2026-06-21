@@ -184,13 +184,22 @@
     transform: translateX(0);
     opacity: 0;
   }
-  5% {
+  5%,
+  65% {
     opacity: 1;
   }
   65% {
     transform: translateX(810px);
   }
-  85%,
+  66% {
+    transform: translateX(810px);
+    opacity: 0;
+  }
+  67% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  68%,
   100% {
     transform: translateX(0);
     opacity: 1;

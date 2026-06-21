@@ -221,7 +221,8 @@ interface LogoBackgroundRect {
           transform: translateX(0);
         }
 
-        5% {
+        5%,
+        65% {
           opacity: 1;
         }
 
@@ -229,7 +230,17 @@ interface LogoBackgroundRect {
           transform: translateX(810px);
         }
 
-        85%,
+        66% {
+          opacity: 0;
+          transform: translateX(810px);
+        }
+
+        67% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+
+        68%,
         100% {
           opacity: 1;
           transform: translateX(0);
