@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
@@ -9,7 +8,7 @@ import { AppIconComponent } from '../../../../shared/components/app-icon/app-ico
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, AppIconComponent],
+  imports: [CommonModule, AppIconComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })
@@ -58,26 +57,6 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
           trigger: q('.contact-card')[0],
           start: 'top 80%',
         },
-      });
-
-      gsap.from(q('.contact-info'), {
-        opacity: 0,
-        filter: 'blur(20px)',
-        scale: 0.9,
-        duration: 1.2,
-        ease: 'power2.out',
-        clearProps: 'filter,transform,opacity',
-        scrollTrigger: {
-          trigger: q('.contact-card')[0],
-          start: 'top 80%',
-        },
-      });
-
-      gsap.to(q('.contact-track span'), {
-        xPercent: 110,
-        repeat: -1,
-        duration: 6.8,
-        ease: 'none',
       });
     });
   }
