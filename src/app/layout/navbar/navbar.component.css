@@ -212,7 +212,8 @@
   inset-inline-start: 12px;
   width: 12px;
   height: 12px;
-  border: 1px solid color-mix(in srgb, var(--theme-accent, var(--accent-cyan)) 38%, var(--border-soft));
+  border: 1px solid
+    color-mix(in srgb, var(--theme-accent, var(--accent-cyan)) 38%, var(--border-soft));
   border-radius: 50%;
   background: linear-gradient(
     135deg,
@@ -566,4 +567,34 @@
     min-width: 116px;
     padding: 0 14px;
   }
+}
+
+.theme-select option[value='violet-pulse'] {
+  background: #090a23;
+  color: #f3f0ff;
+}
+
+.theme-select option[value='violet-pulse']:checked {
+  background: #25134e;
+  color: #ffffff;
+}
+
+:host-context(.theme-violet-pulse) .theme-select-wrapper {
+  color: #f3f0ff;
+}
+
+:host-context(.theme-violet-pulse) .theme-select {
+  border-color: rgba(217, 38, 255, 0.38) !important;
+  background: color-mix(in srgb, #25134e 72%, #090a23) !important;
+  color: #f3f0ff !important;
+}
+
+:host-context(.theme-violet-pulse) .theme-select:focus-visible {
+  border-color: #d926ff !important;
+  box-shadow: 0 0 0 3px rgba(217, 38, 255, 0.24) !important;
+}
+
+:host-context(.theme-violet-pulse) .theme-swatch {
+  border-color: rgba(217, 38, 255, 0.5);
+  background: linear-gradient(135deg, #d926ff, #6d3dff 58%, #090a23);
 }

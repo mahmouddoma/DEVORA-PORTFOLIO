@@ -67,6 +67,7 @@ export class ThemeService {
     }
 
     const stored = localStorage.getItem(this.storageKey);
-    return isThemeMode(stored) ? stored : null;
+    const normalizedTheme = stored === 'neon-violet' ? 'violet-pulse' : stored;
+    return isThemeMode(normalizedTheme) ? normalizedTheme : null;
   }
 }

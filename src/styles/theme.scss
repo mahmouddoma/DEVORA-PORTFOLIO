@@ -2199,6 +2199,87 @@ body app-project-detail {
   --section-contact-bg: var(--theme-bg-alt);
   --section-footer-bg: var(--theme-bg);
 }
+:root[data-theme='violet-pulse'] {
+  color-scheme: dark;
+
+  --theme-bg: #090a23;
+  --theme-bg-alt: color-mix(in srgb, #25134e 78%, #090a23);
+  --theme-surface: color-mix(in srgb, #2a1a58 72%, #090a23);
+  --theme-surface-soft: color-mix(in srgb, #4a3673 76%, #1b123c);
+  --theme-surface-raised: color-mix(in srgb, #2a1a58 52%, transparent);
+  --theme-card: color-mix(in srgb, #3c315f 82%, #151033);
+  --theme-card-hover: color-mix(in srgb, #4a3673 86%, #1b123c);
+  --theme-text: #f3f0ff;
+  --theme-text-soft: rgba(243, 240, 255, 0.82);
+  --theme-text-muted: rgba(243, 240, 255, 0.64);
+  --theme-border: rgba(154, 111, 255, 0.25);
+  --theme-border-strong: rgba(214, 38, 255, 0.42);
+  --theme-accent: #d926ff;
+  --theme-accent-hover: #a855f7;
+  --theme-accent-soft: rgba(217, 38, 255, 0.2);
+  --theme-success: #a855f7;
+  --theme-danger: #ff4fd8;
+  --theme-focus: rgba(217, 38, 255, 0.26);
+  --theme-shadow: 0 24px 70px rgba(7, 8, 30, 0.46);
+  --theme-product-shadow: 3px 5px 34px rgba(217, 38, 255, 0.18);
+  --theme-grid: rgba(154, 111, 255, 0.12);
+  --theme-input: color-mix(in srgb, #090a23 76%, #2a1a58);
+  --theme-input-placeholder: rgba(243, 240, 255, 0.54);
+  --theme-on-accent: #ffffff;
+
+  --page-bg: var(--theme-bg);
+  --tile-light: var(--theme-surface);
+  --tile-soft: var(--theme-bg-alt);
+  --tile-dark: #090a23;
+  --tile-deeper: #25134e;
+  --text-main: var(--theme-text);
+  --text-soft: var(--theme-text-soft);
+  --text-on-dark: #f3f0ff;
+  --text-on-dark-soft: rgba(243, 240, 255, 0.76);
+  --line: var(--theme-border);
+
+  --bg-page: var(--theme-bg);
+  --bg-section: var(--theme-bg);
+  --bg-section-alt: var(--theme-bg-alt);
+  --surface: var(--theme-surface-raised);
+  --surface-solid: var(--theme-surface);
+  --surface-strong: var(--theme-surface-soft);
+  --text-primary: var(--theme-text);
+  --text-secondary: var(--theme-text-soft);
+  --text-muted: var(--theme-text-muted);
+  --border-soft: var(--theme-border);
+  --accent-cyan: #d926ff;
+  --accent-blue: #6d3dff;
+  --accent-violet: #a855f7;
+  --accent-rose: #ff4fd8;
+  --accent-green: #d926ff;
+  --hero-scrim: rgba(9, 10, 35, 0.7);
+  --input-bg: var(--theme-input);
+  --shadow-soft: var(--theme-shadow);
+  --color-void: var(--theme-bg);
+
+  --three-primary: #d926ff;
+  --three-secondary: #8b5cf6;
+  --three-tertiary: #f3f0ff;
+  --three-cursor: #d926ff;
+  --three-glow: #d926ff;
+
+  --site-section-bg:
+    radial-gradient(circle at 12% 2%, rgba(168, 85, 247, 0.28), transparent 8%),
+    radial-gradient(circle at 72% 18%, rgba(217, 38, 255, 0.14), transparent 26%),
+    radial-gradient(circle at 72% 68%, rgba(74, 54, 115, 0.32), transparent 36%),
+    linear-gradient(115deg, #090a23 0%, #111034 38%, #25134e 72%, #120a2b 100%);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #403565 72%, #141032), color-mix(in srgb, #2a1a58 78%, #090a23));
+
+  --section-hero-bg: var(--theme-bg);
+  --section-work-bg: var(--theme-bg-alt);
+  --section-services-bg: var(--theme-bg);
+  --section-process-bg: var(--theme-bg-alt);
+  --section-stack-bg: var(--theme-bg);
+  --section-contact-bg: var(--theme-bg-alt);
+  --section-footer-bg: var(--theme-bg);
+}
 :root.theme-palette body,
 :root.theme-palette body .app-container,
 :root.theme-palette body .home-shell,
@@ -2308,4 +2389,12 @@ body app-project-detail {
   --theme-input: color-mix(in srgb, #040f16 70%, #0b4f6c);
   --site-section-surface:
     linear-gradient(145deg, color-mix(in srgb, #0b4f6c 62%, #040f16), color-mix(in srgb, #040f16 82%, #b80c09));
+}
+:root[data-theme='violet-pulse'] {
+  --theme-text-soft: rgba(243, 240, 255, 0.88);
+  --theme-text-muted: rgba(243, 240, 255, 0.72);
+  --theme-input-placeholder: rgba(243, 240, 255, 0.62);
+  --theme-input: color-mix(in srgb, #090a23 70%, #2a1a58);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #4a3673 76%, #151033), color-mix(in srgb, #2a1a58 82%, #090a23));
 }
