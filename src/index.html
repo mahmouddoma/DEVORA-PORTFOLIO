@@ -13,15 +13,20 @@
     <link rel="alternate icon" type="image/x-icon" href="favicon.ico?v=devora-2" />
     <script>
       (() => {
+        const themes = ['dark', 'light', 'soft-lavender', 'refreshing-summer-fun', 'fiery-seas'];
+        const paletteThemes = ['soft-lavender', 'refreshing-summer-fun', 'fiery-seas'];
         let theme = 'dark';
         try {
-          theme = localStorage.getItem('devora-theme') === 'light' ? 'light' : 'dark';
+          const storedTheme = localStorage.getItem('devora-theme');
+          theme = themes.includes(storedTheme) ? storedTheme : 'dark';
         } catch {
           theme = 'dark';
         }
         document.documentElement.dataset.theme = theme;
-        document.documentElement.classList.toggle('theme-light', theme === 'light');
-        document.documentElement.classList.toggle('theme-dark', theme === 'dark');
+        themes.forEach((item) => {
+          document.documentElement.classList.toggle(`theme-${item}`, item === theme);
+        });
+        document.documentElement.classList.toggle('theme-palette', paletteThemes.includes(theme));
       })();
     </script>
   </head>

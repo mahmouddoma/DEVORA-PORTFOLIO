@@ -87,14 +87,17 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         delay: 0.15,
       });
 
-      this.gsapService.gsap.from(q('.nav-link, .nav-actions button, .nav-actions a'), {
-        opacity: 0,
-        duration: 0.55,
-        stagger: 0.06,
-        ease: 'power3.out',
-        delay: 0.35,
-        clearProps: 'opacity',
-      });
+      this.gsapService.gsap.from(
+        q('.nav-link, .nav-actions button, .nav-actions a, .theme-select-wrapper'),
+        {
+          opacity: 0,
+          duration: 0.55,
+          stagger: 0.06,
+          ease: 'power3.out',
+          delay: 0.35,
+          clearProps: 'opacity',
+        },
+      );
 
       this.updateHeaderState();
       this.updateActiveSection();
@@ -117,6 +120,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   closeMenu() {
     this.isMenuOpen = false;
+  }
+
+  onThemeChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.themeService.setThemeFromValue(select.value);
   }
 
   navigateToSection(event: MouseEvent, sectionId: string) {

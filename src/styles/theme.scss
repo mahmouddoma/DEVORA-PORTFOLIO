@@ -1949,3 +1949,363 @@ body app-project-detail {
   background-image: none !important;
   color: var(--theme-text) !important;
 }
+
+/*
+  Palette themes.
+  These extend the existing dark/light token layer without changing component
+  structure, so every section inherits one coherent color system.
+*/
+:root[data-theme='soft-lavender'] {
+  color-scheme: light;
+
+  --theme-bg: #f2e9e4;
+  --theme-bg-alt: color-mix(in srgb, #f2e9e4 72%, #c9ada7);
+  --theme-surface: color-mix(in srgb, #f2e9e4 90%, #ffffff);
+  --theme-surface-soft: color-mix(in srgb, #c9ada7 62%, #f2e9e4);
+  --theme-surface-raised: color-mix(in srgb, #f2e9e4 84%, transparent);
+  --theme-card: color-mix(in srgb, #f2e9e4 82%, #c9ada7);
+  --theme-card-hover: color-mix(in srgb, #f2e9e4 72%, #c9ada7);
+  --theme-text: #22223b;
+  --theme-text-soft: rgba(34, 34, 59, 0.76);
+  --theme-text-muted: rgba(34, 34, 59, 0.58);
+  --theme-border: rgba(74, 78, 105, 0.22);
+  --theme-border-strong: rgba(74, 78, 105, 0.34);
+  --theme-accent: #4a4e69;
+  --theme-accent-hover: #22223b;
+  --theme-accent-soft: rgba(74, 78, 105, 0.14);
+  --theme-success: #4a4e69;
+  --theme-danger: #9a8c98;
+  --theme-focus: rgba(74, 78, 105, 0.22);
+  --theme-shadow: 0 22px 56px rgba(34, 34, 59, 0.13);
+  --theme-product-shadow: 3px 5px 28px rgba(34, 34, 59, 0.2);
+  --theme-grid: rgba(74, 78, 105, 0.1);
+  --theme-input: color-mix(in srgb, #f2e9e4 86%, #ffffff);
+  --theme-input-placeholder: rgba(34, 34, 59, 0.44);
+  --theme-on-accent: #f2e9e4;
+
+  --page-bg: var(--theme-bg);
+  --tile-light: var(--theme-surface);
+  --tile-soft: var(--theme-bg-alt);
+  --tile-dark: #22223b;
+  --tile-deeper: #4a4e69;
+  --text-main: var(--theme-text);
+  --text-soft: var(--theme-text-soft);
+  --text-on-dark: #f2e9e4;
+  --text-on-dark-soft: rgba(242, 233, 228, 0.74);
+  --line: var(--theme-border);
+
+  --bg-page: var(--theme-bg);
+  --bg-section: var(--theme-bg);
+  --bg-section-alt: var(--theme-bg-alt);
+  --surface: var(--theme-surface-raised);
+  --surface-solid: var(--theme-surface);
+  --surface-strong: var(--theme-surface-soft);
+  --text-primary: var(--theme-text);
+  --text-secondary: var(--theme-text-soft);
+  --text-muted: var(--theme-text-muted);
+  --border-soft: var(--theme-border);
+  --accent-cyan: #4a4e69;
+  --accent-blue: #22223b;
+  --accent-violet: #9a8c98;
+  --accent-rose: #c9ada7;
+  --accent-green: #4a4e69;
+  --hero-scrim: rgba(242, 233, 228, 0.78);
+  --input-bg: var(--theme-input);
+  --shadow-soft: var(--theme-shadow);
+  --color-void: var(--theme-bg);
+
+  --three-primary: #4a4e69;
+  --three-secondary: #22223b;
+  --three-tertiary: #9a8c98;
+  --three-cursor: #4a4e69;
+  --three-glow: #9a8c98;
+
+  --site-section-bg:
+    radial-gradient(circle at 16% 12%, rgba(154, 140, 152, 0.22), transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(201, 173, 167, 0.32), transparent 30%),
+    linear-gradient(135deg, #f2e9e4 0%, color-mix(in srgb, #f2e9e4 58%, #c9ada7) 58%, #f2e9e4 100%);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #f2e9e4 88%, #ffffff), color-mix(in srgb, #f2e9e4 68%, #c9ada7));
+
+  --section-hero-bg: var(--theme-bg);
+  --section-work-bg: var(--theme-bg-alt);
+  --section-services-bg: var(--theme-bg);
+  --section-process-bg: var(--theme-bg-alt);
+  --section-stack-bg: var(--theme-bg);
+  --section-contact-bg: var(--theme-bg-alt);
+  --section-footer-bg: var(--theme-bg);
+}
+
+:root[data-theme='refreshing-summer-fun'] {
+  color-scheme: light;
+
+  --theme-bg: #8ecae6;
+  --theme-bg-alt: color-mix(in srgb, #8ecae6 78%, #219ebc);
+  --theme-surface: color-mix(in srgb, #8ecae6 82%, #ffffff);
+  --theme-surface-soft: color-mix(in srgb, #8ecae6 58%, #ffb703);
+  --theme-surface-raised: color-mix(in srgb, #8ecae6 80%, transparent);
+  --theme-card: color-mix(in srgb, #8ecae6 76%, #ffffff);
+  --theme-card-hover: color-mix(in srgb, #8ecae6 68%, #ffb703);
+  --theme-text: #023047;
+  --theme-text-soft: rgba(2, 48, 71, 0.76);
+  --theme-text-muted: rgba(2, 48, 71, 0.58);
+  --theme-border: rgba(2, 48, 71, 0.2);
+  --theme-border-strong: rgba(2, 48, 71, 0.32);
+  --theme-accent: #fb8500;
+  --theme-accent-hover: #ffb703;
+  --theme-accent-soft: rgba(251, 133, 0, 0.18);
+  --theme-success: #219ebc;
+  --theme-danger: #fb8500;
+  --theme-focus: rgba(251, 133, 0, 0.26);
+  --theme-shadow: 0 22px 58px rgba(2, 48, 71, 0.16);
+  --theme-product-shadow: 3px 5px 30px rgba(2, 48, 71, 0.24);
+  --theme-grid: rgba(2, 48, 71, 0.11);
+  --theme-input: color-mix(in srgb, #8ecae6 76%, #ffffff);
+  --theme-input-placeholder: rgba(2, 48, 71, 0.46);
+  --theme-on-accent: #023047;
+
+  --page-bg: var(--theme-bg);
+  --tile-light: var(--theme-surface);
+  --tile-soft: var(--theme-bg-alt);
+  --tile-dark: #023047;
+  --tile-deeper: #219ebc;
+  --text-main: var(--theme-text);
+  --text-soft: var(--theme-text-soft);
+  --text-on-dark: #ffffff;
+  --text-on-dark-soft: rgba(255, 255, 255, 0.76);
+  --line: var(--theme-border);
+
+  --bg-page: var(--theme-bg);
+  --bg-section: var(--theme-bg);
+  --bg-section-alt: var(--theme-bg-alt);
+  --surface: var(--theme-surface-raised);
+  --surface-solid: var(--theme-surface);
+  --surface-strong: var(--theme-surface-soft);
+  --text-primary: var(--theme-text);
+  --text-secondary: var(--theme-text-soft);
+  --text-muted: var(--theme-text-muted);
+  --border-soft: var(--theme-border);
+  --accent-cyan: #219ebc;
+  --accent-blue: #023047;
+  --accent-violet: #8ecae6;
+  --accent-rose: #fb8500;
+  --accent-green: #219ebc;
+  --hero-scrim: rgba(142, 202, 230, 0.74);
+  --input-bg: var(--theme-input);
+  --shadow-soft: var(--theme-shadow);
+  --color-void: var(--theme-bg);
+
+  --three-primary: #fb8500;
+  --three-secondary: #023047;
+  --three-tertiary: #219ebc;
+  --three-cursor: #fb8500;
+  --three-glow: #ffb703;
+
+  --site-section-bg:
+    radial-gradient(circle at 12% 12%, rgba(255, 183, 3, 0.34), transparent 27%),
+    radial-gradient(circle at 82% 18%, rgba(251, 133, 0, 0.28), transparent 30%),
+    radial-gradient(circle at 30% 78%, rgba(33, 158, 188, 0.26), transparent 28%),
+    linear-gradient(135deg, #8ecae6 0%, color-mix(in srgb, #8ecae6 68%, #219ebc) 58%, #8ecae6 100%);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #8ecae6 78%, #ffffff), color-mix(in srgb, #8ecae6 66%, #ffb703));
+
+  --section-hero-bg: var(--theme-bg);
+  --section-work-bg: var(--theme-bg-alt);
+  --section-services-bg: var(--theme-bg);
+  --section-process-bg: var(--theme-bg-alt);
+  --section-stack-bg: var(--theme-bg);
+  --section-contact-bg: var(--theme-bg-alt);
+  --section-footer-bg: var(--theme-bg);
+}
+
+:root[data-theme='fiery-seas'] {
+  color-scheme: dark;
+
+  --theme-bg: #040f16;
+  --theme-bg-alt: color-mix(in srgb, #0b4f6c 72%, #040f16);
+  --theme-surface: color-mix(in srgb, #0b4f6c 48%, #040f16);
+  --theme-surface-soft: color-mix(in srgb, #0b4f6c 60%, #040f16);
+  --theme-surface-raised: color-mix(in srgb, #0b4f6c 42%, transparent);
+  --theme-card: color-mix(in srgb, #0b4f6c 50%, #040f16);
+  --theme-card-hover: color-mix(in srgb, #0b4f6c 62%, #040f16);
+  --theme-text: #fbfbff;
+  --theme-text-soft: rgba(251, 251, 255, 0.82);
+  --theme-text-muted: rgba(251, 251, 255, 0.64);
+  --theme-border: rgba(1, 186, 239, 0.24);
+  --theme-border-strong: rgba(1, 186, 239, 0.4);
+  --theme-accent: #b80c09;
+  --theme-accent-hover: #01baef;
+  --theme-accent-soft: rgba(184, 12, 9, 0.22);
+  --theme-success: #01baef;
+  --theme-danger: #b80c09;
+  --theme-focus: rgba(1, 186, 239, 0.24);
+  --theme-shadow: 0 22px 60px rgba(4, 15, 22, 0.34);
+  --theme-product-shadow: 3px 5px 32px rgba(4, 15, 22, 0.42);
+  --theme-grid: rgba(1, 186, 239, 0.13);
+  --theme-input: color-mix(in srgb, #040f16 74%, #0b4f6c);
+  --theme-input-placeholder: rgba(251, 251, 255, 0.58);
+  --theme-on-accent: #fbfbff;
+
+  --page-bg: var(--theme-bg);
+  --tile-light: var(--theme-surface);
+  --tile-soft: var(--theme-bg-alt);
+  --tile-dark: #040f16;
+  --tile-deeper: #0b4f6c;
+  --text-main: var(--theme-text);
+  --text-soft: var(--theme-text-soft);
+  --text-on-dark: #fbfbff;
+  --text-on-dark-soft: rgba(251, 251, 255, 0.74);
+  --line: var(--theme-border);
+
+  --bg-page: var(--theme-bg);
+  --bg-section: var(--theme-bg);
+  --bg-section-alt: var(--theme-bg-alt);
+  --surface: var(--theme-surface-raised);
+  --surface-solid: var(--theme-surface);
+  --surface-strong: var(--theme-surface-soft);
+  --text-primary: var(--theme-text);
+  --text-secondary: var(--theme-text-soft);
+  --text-muted: var(--theme-text-muted);
+  --border-soft: var(--theme-border);
+  --accent-cyan: #01baef;
+  --accent-blue: #0b4f6c;
+  --accent-violet: #b80c09;
+  --accent-rose: #b80c09;
+  --accent-green: #01baef;
+  --hero-scrim: rgba(4, 15, 22, 0.72);
+  --input-bg: var(--theme-input);
+  --shadow-soft: var(--theme-shadow);
+  --color-void: var(--theme-bg);
+
+  --three-primary: #01baef;
+  --three-secondary: #b80c09;
+  --three-tertiary: #0b4f6c;
+  --three-cursor: #01baef;
+  --three-glow: #b80c09;
+
+  --site-section-bg:
+    radial-gradient(circle at 14% 14%, rgba(184, 12, 9, 0.36), transparent 28%),
+    radial-gradient(circle at 82% 16%, rgba(1, 186, 239, 0.24), transparent 30%),
+    radial-gradient(circle at 30% 80%, rgba(11, 79, 108, 0.46), transparent 28%),
+    linear-gradient(135deg, #040f16 0%, color-mix(in srgb, #0b4f6c 58%, #040f16) 58%, #040f16 100%);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #0b4f6c 58%, #040f16), color-mix(in srgb, #040f16 74%, #b80c09));
+
+  --section-hero-bg: var(--theme-bg);
+  --section-work-bg: var(--theme-bg-alt);
+  --section-services-bg: var(--theme-bg);
+  --section-process-bg: var(--theme-bg-alt);
+  --section-stack-bg: var(--theme-bg);
+  --section-contact-bg: var(--theme-bg-alt);
+  --section-footer-bg: var(--theme-bg);
+}
+:root.theme-palette body,
+:root.theme-palette body .app-container,
+:root.theme-palette body .home-shell,
+:root.theme-palette body .home-content,
+:root.theme-palette body main {
+  background: var(--site-section-bg) !important;
+  background-attachment: fixed !important;
+  color: var(--theme-text) !important;
+}
+
+:root.theme-palette body .hero-section,
+:root.theme-palette body .works-section,
+:root.theme-palette body .services-section,
+:root.theme-palette body .cyber-section,
+:root.theme-palette body .process-section,
+:root.theme-palette body .about-section,
+:root.theme-palette body .testimonials-section,
+:root.theme-palette body .manifesto-section,
+:root.theme-palette body .tech-section,
+:root.theme-palette body .contact-section,
+:root.theme-palette body .footer-section,
+:root.theme-palette body app-hero .hero-section.hero-section,
+:root.theme-palette body app-works .works-section.works-section,
+:root.theme-palette body app-services .services-section.services-section,
+:root.theme-palette body app-cybersecurity .cyber-section.cyber-section,
+:root.theme-palette body app-process .process-section.process-section,
+:root.theme-palette body app-tech-stack .tech-section.tech-section,
+:root.theme-palette body app-contact .contact-section.contact-section,
+:root.theme-palette body app-footer .footer-section.footer-section {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--theme-text) !important;
+}
+
+:root.theme-palette body .glass,
+:root.theme-palette body .hero-metric,
+:root.theme-palette body .project-card,
+:root.theme-palette body .works-section .project-card,
+:root.theme-palette body .works-section .filter-controls,
+:root.theme-palette body .service-card,
+:root.theme-palette body .services-section .service-card,
+:root.theme-palette body .services-section .services-offer,
+:root.theme-palette body .services-section .delivery-strip,
+:root.theme-palette body .services-section .delivery-step,
+:root.theme-palette body .cyber-section .cyber-panel,
+:root.theme-palette body .cyber-section .cyber-card,
+:root.theme-palette body .cyber-section .cyber-deliverables,
+:root.theme-palette body .tech-section .stack-board,
+:root.theme-palette body .tech-section .board-cell,
+:root.theme-palette body .tech-section .tech-chip,
+:root.theme-palette body .contact-section .contact-card,
+:root.theme-palette body .contact-section .contact-info,
+:root.theme-palette body .footer-shell {
+  border-color: var(--theme-border) !important;
+  background: var(--site-section-surface) !important;
+  color: var(--theme-text) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+:root.theme-palette body .contact-link,
+:root.theme-palette body .btn-primary-neon,
+:root.theme-palette body .services-primary,
+:root.theme-palette body .submit-button,
+:root.theme-palette body .work-contact,
+:root.theme-palette body .filter-btn.active,
+:root.theme-palette body .filter-btn:hover {
+  color: var(--theme-on-accent) !important;
+}
+
+:root.theme-palette body input,
+:root.theme-palette body select,
+:root.theme-palette body textarea {
+  border-color: var(--theme-border) !important;
+  background: var(--theme-input) !important;
+  color: var(--theme-text) !important;
+}
+
+:root.theme-palette body input::placeholder,
+:root.theme-palette body textarea::placeholder {
+  color: var(--theme-input-placeholder) !important;
+}
+
+/* Palette contrast tune-up */
+:root[data-theme='soft-lavender'] {
+  --theme-text-soft: rgba(34, 34, 59, 0.86);
+  --theme-text-muted: rgba(34, 34, 59, 0.7);
+  --theme-input-placeholder: rgba(34, 34, 59, 0.62);
+  --theme-input: color-mix(in srgb, #ffffff 72%, #f2e9e4);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #ffffff 70%, #f2e9e4), color-mix(in srgb, #f2e9e4 74%, #c9ada7));
+}
+
+:root[data-theme='refreshing-summer-fun'] {
+  --theme-text-soft: rgba(2, 48, 71, 0.86);
+  --theme-text-muted: rgba(2, 48, 71, 0.7);
+  --theme-input-placeholder: rgba(2, 48, 71, 0.62);
+  --theme-input: color-mix(in srgb, #ffffff 72%, #8ecae6);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #ffffff 72%, #8ecae6), color-mix(in srgb, #8ecae6 62%, #ffb703));
+}
+
+:root[data-theme='fiery-seas'] {
+  --theme-text-soft: rgba(251, 251, 255, 0.88);
+  --theme-text-muted: rgba(251, 251, 255, 0.72);
+  --theme-input-placeholder: rgba(251, 251, 255, 0.64);
+  --theme-input: color-mix(in srgb, #040f16 70%, #0b4f6c);
+  --site-section-surface:
+    linear-gradient(145deg, color-mix(in srgb, #0b4f6c 62%, #040f16), color-mix(in srgb, #040f16 82%, #b80c09));
+}

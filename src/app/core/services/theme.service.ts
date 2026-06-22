@@ -1,7 +1,16 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 
-export type ThemeMode = 'dark' | 'light';
+import {
+  DEFAULT_THEME,
+  PALETTE_THEME_MODES,
+  THEME_CLASS_NAMES,
+  THEME_OPTIONS,
+  isThemeMode,
+} from '../models/theme.model';
+import type { ThemeMode } from '../models/theme.model';
+
+export type { ThemeMode, ThemeOption } from '../models/theme.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,15 +20,26 @@ export class ThemeService {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly document = inject(DOCUMENT);
 
-  readonly theme = signal<ThemeMode>('dark');
+  readonly theme = signal<ThemeMode>(DEFAULT_THEME);
+  readonly themeOptions = THEME_OPTIONS;
 
   constructor() {
     const savedTheme = this.readStoredTheme();
-    this.setTheme(savedTheme ?? 'dark', false);
+    this.setTheme(savedTheme ?? DEFAULT_THEME, false);
   }
 
   toggleTheme() {
     this.setTheme(this.theme() === 'dark' ? 'light' : 'dark');
+  }
+
+  setThemeFromValue(value: string) {
+    if (isThemeMode(value)) {
+      this.setTheme(value);
+    }
+  }
+
+  selectedThemeLabel() {
+    return this.themeOptions.find((option) => option.value === this.theme())?.label ?? 'Dark';
   }
 
   setTheme(theme: ThemeMode, persist = true) {
@@ -27,12 +47,14 @@ export class ThemeService {
 
     const root = this.document.documentElement;
     root.dataset['theme'] = theme;
-    root.classList.toggle('theme-dark', theme === 'dark');
-    root.classList.toggle('theme-light', theme === 'light');
+    root.classList.remove(...THEME_CLASS_NAMES);
+    root.classList.add(`theme-${theme}`);
+    root.classList.toggle('theme-palette', PALETTE_THEME_MODES.includes(theme));
 
     const body = this.document.body;
-    body?.classList.toggle('theme-dark', theme === 'dark');
-    body?.classList.toggle('theme-light', theme === 'light');
+    body?.classList.remove(...THEME_CLASS_NAMES);
+    body?.classList.add(`theme-${theme}`);
+    body?.classList.toggle('theme-palette', PALETTE_THEME_MODES.includes(theme));
 
     if (persist && isPlatformBrowser(this.platformId)) {
       localStorage.setItem(this.storageKey, theme);
@@ -45,6 +67,6 @@ export class ThemeService {
     }
 
     const stored = localStorage.getItem(this.storageKey);
-    return stored === 'dark' || stored === 'light' ? stored : null;
+    return isThemeMode(stored) ? stored : null;
   }
 }

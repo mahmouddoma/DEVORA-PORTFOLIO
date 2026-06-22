@@ -24,17 +24,19 @@
 
     <div id="mainNavigation" class="nav-panel" [class.open]="isMenuOpen">
       <ul class="nav-list">
-        <li class="nav-item" *ngFor="let item of navItems">
-          <a
-            class="nav-link"
-            [class.active]="activeSection === item.fragment"
-            [attr.aria-current]="activeSection === item.fragment ? 'page' : null"
-            [href]="scrollService.getHomeSectionUrl(item.fragment)"
-            (click)="navigateToSection($event, item.fragment)"
-          >
-            {{ i18n.t(item.labelKey) }}
-          </a>
-        </li>
+        @for (item of navItems; track item.fragment) {
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [class.active]="activeSection === item.fragment"
+              [attr.aria-current]="activeSection === item.fragment ? 'page' : null"
+              [href]="scrollService.getHomeSectionUrl(item.fragment)"
+              (click)="navigateToSection($event, item.fragment)"
+            >
+              {{ i18n.t(item.labelKey) }}
+            </a>
+          </li>
+        }
       </ul>
 
       <div class="nav-actions">
@@ -51,40 +53,21 @@
           {{ authService.isAuthenticated() ? i18n.t('nav.dashboard') : i18n.t('nav.login') }}
         </a>
 
-        <button
-          class="icon-button"
-          type="button"
-          [attr.aria-label]="i18n.t('nav.theme')"
-          [attr.title]="i18n.t('nav.theme')"
-          (click)="themeService.toggleTheme()"
-        >
-          <svg
-            *ngIf="themeService.theme() === 'dark'; else sunIcon"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
+        <label class="theme-select-wrapper">
+          <span class="visually-hidden">{{ i18n.t('nav.theme') }}</span>
+          <span class="theme-swatch" aria-hidden="true"></span>
+          <select
+            class="theme-select"
+            [value]="themeService.theme()"
+            [attr.aria-label]="i18n.t('nav.theme')"
+            [attr.title]="themeService.selectedThemeLabel()"
+            (change)="onThemeChange($event)"
           >
-            <path d="M12 3a6 6 0 0 0 9 7.4A9 9 0 1 1 12 3Z"></path>
-          </svg>
-          <ng-template #sunIcon>
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="12" cy="12" r="4"></circle>
-              <path
-                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-              ></path>
-            </svg>
-          </ng-template>
-        </button>
+            @for (option of themeService.themeOptions; track option.value) {
+              <option [value]="option.value">{{ option.label }}</option>
+            }
+          </select>
+        </label>
 
         <button
           class="language-button"

@@ -330,3 +330,48 @@
     grid-template-columns: 1fr;
   }
 }
+
+:host-context(.theme-palette) .footer-section {
+  border-top-color: color-mix(in srgb, var(--theme-accent) 28%, var(--theme-border)) !important;
+  background: transparent !important;
+  color: var(--theme-text) !important;
+}
+
+:host-context(.theme-palette) .footer-top-line {
+  background: linear-gradient(90deg, transparent, var(--theme-accent), transparent) !important;
+  opacity: 0.55;
+}
+
+:host-context(.theme-palette) .footer-logo {
+  color: var(--theme-text) !important;
+}
+
+:host-context(.theme-palette) .logo-dash {
+  background: var(--theme-accent) !important;
+}
+
+:host-context(.theme-palette) .footer-built {
+  color: var(--theme-text-soft) !important;
+}
+
+:host-context(.theme-palette) .footer-copy {
+  color: var(--theme-text-muted) !important;
+}
+
+:host-context(.theme-palette) .contact-item {
+  color: var(--theme-text-soft) !important;
+}
+
+:host-context(.theme-palette) .contact-item.link,
+:host-context(.theme-palette) .contact-item svg {
+  color: var(--theme-accent) !important;
+}
+
+:host-context(.theme-palette) .contact-item.link:hover,
+:host-context(.theme-palette) .social-icon-btn:hover {
+  color: var(--theme-accent-hover) !important;
+}
+
+:host-context(.theme-palette) .social-icon-btn {
+  color: var(--theme-text-muted) !important;
+}

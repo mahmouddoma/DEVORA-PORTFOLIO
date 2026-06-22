@@ -34,6 +34,7 @@
 
 :host-context([data-theme='light']) .nav-list,
 :host-context([data-theme='light']) .nav-actions .icon-button,
+:host-context([data-theme='light']) .theme-select,
 :host-context([data-theme='light']) .language-button,
 :host-context([data-theme='light']) .dashboard-link,
 :host-context([data-theme='light']) .nav-toggle {
@@ -42,7 +43,7 @@
 
 @media (max-width: 1199.98px) and (min-width: 992px) {
   .navbar-shell {
-    grid-template-columns: minmax(150px, 0.9fr) auto minmax(250px, 0.9fr);
+    grid-template-columns: minmax(130px, 0.5fr) auto minmax(470px, 1fr);
     gap: 12px;
   }
 
@@ -65,7 +66,7 @@
 .navbar-shell {
   display: grid;
   align-items: center;
-  grid-template-columns: minmax(180px, 1fr) auto minmax(300px, 1fr);
+  grid-template-columns: minmax(160px, 0.7fr) auto minmax(500px, 1fr);
   gap: 18px;
   min-height: 42px;
 }
@@ -165,6 +166,7 @@
 .nav-actions .icon-button,
 .language-button,
 .dashboard-link,
+.theme-select-wrapper,
 .contact-link {
   display: inline-flex;
   align-items: center;
@@ -183,6 +185,84 @@
   height: 38px;
   flex: 0 0 38px;
   background: rgba(10, 13, 22, 0.72);
+}
+.theme-select-wrapper {
+  position: relative;
+  width: clamp(208px, 15vw, 230px);
+  color: var(--text-primary);
+}
+
+.theme-select-wrapper::after {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 12px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  content: '';
+  opacity: 0.72;
+  pointer-events: none;
+  transform: translateY(-62%) rotate(45deg);
+}
+
+.theme-swatch {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 12px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid color-mix(in srgb, var(--theme-accent, var(--accent-cyan)) 38%, var(--border-soft));
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--theme-accent, var(--accent-cyan)),
+    var(--theme-surface-soft, var(--surface-strong))
+  );
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.theme-select {
+  width: 100%;
+  min-height: 38px !important;
+  padding-block: 0 !important;
+  padding-inline: 34px 30px !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 8px !important;
+  appearance: none;
+  background: rgba(10, 13, 22, 0.72) !important;
+  color: var(--text-primary) !important;
+  cursor: pointer;
+  font-size: 0.76rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  outline: none;
+  text-overflow: ellipsis;
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    color 0.22s ease;
+}
+
+.theme-select:focus-visible {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-cyan) 22%, transparent) !important;
+}
+
+.theme-select option {
+  background: var(--surface-solid);
+  color: var(--text-primary);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
 }
 
 .language-button {
@@ -357,7 +437,7 @@
     display: grid;
     grid-column: auto;
     justify-self: stretch;
-    grid-template-columns: minmax(0, 1fr) 44px 44px;
+    grid-template-columns: minmax(0, 1fr) minmax(208px, 0.9fr) 44px;
     gap: 8px;
   }
 
@@ -370,6 +450,13 @@
 
   .dashboard-link {
     min-width: 0;
+  }
+  .theme-select-wrapper {
+    width: 100%;
+  }
+
+  .theme-select {
+    min-height: 44px !important;
   }
 
   .contact-link {
@@ -413,11 +500,12 @@
   }
 
   .nav-actions {
-    grid-template-columns: 1fr 42px 42px;
+    grid-template-columns: minmax(0, 1fr) 42px;
   }
 
   .dashboard-link {
     min-width: 0;
+    grid-column: 1 / -1;
   }
 
   .nav-actions .icon-button,
@@ -425,6 +513,10 @@
     min-width: 0;
     width: 44px;
     padding: 0;
+  }
+
+  .theme-select {
+    min-height: 42px !important;
   }
 
   .contact-link {
@@ -435,13 +527,17 @@
 
 @media (max-width: 374.98px) {
   .nav-actions {
-    grid-template-columns: 1fr 38px 38px;
+    grid-template-columns: minmax(0, 1fr) 38px;
     gap: 6px;
   }
 
   .nav-actions .icon-button,
   .language-button {
     width: 38px;
+  }
+
+  .theme-select {
+    min-height: 38px !important;
   }
 
   .nav-toggle {
@@ -452,7 +548,7 @@
 
 @media (max-width: 1199.98px) and (min-width: 992px) {
   .navbar-shell {
-    grid-template-columns: minmax(150px, 0.9fr) auto minmax(250px, 0.9fr);
+    grid-template-columns: minmax(130px, 0.5fr) auto minmax(470px, 1fr);
     gap: 12px;
   }
 

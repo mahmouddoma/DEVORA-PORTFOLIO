@@ -33,9 +33,10 @@ interface LogoBackgroundRect {
       [class.portfolio-logo-icon--static]="animation() === 'none'"
     >
       <svg
-        class="portfolio-logo-icon__svg"
+        class="portfolio-logo-icon__svg logo-mark"
         [attr.viewBox]="viewBox()"
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid meet"
         focusable="false"
       >
         <title>{{ ariaLabel() }}</title>
@@ -59,36 +60,39 @@ interface LogoBackgroundRect {
           stroke-width="14"
         >
           <g class="portfolio-logo-icon__accent">
-            <path class="portfolio-logo-icon__arrow" d="M 40 65 L 75 100 L 40 135" />
-            <path class="portfolio-logo-icon__cursor" d="M 100 150 L 150 150" />
+            <path class="portfolio-logo-icon__arrow logo-arrow" d="M 40 65 L 75 100 L 40 135" />
+            <path
+              class="portfolio-logo-icon__cursor logo-cursor logo-underscore"
+              d="M 100 150 L 150 150"
+            />
           </g>
 
           @if (variant() === 'full') {
-            <g class="portfolio-logo-icon__letters">
+            <g class="portfolio-logo-icon__letters logo-letters">
               <path
-                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--d"
+                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--d letter letter-d"
                 d="M 190 50 L 230 50 A 50 50 0 0 1 230 150 L 190 150"
               />
               <path
-                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--e"
+                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--e letter letter-e"
                 d="M 320 50 L 380 50 M 320 100 L 370 100 M 320 150 L 380 150"
               />
               <path
-                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--v"
+                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--v letter letter-v"
                 d="M 420 50 L 460 150 L 500 50"
               />
               <circle
-                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--o"
+                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--o letter letter-o"
                 cx="585"
                 cy="100"
                 r="45"
               />
               <path
-                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--r"
+                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--r letter letter-r"
                 d="M 670 50 L 710 50 A 25 25 0 0 1 710 100 L 670 100 L 720 150"
               />
               <path
-                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--a"
+                class="portfolio-logo-icon__letter portfolio-logo-icon__letter--a letter letter-a"
                 d="M 775 150 L 815 50 L 855 150"
               />
             </g>
@@ -334,9 +338,9 @@ export class PortfolioLogoIconComponent {
   readonly variant = input<PortfolioLogoIconVariant>('full');
   readonly animation = input<PortfolioLogoIconAnimation>('intro');
   readonly width = input<string | null>(null);
-  readonly accentColor = input('#00d7ff');
-  readonly textColor = input('#f5f5f7');
-  readonly backgroundColor = input('#060910');
+  readonly accentColor = input('var(--accent-cyan)');
+  readonly textColor = input('var(--text-primary)');
+  readonly backgroundColor = input('transparent');
   readonly showBackground = input(false);
   readonly ariaLabel = input('DEVORA portfolio logo');
 

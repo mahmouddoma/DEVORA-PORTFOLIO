@@ -13,12 +13,13 @@ import {
 import { GsapService } from '../../../../core/services/gsap.service';
 import { I18nService } from '../../../../core/services/i18n.service';
 import { AppIconComponent, type AppIconName } from '../../../../shared/components/app-icon/app-icon.component';
+import { PortfolioLogoIconComponent } from '../../../../shared/components/portfolio-logo-icon/portfolio-logo-icon.component';
 import { ThreeSceneComponent } from '../../../../shared/components/three-scene/three-scene.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [ThreeSceneComponent, AppIconComponent],
+  imports: [ThreeSceneComponent, AppIconComponent, PortfolioLogoIconComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
 })
@@ -26,8 +27,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   readonly i18n = inject(I18nService);
   readonly isPageTourActive = signal(false);
   readonly metrics = [
-    { valueKey: 'hero.metric1.value', labelKey: 'hero.metric1.label', icon: 'launch' },
-    { valueKey: 'hero.metric2.value', labelKey: 'hero.metric2.label', icon: 'growth' },
+    { valueKey: 'hero.metric1.value', labelKey: 'hero.metric1.label', icon: 'rocket' },
+    { valueKey: 'hero.metric2.value', labelKey: 'hero.metric2.label', icon: 'code' },
     { valueKey: 'hero.metric3.value', labelKey: 'hero.metric3.label', icon: 'shield' },
   ] satisfies Array<{ valueKey: string; labelKey: string; icon: AppIconName }>;
 
@@ -46,82 +47,6 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     this.animationContext = this.gsapService.context(this.elementRef.nativeElement, () => {
       const gsap = this.gsapService.gsap;
       const q = gsap.utils.selector(this.elementRef.nativeElement);
-      /* 
-      // Logo Animation Timeline - Disabled to use new CSS animation
-      const logoTl = gsap.timeline({ delay: 0.4 });
-
-      // 1. Arrow enters from left with a "light trail" feel
-      logoTl.fromTo(
-        q('.logo-arrow'),
-        { x: -180, opacity: 0, strokeDashoffset: 600 },
-        { x: 0, opacity: 1, strokeDashoffset: 0, duration: 0.9, ease: 'power3.out' },
-      );
-
-      // 2. Underscore appears like a typing cursor
-      logoTl.to(
-        q('.logo-underscore'),
-        {
-          opacity: 1,
-          strokeDashoffset: 0,
-          duration: 0.2,
-        },
-        '+=0.2',
-      );
-
-      // Cursor blink effect
-      logoTl.to(q('.logo-underscore'), {
-        opacity: 0,
-        duration: 0.15,
-        repeat: 3,
-        yoyo: true,
-        ease: 'none',
-      });
-      logoTl.set(q('.logo-underscore'), { opacity: 1 });
-
-      // 3. Letters reveal one-by-one (D-E-V-O-R-A)
-      const letters = q('.letter');
-      letters.forEach((letter, i) => {
-        logoTl.to(
-          letter,
-          {
-            opacity: 1,
-            strokeDashoffset: 0,
-            duration: 0.6,
-            ease: 'power2.inOut',
-            onStart: () => {
-              gsap.to(letter, { filter: 'blur(0px)', duration: 0.4 });
-            },
-          },
-          i === 0 ? '+=0.1' : '-=0.4',
-        );
-      });
-
-      // 4. Final Horizontal Light Sweep
-      logoTl.set(q('.light-sweep'), { opacity: 0.8, x: -200 });
-      logoTl.to(
-        q('.light-sweep'),
-        {
-          x: 900,
-          opacity: 0,
-          duration: 1.4,
-          ease: 'power2.inOut',
-        },
-        '+=0.4',
-      );
-
-      // 5. Global Glow Pulse
-      logoTl.to(
-        q('.reveal-svg'),
-        {
-          filter: 'drop-shadow(0 0 25px rgba(0, 240, 255, 0.7))',
-          duration: 0.8,
-          yoyo: true,
-          repeat: 1,
-          ease: 'sine.inOut',
-        },
-        '-=1.2',
-      );
-      */
 
       // Existing content entrance
       const timeline = gsap.timeline({ delay: 0.1 });

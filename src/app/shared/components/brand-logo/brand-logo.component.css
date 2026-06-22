@@ -1,121 +1,26 @@
 .brand-logo {
   display: inline-flex;
   align-items: center;
+  color: var(--text-primary);
 }
 
-.logo-mark {
-  display: block;
-  width: clamp(128px, 12vw, 168px);
-  height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.25));
+.brand-logo app-portfolio-logo-icon {
+  display: inline-flex;
   transition: width 0.3s ease;
 }
 
-.logo-arrow {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: arrow-write 4s cubic-bezier(0.45, 0, 0.55, 1) forwards;
-}
-
-.logo-cursor {
-  transform-box: fill-box;
-  transform-origin: left center;
-  opacity: 0;
-  animation: cursor-typing 0.8s infinite ease-in-out 4s;
-}
-
-.letter {
-  opacity: 0;
-  animation: letter-reveal 0.3s ease-out forwards;
-}
-
-/* Sequential delays for letters to match arrow movement */
-.letter-d {
-  animation-delay: 0.6s;
-}
-.letter-e {
-  animation-delay: 1s;
-}
-.letter-v {
-  animation-delay: 1.4s;
-}
-.letter-o {
-  animation-delay: 1.8s;
-}
-.letter-r {
-  animation-delay: 2.2s;
-}
-.letter-a {
-  animation-delay: 2.6s;
-}
-
-@keyframes arrow-write {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  5% {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-  65% {
-    opacity: 1;
-    transform: translate(810px, 0);
-  }
-  72% {
-    opacity: 1;
-    transform: translate(810px, 112px);
-  }
-  92% {
-    opacity: 1;
-    transform: translate(0, 112px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes letter-reveal {
-  0% {
-    opacity: 0;
-    filter: blur(5px);
-    transform: translateY(5px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-}
-
-@keyframes cursor-typing {
-  0%,
-  100% {
-    transform: translateX(0) scaleX(1);
-    opacity: 1;
-    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.9));
-  }
-  50% {
-    transform: translateX(6px) scaleX(0.7);
-    opacity: 0.5;
-    filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.4));
-  }
-}
-
-.brand-logo.compact .logo-mark {
+.brand-logo.compact app-portfolio-logo-icon {
   width: 118px;
 }
 
 @media (max-width: 575.98px) {
-  .logo-mark {
-    width: clamp(112px, 35vw, 134px);
+  .brand-logo app-portfolio-logo-icon {
+    width: clamp(112px, 35vw, 134px) !important;
   }
 }
 
 @media (max-width: 374.98px) {
-  .logo-mark {
-    width: 108px;
+  .brand-logo app-portfolio-logo-icon {
+    width: 108px !important;
   }
 }
