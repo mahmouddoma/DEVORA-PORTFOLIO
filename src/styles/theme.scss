@@ -121,7 +121,8 @@ body h5,
 body h6,
 body .section-title,
 body .hero-title {
-  color: inherit !important;
+  color: var(--theme-text, var(--text-main)) !important;
+  -webkit-text-fill-color: currentColor !important;
   font-family: var(--font-heading) !important;
   font-weight: 600 !important;
   letter-spacing: 0 !important;
@@ -147,7 +148,7 @@ body .section-padding {
 
 body .section-kicker,
 body .hero-kicker {
-  color: var(--apple-primary) !important;
+  color: var(--theme-accent, var(--apple-primary)) !important;
   font-size: 12px !important;
   font-weight: 400 !important;
   letter-spacing: 0 !important;
@@ -155,7 +156,24 @@ body .hero-kicker {
 
 :root[data-theme='dark'] body .section-kicker,
 :root[data-theme='dark'] body .hero-kicker {
-  color: var(--apple-primary-on-dark) !important;
+  color: var(--theme-accent, var(--apple-primary-on-dark)) !important;
+}
+
+:root[data-theme='violet-pulse'] body .section-kicker,
+:root[data-theme='violet-pulse'] body .hero-kicker,
+:root.theme-violet-pulse body .section-kicker,
+:root.theme-violet-pulse body .hero-kicker,
+:root[data-theme='fiery-seas'] body .section-kicker,
+:root[data-theme='fiery-seas'] body .hero-kicker,
+:root.theme-fiery-seas body .section-kicker,
+:root.theme-fiery-seas body .hero-kicker,
+:root[data-theme='soft-lavender'] body .section-kicker,
+:root[data-theme='soft-lavender'] body .hero-kicker,
+:root[data-theme='refreshing-summer-fun'] body .section-kicker,
+:root[data-theme='refreshing-summer-fun'] body .hero-kicker,
+:root.theme-palette body .section-kicker,
+:root.theme-palette body .hero-kicker {
+  color: var(--theme-accent) !important;
 }
 
 body .section-kicker::before {
@@ -167,24 +185,12 @@ body .hero-kicker::after {
   content: none !important;
 }
 
-body .navbar,
-body .navbar.compact,
-body .navbar.menu-open {
-  min-height: 44px;
-  padding: 0 !important;
-  border-bottom: 0 !important;
-  background: color-mix(in srgb, var(--page-bg) 86%, transparent) !important;
-  box-shadow: none !important;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-}
+/* Removed full-width navbar overrides to keep the capsule design intact */
 
 body .navbar-shell {
   min-height: 44px;
 }
 
-body .nav-list,
-body .nav-panel,
 body .nav-actions .icon-button,
 body .language-button,
 body .dashboard-link {
@@ -278,12 +284,36 @@ body .hero-title {
 
 body .gradient-text {
   background: none !important;
-  color: var(--apple-primary) !important;
+  color: var(--theme-accent, var(--apple-primary)) !important;
   -webkit-text-fill-color: currentColor !important;
 }
 
 :root[data-theme='dark'] body .gradient-text {
-  color: var(--apple-primary-on-dark) !important;
+  color: var(--theme-accent, var(--apple-primary-on-dark)) !important;
+}
+
+:root[data-theme='violet-pulse'] body .gradient-text,
+:root.theme-violet-pulse body .gradient-text {
+  color: var(--theme-accent) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root[data-theme='fiery-seas'] body .gradient-text,
+:root.theme-fiery-seas body .gradient-text {
+  color: var(--theme-accent) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root[data-theme='soft-lavender'] body .gradient-text,
+:root.theme-soft-lavender body .gradient-text {
+  color: var(--theme-accent) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:root[data-theme='refreshing-summer-fun'] body .gradient-text,
+:root.theme-refreshing-summer-fun body .gradient-text {
+  color: var(--theme-accent) !important;
+  -webkit-text-fill-color: currentColor !important;
 }
 
 body .hero-proof {
@@ -291,7 +321,7 @@ body .hero-proof {
 }
 
 body .hero-proof::before {
-  background: var(--apple-primary) !important;
+  background: var(--theme-accent, var(--apple-primary)) !important;
   box-shadow: none !important;
 }
 
@@ -523,7 +553,7 @@ body .services-section::after {
 
 body .board-scan,
 body .contact-track span {
-  background: linear-gradient(90deg, transparent, var(--apple-primary), transparent) !important;
+  background: linear-gradient(90deg, transparent, var(--theme-accent, var(--apple-primary)), transparent) !important;
 }
 
 :root[data-theme='dark'] body .tech-section .section-title,
@@ -1060,17 +1090,8 @@ body .hero-scrim {
     linear-gradient(180deg, transparent 72%, var(--section-hero-bg)) !important;
 }
 
-body .navbar,
-body .navbar.compact,
-body .navbar.menu-open {
-  background: color-mix(in srgb, var(--theme-bg) 82%, transparent) !important;
-  border-bottom-color: var(--theme-border) !important;
-  color: var(--theme-text) !important;
-  box-shadow: none !important;
-}
+/* Removed theme-specific navbar overrides to keep capsule design intact */
 
-body .nav-panel,
-body .nav-list,
 body .nav-toggle,
 body .nav-actions .icon-button,
 body .language-button,
@@ -1707,12 +1728,7 @@ body app-project-detail {
     linear-gradient(180deg, var(--light-slate), #dfe9f2) !important;
 }
 
-:root[data-theme='light'] body .navbar,
-:root.theme-light body .navbar,
-:root[data-theme='light'] body .nav-list,
-:root.theme-light body .nav-list,
-:root[data-theme='light'] body .nav-panel,
-:root.theme-light body .nav-panel,
+
 :root[data-theme='light'] body .nav-actions .icon-button,
 :root.theme-light body .nav-actions .icon-button,
 :root[data-theme='light'] body .language-button,
@@ -2397,4 +2413,269 @@ body app-project-detail {
   --theme-input: color-mix(in srgb, #090a23 70%, #2a1a58);
   --site-section-surface:
     linear-gradient(145deg, color-mix(in srgb, #4a3673 76%, #151033), color-mix(in srgb, #2a1a58 82%, #090a23));
+}
+/* Unified public button system */
+body .hero-actions,
+body .works-actions,
+body .cyber-actions,
+body .works-section .filter-controls {
+  border: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body .contact-link,
+body .btn-primary-neon,
+body .services-primary,
+body .submit-button,
+body .work-contact,
+body .filter-btn.active {
+  min-height: 44px !important;
+  border: 1px solid var(--theme-accent, var(--accent-cyan)) !important;
+  border-radius: 999px !important;
+  background: var(--theme-accent, var(--accent-cyan)) !important;
+  color: var(--theme-on-accent, #ffffff) !important;
+  box-shadow: 0 16px 34px color-mix(in srgb, var(--theme-accent, var(--accent-cyan)) 28%, transparent) !important;
+}
+
+body .btn-outline-panel,
+body .services-secondary,
+body .work-view-all,
+body .filter-btn:not(.active) {
+  min-height: 44px !important;
+  border: 1px solid color-mix(in srgb, var(--theme-accent, var(--accent-cyan)) 42%, transparent) !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--theme-accent, var(--accent-cyan)) !important;
+  box-shadow: none !important;
+}
+
+body .btn-outline-panel:hover,
+body .services-secondary:hover,
+body .work-view-all:hover,
+body .filter-btn:not(.active):hover {
+  border-color: var(--theme-accent, var(--accent-cyan)) !important;
+  background: transparent !important;
+  color: var(--theme-accent, var(--accent-cyan)) !important;
+  box-shadow: 0 0 24px color-mix(in srgb, var(--theme-accent, var(--accent-cyan)) 18%, transparent) !important;
+}
+
+:root[data-theme='dark'] body .btn-outline-panel,
+:root.theme-dark body .btn-outline-panel,
+:root[data-theme='dark'] body .services-secondary,
+:root.theme-dark body .services-secondary,
+:root[data-theme='dark'] body .work-view-all,
+:root.theme-dark body .work-view-all,
+:root[data-theme='dark'] body .filter-btn:not(.active),
+:root.theme-dark body .filter-btn:not(.active) {
+  border-color: color-mix(in srgb, var(--theme-accent, var(--accent-cyan)) 42%, transparent) !important;
+  color: var(--theme-accent, var(--accent-cyan)) !important;
+}
+
+/* Final pass for theme-specific filter wrappers */
+:root[data-theme='light'] body .works-section .filter-controls,
+:root.theme-light body .works-section .filter-controls,
+:root[data-theme='soft-lavender'] body .works-section .filter-controls,
+:root.theme-soft-lavender body .works-section .filter-controls,
+:root[data-theme='violet-pulse'] body .works-section .filter-controls,
+:root.theme-violet-pulse body .works-section .filter-controls,
+:root.theme-palette body .works-section .filter-controls,
+body .works-section .filter-controls {
+  border: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+:root[data-theme='light'] body .filter-btn:not(.active):hover,
+:root.theme-light body .filter-btn:not(.active):hover,
+:root[data-theme='soft-lavender'] body .filter-btn:not(.active):hover,
+:root.theme-soft-lavender body .filter-btn:not(.active):hover,
+:root[data-theme='violet-pulse'] body .filter-btn:not(.active):hover,
+:root.theme-violet-pulse body .filter-btn:not(.active):hover,
+:root.theme-palette body .filter-btn:not(.active):hover,
+body .filter-btn:not(.active):hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--theme-accent, var(--accent-cyan)) !important;
+}
+
+/* Final pass for service delivery wrapper */
+:root[data-theme='light'] body .services-section .delivery-strip,
+:root.theme-light body .services-section .delivery-strip,
+:root[data-theme='soft-lavender'] body .services-section .delivery-strip,
+:root.theme-soft-lavender body .services-section .delivery-strip,
+:root[data-theme='violet-pulse'] body .services-section .delivery-strip,
+:root.theme-violet-pulse body .services-section .delivery-strip,
+:root.theme-palette body .services-section .delivery-strip,
+body .services-section .delivery-strip {
+  border: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ============================================================
+   GLOBAL TEXT-COLOR LOCK
+   Highest-priority rule. Ensures every theme token resolves
+   to a readable color regardless of which earlier layer won.
+   ============================================================ */
+
+/* Headings: always use the active theme's primary text */
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body .section-title,
+body .hero-title,
+body .works-heading .section-title,
+body .services-section .section-title,
+body .tech-section .section-title,
+body .contact-section .section-title {
+  color: var(--theme-text) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+/* Paragraphs & copy: always use the active theme's soft text */
+body p,
+body li,
+body small,
+body .section-copy,
+body .hero-subtitle,
+body .works-lede,
+body .project-info p,
+body .services-offer p,
+body .service-card p,
+body .why-panel p,
+body .value-item p,
+body .contact-details {
+  color: var(--theme-text-soft) !important;
+}
+
+/* Kickers & accented labels */
+body .section-kicker,
+body .hero-kicker,
+body .project-kicker,
+body .service-index,
+body .offer-label,
+body .step-marker,
+body .value-index,
+body .view-project,
+body .live-pill,
+body .contact-details a,
+body .back-link {
+  color: var(--theme-accent) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+/* gradient-text: use accent, never stay transparent on dark themes */
+body .gradient-text {
+  background: none !important;
+  background-image: none !important;
+  color: var(--theme-accent) !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Muted / helper text */
+body .hero-metric strong,
+body .hero-metric span,
+body .service-stat strong,
+body .service-stat span,
+body .delivery-step strong,
+body .delivery-step span,
+body .proof-item strong,
+body .proof-item span,
+body .form-field span,
+body .footer-grid > p {
+  color: var(--theme-text-soft) !important;
+}
+
+/* Navbar & interactive text */
+body .nav-link,
+body .icon-button,
+body .language-button,
+body .social-link {
+  color: var(--theme-text) !important;
+}
+
+body .nav-link:hover,
+body .nav-link.active {
+  color: var(--theme-accent) !important;
+}
+
+/* Palette text contrast alignment */
+:root[data-theme='soft-lavender'] body .tech-section,
+:root.theme-soft-lavender body .tech-section,
+:root[data-theme='violet-pulse'] body .tech-section,
+:root.theme-violet-pulse body .tech-section,
+:root[data-theme='soft-lavender'] body .tech-section .section-title,
+:root.theme-soft-lavender body .tech-section .section-title,
+:root[data-theme='violet-pulse'] body .tech-section .section-title,
+:root.theme-violet-pulse body .tech-section .section-title,
+:root[data-theme='soft-lavender'] body .tech-section h2,
+:root.theme-soft-lavender body .tech-section h2,
+:root[data-theme='violet-pulse'] body .tech-section h2,
+:root.theme-violet-pulse body .tech-section h2,
+:root[data-theme='soft-lavender'] body .tech-section h3,
+:root.theme-soft-lavender body .tech-section h3,
+:root[data-theme='violet-pulse'] body .tech-section h3,
+:root.theme-violet-pulse body .tech-section h3,
+:root[data-theme='soft-lavender'] body .tech-section .section-copy,
+:root.theme-soft-lavender body .tech-section .section-copy,
+:root[data-theme='violet-pulse'] body .tech-section .section-copy,
+:root.theme-violet-pulse body .tech-section .section-copy,
+:root[data-theme='soft-lavender'] body .tech-section .section-kicker,
+:root.theme-soft-lavender body .tech-section .section-kicker,
+:root[data-theme='violet-pulse'] body .tech-section .section-kicker,
+:root.theme-violet-pulse body .tech-section .section-kicker,
+:root[data-theme='soft-lavender'] body .tech-section .board-cell,
+:root.theme-soft-lavender body .tech-section .board-cell,
+:root[data-theme='violet-pulse'] body .tech-section .board-cell,
+:root.theme-violet-pulse body .tech-section .board-cell,
+:root[data-theme='soft-lavender'] body .tech-section .tech-chip,
+:root.theme-soft-lavender body .tech-section .tech-chip,
+:root[data-theme='violet-pulse'] body .tech-section .tech-chip,
+:root.theme-violet-pulse body .tech-section .tech-chip,
+:root[data-theme='soft-lavender'] body .tech-section .stack-board,
+:root.theme-soft-lavender body .tech-section .stack-board,
+:root[data-theme='violet-pulse'] body .tech-section .stack-board,
+:root.theme-violet-pulse body .tech-section .stack-board {
+  color: var(--theme-text) !important;
+}
+
+:root[data-theme='soft-lavender'] body .tech-section .section-kicker,
+:root.theme-soft-lavender body .tech-section .section-kicker,
+:root[data-theme='violet-pulse'] body .tech-section .section-kicker,
+:root.theme-violet-pulse body .tech-section .section-kicker {
+  color: var(--theme-accent) !important;
+}
+
+:root[data-theme='soft-lavender'] body .stack-board,
+:root.theme-soft-lavender body .stack-board,
+:root[data-theme='violet-pulse'] body .stack-board,
+:root.theme-violet-pulse body .stack-board,
+:root[data-theme='soft-lavender'] body .tech-chip,
+:root.theme-soft-lavender body .tech-chip,
+:root[data-theme='violet-pulse'] body .tech-chip,
+:root.theme-violet-pulse body .tech-chip,
+:root[data-theme='soft-lavender'] body .board-cell,
+:root.theme-soft-lavender body .board-cell,
+:root[data-theme='violet-pulse'] body .board-cell,
+:root.theme-violet-pulse body .board-cell {
+  color: var(--theme-text) !important;
 }

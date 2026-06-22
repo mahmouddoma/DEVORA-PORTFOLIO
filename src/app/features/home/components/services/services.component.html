@@ -12,94 +12,159 @@
       </p>
     </div>
 
-    <!-- Horizontal Services Carousel -->
-    <div class="services-carousel-wrapper">
-      <div class="services-grid" #carousel>
-        @for (service of services; track service.index) {
-          <article class="service-card" #serviceCard>
-            <div class="card-glow-bg"></div>
-            <span class="card-watermark bidi-isolate" dir="ltr" aria-hidden="true">{{
-              service.index
-            }}</span>
+    <!-- Bento Box Grid -->
+    <div class="bento-grid">
 
-            <div class="card-top">
-              <span class="service-index">
-                <app-icon [name]="service.icon"></app-icon>
-              </span>
+      <!-- Card 1: Web Development (wide, top-left, spans 2 cols) -->
+      <article class="bento-card bento-web">
+        <div class="bento-card-inner">
+          <div class="bento-card-content">
+            <div class="bento-icon-wrap">
+              <app-icon name="rocket"></app-icon>
             </div>
-
-            <div class="card-content">
-              <h3 [attr.data-edit-key]="service.titleKey">{{ i18n.t(service.titleKey) }}</h3>
-              <p [attr.data-edit-key]="service.bodyKey">{{ i18n.t(service.bodyKey) }}</p>
+            <h3 data-edit-key="services.launch.title">{{ i18n.t('services.launch.title') }}</h3>
+            <p data-edit-key="services.launch.body">{{ i18n.t('services.launch.body') }}</p>
+            <a href="#contact" class="bento-link">
+              {{ i18n.t('services.secondaryCta') }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="bento-visual bento-web-visual">
+            <div class="browser-mock">
+              <div class="browser-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="browser-url">devora.studio</span>
+              </div>
+              <div class="browser-body">
+                <div class="mock-hero-line wide"></div>
+                <div class="mock-hero-line medium"></div>
+                <div class="mock-grid">
+                  <div class="mock-card"></div>
+                  <div class="mock-card"></div>
+                  <div class="mock-card"></div>
+                </div>
+              </div>
             </div>
-
-            <div class="outcome-row">
-              <svg
-                class="outcome-arrow"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-              <strong class="outcome-badge" [attr.data-edit-key]="service.outcomeKey">{{
-                i18n.t(service.outcomeKey)
-              }}</strong>
-            </div>
-          </article>
-        }
-      </div>
-
-      <!-- Controls & Sliding Thumb Progress -->
-      <div class="carousel-controls-container">
-        <div class="carousel-progress-track">
-          <div class="carousel-progress-fill" #progressBar></div>
-          <div class="carousel-progress-dot" #progressDot></div>
+          </div>
         </div>
+        <div class="bento-glow bento-glow-cyan"></div>
+      </article>
 
-        <div class="carousel-nav">
-          <button
-            class="nav-btn prev"
-            type="button"
-            [attr.aria-label]="i18n.t('services.previous')"
-            (click)="scrollPrev()"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            class="nav-btn next"
-            type="button"
-            [attr.aria-label]="i18n.t('services.next')"
-            (click)="scrollNext()"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
+      <!-- Card 2: Branding (tall, right column, spans 2 rows) -->
+      <article class="bento-card bento-branding">
+        <div class="bento-card-inner bento-card-inner-col">
+          <div class="bento-icon-wrap">
+            <app-icon name="spark"></app-icon>
+          </div>
+          <h3 data-edit-key="services.brand.title">{{ i18n.t('services.brand.title') }}</h3>
+          <p data-edit-key="services.brand.body">{{ i18n.t('services.brand.body') }}</p>
+          <a href="#contact" class="bento-link">
+            {{ i18n.t('services.secondaryCta') }}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <div class="brand-logos-stack">
+            <div class="brand-logo-row">
+              <div class="brand-logo-chip">
+                <span class="chip-text">DEVORA</span>
+              </div>
+              <div class="brand-logo-chip chip-alt">
+                <span class="chip-text">Studio</span>
+              </div>
+            </div>
+            <div class="brand-palette">
+              <span class="color-swatch" style="--sw: #00e5ff"></span>
+              <span class="color-swatch" style="--sw: #7c5cf7"></span>
+              <span class="color-swatch" style="--sw: #00c896"></span>
+              <span class="color-swatch" style="--sw: #ff6b6b"></span>
+              <span class="color-swatch" style="--sw: #f5c842"></span>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="bento-glow bento-glow-purple"></div>
+      </article>
+
+      <!-- Card 3: Software / AI (tall, left, spans 2 rows) -->
+      <article class="bento-card bento-ai">
+        <div class="bento-card-inner bento-card-inner-col">
+          <div class="code-block">
+            <div class="code-line"><span class="code-kw">import</span> <span class="code-var">security</span> <span class="code-op">from</span> <span class="code-str">'@devora/sec'</span><span class="code-op">;</span></div>
+            <div class="code-line empty"></div>
+            <div class="code-line"><span class="code-kw">const</span> <span class="code-var">audit</span> <span class="code-op">=</span> <span class="code-kw">await</span> <span class="code-var">security</span><span class="code-op">.</span><span class="code-fn">scan</span><span class="code-op">(</span><span class="code-br">{{ '{' }}</span></div>
+            <div class="code-line indent"><span class="code-prop">target</span><span class="code-op">:</span> <span class="code-str">'production-api'</span><span class="code-op">,</span></div>
+            <div class="code-line indent"><span class="code-prop">depth</span><span class="code-op">:</span> <span class="code-str">'penetration'</span></div>
+            <div class="code-line"><span class="code-br">{{ '}' }}</span><span class="code-op">);</span></div>
+            <div class="code-line empty"></div>
+            <div class="code-line"><span class="code-var">audit</span><span class="code-op">.</span><span class="code-fn">patchVulnerabilities</span><span class="code-op">();</span></div>
+          </div>
+          <div class="bento-icon-wrap" style="margin-top: auto">
+            <app-icon name="cyber"></app-icon>
+          </div>
+          <h3 data-edit-key="services.cyber.title">{{ i18n.t('services.cyber.title') }}</h3>
+          <p data-edit-key="services.cyber.body">{{ i18n.t('services.cyber.body') }}</p>
+          <a href="#contact" class="bento-link">
+            {{ i18n.t('services.secondaryCta') }}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="bento-glow bento-glow-blue"></div>
+      </article>
+
+      <!-- Card 4: Center "Everything in One Place" -->
+      <article class="bento-card bento-center">
+        <div class="bento-center-content">
+          <div class="bento-center-orb"></div>
+          <p class="bento-center-text">Everything in<br><strong>One Place</strong></p>
+        </div>
+        <div class="bento-glow bento-glow-mix"></div>
+      </article>
+
+      <!-- Card 5: Mobile Applications (wide, bottom, spans 2 cols) -->
+      <article class="bento-card bento-mobile">
+        <div class="bento-card-inner">
+          <div class="bento-card-content">
+            <div class="bento-icon-wrap">
+              <app-icon name="wrench"></app-icon>
+            </div>
+            <h3 data-edit-key="services.modernize.title">{{ i18n.t('services.modernize.title') }}</h3>
+            <p data-edit-key="services.modernize.body">{{ i18n.t('services.modernize.body') }}</p>
+            <a href="#contact" class="bento-link">
+              {{ i18n.t('services.secondaryCta') }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="bento-visual bento-mobile-visual">
+            <div class="phone-mock">
+              <div class="phone-screen">
+                <div class="phone-notch"></div>
+                <div class="phone-content">
+                  <div class="phone-task done">
+                    <span class="task-check">✓</span>
+                    <span>Task completed</span>
+                    <span class="task-menu">⋮</span>
+                  </div>
+                  <div class="phone-task">
+                    <span class="task-dot"></span>
+                    <span>Updated schedule</span>
+                    <span class="task-menu">⋮</span>
+                  </div>
+                  <div class="phone-task">
+                    <span class="task-plus">+</span>
+                    <span>Added new exercise</span>
+                    <span class="task-menu">⋮</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bento-glow bento-glow-green"></div>
+      </article>
+
     </div>
 
-    <!-- Quick CTAs & Delivery strip -->
+    <!-- Quick CTAs -->
     <div class="services-footer-shell">
       <div class="services-actions">
         <a
@@ -111,16 +176,6 @@
         <a class="services-secondary" href="#work" data-edit-key="services.secondaryCta">{{
           i18n.t('services.secondaryCta')
         }}</a>
-      </div>
-
-      <div class="delivery-strip p-3" aria-label="Delivery process">
-        @for (step of deliverySteps; track step.labelKey) {
-          <div class="delivery-step">
-            <app-icon class="delivery-icon" [name]="step.icon"></app-icon>
-            <span [attr.data-edit-key]="step.labelKey">{{ i18n.t(step.labelKey) }}</span>
-            <strong [attr.data-edit-key]="step.titleKey">{{ i18n.t(step.titleKey) }}</strong>
-          </div>
-        }
       </div>
     </div>
   </div>

@@ -123,8 +123,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onThemeChange(event: Event) {
-    const select = event.target as HTMLSelectElement;
-    this.themeService.setThemeFromValue(select.value);
+    const input = event.target as HTMLInputElement;
+    this.themeService.setThemeFromValue(input.value);
   }
 
   navigateToSection(event: MouseEvent, sectionId: string) {
