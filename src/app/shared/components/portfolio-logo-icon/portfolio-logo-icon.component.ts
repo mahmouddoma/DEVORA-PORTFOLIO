@@ -202,7 +202,46 @@ interface LogoBackgroundRect {
       }
 
       .portfolio-logo-icon--loop {
-        animation: portfolio-logo-soft-pulse 3.6s ease-in-out infinite 4s;
+        animation: portfolio-logo-soft-pulse 5s ease-in-out infinite;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__arrow {
+        animation: portfolio-logo-arrow-write-loop 5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__cursor {
+        animation: portfolio-logo-cursor-typing-loop 5s ease-in-out infinite;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__letter {
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-out;
+        animation-delay: 0s;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__letter--d {
+        animation-name: portfolio-logo-letter-d-loop;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__letter--e {
+        animation-name: portfolio-logo-letter-e-loop;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__letter--v {
+        animation-name: portfolio-logo-letter-v-loop;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__letter--o {
+        animation-name: portfolio-logo-letter-o-loop;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__letter--r {
+        animation-name: portfolio-logo-letter-r-loop;
+      }
+
+      .portfolio-logo-icon--loop:not(.portfolio-logo-icon--mark) .portfolio-logo-icon__letter--a {
+        animation-name: portfolio-logo-letter-a-loop;
       }
 
       .portfolio-logo-icon--static,
@@ -314,6 +353,112 @@ interface LogoBackgroundRect {
             0 0 16px color-mix(in srgb, var(--portfolio-logo-icon-accent) 46%, transparent)
           );
         }
+      }
+
+      @keyframes portfolio-logo-arrow-write-loop {
+        0% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+
+        4% {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+
+        52% {
+          opacity: 1;
+          transform: translate(810px, 0);
+        }
+
+        58% {
+          opacity: 1;
+          transform: translate(810px, 112px);
+        }
+
+        74% {
+          opacity: 1;
+          transform: translate(0, 112px);
+        }
+
+        82%,
+        98% {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+
+        100% {
+          opacity: 0;
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes portfolio-logo-cursor-typing-loop {
+        0%,
+        76% {
+          opacity: 0;
+          filter: none;
+          transform: translateX(0) scaleX(1);
+        }
+
+        82%,
+        94% {
+          opacity: 1;
+          filter: drop-shadow(
+            0 0 12px color-mix(in srgb, var(--portfolio-logo-icon-accent) 90%, transparent)
+          );
+          transform: translateX(0) scaleX(1);
+        }
+
+        88% {
+          opacity: 0.5;
+          filter: drop-shadow(
+            0 0 4px color-mix(in srgb, var(--portfolio-logo-icon-accent) 40%, transparent)
+          );
+          transform: translateX(6px) scaleX(0.7);
+        }
+
+        100% {
+          opacity: 0;
+          filter: none;
+          transform: translateX(0) scaleX(1);
+        }
+      }
+
+      @keyframes portfolio-logo-letter-d-loop {
+        0%, 11% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+        17%, 98% { opacity: 1; filter: blur(0); transform: translateY(0); }
+        100% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+      }
+
+      @keyframes portfolio-logo-letter-e-loop {
+        0%, 19% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+        25%, 98% { opacity: 1; filter: blur(0); transform: translateY(0); }
+        100% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+      }
+
+      @keyframes portfolio-logo-letter-v-loop {
+        0%, 27% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+        33%, 98% { opacity: 1; filter: blur(0); transform: translateY(0); }
+        100% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+      }
+
+      @keyframes portfolio-logo-letter-o-loop {
+        0%, 35% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+        41%, 98% { opacity: 1; filter: blur(0); transform: translateY(0); }
+        100% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+      }
+
+      @keyframes portfolio-logo-letter-r-loop {
+        0%, 43% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+        49%, 98% { opacity: 1; filter: blur(0); transform: translateY(0); }
+        100% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+      }
+
+      @keyframes portfolio-logo-letter-a-loop {
+        0%, 51% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
+        57%, 98% { opacity: 1; filter: blur(0); transform: translateY(0); }
+        100% { opacity: 0; filter: blur(5px); transform: translateY(5px); }
       }
 
       @media (prefers-reduced-motion: reduce) {

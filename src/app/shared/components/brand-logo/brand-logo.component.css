@@ -15,12 +15,12 @@
 
 @media (max-width: 575.98px) {
   .brand-logo app-portfolio-logo-icon {
-    width: clamp(112px, 35vw, 134px) !important;
+    width: clamp(142px, 44vw, 174px) !important;
   }
 }
 
 @media (max-width: 374.98px) {
   .brand-logo app-portfolio-logo-icon {
-    width: 108px !important;
+    width: clamp(124px, 42vw, 146px) !important;
   }
 }
