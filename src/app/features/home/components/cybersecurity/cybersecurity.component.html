@@ -12,7 +12,7 @@
           {{ i18n.t('cyber.body') }}
         </p>
 
-        <div class="cyber-actions">
+        <div class="cyber-actions motion-item">
           <a class="cyber-primary" href="#contact" data-edit-key="cyber.primaryCta">
             <app-icon name="shield"></app-icon>
             {{ i18n.t('cyber.primaryCta') }}
@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <div class="cyber-panel" aria-label="Cybersecurity delivery summary">
+      <div class="cyber-panel motion-item" aria-label="Cybersecurity delivery summary">
         <div class="cyber-panel-header">
           <app-icon name="cyber"></app-icon>
           <div>
@@ -45,19 +45,99 @@
       </div>
     </div>
 
-    <div class="cyber-grid">
+    <div class="cyber-grid" aria-label="Cybersecurity delivery flow">
       @for (capability of capabilities; track capability.titleKey) {
-        <article class="cyber-card">
-          <span class="cyber-card-icon">
-            <app-icon [name]="capability.icon"></app-icon>
-          </span>
-          <h3 [attr.data-edit-key]="capability.titleKey">{{ i18n.t(capability.titleKey) }}</h3>
-          <p [attr.data-edit-key]="capability.bodyKey">{{ i18n.t(capability.bodyKey) }}</p>
+        <article class="cyber-card" [attr.data-enter-from]="capability.enterFrom">
+          @if (capability.step === '01') {
+            <video class="cyber-card-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+              <source src="assets/cybersecurity/penetration-paths-loop.mp4" type="video/mp4" />
+            </video>
+          }
+
+          <div class="cyber-card-top">
+            <span class="cyber-card-icon" aria-hidden="true">
+              <app-icon [name]="capability.icon"></app-icon>
+            </span>
+            <span class="cyber-card-step">{{ capability.step }}</span>
+          </div>
+
+          @if (capability.step === '02') {
+            <div class="api-flow-visual" aria-hidden="true">
+              <div class="api-flow-stage">
+                <span>REQ</span>
+                <small>/login</small>
+              </div>
+              <span class="api-flow-rail">
+                <span class="api-flow-packet"></span>
+              </span>
+              <div class="api-flow-stage api-flow-stage-auth">
+                <span>AUTH</span>
+                <small>JWT</small>
+              </div>
+              <span class="api-flow-rail api-flow-rail-alt">
+                <span class="api-flow-packet"></span>
+              </span>
+              <div class="api-flow-stage">
+                <span>DATA</span>
+                <small>200</small>
+              </div>
+            </div>
+          }
+
+          @if (capability.step === '03') {
+            <svg class="cyber-card-visual" viewBox="0 0 360 112" width="100%" height="88" aria-hidden="true">
+              <rect x="1" y="1" width="358" height="110" rx="12" fill="#07101f" fill-opacity="0.72" stroke="#2997ff" stroke-opacity="0.18" />
+              <circle cx="82" cy="56" r="36" fill="none" stroke="#2997ff" stroke-opacity="0.24" />
+              <circle cx="82" cy="56" r="22" fill="none" stroke="#2997ff" stroke-opacity="0.2" />
+              <line x1="82" y1="56" x2="118" y2="56" stroke="#2997ff" stroke-width="2" stroke-linecap="round">
+                <animateTransform attributeName="transform" type="rotate" from="0 82 56" to="360 82 56" dur="3.2s" repeatCount="indefinite" />
+              </line>
+              <circle cx="108" cy="38" r="5" fill="#ff4d8d">
+                <animate attributeName="r" values="4;7;4" dur="1.8s" repeatCount="indefinite" />
+              </circle>
+              <text x="154" y="28" fill="#2997ff" font-size="10" font-weight="800">RISK RANKING</text>
+              <rect x="154" y="40" width="150" height="8" rx="4" fill="#ff4d8d" fill-opacity="0.9" />
+              <rect x="154" y="58" width="116" height="8" rx="4" fill="#d926ff" fill-opacity="0.78" />
+              <rect x="154" y="76" width="82" height="8" rx="4" fill="#2997ff" fill-opacity="0.72" />
+              <text x="314" y="48" fill="#f8f5ff" fill-opacity="0.72" font-size="10" text-anchor="end">Critical</text>
+              <text x="314" y="66" fill="#f8f5ff" fill-opacity="0.58" font-size="10" text-anchor="end">High</text>
+              <text x="314" y="84" fill="#f8f5ff" fill-opacity="0.5" font-size="10" text-anchor="end">Medium</text>
+            </svg>
+          }
+
+          @if (capability.step === '04') {
+            <svg class="cyber-card-visual" viewBox="0 0 620 92" width="100%" height="74" aria-hidden="true">
+              <rect x="1" y="1" width="618" height="90" rx="12" fill="#07101f" fill-opacity="0.62" stroke="#2997ff" stroke-opacity="0.16" />
+              <rect x="24" y="27" width="132" height="38" rx="10" fill="#0b1426" stroke="#2997ff" stroke-opacity="0.3" />
+              <rect x="244" y="27" width="132" height="38" rx="10" fill="#0b1426" stroke="#d926ff" stroke-opacity="0.28" />
+              <rect x="464" y="27" width="132" height="38" rx="10" fill="#0b1426" stroke="#35d2a7" stroke-opacity="0.32" />
+              <line x1="168" y1="46" x2="232" y2="46" stroke="#2997ff" stroke-opacity="0.58" stroke-width="2" stroke-linecap="round" />
+              <line x1="388" y1="46" x2="452" y2="46" stroke="#35d2a7" stroke-opacity="0.58" stroke-width="2" stroke-linecap="round" />
+              <circle cx="168" cy="46" r="5" fill="#2997ff">
+                <animate attributeName="cx" values="168;232;168" dur="2.6s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0;1;0" dur="2.6s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="388" cy="46" r="5" fill="#35d2a7">
+                <animate attributeName="cx" values="388;452;388" dur="2.6s" begin="0.55s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0;1;0" dur="2.6s" begin="0.55s" repeatCount="indefinite" />
+              </circle>
+              <text x="90" y="50" fill="#f8f5ff" font-size="13" font-weight="800" text-anchor="middle">HEADERS</text>
+              <text x="310" y="50" fill="#f8f5ff" font-size="13" font-weight="800" text-anchor="middle">RULES</text>
+              <text x="530" y="50" fill="#f8f5ff" font-size="13" font-weight="800" text-anchor="middle">RELEASE</text>
+            </svg>
+          }
+          <div class="cyber-card-copy">
+            <span class="cyber-card-meta" [attr.data-edit-key]="capability.metaKey">
+              {{ i18n.t(capability.metaKey) }}
+            </span>
+            <h3 [attr.data-edit-key]="capability.titleKey">{{ i18n.t(capability.titleKey) }}</h3>
+            <p [attr.data-edit-key]="capability.bodyKey">{{ i18n.t(capability.bodyKey) }}</p>
+          </div>
         </article>
       }
     </div>
 
-    <div class="cyber-deliverables">
+    <div class="cyber-deliverables motion-item">
       <span data-edit-key="cyber.deliverables.label">{{ i18n.t('cyber.deliverables.label') }}</span>
       <strong data-edit-key="cyber.deliverables.title">{{ i18n.t('cyber.deliverables.title') }}</strong>
       <p data-edit-key="cyber.deliverables.body">{{ i18n.t('cyber.deliverables.body') }}</p>

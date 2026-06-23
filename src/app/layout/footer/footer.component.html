@@ -140,129 +140,14 @@
       <div class="footer-col social-col">
         <a
           class="social-icon-btn"
-          href="#"
+          [href]="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
           *ngFor="let link of socialLinks"
-          [attr.aria-label]="link"
-          [title]="link"
+          [attr.aria-label]="link.label"
+          [title]="link.label"
         >
-          <ng-container [ngSwitch]="link">
-            <svg *ngSwitchCase="'Twitter'" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M4 4l16 16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M20 4 4 20"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <svg *ngSwitchCase="'LinkedIn'" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M5 9v10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5 5.5v.1"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M10 19v-6.2c0-2.3 1.4-3.8 3.5-3.8 2.2 0 3.5 1.5 3.5 4.1V19"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <svg *ngSwitchCase="'GitHub'" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M9 19c-4 1.3-4-2-5.5-2.5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M15 22v-3.5c.1-1-.3-1.7-.8-2.1 2.7-.3 5.6-1.4 5.6-6A4.7 4.7 0 0 0 18.5 7c.1-.3.6-1.6-.1-3.3 0 0-1.1-.3-3.5 1.3a12 12 0 0 0-6.4 0C6.1 3.4 5 3.7 5 3.7 4.3 5.4 4.8 6.7 4.9 7a4.7 4.7 0 0 0-1.3 3.4c0 4.6 2.8 5.7 5.5 6-.4.3-.8 1-.8 2.1V22"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <svg *ngSwitchCase="'Dribbble'" viewBox="0 0 24 24" aria-hidden="true">
-              <circle
-                cx="12"
-                cy="12"
-                r="8"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5 9.5c4.7.3 8.9-.6 12.6-2.8"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.2 19c1.8-4.5 5.2-7 10.4-7.5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M9.3 4.6c2.2 2.8 4 6.4 5.3 10.9"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <svg *ngSwitchDefault viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M7 17 17 7"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8 7h9v9"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </ng-container>
+          <app-icon [name]="link.icon"></app-icon>
         </a>
       </div>
     </div>

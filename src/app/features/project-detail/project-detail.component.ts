@@ -2,50 +2,64 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import { I18nService } from '../../core/services/i18n.service';
+
 interface ProjectDetail {
   slug: string;
-  title: string;
-  category: string;
-  summary: string;
+  titleKey: string;
+  categoryKey: string;
+  summaryKey: string;
   liveUrl: string;
   accent: string;
-  outcomes: readonly string[];
-  stack: readonly string[];
+  outcomeKeys: readonly string[];
+  stackKeys: readonly string[];
 }
 
 const PROJECTS: readonly ProjectDetail[] = [
   {
     slug: 'osos-al-riadah',
-    title: 'Osos Al-Riadah',
-    category: 'Real Estate Platform',
-    summary:
-      'A real estate services platform focused on search, property discovery, and a trusted digital presence for buyers and operators.',
+    titleKey: 'work.osos.title',
+    categoryKey: 'work.category.realEstate',
+    summaryKey: 'project.osos.summary',
     liveUrl: 'https://osos-alriadah.com/',
     accent: '#00e5ff',
-    outcomes: ['Structured discovery flows', 'Responsive Angular interface', 'Dynamic content foundation'],
-    stack: ['Angular', 'TypeScript', 'Responsive UI', 'Content Architecture'],
+    outcomeKeys: ['project.osos.outcome1', 'project.osos.outcome2', 'project.osos.outcome3'],
+    stackKeys: [
+      'tech.item.angular',
+      'tech.item.typescript',
+      'project.stack.responsiveUi',
+      'project.stack.contentArchitecture',
+    ],
   },
   {
     slug: 'ajyal-al-quran',
-    title: 'Ajyal Al-Quran School',
-    category: 'Education Platform',
-    summary:
-      'A learning-focused web experience for course information, registration, and student-facing school communication.',
+    titleKey: 'work.ajyal.title',
+    categoryKey: 'work.category.education',
+    summaryKey: 'project.ajyal.summary',
     liveUrl: 'https://ajyal-alquran.com/',
     accent: '#35d39d',
-    outcomes: ['Clear course presentation', 'Fast registration path', 'Mobile-first information architecture'],
-    stack: ['Angular', 'TypeScript', 'Education UX', 'Performance'],
+    outcomeKeys: ['project.ajyal.outcome1', 'project.ajyal.outcome2', 'project.ajyal.outcome3'],
+    stackKeys: [
+      'tech.item.angular',
+      'tech.item.typescript',
+      'project.stack.educationUx',
+      'tech.item.performance',
+    ],
   },
   {
     slug: 'zaytona-agriculture',
-    title: 'Zaytona Agriculture',
-    category: 'Agriculture Website',
-    summary:
-      'A polished product and service showcase for an agriculture brand that needs clarity, speed, and reliable presentation.',
+    titleKey: 'work.zaytona.title',
+    categoryKey: 'work.category.agriculture',
+    summaryKey: 'project.zaytona.summary',
     liveUrl: 'https://zaytona.info/',
     accent: '#73d13d',
-    outcomes: ['Product-led content system', 'Responsive visual showcase', 'Clean service discovery'],
-    stack: ['Angular', 'TypeScript', 'Brand UI', 'Responsive Layout'],
+    outcomeKeys: ['project.zaytona.outcome1', 'project.zaytona.outcome2', 'project.zaytona.outcome3'],
+    stackKeys: [
+      'tech.item.angular',
+      'tech.item.typescript',
+      'project.stack.brandUi',
+      'project.stack.responsiveLayout',
+    ],
   },
 ];
 
@@ -59,6 +73,7 @@ const PROJECTS: readonly ProjectDetail[] = [
 export class ProjectDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly slug = this.route.snapshot.paramMap.get('slug') ?? '';
+  readonly i18n = inject(I18nService);
 
   readonly project = computed(
     () => PROJECTS.find((item) => item.slug === this.slug) ?? PROJECTS[0],

@@ -144,7 +144,7 @@
   transform: translateY(-2px);
 }
 
-.social-icon-btn svg {
+.social-icon-btn app-icon {
   width: 18px;
   height: 18px;
 }
@@ -306,7 +306,7 @@
     height: 22px;
   }
 
-  .social-icon-btn svg {
+  .social-icon-btn app-icon {
     width: 16px;
     height: 16px;
   }

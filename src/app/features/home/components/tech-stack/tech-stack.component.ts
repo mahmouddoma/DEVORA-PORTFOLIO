@@ -13,33 +13,40 @@ import { AppIconComponent } from '../../../../shared/components/app-icon/app-ico
   styleUrl: './tech-stack.component.css',
 })
 export class TechStackComponent implements AfterViewInit, OnDestroy {
-  readonly technologies = [
-    'Angular',
-    'TypeScript',
-    'Signals',
-    'Standalone UI',
-    'Forms',
-    'GSAP',
-    'API Integration',
-    'SEO',
-    'Performance',
-    'Deployment',
+  readonly technologyKeys = [
+    'tech.item.angular',
+    'tech.item.typescript',
+    'tech.item.signals',
+    'tech.item.standaloneUi',
+    'tech.item.forms',
+    'tech.item.gsap',
+    'tech.item.apiIntegration',
+    'tech.item.seo',
+    'tech.item.performance',
+    'tech.item.deployment',
   ];
 
-  readonly technologiesReverse = [
-    'Product Strategy',
-    'UX Architecture',
-    'Design Systems',
-    'Dashboards',
-    'SaaS',
-    'Admin Panels',
-    'Lead Flow',
-    'Analytics',
-    'Handover',
-    'Growth',
+  readonly capabilityKeys = [
+    'tech.item.productStrategy',
+    'tech.item.uxArchitecture',
+    'tech.item.designSystems',
+    'tech.item.dashboards',
+    'tech.item.saas',
+    'tech.item.adminPanels',
+    'tech.item.leadFlow',
+    'tech.item.analytics',
+    'tech.item.handover',
+    'tech.item.growth',
   ];
 
-  readonly boardCells = ['STRATEGY', 'UX', 'ANGULAR', 'SYSTEMS', 'LAUNCH', 'GROWTH'];
+  readonly boardCellKeys = [
+    'tech.board.strategy',
+    'tech.board.ux',
+    'tech.board.angular',
+    'tech.board.systems',
+    'tech.board.launch',
+    'tech.board.growth',
+  ];
   readonly marqueeCopies = [0, 1, 2] as const;
   private animationContext?: { revert: () => void };
 

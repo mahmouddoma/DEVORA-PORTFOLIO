@@ -1,32 +1,32 @@
 <main class="project-detail" [style.--project-accent]="project().accent">
   <section class="project-hero">
-    <a class="back-link" routerLink="/" fragment="work">Back to work</a>
-    <span class="project-kicker">{{ project().category }}</span>
-    <h1>{{ project().title }}</h1>
-    <p>{{ project().summary }}</p>
+    <a class="back-link" routerLink="/" fragment="work">{{ i18n.t('project.backToWork') }}</a>
+    <span class="project-kicker">{{ i18n.t(project().categoryKey) }}</span>
+    <h1>{{ i18n.t(project().titleKey) }}</h1>
+    <p>{{ i18n.t(project().summaryKey) }}</p>
     <div class="project-actions">
       <a class="primary-link" [href]="project().liveUrl" target="_blank" rel="noopener noreferrer">
-        Live Project
+        {{ i18n.t('project.liveProject') }}
       </a>
-      <a class="secondary-link" routerLink="/" fragment="contact">Start a Similar Build</a>
+      <a class="secondary-link" routerLink="/" fragment="contact">{{ i18n.t('project.startSimilarBuild') }}</a>
     </div>
   </section>
 
   <section class="project-grid">
     <article class="project-panel">
-      <span>Outcomes</span>
+      <span>{{ i18n.t('project.outcomes') }}</span>
       <ul>
-        @for (outcome of project().outcomes; track outcome) {
-          <li>{{ outcome }}</li>
+        @for (outcomeKey of project().outcomeKeys; track outcomeKey) {
+          <li>{{ i18n.t(outcomeKey) }}</li>
         }
       </ul>
     </article>
 
     <article class="project-panel">
-      <span>Stack</span>
+      <span>{{ i18n.t('project.stack') }}</span>
       <div class="stack-list">
-        @for (item of project().stack; track item) {
-          <strong>{{ item }}</strong>
+        @for (item of project().stackKeys; track item) {
+          <strong>{{ i18n.t(item) }}</strong>
         }
       </div>
     </article>
