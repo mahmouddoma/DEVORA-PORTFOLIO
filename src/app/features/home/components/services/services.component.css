@@ -118,14 +118,21 @@
 .bento-icon-wrap {
   display: inline-grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--services-icon-border, color-mix(in srgb, var(--services-accent, #d926ff) 34%, transparent));
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--services-accent, #d926ff) 26%, transparent), rgba(255, 255, 255, 0.04));
   color: var(--services-accent, var(--color-primary));
+  box-shadow:
+    0 10px 24px color-mix(in srgb, var(--services-accent, #d926ff) 14%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .bento-icon-wrap app-icon {
-  width: 28px;
-  height: 28px;
+  width: 21px;
+  height: 21px;
 }
 
 .bento-copy h3 {

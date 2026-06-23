@@ -85,6 +85,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         duration: 0.9,
         ease: 'power4.out',
         delay: 0.15,
+        clearProps: 'transform,opacity',
       });
 
       this.gsapService.gsap.from(
